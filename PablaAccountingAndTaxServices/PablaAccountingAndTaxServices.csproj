@@ -935,6 +935,8 @@
     <Content Include="dist\js\pages\dashboard.js" />
     <Content Include="dist\js\pages\dashboard2.js" />
     <Content Include="dist\js\pages\dashboard3.js" />
+    <Content Include="Documents\indigo-life-decoding-dayton-19-mendelsons-img.jpg" />
+    <Content Include="Documents\lord-shiva-wallpaper-1-640x451.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -958,7 +960,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Documents\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -1039,6 +1040,7 @@
     <Content Include="ClientContent\fonts\mercury-regular.eot" />
     <Content Include="ClientContent\fonts\mercury-regular.ttf" />
     <Content Include="ClientContent\fonts\mercury-regular.woff" />
+    <Content Include="Documents\dummy.pdf" />
     <None Include="packages.config" />
     <Content Include="Scripts\js\adminlte.js.map" />
     <Content Include="Scripts\js\adminlte.min.js.map" />
