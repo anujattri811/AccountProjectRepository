@@ -14,6 +14,7 @@ namespace PablaAccountingAndTaxServices.Controllers
     {
         LoginBLL loginBLL = new LoginBLL();
         EncryDecry encryDecry = new EncryDecry();
+        ClientBLL clientBLL = new ClientBLL();
 
         #region client_login
         [HttpGet]
@@ -55,17 +56,25 @@ namespace PablaAccountingAndTaxServices.Controllers
                 Session["UserId"] = result.UserId;
                 Session["FirstName"] = result.FirstName;
                 Session["LastName"] = result.LastName;
-                return RedirectToAction("Client_Dashboard","Client");
+                return RedirectToAction("Client_Dashboard","Client",new {ClientId = result.UserId });
             }
         }
         
-        public ActionResult client_dashboard()
+        public ActionResult client_dashboard(int ClientId)
         {
+            var model = new ClientEntity();
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("client_login", "Client");
             }
-            return View();
+            else
+            {
+                List<tblClientDocument> result = new List<tblClientDocument>();
+                result = clientBLL.selectAllDocumentForClient(ClientId);
+                model = clientBLL.GetAllClient(ClientId);
+                ViewBag.TotalDocument = result;
+            }
+            return View(model);
         }
         #endregion
     }
