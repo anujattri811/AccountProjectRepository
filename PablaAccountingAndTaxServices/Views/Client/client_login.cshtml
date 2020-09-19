@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "client_login";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<section class="breadcrumbs-custom bg-image novi-background bg-primary">
+    <div class="container">
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">Login</li>
+        </ul>
+    </div>
+</section>
+<!-- Log In-->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-lg-7 col-xl-6">
+                <h3>Log In</h3>
+                <div class="group-sm group-middle group-custom"><a class="button button-facebook" href="#"> Facebook</a><a class="button button-twitter" href="#"> Twitter</a><a class="button button-google" href="#"> Google+</a></div>
+                <div class="custom-form-wrap">
+                    <div class="heading-5">or</div>
+                    <!--RD Mailform-->
+                    <form class="rd-form rd-mailform text-right" action="\Client\client_login" method="post" id="login">
+                        <div class="form-wrap">
+                            <input class="form-input" id="login-email" type="email" name="UserName" autocomplete="off">
+                            <label class="form-label" for="login-email">E-mail</label>
+                        </div>
+                        <div class="form-wrap">
+                            <input class="form-input" id="login-password" type="password" name="Password" autocomplete="off">
+                            <label class="form-label" for="login-password">Password</label>
+                        </div>
+                        <input class="button button-primary" type="submit" value="Login" />
+                        <button class="button button-primary" type="button" onclick="test()">Enter</button>
+                    </form>
+                </div>
+                <h5>Download Secure Client Portal App:</h5>
+                <div class="group-sm group-wrap-1"><a href="#"><img src="../ClientContent/images/pay-item-1-133x45.png" alt="" width="133" height="22" /></a><a href="#"><img src="../ClientContent/images/pay-item-2-133x44.png" alt="" width="133" height="22" /></a><a href="#"><img src="../ClientContent/images/pay-item-3-135x46.png" alt="" width="135" height="23" /></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    $('#Login').validate({
+        rules: {
+            UserName: {
+                required: true,
+                email: true,
+            },
+            Password: {
+                required: true,
+                minlength: 5
+            },
+            //terms: {
+            //    required: true
+            //},
+        },
+        messages: {
+            UserName: {
+                required: "Please enter a email address",
+                email: "Please enter a vaild email address"
+            },
+            Password: {
+                required: "Please enter a password",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            //terms: "Please accept our terms"
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+
+    function test() {
+        window.location.href = "/Client/Client_Dashboard";
+    }
+</script>

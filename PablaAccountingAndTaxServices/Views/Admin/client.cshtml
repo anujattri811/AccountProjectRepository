@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "client";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content header">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-header card_color" style="padding-top: 1px;
+    padding-bottom: 1px;">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3 class="card-title" style="color: white;padding-top:16px;">Client List</h3>
+                        </div>
+                        <div class="col-md-6" style="float:right;margin-top: 7px;">
+                            <a href="/Admin/new_client" class="btn btn_a" style="float: right;font-size:15px;">
+                                Add New Client
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="col-sm-12" style="overflow-x:auto;">
+                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Operation</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>MobileNo</th>
+                                        <th>Company Name</th>
+                                        @*<th>Address</th>
+                                            <th>City</th>
+                                            <th>Postal Code</th>
+                                            <th>Province</th>
+                                            <th>Country</th>
+                                            <th>Sin</th>
+                                            <th>GstNo</th>
+                                            <th>WCB</th>*@
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in ViewBag.ClientList)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a href="/Admin/client_view?ClientId=@item.UserId" class="btn btn-info btn_color" style=" padding-top: .15rem!important; padding-bottom: .15rem!important;padding-right: .5rem!important; padding-left: .5rem!important;"><i class="fas fa-eye"></i></a>
+                                                <a class="btn btn-info btn-sm" href="/Admin/modify_client?ClientId=@item.UserId">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.UserId);">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+
+                                                </a>
+                                            </td>
+                                            <td>@item.FirstName</td>
+                                            <td>@item.LastName</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.MobileNo</td>
+                                            <td>@item.CompanyName</td>
+                                            @*<td>@item.Address</td>
+                                                <td>@item.City</td>
+                                                <td>@item.PostalCode</td>
+                                                <td>@item.Province</td>
+                                                <td>@item.Country</td>
+                                                <td>@item.SIN</td>
+                                                <td>@item.GSTNumber</td>
+                                                <td>@item.WCB</td>*@
+
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                                @*<tfoot>
+                                        <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1">Platform(s)</th><th rowspan="1" colspan="1">Engine version</th><th rowspan="1" colspan="1">CSS grade</th></tr>
+                                    </tfoot>*@
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <!-- /.row -->
+</section>
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="~/Content/plugins/sweetalert2/SweetAlert.js"></script>
+<link href="~/Content/css/AdminStyle.css" rel="stylesheet" />
+@*<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>*@
+
+<script>
+    $(function () {
+        $("#example1").DataTable();
+    });
+    $( document ).ready(function() {
+        if ('@TempData["Delete"]' == "1") {
+        Swal.fire(
+                    'Deleted!',
+                    'Your Client has been deleted.',
+                    'success'
+                )
+        }
+});
+</script>
+<script>
+    function Delete(UserId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Admin/DeleteClient?UserId=" + UserId
+
+            }
+        })
+    }
+</script>

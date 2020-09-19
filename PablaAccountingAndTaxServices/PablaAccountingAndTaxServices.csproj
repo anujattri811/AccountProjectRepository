@@ -1,0 +1,1126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{785B8BC5-F0EC-4740-BAF5-6CC6FB2280C2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PablaAccountingAndTaxServices</RootNamespace>
+    <AssemblyName>PablaAccountingAndTaxServices</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44391</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.5</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CommanClass\EncryDecry.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientContent\css\bootstrap.css" />
+    <Content Include="ClientContent\css\fonts.css" />
+    <Content Include="ClientContent\css\style.css" />
+    <Content Include="ClientContent\FontFamily.css" />
+    <Content Include="ClientContent\fonts\fontawesome-webfont.svg" />
+    <Content Include="ClientContent\fonts\lg.svg" />
+    <Content Include="ClientContent\fonts\materialdesignicons-webfont.svg" />
+    <Content Include="ClientContent\fonts\mercury-regular.svg" />
+    <Content Include="ClientContent\images\about-1-569x338.jpg" />
+    <Content Include="ClientContent\images\accounting-services-1-586x507.jpg" />
+    <Content Include="ClientContent\images\accounting-services-2-583x507.jpg" />
+    <Content Include="ClientContent\images\accounting-services-3-586x507.jpg" />
+    <Content Include="ClientContent\images\accounting-services-4-583x507.jpg" />
+    <Content Include="ClientContent\images\ajax-loader.gif" />
+    <Content Include="ClientContent\images\bg-navbar.jpg" />
+    <Content Include="ClientContent\images\bg-pattern-boxed.png" />
+    <Content Include="ClientContent\images\blog-1-570x274.jpg" />
+    <Content Include="ClientContent\images\blog-2-570x274.jpg" />
+    <Content Include="ClientContent\images\blog-3-570x274.jpg" />
+    <Content Include="ClientContent\images\brand-1-93x82.png" />
+    <Content Include="ClientContent\images\brand-10-154x67.png" />
+    <Content Include="ClientContent\images\brand-11-136x81.png" />
+    <Content Include="ClientContent\images\brand-2-122x33.png" />
+    <Content Include="ClientContent\images\brand-3-137x64.png" />
+    <Content Include="ClientContent\images\brand-4-100x76.png" />
+    <Content Include="ClientContent\images\brand-5-122x60.png" />
+    <Content Include="ClientContent\images\brand-6-136x49.png" />
+    <Content Include="ClientContent\images\brand-7-141x59.png" />
+    <Content Include="ClientContent\images\brand-8-126x48.png" />
+    <Content Include="ClientContent\images\brand-9-144x57.png" />
+    <Content Include="ClientContent\images\brand-light-1-133x65.png" />
+    <Content Include="ClientContent\images\brand-light-2-117x61.png" />
+    <Content Include="ClientContent\images\brand-light-3-147x70.png" />
+    <Content Include="ClientContent\images\brand-light-4-139x64.png" />
+    <Content Include="ClientContent\images\brand-light-5-123x67.png" />
+    <Content Include="ClientContent\images\brand-light-6-151x72.png" />
+    <Content Include="ClientContent\images\certifications-brand-1-139x88.png" />
+    <Content Include="ClientContent\images\certifications-brand-2-150x82.png" />
+    <Content Include="ClientContent\images\certifications-brand-3-144x76.png" />
+    <Content Include="ClientContent\images\certifications-brand-4-102x101.png" />
+    <Content Include="ClientContent\images\certifications-brand-5-136x86.png" />
+    <Content Include="ClientContent\images\certifications-brand-6-132x101.png" />
+    <Content Include="ClientContent\images\favicon.ico" />
+    <Content Include="ClientContent\images\footer-1-brand-1-121x68.png" />
+    <Content Include="ClientContent\images\footer-1-brand-1-144x70.png" />
+    <Content Include="ClientContent\images\footer-1-brand-2-121x68.png" />
+    <Content Include="ClientContent\images\footer-1-brand-2-144x70.png" />
+    <Content Include="ClientContent\images\footer-1-brand-3-121x33.png" />
+    <Content Include="ClientContent\images\footer-1-brand-4-101x76.png" />
+    <Content Include="ClientContent\images\footer-1-brand-5-107x53.png" />
+    <Content Include="ClientContent\images\footer-1-brand-6-97x52.png" />
+    <Content Include="ClientContent\images\gallery-original-1-1200x800.jpg" />
+    <Content Include="ClientContent\images\gallery-original-2-1200x800.jpg" />
+    <Content Include="ClientContent\images\gallery-original-3-1200x800.jpg" />
+    <Content Include="ClientContent\images\gallery-original-4-1200x800.jpg" />
+    <Content Include="ClientContent\images\gallery-original-5-1200x800.jpg" />
+    <Content Include="ClientContent\images\gallery-original-6-1200x800.jpg" />
+    <Content Include="ClientContent\images\gmap_marker.png" />
+    <Content Include="ClientContent\images\gmap_marker_active.png" />
+    <Content Include="ClientContent\images\ie8-panel\warning_bar_0000_us.jpg" />
+    <Content Include="ClientContent\images\index-1-2-586x334.jpg" />
+    <Content Include="ClientContent\images\index-1-3-580x334.jpg" />
+    <Content Include="ClientContent\images\index-1-slider-1-1920x768.jpg" />
+    <Content Include="ClientContent\images\index-1-slider-2-1920x768.jpg" />
+    <Content Include="ClientContent\images\index-1-slider-3-1920x768.jpg" />
+    <Content Include="ClientContent\images\index-2-bg-1645x531.jpg" />
+    <Content Include="ClientContent\images\index-2-chart-518x315.png" />
+    <Content Include="ClientContent\images\index-2-slider-1-1645.jpg" />
+    <Content Include="ClientContent\images\index-2-slider-2-1645.jpg" />
+    <Content Include="ClientContent\images\index-2-slider-3-1645.jpg" />
+    <Content Include="ClientContent\images\index-3-chart-1-410x273.png" />
+    <Content Include="ClientContent\images\index-3-parallax-1920x1031.jpg" />
+    <Content Include="ClientContent\images\index-3-parallax-2-1920x869.jpg" />
+    <Content Include="ClientContent\images\index-3-post-1-570x295.jpg" />
+    <Content Include="ClientContent\images\index-3-post-2-570x295.jpg" />
+    <Content Include="ClientContent\images\index-3-post-3-570x295.jpg" />
+    <Content Include="ClientContent\images\index-3-slider-1-1920x881.jpg" />
+    <Content Include="ClientContent\images\index-3-slider-2-1920x881.jpg" />
+    <Content Include="ClientContent\images\index-3-slider-3-1920x881.jpg" />
+    <Content Include="ClientContent\images\index-874x534.jpg" />
+    <Content Include="ClientContent\images\loading.gif" />
+    <Content Include="ClientContent\images\logo-default-240x44.png" />
+    <Content Include="ClientContent\images\logo-inverse-240x44.png" />
+    <Content Include="ClientContent\images\our-story-1-572x335.jpg" />
+    <Content Include="ClientContent\images\parallax-1-1920x1026.jpg" />
+    <Content Include="ClientContent\images\parallax-2-1920x1004.jpg" />
+    <Content Include="ClientContent\images\pay-item-1-133x45.png" />
+    <Content Include="ClientContent\images\pay-item-2-133x44.png" />
+    <Content Include="ClientContent\images\pay-item-3-135x46.png" />
+    <Content Include="ClientContent\images\phone-333x290.png" />
+    <Content Include="ClientContent\images\play-icon-19x35.png" />
+    <Content Include="ClientContent\images\post-recent-1-70x70.jpg" />
+    <Content Include="ClientContent\images\post-recent-2-70x70.jpg" />
+    <Content Include="ClientContent\images\post-recent-3-70x70.jpg" />
+    <Content Include="ClientContent\images\preloader.gif" />
+    <Content Include="ClientContent\images\preloader.png" />
+    <Content Include="ClientContent\images\single-post-1-432x356.jpg" />
+    <Content Include="ClientContent\images\single-post-2-1919x766.jpg" />
+    <Content Include="ClientContent\images\team-1-370x283.jpg" />
+    <Content Include="ClientContent\images\team-2-370x283.jpg" />
+    <Content Include="ClientContent\images\team-3-370x283.jpg" />
+    <Content Include="ClientContent\images\test-box-2-1186x348.jpg" />
+    <Content Include="ClientContent\images\testimonials-1-138x138.jpg" />
+    <Content Include="ClientContent\images\testimonials-2-138x138.jpg" />
+    <Content Include="ClientContent\images\testimonials-3-138x138.jpg" />
+    <Content Include="ClientContent\images\testimonials-4-138x138.jpg" />
+    <Content Include="ClientContent\images\typography-1-946x485.jpg" />
+    <Content Include="ClientContent\images\typography-2-544x342.jpg" />
+    <Content Include="ClientContent\images\video-play.png" />
+    <Content Include="ClientContent\images\vimeo-play.png" />
+    <Content Include="ClientContent\images\widget-gallery-1-87x83.jpg" />
+    <Content Include="ClientContent\images\widget-gallery-2-87x83.jpg" />
+    <Content Include="ClientContent\images\widget-gallery-3-87x83.jpg" />
+    <Content Include="ClientContent\images\widget-gallery-4-87x83.jpg" />
+    <Content Include="ClientContent\images\widget-gallery-5-87x83.jpg" />
+    <Content Include="ClientContent\images\widget-gallery-6-87x83.jpg" />
+    <Content Include="ClientContent\images\youtube-play.png" />
+    <Content Include="ClientContent\images\_blank.png" />
+    <Content Include="ClientContent\js\core.min.js" />
+    <Content Include="ClientContent\js\script.js" />
+    <Content Include="Content\css\adminlte.css" />
+    <Content Include="Content\css\adminlte.min.css" />
+    <Content Include="Content\css\AdminStyle.css" />
+    <Content Include="Content\css\alt\adminlte.components.css" />
+    <Content Include="Content\css\alt\adminlte.components.min.css" />
+    <Content Include="Content\css\alt\adminlte.core.css" />
+    <Content Include="Content\css\alt\adminlte.core.min.css" />
+    <Content Include="Content\css\alt\adminlte.extra-components.css" />
+    <Content Include="Content\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Content\css\alt\adminlte.pages.css" />
+    <Content Include="Content\css\alt\adminlte.pages.min.css" />
+    <Content Include="Content\css\alt\adminlte.plugins.css" />
+    <Content Include="Content\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\css\LiveSweetAlert.css" />
+    <Content Include="Content\img\AdminLTELogo.png" />
+    <Content Include="Content\img\avatar.png" />
+    <Content Include="Content\img\avatar04.png" />
+    <Content Include="Content\img\avatar2.png" />
+    <Content Include="Content\img\avatar3.png" />
+    <Content Include="Content\img\avatar5.png" />
+    <Content Include="Content\img\boxed-bg.jpg" />
+    <Content Include="Content\img\boxed-bg.png" />
+    <Content Include="Content\img\credit\american-express.png" />
+    <Content Include="Content\img\credit\cirrus.png" />
+    <Content Include="Content\img\credit\mastercard.png" />
+    <Content Include="Content\img\credit\mestro.png" />
+    <Content Include="Content\img\credit\paypal.png" />
+    <Content Include="Content\img\credit\paypal2.png" />
+    <Content Include="Content\img\credit\visa.png" />
+    <Content Include="Content\img\default-150x150.png" />
+    <Content Include="Content\img\icons.png" />
+    <Content Include="Content\img\photo1.png" />
+    <Content Include="Content\img\photo2.png" />
+    <Content Include="Content\img\photo3.jpg" />
+    <Content Include="Content\img\photo4.jpg" />
+    <Content Include="Content\img\prod-1.jpg" />
+    <Content Include="Content\img\prod-2.jpg" />
+    <Content Include="Content\img\prod-3.jpg" />
+    <Content Include="Content\img\prod-4.jpg" />
+    <Content Include="Content\img\prod-5.jpg" />
+    <Content Include="Content\img\user1-128x128.jpg" />
+    <Content Include="Content\img\user2-160x160.jpg" />
+    <Content Include="Content\img\user3-128x128.jpg" />
+    <Content Include="Content\img\user4-128x128.jpg" />
+    <Content Include="Content\img\user5-128x128.jpg" />
+    <Content Include="Content\img\user6-128x128.jpg" />
+    <Content Include="Content\img\user7-128x128.jpg" />
+    <Content Include="Content\img\user8-128x128.jpg" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.min.js" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\plugins\bs-custom-file-input\bs-custom-file-input.js" />
+    <Content Include="Content\plugins\bs-custom-file-input\bs-custom-file-input.min.js" />
+    <Content Include="Content\plugins\chart.js\Chart.bundle.js" />
+    <Content Include="Content\plugins\chart.js\Chart.bundle.min.js" />
+    <Content Include="Content\plugins\chart.js\Chart.css" />
+    <Content Include="Content\plugins\chart.js\Chart.js" />
+    <Content Include="Content\plugins\chart.js\Chart.min.css" />
+    <Content Include="Content\plugins\chart.js\Chart.min.js" />
+    <Content Include="Content\plugins\datatables-bs4\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\plugins\datatables-bs4\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="Content\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Content\plugins\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\plugins\daterangepicker\drp.png" />
+    <Content Include="Content\plugins\daterangepicker\example\amd\index.html" />
+    <Content Include="Content\plugins\daterangepicker\example\amd\main.js" />
+    <Content Include="Content\plugins\daterangepicker\example\amd\require.js" />
+    <Content Include="Content\plugins\daterangepicker\example\browserify\bundle.js" />
+    <Content Include="Content\plugins\daterangepicker\example\browserify\index.html" />
+    <Content Include="Content\plugins\daterangepicker\example\browserify\main.js" />
+    <Content Include="Content\plugins\daterangepicker\moment.min.js" />
+    <Content Include="Content\plugins\daterangepicker\package.js" />
+    <Content Include="Content\plugins\daterangepicker\website.css" />
+    <Content Include="Content\plugins\daterangepicker\website.js" />
+    <Content Include="Content\plugins\daterangepicker\website\index.html" />
+    <Content Include="Content\plugins\daterangepicker\website\website.css" />
+    <Content Include="Content\plugins\daterangepicker\website\website.js" />
+    <Content Include="Content\plugins\fontawesome-free\css\all.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\all.min.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\brands.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\brands.min.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\fontawesome.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\regular.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\regular.min.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\solid.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\solid.min.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\v4-shims.css" />
+    <Content Include="Content\plugins\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\plugins\fullcalendar-bootstrap\LICENSE.txt" />
+    <Content Include="Content\plugins\fullcalendar-bootstrap\main.css" />
+    <Content Include="Content\plugins\fullcalendar-bootstrap\main.esm.js" />
+    <Content Include="Content\plugins\fullcalendar-bootstrap\main.js" />
+    <Content Include="Content\plugins\fullcalendar-bootstrap\main.min.css" />
+    <Content Include="Content\plugins\fullcalendar-bootstrap\main.min.js" />
+    <Content Include="Content\plugins\fullcalendar-daygrid\LICENSE.txt" />
+    <Content Include="Content\plugins\fullcalendar-daygrid\main.css" />
+    <Content Include="Content\plugins\fullcalendar-daygrid\main.esm.js" />
+    <Content Include="Content\plugins\fullcalendar-daygrid\main.js" />
+    <Content Include="Content\plugins\fullcalendar-daygrid\main.min.css" />
+    <Content Include="Content\plugins\fullcalendar-daygrid\main.min.js" />
+    <Content Include="Content\plugins\fullcalendar-interaction\LICENSE.txt" />
+    <Content Include="Content\plugins\fullcalendar-interaction\main.esm.js" />
+    <Content Include="Content\plugins\fullcalendar-interaction\main.js" />
+    <Content Include="Content\plugins\fullcalendar-interaction\main.min.js" />
+    <Content Include="Content\plugins\fullcalendar-timegrid\LICENSE.txt" />
+    <Content Include="Content\plugins\fullcalendar-timegrid\main.css" />
+    <Content Include="Content\plugins\fullcalendar-timegrid\main.esm.js" />
+    <Content Include="Content\plugins\fullcalendar-timegrid\main.js" />
+    <Content Include="Content\plugins\fullcalendar-timegrid\main.min.css" />
+    <Content Include="Content\plugins\fullcalendar-timegrid\main.min.js" />
+    <Content Include="Content\plugins\fullcalendar\LICENSE.txt" />
+    <Content Include="Content\plugins\fullcalendar\locales-all.js" />
+    <Content Include="Content\plugins\fullcalendar\locales-all.min.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\af.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ar-dz.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ar-kw.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ar-ly.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ar-ma.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ar-sa.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ar-tn.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ar.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\bg.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\bs.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ca.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\cs.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\da.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\de.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\el.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\en-au.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\en-gb.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\en-nz.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\es-us.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\es.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\et.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\eu.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\fa.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\fi.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\fr-ca.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\fr-ch.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\fr.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\gl.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\he.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\hi.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\hr.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\hu.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\id.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\is.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\it.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ja.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ka.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\kk.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ko.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\lb.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\lt.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\lv.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\mk.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ms.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\nb.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\nl.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\nn.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\pl.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\pt-br.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\pt.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ro.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\ru.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\sk.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\sl.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\sq.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\sr-cyrl.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\sr.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\sv.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\th.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\tr.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\uk.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\vi.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\zh-cn.js" />
+    <Content Include="Content\plugins\fullcalendar\locales\zh-tw.js" />
+    <Content Include="Content\plugins\fullcalendar\main.css" />
+    <Content Include="Content\plugins\fullcalendar\main.esm.js" />
+    <Content Include="Content\plugins\fullcalendar\main.js" />
+    <Content Include="Content\plugins\fullcalendar\main.min.css" />
+    <Content Include="Content\plugins\fullcalendar\main.min.js" />
+    <Content Include="Content\plugins\jquery-knob\jquery.knob.min.js" />
+    <Content Include="Content\plugins\jquery-ui\AUTHORS.txt" />
+    <Content Include="Content\plugins\jquery-ui\external\jquery\jquery.js" />
+    <Content Include="Content\plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\plugins\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\plugins\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\plugins\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\plugins\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\plugins\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.css" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.js" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.structure.css" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.structure.min.css" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.theme.css" />
+    <Content Include="Content\plugins\jquery-ui\jquery-ui.theme.min.css" />
+    <Content Include="Content\plugins\jquery-ui\LICENSE.txt" />
+    <Content Include="Content\plugins\jquery-validation\additional-methods.js" />
+    <Content Include="Content\plugins\jquery-validation\additional-methods.min.js" />
+    <Content Include="Content\plugins\jquery-validation\jquery.validate.js" />
+    <Content Include="Content\plugins\jquery-validation\jquery.validate.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ar.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ar.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_az.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_az.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_bg.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_bg.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_bn_BD.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_bn_BD.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ca.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ca.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_cs.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_cs.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_da.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_da.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_de.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_de.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_el.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_el.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_es.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_es.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_es_AR.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_es_AR.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_es_PE.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_es_PE.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_et.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_et.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_eu.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_eu.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_fa.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_fa.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_fi.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_fi.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_fr.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_fr.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ge.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ge.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_gl.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_gl.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_he.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_he.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_hr.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_hr.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_hu.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_hu.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_hy_AM.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_hy_AM.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_id.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_id.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_is.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_is.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_it.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_it.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ja.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ja.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ka.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ka.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_kk.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_kk.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ko.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ko.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_lt.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_lt.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_lv.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_lv.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_mk.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_mk.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_my.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_my.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_nl.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_nl.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_no.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_no.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_pl.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_pl.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_pt_BR.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_pt_BR.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_pt_PT.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_pt_PT.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ro.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ro.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ru.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ru.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sd.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sd.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_si.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_si.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sk.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sk.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sl.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sl.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sr.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sr.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sr_lat.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sr_lat.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sv.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_sv.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_th.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_th.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_tj.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_tj.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_tr.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_tr.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_uk.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_uk.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ur.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_ur.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_vi.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_vi.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_zh.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_zh.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_zh_TW.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\messages_zh_TW.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_de.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_de.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_es_CL.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_es_CL.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_fi.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_fi.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_it.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_it.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_nl.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_nl.min.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_pt.js" />
+    <Content Include="Content\plugins\jquery-validation\localization\methods_pt.min.js" />
+    <Content Include="Content\plugins\jquery\core.js" />
+    <Content Include="Content\plugins\jquery\jquery.js" />
+    <Content Include="Content\plugins\jquery\jquery.min.js" />
+    <Content Include="Content\plugins\jquery\jquery.slim.js" />
+    <Content Include="Content\plugins\jquery\jquery.slim.min.js" />
+    <Content Include="Content\plugins\jqvmap\jquery.vmap.js" />
+    <Content Include="Content\plugins\jqvmap\jquery.vmap.min.js" />
+    <Content Include="Content\plugins\jqvmap\jqvmap.css" />
+    <Content Include="Content\plugins\jqvmap\jqvmap.min.css" />
+    <Content Include="Content\plugins\jqvmap\maps\continents\jquery.vmap.africa.js" />
+    <Content Include="Content\plugins\jqvmap\maps\continents\jquery.vmap.asia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\continents\jquery.vmap.australia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\continents\jquery.vmap.europe.js" />
+    <Content Include="Content\plugins\jqvmap\maps\continents\jquery.vmap.north-america.js" />
+    <Content Include="Content\plugins\jqvmap\maps\continents\jquery.vmap.south-america.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.algeria.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.argentina.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.brazil.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.canada.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.croatia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.europe.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.france.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.germany.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.greece.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.indonesia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.iran.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.iraq.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.new_regions_france.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.russia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.serbia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.tunisia.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.turkey.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.ukraine.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.usa.counties.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.usa.districts.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.usa.js" />
+    <Content Include="Content\plugins\jqvmap\maps\jquery.vmap.world.js" />
+    <Content Include="Content\plugins\moment\locales.js" />
+    <Content Include="Content\plugins\moment\locales.min.js" />
+    <Content Include="Content\plugins\moment\locale\af.js" />
+    <Content Include="Content\plugins\moment\locale\ar-dz.js" />
+    <Content Include="Content\plugins\moment\locale\ar-kw.js" />
+    <Content Include="Content\plugins\moment\locale\ar-ly.js" />
+    <Content Include="Content\plugins\moment\locale\ar-ma.js" />
+    <Content Include="Content\plugins\moment\locale\ar-sa.js" />
+    <Content Include="Content\plugins\moment\locale\ar-tn.js" />
+    <Content Include="Content\plugins\moment\locale\ar.js" />
+    <Content Include="Content\plugins\moment\locale\az.js" />
+    <Content Include="Content\plugins\moment\locale\be.js" />
+    <Content Include="Content\plugins\moment\locale\bg.js" />
+    <Content Include="Content\plugins\moment\locale\bm.js" />
+    <Content Include="Content\plugins\moment\locale\bn.js" />
+    <Content Include="Content\plugins\moment\locale\bo.js" />
+    <Content Include="Content\plugins\moment\locale\br.js" />
+    <Content Include="Content\plugins\moment\locale\bs.js" />
+    <Content Include="Content\plugins\moment\locale\ca.js" />
+    <Content Include="Content\plugins\moment\locale\cs.js" />
+    <Content Include="Content\plugins\moment\locale\cv.js" />
+    <Content Include="Content\plugins\moment\locale\cy.js" />
+    <Content Include="Content\plugins\moment\locale\da.js" />
+    <Content Include="Content\plugins\moment\locale\de-at.js" />
+    <Content Include="Content\plugins\moment\locale\de-ch.js" />
+    <Content Include="Content\plugins\moment\locale\de.js" />
+    <Content Include="Content\plugins\moment\locale\dv.js" />
+    <Content Include="Content\plugins\moment\locale\el.js" />
+    <Content Include="Content\plugins\moment\locale\en-au.js" />
+    <Content Include="Content\plugins\moment\locale\en-ca.js" />
+    <Content Include="Content\plugins\moment\locale\en-gb.js" />
+    <Content Include="Content\plugins\moment\locale\en-ie.js" />
+    <Content Include="Content\plugins\moment\locale\en-il.js" />
+    <Content Include="Content\plugins\moment\locale\en-nz.js" />
+    <Content Include="Content\plugins\moment\locale\en-SG.js" />
+    <Content Include="Content\plugins\moment\locale\eo.js" />
+    <Content Include="Content\plugins\moment\locale\es-do.js" />
+    <Content Include="Content\plugins\moment\locale\es-us.js" />
+    <Content Include="Content\plugins\moment\locale\es.js" />
+    <Content Include="Content\plugins\moment\locale\et.js" />
+    <Content Include="Content\plugins\moment\locale\eu.js" />
+    <Content Include="Content\plugins\moment\locale\fa.js" />
+    <Content Include="Content\plugins\moment\locale\fi.js" />
+    <Content Include="Content\plugins\moment\locale\fo.js" />
+    <Content Include="Content\plugins\moment\locale\fr-ca.js" />
+    <Content Include="Content\plugins\moment\locale\fr-ch.js" />
+    <Content Include="Content\plugins\moment\locale\fr.js" />
+    <Content Include="Content\plugins\moment\locale\fy.js" />
+    <Content Include="Content\plugins\moment\locale\ga.js" />
+    <Content Include="Content\plugins\moment\locale\gd.js" />
+    <Content Include="Content\plugins\moment\locale\gl.js" />
+    <Content Include="Content\plugins\moment\locale\gom-latn.js" />
+    <Content Include="Content\plugins\moment\locale\gu.js" />
+    <Content Include="Content\plugins\moment\locale\he.js" />
+    <Content Include="Content\plugins\moment\locale\hi.js" />
+    <Content Include="Content\plugins\moment\locale\hr.js" />
+    <Content Include="Content\plugins\moment\locale\hu.js" />
+    <Content Include="Content\plugins\moment\locale\hy-am.js" />
+    <Content Include="Content\plugins\moment\locale\id.js" />
+    <Content Include="Content\plugins\moment\locale\is.js" />
+    <Content Include="Content\plugins\moment\locale\it-ch.js" />
+    <Content Include="Content\plugins\moment\locale\it.js" />
+    <Content Include="Content\plugins\moment\locale\ja.js" />
+    <Content Include="Content\plugins\moment\locale\jv.js" />
+    <Content Include="Content\plugins\moment\locale\ka.js" />
+    <Content Include="Content\plugins\moment\locale\kk.js" />
+    <Content Include="Content\plugins\moment\locale\km.js" />
+    <Content Include="Content\plugins\moment\locale\kn.js" />
+    <Content Include="Content\plugins\moment\locale\ko.js" />
+    <Content Include="Content\plugins\moment\locale\ku.js" />
+    <Content Include="Content\plugins\moment\locale\ky.js" />
+    <Content Include="Content\plugins\moment\locale\lb.js" />
+    <Content Include="Content\plugins\moment\locale\lo.js" />
+    <Content Include="Content\plugins\moment\locale\lt.js" />
+    <Content Include="Content\plugins\moment\locale\lv.js" />
+    <Content Include="Content\plugins\moment\locale\me.js" />
+    <Content Include="Content\plugins\moment\locale\mi.js" />
+    <Content Include="Content\plugins\moment\locale\mk.js" />
+    <Content Include="Content\plugins\moment\locale\ml.js" />
+    <Content Include="Content\plugins\moment\locale\mn.js" />
+    <Content Include="Content\plugins\moment\locale\mr.js" />
+    <Content Include="Content\plugins\moment\locale\ms-my.js" />
+    <Content Include="Content\plugins\moment\locale\ms.js" />
+    <Content Include="Content\plugins\moment\locale\mt.js" />
+    <Content Include="Content\plugins\moment\locale\my.js" />
+    <Content Include="Content\plugins\moment\locale\nb.js" />
+    <Content Include="Content\plugins\moment\locale\ne.js" />
+    <Content Include="Content\plugins\moment\locale\nl-be.js" />
+    <Content Include="Content\plugins\moment\locale\nl.js" />
+    <Content Include="Content\plugins\moment\locale\nn.js" />
+    <Content Include="Content\plugins\moment\locale\pa-in.js" />
+    <Content Include="Content\plugins\moment\locale\pl.js" />
+    <Content Include="Content\plugins\moment\locale\pt-br.js" />
+    <Content Include="Content\plugins\moment\locale\pt.js" />
+    <Content Include="Content\plugins\moment\locale\ro.js" />
+    <Content Include="Content\plugins\moment\locale\ru.js" />
+    <Content Include="Content\plugins\moment\locale\sd.js" />
+    <Content Include="Content\plugins\moment\locale\se.js" />
+    <Content Include="Content\plugins\moment\locale\si.js" />
+    <Content Include="Content\plugins\moment\locale\sk.js" />
+    <Content Include="Content\plugins\moment\locale\sl.js" />
+    <Content Include="Content\plugins\moment\locale\sq.js" />
+    <Content Include="Content\plugins\moment\locale\sr-cyrl.js" />
+    <Content Include="Content\plugins\moment\locale\sr.js" />
+    <Content Include="Content\plugins\moment\locale\ss.js" />
+    <Content Include="Content\plugins\moment\locale\sv.js" />
+    <Content Include="Content\plugins\moment\locale\sw.js" />
+    <Content Include="Content\plugins\moment\locale\ta.js" />
+    <Content Include="Content\plugins\moment\locale\te.js" />
+    <Content Include="Content\plugins\moment\locale\tet.js" />
+    <Content Include="Content\plugins\moment\locale\tg.js" />
+    <Content Include="Content\plugins\moment\locale\th.js" />
+    <Content Include="Content\plugins\moment\locale\tl-ph.js" />
+    <Content Include="Content\plugins\moment\locale\tlh.js" />
+    <Content Include="Content\plugins\moment\locale\tr.js" />
+    <Content Include="Content\plugins\moment\locale\tzl.js" />
+    <Content Include="Content\plugins\moment\locale\tzm-latn.js" />
+    <Content Include="Content\plugins\moment\locale\tzm.js" />
+    <Content Include="Content\plugins\moment\locale\ug-cn.js" />
+    <Content Include="Content\plugins\moment\locale\uk.js" />
+    <Content Include="Content\plugins\moment\locale\ur.js" />
+    <Content Include="Content\plugins\moment\locale\uz-latn.js" />
+    <Content Include="Content\plugins\moment\locale\uz.js" />
+    <Content Include="Content\plugins\moment\locale\vi.js" />
+    <Content Include="Content\plugins\moment\locale\x-pseudo.js" />
+    <Content Include="Content\plugins\moment\locale\yo.js" />
+    <Content Include="Content\plugins\moment\locale\zh-cn.js" />
+    <Content Include="Content\plugins\moment\locale\zh-hk.js" />
+    <Content Include="Content\plugins\moment\locale\zh-tw.js" />
+    <Content Include="Content\plugins\moment\moment-with-locales.js" />
+    <Content Include="Content\plugins\moment\moment-with-locales.min.js" />
+    <Content Include="Content\plugins\moment\moment.min.js" />
+    <Content Include="Content\plugins\overlayScrollbars\css\OverlayScrollbars.css" />
+    <Content Include="Content\plugins\overlayScrollbars\css\OverlayScrollbars.min.css" />
+    <Content Include="Content\plugins\overlayScrollbars\js\jquery.overlayScrollbars.js" />
+    <Content Include="Content\plugins\overlayScrollbars\js\jquery.overlayScrollbars.min.js" />
+    <Content Include="Content\plugins\overlayScrollbars\js\OverlayScrollbars.js" />
+    <Content Include="Content\plugins\overlayScrollbars\js\OverlayScrollbars.min.js" />
+    <Content Include="Content\plugins\sparklines\sparkline.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ar-AR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ar-AR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-bg-BG.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-bg-BG.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ca-ES.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ca-ES.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-cs-CZ.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-cs-CZ.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-da-DK.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-da-DK.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-de-DE.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-de-DE.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-el-GR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-el-GR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-es-ES.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-es-ES.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-es-EU.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-es-EU.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-fa-IR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-fa-IR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-fi-FI.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-fi-FI.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-fr-FR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-fr-FR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-gl-ES.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-gl-ES.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-he-IL.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-he-IL.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-hr-HR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-hr-HR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-hu-HU.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-hu-HU.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-id-ID.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-id-ID.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-it-IT.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-it-IT.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ja-JP.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ja-JP.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ko-KR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ko-KR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-lt-LT.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-lt-LT.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-lt-LV.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-lt-LV.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-mn-MN.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-mn-MN.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-nb-NO.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-nb-NO.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-nl-NL.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-nl-NL.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-pl-PL.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-pl-PL.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-pt-BR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-pt-BR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-pt-PT.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-pt-PT.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ro-RO.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ro-RO.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ru-RU.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ru-RU.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sk-SK.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sk-SK.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sl-SI.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sl-SI.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sr-RS-Latin.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sr-RS.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sr-RS.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sv-SE.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-sv-SE.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ta-IN.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-ta-IN.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-th-TH.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-th-TH.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-tr-TR.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-tr-TR.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-uk-UA.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-uk-UA.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-uz-UZ.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-uz-UZ.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-vi-VN.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-vi-VN.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-zh-CN.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-zh-CN.min.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-zh-TW.js" />
+    <Content Include="Content\plugins\summernote\lang\summernote-zh-TW.min.js" />
+    <Content Include="Content\plugins\summernote\summernote-bs4.css" />
+    <Content Include="Content\plugins\summernote\summernote-bs4.js" />
+    <Content Include="Content\plugins\summernote\summernote-bs4.min.js" />
+    <Content Include="Content\plugins\summernote\summernote-lite.css" />
+    <Content Include="Content\plugins\summernote\summernote-lite.js" />
+    <Content Include="Content\plugins\summernote\summernote-lite.min.js" />
+    <Content Include="Content\plugins\summernote\summernote.css" />
+    <Content Include="Content\plugins\summernote\summernote.js" />
+    <Content Include="Content\plugins\summernote\summernote.min.js" />
+    <Content Include="Content\plugins\sweetalert2\SweetAlert.js" />
+    <Content Include="Content\plugins\sweetalert2\sweetalert2.all.js" />
+    <Content Include="Content\plugins\sweetalert2\sweetalert2.all.min.js" />
+    <Content Include="Content\plugins\sweetalert2\sweetalert2.css" />
+    <Content Include="Content\plugins\sweetalert2\sweetalert2.js" />
+    <Content Include="Content\plugins\sweetalert2\sweetalert2.min.css" />
+    <Content Include="Content\plugins\sweetalert2\sweetalert2.min.js" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.css" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.min.css" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.js" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.min.js" />
+    <Content Include="dist\css\adminlte.css" />
+    <Content Include="dist\css\adminlte.min.css" />
+    <Content Include="dist\css\alt\adminlte.components.css" />
+    <Content Include="dist\css\alt\adminlte.components.min.css" />
+    <Content Include="dist\css\alt\adminlte.core.css" />
+    <Content Include="dist\css\alt\adminlte.core.min.css" />
+    <Content Include="dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="dist\css\alt\adminlte.pages.css" />
+    <Content Include="dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="dist\css\alt\adminlte.plugins.css" />
+    <Content Include="dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="dist\img\AdminLTELogo.png" />
+    <Content Include="dist\img\avatar.png" />
+    <Content Include="dist\img\avatar04.png" />
+    <Content Include="dist\img\avatar2.png" />
+    <Content Include="dist\img\avatar3.png" />
+    <Content Include="dist\img\avatar5.png" />
+    <Content Include="dist\img\boxed-bg.jpg" />
+    <Content Include="dist\img\boxed-bg.png" />
+    <Content Include="dist\img\credit\american-express.png" />
+    <Content Include="dist\img\credit\cirrus.png" />
+    <Content Include="dist\img\credit\mastercard.png" />
+    <Content Include="dist\img\credit\mestro.png" />
+    <Content Include="dist\img\credit\paypal.png" />
+    <Content Include="dist\img\credit\paypal2.png" />
+    <Content Include="dist\img\credit\visa.png" />
+    <Content Include="dist\img\default-150x150.png" />
+    <Content Include="dist\img\icons.png" />
+    <Content Include="dist\img\photo1.png" />
+    <Content Include="dist\img\photo2.png" />
+    <Content Include="dist\img\photo3.jpg" />
+    <Content Include="dist\img\photo4.jpg" />
+    <Content Include="dist\img\prod-1.jpg" />
+    <Content Include="dist\img\prod-2.jpg" />
+    <Content Include="dist\img\prod-3.jpg" />
+    <Content Include="dist\img\prod-4.jpg" />
+    <Content Include="dist\img\prod-5.jpg" />
+    <Content Include="dist\img\user1-128x128.jpg" />
+    <Content Include="dist\img\user2-160x160.jpg" />
+    <Content Include="dist\img\user3-128x128.jpg" />
+    <Content Include="dist\img\user4-128x128.jpg" />
+    <Content Include="dist\img\user5-128x128.jpg" />
+    <Content Include="dist\img\user6-128x128.jpg" />
+    <Content Include="dist\img\user7-128x128.jpg" />
+    <Content Include="dist\img\user8-128x128.jpg" />
+    <Content Include="dist\js\adminlte.js" />
+    <Content Include="dist\js\adminlte.min.js" />
+    <Content Include="dist\js\demo.js" />
+    <Content Include="dist\js\pages\dashboard.js" />
+    <Content Include="dist\js\pages\dashboard2.js" />
+    <Content Include="dist\js\pages\dashboard3.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\js\adminlte.js" />
+    <Content Include="Scripts\js\adminlte.min.js" />
+    <Content Include="Scripts\js\demo.js" />
+    <Content Include="Scripts\js\pages\dashboard.js" />
+    <Content Include="Scripts\js\pages\dashboard2.js" />
+    <Content Include="Scripts\js\pages\dashboard3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Documents\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\css\adminlte.css.map" />
+    <Content Include="Content\css\adminlte.min.css.map" />
+    <Content Include="Content\css\alt\adminlte.components.css.map" />
+    <Content Include="Content\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Content\css\alt\adminlte.core.css.map" />
+    <Content Include="Content\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Content\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Content\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Content\css\alt\adminlte.pages.css.map" />
+    <Content Include="Content\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Content\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Content\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js.map" />
+    <Content Include="Content\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.min.js.map" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\plugins\bs-custom-file-input\bs-custom-file-input.js.map" />
+    <Content Include="Content\plugins\bs-custom-file-input\bs-custom-file-input.min.js.map" />
+    <Content Include="Content\plugins\daterangepicker\bower.json" />
+    <Content Include="Content\plugins\daterangepicker\example\browserify\README.md" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\plugins\jquery\jquery.min.map" />
+    <Content Include="Content\plugins\jquery\jquery.slim.min.map" />
+    <Content Include="Content\plugins\summernote\font\summernote.eot" />
+    <Content Include="Content\plugins\summernote\font\summernote.ttf" />
+    <Content Include="Content\plugins\summernote\font\summernote.woff" />
+    <Content Include="Content\plugins\summernote\summernote-bs4.js.map" />
+    <Content Include="Content\plugins\summernote\summernote-lite.js.map" />
+    <Content Include="Content\plugins\summernote\summernote.js.map" />
+    <Content Include="dist\css\adminlte.css.map" />
+    <Content Include="dist\css\adminlte.min.css.map" />
+    <Content Include="dist\css\alt\adminlte.components.css.map" />
+    <Content Include="dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="dist\css\alt\adminlte.core.css.map" />
+    <Content Include="dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="dist\js\adminlte.js.map" />
+    <Content Include="dist\js\adminlte.min.js.map" />
+    <Content Include="ClientContent\fonts\fontawesome-webfont.eot" />
+    <Content Include="ClientContent\fonts\fontawesome-webfont.ttf" />
+    <Content Include="ClientContent\fonts\fontawesome-webfont.woff" />
+    <Content Include="ClientContent\fonts\fontawesome-webfont.woff2" />
+    <Content Include="ClientContent\fonts\FontAwesome.otf" />
+    <Content Include="ClientContent\fonts\lg.eot" />
+    <Content Include="ClientContent\fonts\lg.ttf" />
+    <Content Include="ClientContent\fonts\lg.woff" />
+    <Content Include="ClientContent\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="ClientContent\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="ClientContent\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="ClientContent\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="ClientContent\fonts\mercury-regular.eot" />
+    <Content Include="ClientContent\fonts\mercury-regular.ttf" />
+    <Content Include="ClientContent\fonts\mercury-regular.woff" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\js\adminlte.js.map" />
+    <Content Include="Scripts\js\adminlte.min.js.map" />
+    <Content Include="Views\Admin\admin_dashboard.cshtml" />
+    <Content Include="Views\Admin\admin_login.cshtml" />
+    <Content Include="Views\Admin\client.cshtml" />
+    <Content Include="Views\Admin\new_client.cshtml" />
+    <Content Include="Views\Admin\modify_client.cshtml" />
+    <Content Include="Views\Admin\client_view.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Shared\_ClientLayout.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\client_login.cshtml" />
+    <Content Include="Views\Client\Client_Dashboard.cshtml" />
+    <Content Include="Views\Client\clients_login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PablaAccountingAndTaxServicesBLL\PablaAccountingAndTaxServicesBLL.csproj">
+      <Project>{0551db2a-e2df-4d4d-8119-6248a50f5f38}</Project>
+      <Name>PablaAccountingAndTaxServicesBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PablaAccountingAndTaxServicesDLL\PablaAccountingAndTaxServicesDLL.csproj">
+      <Project>{fda2d418-3e2d-43c6-90fd-dbcae9652d9e}</Project>
+      <Name>PablaAccountingAndTaxServicesDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PablaAccountingAndTaxServicesEntity\PablaAccountingAndTaxServicesEntity.csproj">
+      <Project>{13cb6322-9fdb-4c08-9111-9412a5521503}</Project>
+      <Name>PablaAccountingAndTaxServicesEntity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\plugins\fullcalendar-bootstrap\main.d.ts" />
+    <TypeScriptCompile Include="Content\plugins\fullcalendar-daygrid\main.d.ts" />
+    <TypeScriptCompile Include="Content\plugins\fullcalendar-interaction\main.d.ts" />
+    <TypeScriptCompile Include="Content\plugins\fullcalendar-timegrid\main.d.ts" />
+    <TypeScriptCompile Include="Content\plugins\fullcalendar\main.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61258</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44391/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,35 @@
+﻿
+.content_section {
+    padding-top: 20px;
+    min-height: 267px;
+}
+.btn_a {
+    border-radius: 3px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #6c757d;
+    font-size: 12px;
+    /* height: 60px; */
+    margin: 0 0 10px 10px;
+    min-width: 80px;
+    /* padding: 15px 5px; */
+    position: relative;
+    text-align: center;
+}
+.card_color {
+    background-color: #605CA8;
+}
+.mt-5 {
+    margin-top: 0rem !important;
+}
+.description{
+    font-weight:bold;
+}
+.header{
+    padding-left:20px!important;
+    padding-right:20px!important;
+}
+.btn-block1 {
+    display: block;
+    /*width: 100%;*/
+}

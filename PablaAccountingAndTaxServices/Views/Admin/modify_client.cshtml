@@ -1,0 +1,355 @@
+﻿@model PablaAccountingAndTaxServicesEntity.ClientEntity
+@{
+    ViewBag.Title = "modify_client";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="card card-primary">
+        <div class="card-header card_color" style="padding-top: 1px;
+    padding-bottom: 1px;background:#605CA8;">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h3 class="card-title" style="color: white;padding-top:16px;">Modify Client</h3>
+                </div>
+                <div class="col-md-6" style="float:right;margin-top: 7px;">
+                    <a href="/Admin/client" class="btn btn_a" style="float: right;font-size:15px;color: black;">
+                        Back to client
+                    </a>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form action="/Admin/modify_client" method="post" id="ModifyClient">
+            <div class="card-body">
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <input type="hidden" value=" @Model.UserId" name="UserId" />
+                        <label for="First Name">First Name</label>
+                        <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.FirstName" placeholder="First Name">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="Last Name">Last Name</label>
+                        <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.LastName" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" placeholder="Email">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="MobileNumber">Date Of Birth</label>
+                        <input type="text" class="form-control" id="Dateofbirth" name="Dateofbirth" value="@Model.DateOfBirth" placeholder="Date Of Birth" autocomplete="off">
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <label for="MobileNumber">Mobile Number</label>
+                        <input type="text" class="form-control" id="MobileNumber" name="MobileNo" value="@Model.MobileNo" placeholder="Mobile Number">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="CompanyName">Company Name</label>
+                        <input type="text" class="form-control" id="CompanyName" name="CompanyName" value="@Model.CompanyName" placeholder="Company Name">
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <label for="Address">Address</label>
+                        <input type="text" class="form-control" id="Address" name="Address" value="@Model.Address" placeholder="Address">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="City">City</label>
+                        <input type="text" class="form-control" id="City" name="City" value="@Model.City" placeholder="City">
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <label for="PostalCode">Postal Code</label>
+                        <input type="text" class="form-control" id="PostalCode" name="PostalCode" value="@Model.PostalCode" placeholder="Postal Code">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="Province">Province</label>
+                        <input type="text" class="form-control" id="Province" name="Province" value="@Model.Province" placeholder="Province">
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <label for="Country">Country</label>
+                        <input type="text" class="form-control" id="Country" name="Country" value="@Model.Country" placeholder="Country">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="SIN">SIN</label>
+                        <input type="text" class="form-control" id="SIN" name="SIN" value="@Model.SIN" placeholder="SIN">
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <label for="GSTNumber">GST Number</label>
+                        <input type="text" class="form-control" id="GSTNumber" name="GSTNumber" value="@Model.GSTNumber" placeholder="GST Number">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="WCB">WCB</label>
+                        <input type="text" class="form-control" id="WCB" name="WCB" value="@Model.WCB" placeholder="WCB">
+                    </div>
+
+                </div>
+
+
+            </div>
+            @*<div class="card-body">
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            <label for="First Name">First Name</label>
+                            <input type="hidden" value=" @Model.UserId" name="UserId" />
+                            <input type="text" class="form-control" id="First Name" name="FirstName" value="@Model.FirstName" placeholder="First Name">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="Last Name">Last Name</label>
+                            <input type="text" class="form-control" id="Last Name" name="LastName" value="@Model.LastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" placeholder="Email">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="MobileNumber">Mobile Number</label>
+                            <input type="text" class="form-control" id="MobileNumber" name="MobileNo" value="@Model.MobileNo" placeholder="Mobile Number">
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            <label for="CompanyName">Company Name</label>
+                            <input type="text" class="form-control" id="CompanyName" name="CompanyName" value="@Model.CompanyName" placeholder="Company Name">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="Address">Address</label>
+                            <input type="text" class="form-control" id="Address" name="Address" value="@Model.Address" placeholder="Address">
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            <label for="City">City</label>
+                            <input type="text" class="form-control" id="City" name="City" value="@Model.City" placeholder="City">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="PostalCode">Postal Code</label>
+                            <input type="text" class="form-control" id="Postal Code" name="PostalCode" value="@Model.PostalCode" placeholder="Postal Code">
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            <label for="Province">Province</label>
+                            <input type="text" class="form-control" id="Province" name="Province" value="@Model.Province" placeholder="Province">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="Country">Country</label>
+                            <input type="text" class="form-control" id="Country" name="Country" value="@Model.Country" placeholder="Country">
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            <label for="SIN">SIN</label>
+                            <input type="text" class="form-control" id="SIN" name="SIN" value="@Model.SIN" placeholder="SIN">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="GSTNumber">GST Number</label>
+                            <input type="text" class="form-control" id="GSTNumber" name="GSTNumber" value="@Model.GSTNumber" placeholder="GST Number">
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            <label for="WCB">WCB</label>
+                            <input type="text" class="form-control" id="WCB" name="WCB" value="@Model.WCB" placeholder="WCB">
+                        </div>
+
+                    </div>
+
+
+                </div>*@
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <div class="col-md-12 row">
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-block1 btn-outline-primary">Update</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-block1 btn-outline-primary" onclick="return cancel();">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#Dateofbirth").datepicker();
+    });
+</script>
+
+<script>
+    function cancel() {
+        $("#FirstName").val('');
+        $("#LastName").val('');
+        $("#Email").val('');
+        $("#MobileNumber").val('');
+        $("#CompanyName").val('');
+        $("#Address").val('');
+        $("#City").val('');
+        $("#PostalCode").val('');
+        $("#Province").val('');
+        $("#Country").val('');
+        $("#SIN").val('');
+        $("#GSTNumber").val('');
+        $("#WCB").val('');
+        $("#FirstName").focus();
+        return false;
+
+    }
+</script>
+<script type="text/javascript">
+
+    $('#ModifyClient').validate({
+        rules: {
+            FirstName: {
+                required: true,
+
+            },
+            LastName: {
+                required: true,
+
+            },
+            Email: {
+                required: true,
+                email: true,
+
+            },
+            MobileNo: {
+                required: true,
+                minlength: 10,
+
+            },
+            CompanyName: {
+                required: true,
+
+            },
+            Address: {
+                required: true,
+
+            },
+            City: {
+                required: true,
+
+            },
+            PostalCode: {
+                required: true,
+
+            },
+            Province: {
+                required: true,
+
+            },
+
+            Country: {
+                required: true,
+
+            },
+
+            SIN: {
+                required: true,
+
+            },
+            GSTNumber: {
+                required: true,
+
+            },
+            WCB: {
+                required: true,
+
+            },
+
+
+        },
+        messages: {
+            FirstName: {
+                required: "Please enter a First Name. ",
+
+            },
+            LastName: {
+                required: "Please enter a Last Name.",
+
+            },
+            Email: {
+                required: "Please enter a Email.",
+                email: "Please enter a vaild email address."
+
+            },
+            MobileNo: {
+                required: "Please enter a Mobile Number.",
+                minlength: "Your Mobile Number must be at least 10 characters long."
+            },
+            CompanyName: {
+                required: "Please enter a Company Name.",
+
+            },
+            Address: {
+                required: "Please enter a Address.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            City: {
+                required: "Please enter a City.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            PostalCode: {
+                required: "Please enter a Postal Code.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            Province: {
+                required: "Please enter a Province.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            Country: {
+                required: "Please enter a Country.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            SIN: {
+                required: "Please enter a SIN.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            GSTNumber: {
+                required: "Please enter a GST Number.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            WCB: {
+                required: "Please enter a WCB.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+</script>
