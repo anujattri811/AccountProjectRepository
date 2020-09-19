@@ -1,4 +1,4 @@
-﻿
+﻿@model PablaAccountingAndTaxServicesDLL.DataAccess.tblUser
 @{
     ViewBag.Title = "client_login";
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
@@ -23,21 +23,22 @@
                 <div class="custom-form-wrap">
                     <div class="heading-5">or</div>
                     <!--RD Mailform-->
-                    <form class="rd-form rd-mailform text-right" action="\Client\client_login" method="post" id="login">
+                    @using (Html.BeginForm("client_login", "Client", FormMethod.Post, new { @class = "rd-form text-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-wrap">
-                            <input class="form-input" id="login-email" type="email" name="UserName" autocomplete="off">
-                            <label class="form-label" for="login-email">E-mail</label>
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-input" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-wrap">
-                            <input class="form-input" id="login-password" type="password" name="Password" autocomplete="off">
-                            <label class="form-label" for="login-password">Password</label>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-input" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
-                        <input class="button button-primary" type="submit" value="Login" />
-                        <button class="button button-primary" type="button" onclick="test()">Enter</button>
-                    </form>
+                        <input type="submit" value="Login" class="button button-primary" />
+                    }
                 </div>
-                <h5>Download Secure Client Portal App:</h5>
-                <div class="group-sm group-wrap-1"><a href="#"><img src="../ClientContent/images/pay-item-1-133x45.png" alt="" width="133" height="22" /></a><a href="#"><img src="../ClientContent/images/pay-item-2-133x44.png" alt="" width="133" height="22" /></a><a href="#"><img src="../ClientContent/images/pay-item-3-135x46.png" alt="" width="135" height="23" /></a></div>
+
             </div>
         </div>
     </div>

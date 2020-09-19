@@ -4,45 +4,64 @@
     ViewBag.Title = "clients_login";
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
+<section class="breadcrumbs-custom bg-image novi-background bg-primary">
+    <div class="container">
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">Login</li>
+        </ul>
+    </div>
+</section>
+<!-- Log In-->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-lg-7 col-xl-6">
+                <h3>Log In</h3>
+                <div class="group-sm group-middle group-custom"><a class="button button-facebook" href="#"> Facebook</a><a class="button button-twitter" href="#"> Twitter</a><a class="button button-google" href="#"> Google+</a></div>
+                <div class="custom-form-wrap">
+                    <div class="heading-5">or</div>
+                    <!--RD Mailform-->
+                    @using (Html.BeginForm("client_login", "Client", FormMethod.Post, new { @class = "rd-form text-right" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-<h2>clients_login</h2>
+                        
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@using (Html.BeginForm("client_login","Client",FormMethod.Post)) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>tblUser</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-wrap">
+                                @*@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-input" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-wrap">
+                                @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-input" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                            <input type="submit" value="Login" class="button button-primary" />
+                            @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+
+                    </div>
+                </div>*@
+                        
+                    }
+                </div>
+
             </div>
         </div>
     </div>
-}
+</section>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+

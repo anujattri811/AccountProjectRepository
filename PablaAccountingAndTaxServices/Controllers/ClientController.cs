@@ -37,21 +37,19 @@ namespace PablaAccountingAndTaxServices.Controllers
             if(result.FirstName==null && result.LastName == null)
             {
                 ViewBag.Message = "You have entered incorrect Username and Password.";
-                //return Redirect("https://localhost:44391/Client/client_login"); 
                 return RedirectToAction("client_login","Client");
             }
             else
             {
                 Session["FirstName"] = result.FirstName;
                 Session["LastName"] = result.LastName;
-                //return Redirect("https://localhost:44391/Client/Client_Dashboard"); //RedirectToRoute(new { controller = "Client", action = "Client_Dashboard" }); 
                 return RedirectToAction("Client_Dashboard","Client");
             }
         }
         
         public ActionResult Client_Dashboard()
         {
-            return View("Client_Dashboard");
+            return View();
         }
         #endregion
     }
