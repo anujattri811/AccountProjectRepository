@@ -46,34 +46,33 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             var EncryPassword = encryDecry.EncryptPassword(tbluser.Password);
             var result = loginBLL.CheckClientLogin(tbluser.UserName, EncryPassword);
-            if(result.FirstName==null && result.LastName == null)
+            if (result.FirstName == null && result.LastName == null)
             {
                 ViewBag.Message = "You have entered incorrect Username and Password.";
-                return RedirectToAction("client_login","Client");
+                return View();
             }
             else
             {
                 Session["UserId"] = result.UserId;
                 Session["FirstName"] = result.FirstName;
                 Session["LastName"] = result.LastName;
-                return RedirectToAction("Client_Dashboard","Client",new {ClientId = result.UserId });
+                return RedirectToAction("Client_Dashboard", "Client");
             }
         }
-        
-        public ActionResult client_dashboard(int ClientId)
+
+        public ActionResult client_dashboard()
         {
             var model = new ClientEntity();
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("client_login", "Client");
             }
-            else
-            {
-                List<tblClientDocument> result = new List<tblClientDocument>();
-                result = clientBLL.selectAllDocumentForClient(ClientId);
-                model = clientBLL.GetAllClient(ClientId);
-                ViewBag.TotalDocument = result;
-            }
+            int ClientId = Convert.ToInt32(Session["UserId"]);
+            List<tblClientDocument> result = new List<tblClientDocument>();
+            result = clientBLL.selectAllDocumentForClient(ClientId);
+            model = clientBLL.GetAllClient(ClientId);
+            ViewBag.TotalDocument = result;
+
             return View(model);
         }
         #endregion

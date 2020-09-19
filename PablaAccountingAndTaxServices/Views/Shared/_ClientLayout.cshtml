@@ -58,6 +58,12 @@
                                 <div class="icon novi-icon mdi mdi-phone"></div><a href="tel:#">+1 (587) 568 0175</a>
                             </div>
                             <ul class="list-lined">
+                                @if (Session["UserId"] != null)
+                                {
+                                    <li class="rd-nav-item">
+                                        Welcome <label>@Session["FirstName"] @Session["LastName"]</label>
+                                    </li>
+                                }
                                 @if (Session["UserId"] == null)
                                 {
                                     <li><a href="/Client/client_login">Log in</a></li>
@@ -191,12 +197,7 @@
                                             <li class="rd-nav-item">
                                                 <a class="rd-nav-link" href="#">File Personal Tax Online</a>
                                             </li>
-                                            @if (Session["UserId"] != null)
-                                            {
-                                                <li class="rd-nav-item">
-                                                    Welcome <label>@Session["FirstName"] @Session["LastName"]</label>
-                                                </li>
-                                            }
+                                            
 
                                         </ul>
                                     </div>
