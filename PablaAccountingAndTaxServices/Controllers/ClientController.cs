@@ -43,10 +43,6 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpPost]
         public ActionResult client_login(tblUser tbluser)
         {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("client_login", "Client");
-            }
             var EncryPassword = encryDecry.EncryptPassword(tbluser.Password);
             var result = loginBLL.CheckClientLogin(tbluser.UserName, EncryPassword);
             if(result.FirstName==null && result.LastName == null)
