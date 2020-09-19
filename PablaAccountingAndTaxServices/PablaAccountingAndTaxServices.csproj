@@ -1052,7 +1052,7 @@
     <Content Include="Views\Shared\_ClientLayout.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\client_login.cshtml" />
-    <Content Include="Views\Client\Client_Dashboard.cshtml" />
+    <Content Include="Views\Client\client_dashboard.cshtml" />
     <Content Include="Views\Client\clients_login.cshtml" />
   </ItemGroup>
   <ItemGroup>
