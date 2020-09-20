@@ -95,37 +95,70 @@
                                             <li class="rd-nav-item">
                                                 <a class="rd-nav-link" href="@Url.Action("Index","Client")">Home</a>
                                             </li>
-                                            <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
-                                                <a class="rd-nav-link" href="#">About Us</a><span class=""></span>
-                                                <ul class="rd-menu rd-navbar-dropdown">
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Our story</a>
-                                                    </li>
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Certifications &amp; Memberships</a>
-                                                    </li>
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Team</a>
-                                                    </li>
-                                                </ul>
+                                            <li class="rd-nav-item">
+                                                <a class="rd-nav-link" href="@Url.Action("AboutUs","Client")">About Us</a><span class=""></span>
+                                                @*<ul class="rd-menu rd-navbar-dropdown">
+                                                        <li class="rd-dropdown-item">
+                                                            <a class="rd-dropdown-link" href="#">Our story</a>
+                                                        </li>
+                                                        <li class="rd-dropdown-item">
+                                                            <a class="rd-dropdown-link" href="#">Certifications &amp; Memberships</a>
+                                                        </li>
+                                                        <li class="rd-dropdown-item">
+                                                            <a class="rd-dropdown-link" href="#">Team</a>
+                                                        </li>
+                                                    </ul>*@
                                             </li>
-                                            <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                            <li class="rd-nav-item active rd-navbar--has-megamenu rd-navbar-submenu">
                                                 <a class="rd-nav-link" href="#">Services</a><span class=""></span>
-                                                <ul class="rd-menu rd-navbar-dropdown">
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Accounting Services</a>
+                                                <ul class="rd-menu rd-navbar-megamenu rd-navbar-open-right">
+                                                    <li class="rd-megamenu-item">
+
+                                                        <h6 class="rd-megamenu-title">Personal</h6>
+                                                        <ul class="rd-megamenu-list">
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Personal Tax Return</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Self Employed</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Tax Benefits</a></li>
+                                                        </ul>
                                                     </li>
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Tax Services</a>
+                                                    <li class="rd-megamenu-item">
+                                                        <h6 class="rd-megamenu-title">Corporate</h6>
+                                                        <ul class="rd-megamenu-list">
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Business Tax Return</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Payroll</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Book Keeping</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">GST Filing</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Financial Statement</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Audit Reviews</a></li>
+                                                        </ul>
                                                     </li>
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Other services</a>
-                                                    </li>
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Make a payment</a>
+
+                                                    <li class="rd-megamenu-item">
+                                                        <h6 class="rd-megamenu-title">Advisory</h6>
+                                                        <ul class="rd-megamenu-list">
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Financial Advise</a></li>
+                                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Tax Planning</a></li>
+                                                        </ul>
                                                     </li>
                                                 </ul>
                                             </li>
+                                            @*<li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                                    <a class="rd-nav-link" href="#">Services</a><span class=""></span>
+                                                    <ul class="rd-menu rd-navbar-dropdown">
+                                                        <li class="rd-dropdown-item">
+                                                            <a class="rd-dropdown-link" href="#">Accounting Services</a>
+                                                        </li>
+                                                        <li class="rd-dropdown-item">
+                                                            <a class="rd-dropdown-link" href="#">Tax Services</a>
+                                                        </li>
+                                                        <li class="rd-dropdown-item">
+                                                            <a class="rd-dropdown-link" href="#">Other services</a>
+                                                        </li>
+                                                        <li class="rd-dropdown-item">
+                                                            <a class="rd-dropdown-link" href="#">Make a payment</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>*@
                                             @*<li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
                                                     <a class="rd-nav-link" href="blog.html">Blog</a><span class=""></span>
                                                     <ul class="rd-menu rd-navbar-dropdown">
@@ -134,70 +167,20 @@
                                                         </li>
                                                     </ul>
                                                 </li>*@
-                                            @*<li class="rd-nav-item active rd-navbar--has-megamenu rd-navbar-submenu">
-                                                    <a class="rd-nav-link" href="#">Pages</a><span class=""></span>
-                                                    <ul class="rd-menu rd-navbar-megamenu rd-navbar-open-right">
-                                                        <li class="rd-megamenu-item">
-                                                            <h6 class="rd-megamenu-title">Layouts</h6>
-                                                            <ul class="rd-megamenu-list">
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="index-2.html">Home 2</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="index-3.html">Home 3</a></li>
-                                                            </ul>
-                                                            <h6 class="rd-megamenu-title">Elements</h6>
-                                                            <ul class="rd-megamenu-list">
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="buttons.html">Buttons</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="forms.html">Forms</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="grid-system.html">Grid System</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="progress-bars.html">Progress bars</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tables.html">Tables</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tabs-and-accordions.html">Tabs and accordions</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="typography.html">Typography</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="rd-megamenu-item">
-                                                            <h6 class="rd-megamenu-title">Resources</h6>
-                                                            <ul class="rd-megamenu-list">
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="financial-calculators.html">Financial Calculators</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="irs-publications.html">IRS Publications</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tax-rates.html">Tax Rates</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tax-due-dates.html">Tax Due Dates</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tax-records.html">Tax Records</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="taxpayer-rights.html">Taxpayer Rights</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="rd-megamenu-item">
-                                                            <ul class="rd-megamenu-list">
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tax-glossary.html">Tax Glossary</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="subscribe-to-tax-calendar.html">Subscribe to Tax Calendar</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="irs-withholding-calculator.html">IRS Withholding Calculator</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="where-is-my-refund.html">Where is my refund</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="tax-tips.html">Tax Tips</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="newsletter-archives.html">Newsletter Archives</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="subscribe.html">Subscribe</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="rd-megamenu-item">
-                                                            <h6 class="rd-megamenu-title">Pages</h6>
-                                                            <ul class="rd-megamenu-list">
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="404.html">404</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="503.html">503</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="maintenance.html">Maintenance</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="coming-soon.html">Coming Soon</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="privacy-policy.html">Privacy Policy</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="login.html">Login</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="testimonials.html">Testimonials</a></li>
-                                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="site-map.html">Site map</a></li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>*@
+
                                             <li class="rd-nav-item">
-                                                <a class="rd-nav-link" href="#">Contact Us</a>
+                                                <a class="rd-nav-link" href="@Url.Action("ContactUs","Client")">Contact Us</a>
                                             </li>
+                                            @if (Session["UserId"] == null)
+                                            {
+                                                <li class="rd-nav-item">
+                                                    <a class="rd-nav-link" href="#">File Personal Tax Online</a>
+                                                </li>
+                                            }
+
                                             <li class="rd-nav-item">
-                                                <a class="rd-nav-link" href="#">File Personal Tax Online</a>
+                                                <a class="rd-nav-link" href="@Url.Action("RequestPhoneCall","Client")">Request a Phone Call</a>
                                             </li>
-                                            
 
                                         </ul>
                                     </div>
@@ -222,7 +205,7 @@
                                         <div class="unit-left">
                                             <div class="icon icon-sm icon-primary novi-icon mdi mdi-map-marker"></div>
                                         </div>
-                                        <div class="unit-body"><a href="#">14973 Interurban Ave <br>New York, NY 98168</a></div>
+                                        <div class="unit-body"><a href="#">#203 9613 41 AVE <br>Edmonton, Alberta T6E 5X7</a></div>
                                     </div>
                                 </li>
                                 <li>
@@ -230,7 +213,7 @@
                                         <div class="unit-left">
                                             <div class="icon icon-sm icon-primary novi-icon mdi mdi-phone"></div>
                                         </div>
-                                        <div class="unit-body"><a href="tel:#">+1 (800) 123 1234</a></div>
+                                        <div class="unit-body"><a href="tel:+1 780-466-4243">+1 780-466-4243</a></div>
                                     </div>
                                 </li>
                                 <li>
@@ -246,7 +229,7 @@
                                         </div>
                                     </div>
                                 </li>
-                            </ul><a class="d-inline-block big" href="mailto:#">mail@demolink.org</a>
+                            </ul><a class="d-inline-block big" href="mailto:Tax@pablastax.com">Tax@pablastax.com</a>
                         </div>
                         <div class="col-md-6 col-lg-5">
                             <h5>Links</h5>
