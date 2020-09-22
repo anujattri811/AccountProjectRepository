@@ -58,20 +58,20 @@
                                 <div class="icon novi-icon mdi mdi-phone"></div><a href="tel:#">+1 (587) 568 0175</a>
                             </div>
                             <ul class="list-lined">
-                                @if (Session["UserId"] != null)
-                                {
-                                    <li class="rd-nav-item">
-                                        <label>@Session["FirstName"] @Session["LastName"]</label>
-                                    </li>
-                                }
-                                @if (Session["UserId"] == null)
-                                {
-                                    <li><a href="/Client/client_login">Log in</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="@Url.Action("LogOut","Client")">Log Out</a></li>
-                                }
+                                @*@if (Session["UserId"] != null)
+                                    {
+                                        <li class="rd-nav-item">
+                                            <label>@Session["FirstName"] @Session["LastName"]</label>
+                                        </li>
+                                    }
+                                    @if (Session["UserId"] == null)
+                                    {
+                                        <li><a href="/Client/client_login">Log in</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("LogOut","Client")">Log Out</a></li>
+                                    }*@
 
                                 @*<li><a href="#">Create an account</a></li>*@
                             </ul>
@@ -95,19 +95,9 @@
                                             <li class="rd-nav-item">
                                                 <a class="rd-nav-link" href="@Url.Action("Index","Client")">Home</a>
                                             </li>
-                                            <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                            <li class="rd-nav-item">
                                                 <a class="rd-nav-link" href="#">About Us</a><span class=""></span>
-                                                <ul class="rd-menu rd-navbar-dropdown">
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Our story</a>
-                                                    </li>
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Certifications &amp; Memberships</a>
-                                                    </li>
-                                                    <li class="rd-dropdown-item">
-                                                        <a class="rd-dropdown-link" href="#">Team</a>
-                                                    </li>
-                                                </ul>
+
                                             </li>
                                             <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
                                                 <a class="rd-nav-link" href="#">Services</a><span class=""></span>
@@ -197,7 +187,20 @@
                                             <li class="rd-nav-item">
                                                 <a class="rd-nav-link" href="#">File Personal Tax Online</a>
                                             </li>
-                                            
+                                            @if (Session["UserId"] != null)
+                                            {
+                                                <li class="rd-nav-item">
+                                                    <label>@Session["FirstName"] @Session["LastName"]</label>
+                                                </li>
+                                            }
+                                            @if (Session["UserId"] == null)
+                                            {
+                                                <li><a href="/Client/client_login">Client LogIn</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@Url.Action("LogOut","Client")">Log Out</a></li>
+                                            }
 
                                         </ul>
                                     </div>
