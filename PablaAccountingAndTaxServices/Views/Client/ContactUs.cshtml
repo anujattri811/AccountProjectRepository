@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+<section class="breadcrumbs-custom bg-image novi-background bg-primary">
+    <div class="container">
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Contacts</li>
+        </ul>
+    </div>
+</section>
+<section class="section section-md" style="padding: 40px">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <div class="row row-40">
+            <div class="col-md-10 col-lg-6" style="font-size:15px;">
+                @*<div class="group-item">
+                        <dl class="list-terms-2">
+                            <dt>Our Office:</dt>
+                            <dd>
+                                <ul class="list list-0">
+                                    <li class="text-secondary">14973 Interurban Ave <br>Suite 101 <br>New York, NY 98168</li>
+                                </ul>
+                            </dd>
+                        </dl>
+
+
+                    </div>*@
+                <div class="group-item">
+                    <dl class="list-terms-2">
+                        <dt>Our Office:</dt>
+                        <dd style="padding-left:7px;">
+                            <a href="#"> #203 9613 41 AVE NW<br /> Edmonton, Alberta<br /> T6E 5X7</a>
+
+                        </dd>
+                    </dl>
+
+                </div>
+                <div class="group-lg group-wrap-3">
+                    <div class="group-item">
+                        <dl class="list-terms-2">
+                            <dt>Fax:</dt>
+                            <dd style="padding-left: 20px;"><a href="tel:tel:+1 780-466-7898">+1 780-466-7898</a></dd>
+                        </dl>
+                        <dl class="list-terms-2">
+                            <dt>Email:</dt>
+                            <dd style="padding-left: 20px;"><a href="mailto:Tax@pablastax.com">Tax@pablastax.com</a></dd>
+                        </dl>
+                        @* <a class="d-inline-block font-weight-bold big link-underline" href="mailto:Tax@pablastax.com">Tax@pablastax.com</a>*@
+                        <dl class="list-terms-2">
+                            <dt>Phone:</dt>
+                            <dd style="padding-left: 20px;"><a href="tel:+1 780-466-4243">+1 780-466-4243</a><br /><a href="tel:+1 780-469-8534">+1 780-469-8534</a></dd>
+                            @*<dd></dd>*@
+                        </dl>
+
+                    </div>
+
+                </div>
+                <div id="map"></div>
+                <!--Please, add the data attribute data-key="YOUR_API_KEY" in order to insert your own API key for the Google map.-->
+                <!--Please note that YOUR_API_KEY should replaced with your key.-->
+                <!--Example: <div class="google-map-container" data-key="YOUR_API_KEY">-->
+                @*<div class="google-map-container google-map-container-2 lazy-loaded">
+                        <div class="google-map"></div>
+                        <ul class="google-map-markers">
+                            <li data-location="https://www.google.com/maps/place/203-9613+41+Ave+NW,+Edmonton,+AB+T6E+5X7,+Canada/53.4760456,-113.4803807,17z/data=!3m1!4b1!4m5!3m4!1s0x53a018d2eaa94dd5:0xbb48258ec2c8bc59!8m2!3d53.4760424!4d-113.478192" data-description="https://www.google.com/maps/place/203-9613+41+Ave+NW,+Edmonton,+AB+T6E+5X7,+Canada/53.4760456,-113.4803807,17z/data=!3m1!4b1!4m5!3m4!1s0x53a018d2eaa94dd5:0xbb48258ec2c8bc59!8m2!3d53.4760424!4d-113.478192"></li>
+                        </ul>
+                    </div>*@
+            </div>
+            <div class="col-md-10 col-lg-6">
+                <h5>Get in Touch</h5>
+                <!--RD Mailform-->
+                <form class="rd-form rd-mailform" data-form-output="form-output-global" id="ContactUs" data-form-type="contact" method="post" action="/Client/ContactUs">
+                    <div class="row row-10">
+                        <div class="col-md-6 form-group">
+                            <div class="">
+                                <input class="form-input form-control-has-validation " id="Name" placeholder="Name" type="text" name="Name">
+                                @*<label class="form-label  rd-input-label" for="Name">Name</label>*@
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="form-wrap form-group">
+                                <input class="form-input form-control-has-validation " id="Email" type="email" name="Email" placeholder="Email" data-constraints="Required">
+                                @*<label class="form-label rd-input-label" for="Email">Email</label>*@
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="form-wrap">
+                                <input class="form-input form-control-has-validation" id="Phone" type="text" placeholder="Phone" name="Phone" data-constraints="Required">
+                                @*<label class="form-label rd-input-label" for="Phone">Phone</label>*@
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="form-wrap">
+                                <input class="form-input form-control-has-validation" id="Subject" type="text" placeholder="Subject" name="Subject" data-constraints="Required">
+                                @*<label class="form-label rd-input-label" for="Subjecte">Subject</label>*@
+                            </div>
+                        </div>
+                        <div class="col-12 form-group">
+                            <div class="form-wrap">
+                                @*<label class="form-label rd-input-label" for="Message">Message</label>*@
+                                <textarea class="form-input form-control-has-validation form-control-last-child" placeholder="Message" id="Message" name="Message" data-constraints="Required"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-xl-4">
+                            <button class="button button-size-1 button-block button-primary" type="submit">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaJGWw0IfXHRmSFagZSOaiMa6VqiTwidM&callback=initMap">
+</script>
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = { lat: 53.4760456, lng: -113.4803807 };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 4, center: uluru });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+    }
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    $('#ContactUs').validate({
+        rules: {
+            Name: {
+                required: true,
+
+            },
+            Email: {
+                required: true,
+                 email: true,
+
+            },
+            Phone: {
+                required: true,
+                minlength: 10,
+
+            },
+            Subject: {
+                required: true,
+               
+
+            },
+            Message: {
+                required: true,
+
+            },
+
+
+
+        },
+        messages: {
+            Name: {
+                required: "Please enter a Name. ",
+
+            },
+            Email: {
+                required: "Please enter a Email.",
+                email: "Please enter a vaild email address.",
+            },
+            Phone: {
+                required: "Please enter a Mobile Number.",
+                minlength: "Your Mobile Number must be at least 10 characters long."
+
+            },
+            Subject: {
+                required: "Please enter a Subject.",
+            },
+            Message: {
+                required: "Please enter a Message",
+
+            },
+
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+</script>
+

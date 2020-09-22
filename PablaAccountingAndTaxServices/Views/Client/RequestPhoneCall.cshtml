@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "RequestPhoneCall";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+
+<section class="breadcrumbs-custom bg-image novi-background bg-primary">
+    <div class="container">
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Contacts</li>
+        </ul>
+    </div>
+</section>
+<section class="section section-md" style="padding: 40px">
+    <div class="container">
+        <h2>Request For a Phone Call</h2>
+        <div class="row row-40">
+            <div class="col-md-10 col-lg-6">
+                <img src="~/ClientContent/images/index-874x534.jpg" />
+            </div>
+            <div class="col-md-10 col-lg-6">
+                <h5>Get in Touch</h5>
+                <!--RD Mailform-->
+                <form class="rd-form " data-form-output="form-output-global" data-form-type="contact" method="post" id="PhoneCall" action="/Client/RequestPhoneCall" novalidate="novalidate">
+                    <div class="row row-10">
+                        <div class="col-md-6 form-group">
+                            <div class="form-wrap">
+                                <input class="form-input form-control-has-validation" id="contact-first-name" type="text" placeholder="FirstName" name="FirstName"><span class="form-validation"></span>
+                                @*<label class="form-label rd-input-label" for="contact-first-name">FirstName</label>*@
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="form-wrap">
+                                <input class="form-input form-control-has-validation" id="contact-last-name" type="text" placeholder="LastName" name="LastName"><span class="form-validation"></span>
+                                @*<label class="form-label rd-input-label" for="contact-last-name">LastName</label>*@
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="form-wrap">
+                                <input class="form-input form-control-has-validation" id="contact-first-name" type="text" placeholder="Email" name="Email"><span class="form-validation"></span>
+                                @*<label class="form-label rd-input-label" for="contact-first-name">Email</label>*@
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="form-wrap">
+                                <input class="form-input form-control-has-validation" id="contact-last-name" type="text" placeholder="Phone" name="Phone"><span class="form-validation"></span>
+                                @*<label class="form-label rd-input-label" for="contact-last-name">Phone</label>*@
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-wrap" style="border: 1px solid grey!important;border-radius: 40px!important;">
+                                <select class="form-input form-control-has-validation" name="ServiceType">
+                                    <option selected="" disabled="">Service Type</option>
+                                    <option>Personal Service</option>
+                                    <option>Business Service</option>
+                                    <option>Others</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-12 form-group">
+                            <div class="form-wrap">
+                                @*<label class="form-label rd-input-label" for="contact-message">Comment</label>*@
+                                <textarea class="form-input form-control-has-validation form-control-last-child" id="contact-message" placeholder="Comment" name="Comment"></textarea><span class="form-validation"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-xl-4">
+                            <button class="button button-size-1 button-block button-primary" type="submit">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    $('#PhoneCall').validate({
+        rules: {
+            FirstName: {
+                required: true,
+
+            },
+            LastName: {
+                required: true,
+
+            },
+            Email: {
+                required: true,
+                email: true,
+
+            },
+            Phone: {
+                required: true,
+                minlength: 10,
+
+            },
+            Comment: {
+                required: true,
+
+            },
+
+
+        },
+        messages: {
+            FirstName: {
+                required: "Please enter a First Name. ",
+
+            },
+            LastName: {
+                 required: "Please enter a Last Name. ",
+
+            },
+            Email: {
+                required: "Please enter a Email.",
+                email: "Please enter a vaild email address."
+
+
+            },
+            Phone: {
+                required: "Please enter a Mobile Number.",
+                minlength: "Your Mobile Number must be at least 10 characters long."
+            },
+            Comment: {
+                required: "Please enter a Comment",
+
+            },
+
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+</script>
+
+
