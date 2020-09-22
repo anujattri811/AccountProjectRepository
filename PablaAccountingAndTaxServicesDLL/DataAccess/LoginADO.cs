@@ -30,5 +30,19 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             }
             return loginEntity;
         }
+        public LoginEntity ForgetPassword(string Email,int RoleId)
+        {
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.Email == Email && x.RoleId == RoleId && x.IsDeleted == false).FirstOrDefault();
+            LoginEntity loginEntity = new LoginEntity();
+            if (result != null)
+            {
+                loginEntity.UserId = result.UserId;
+                loginEntity.FirstName = result.FirstName;
+                loginEntity.LastName = result.LastName;
+                loginEntity.Password = result.Password;
+            }
+            return loginEntity;
+        }
+      
     }
 }

@@ -48,6 +48,56 @@ namespace PablaAccountingAndTaxServices.Controllers
 
         }
         [HttpGet]
+        public ActionResult Admin_forgotpassword()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Admin_forgotpassword(string Email = "")
+        {
+            var result = loginBLL.ForgetPassword(Email,1);
+            var Password = encryDecry.DecryptPassword(result.Password);
+            SendForgetPasswordEmail(Email, result.FirstName, result.LastName, Password);
+            return View();
+        }
+        public bool SendForgetPasswordEmail(string Email, string FirstName, string LastName, string Password)
+        {
+            try
+            {
+                string htmlBody = "";
+                string headerText = "Hi <b> " + FirstName + " " + LastName + " ,</b>";
+                string startTable = "<table>";
+                string emailText = "<tr><td><br/>You have requested to get your password this is your password below:-</br></br></td></tr>";
+                emailText += "<tr><td>UserName:<b> " + Email + "</b></td></tr>";
+                emailText += "<tr><td>Password:<b> " + Password + "</b></td></tr>";
+                emailText += "<tr><td>Regards</td></tr>";
+                emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
+                string endTable = "<br/></table> </br> </br> Thanks";
+                htmlBody = headerText + startTable + emailText + endTable;
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.To.Add(Email);
+                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+                mailMessage.Subject = "Credential Information";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Body = htmlBody;
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new System.Net.NetworkCredential()
+                {
+                    UserName = "Websiteindia2020@gmail.com",
+                    Password = "Sandeepanuj2020"
+                };
+                smtpClient.EnableSsl = true;
+                smtpClient.Send(mailMessage);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        [HttpGet]
 
         #endregion 
         public ActionResult admin_dashboard()
@@ -271,6 +321,11 @@ namespace PablaAccountingAndTaxServices.Controllers
             Session.Abandon();
             Session.Clear();
             return RedirectToAction("admin_login");
+        }
+
+        public ActionResult Test()
+        {
+            return View();
         }
     }
 }

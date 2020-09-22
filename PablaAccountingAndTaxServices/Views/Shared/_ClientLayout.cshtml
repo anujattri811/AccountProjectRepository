@@ -58,7 +58,7 @@
                                 <div class="icon novi-icon mdi mdi-phone"></div><a href="tel:#">+1 (587) 568 0175</a>
                             </div>
                             <ul class="list-lined">
-                                @if (Session["UserId"] != null)
+                                @*@if (Session["UserId"] != null)
                                 {
                                     <li class="rd-nav-item">
                                         <label>@Session["FirstName"] @Session["LastName"]</label>
@@ -66,12 +66,12 @@
                                 }
                                 @if (Session["UserId"] == null)
                                 {
-                                    <li><a href="/Client/client_login">Log in</a></li>
+                                    <li><a href="/Client/client_login">Client LogIn</a></li>
                                 }
                                 else
                                 {
                                     <li><a href="@Url.Action("LogOut","Client")">Log Out</a></li>
-                                }
+                                }*@
 
                                 @*<li><a href="#">Create an account</a></li>*@
                             </ul>
@@ -189,7 +189,7 @@
                                             }
 
                                             <li class="rd-nav-item">
-                                                <a class="rd-nav-link" href="@Url.Action("RequestPhoneCall","Client")">Request a Phone Call</a>
+                                                <a class="rd-nav-link" href="@Url.Action("client_login","Client")">Client Login</a>
                                             </li>
 
                                         </ul>

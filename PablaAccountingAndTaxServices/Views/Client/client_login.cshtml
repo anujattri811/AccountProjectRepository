@@ -20,11 +20,12 @@
             <h6 style="color:red;">@ViewBag.Message</h6>
         }
         <div class="row">
+            <div class="col-md-3"></div>
             <div class="col-md-9 col-lg-7 col-xl-6">
-                <h3>Log In</h3>
-                <div class="group-sm group-middle group-custom"><a class="button button-facebook" href="#"> Facebook</a><a class="button button-twitter" href="#"> Twitter</a><a class="button button-google" href="#"> Google+</a></div>
+                <h3 style="text-align: center">Pabla Accounting Client Login</h3>
+                @*<div class="group-sm group-middle group-custom"><a class="button button-facebook" href="#"> Facebook</a><a class="button button-twitter" href="#"> Twitter</a><a class="button button-google" href="#"> Google+</a></div>*@
                 <div class="custom-form-wrap">
-                    <div class="heading-5">or</div>
+                    @*<div class="heading-5">or</div>*@
                     <!--RD Mailform-->
                     <form class="rd-form text-right" method="post" action="\Client\client_login" id="Login">
                         <div class="form-wrap form-group">
@@ -35,7 +36,10 @@
                             <input class="form-input form-control-has-validation" id="login-password" type="password" name="Password" placeholder="Password"><span class="form-validation"></span>
                             @*<label class="form-label rd-input-label" for="login-password">Password</label>*@
                         </div>
+                        
+                        <a style="float:left" href="~/Client/client_forgotpassword">Forgot Password</a>
                         <button class="button button-primary" value="Login" type="submit">Login</button>
+
                     </form>
                 </div>
 

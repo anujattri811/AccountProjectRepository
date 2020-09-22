@@ -1059,6 +1059,9 @@
     <Content Include="Views\Client\ContactUs.cshtml" />
     <Content Include="Views\Client\RequestPhoneCall.cshtml" />
     <Content Include="Views\Client\AboutUs.cshtml" />
+    <Content Include="Views\Client\client_forgotpassword.cshtml" />
+    <Content Include="Views\Admin\Test.cshtml" />
+    <Content Include="Views\Admin\Admin_forgotpassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PablaAccountingAndTaxServicesBLL\PablaAccountingAndTaxServicesBLL.csproj">
