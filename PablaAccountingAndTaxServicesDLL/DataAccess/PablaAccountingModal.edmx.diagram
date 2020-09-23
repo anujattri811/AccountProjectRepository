@@ -7,6 +7,7 @@
       <Diagram DiagramId="fd5af519d3f047ef9bb385af02ba2d0a" Name="Diagram1">
         <EntityTypeShape EntityType="PablaAccountsModel.tblClientDocument" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="PablaAccountsModel.tblUser" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PablaAccountsModel.tbl_RequestedDocument" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

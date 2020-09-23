@@ -58,6 +58,12 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             pablaAccountsEntities.SaveChanges();
         }
 
+        public void DeleteRequest(int UserId)
+        {
+            var result = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == UserId).SingleOrDefault();
+            result.IsDeleted = true;
+            pablaAccountsEntities.SaveChanges();
+        }
         public List<tblClientDocument> selectAllDocumentForClient(int clientId)
         {
             return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == clientId).ToList();
@@ -71,6 +77,13 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year).ToList();
         }
-
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description)
+        {
+            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType,Year,PersonName,Description);
+        }
+        public List<tbl_RequestedDocument> GetRequest(int clientId)
+        {
+            return pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == clientId && x.IsDeleted == false).ToList();
+        }
     }
 }

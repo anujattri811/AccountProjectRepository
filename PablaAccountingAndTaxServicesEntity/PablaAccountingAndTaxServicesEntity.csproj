@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientEntity.cs" />
+    <Compile Include="DocumentEntity.cs" />
     <Compile Include="FileUploadEntity.cs" />
     <Compile Include="LoginEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

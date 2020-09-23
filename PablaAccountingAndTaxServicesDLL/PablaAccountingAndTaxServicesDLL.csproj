@@ -76,6 +76,9 @@
     <Compile Include="DataAccess\tblUser.cs">
       <DependentUpon>PablaAccountingModal.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\tbl_RequestedDocument.cs">
+      <DependentUpon>PablaAccountingModal.tt</DependentUpon>
+    </Compile>
     <Compile Include="Interface\IClient.cs" />
     <Compile Include="Interface\ILogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

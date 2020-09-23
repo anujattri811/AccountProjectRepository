@@ -59,19 +59,19 @@
                             </div>
                             <ul class="list-lined">
                                 @*@if (Session["UserId"] != null)
-                                {
-                                    <li class="rd-nav-item">
-                                        <label>@Session["FirstName"] @Session["LastName"]</label>
-                                    </li>
-                                }
-                                @if (Session["UserId"] == null)
-                                {
-                                    <li><a href="/Client/client_login">Client LogIn</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="@Url.Action("LogOut","Client")">Log Out</a></li>
-                                }*@
+                                    {
+                                        <li class="rd-nav-item">
+                                            <label>@Session["FirstName"] @Session["LastName"]</label>
+                                        </li>
+                                    }
+                                    @if (Session["UserId"] == null)
+                                    {
+                                        <li><a href="/Client/client_login">Log in</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("LogOut","Client")">Log Out</a></li>
+                                    }*@
 
                                 @*<li><a href="#">Create an account</a></li>*@
                             </ul>
@@ -188,9 +188,23 @@
                                                 </li>
                                             }
 
-                                            <li class="rd-nav-item">
-                                                <a class="rd-nav-link" href="@Url.Action("client_login","Client")">Client Login</a>
-                                            </li>
+                                            @*<li class="rd-nav-item">
+                                                    <a class="rd-nav-link" href="@Url.Action("RequestPhoneCall","Client")">Request a Phone Call</a>
+                                                </li>*@
+                                            @if (Session["UserId"] != null)
+                                            {
+                                                <li class="rd-nav-item">
+                                                    <label  class="rd-nav-link">@Session["FirstName"] @Session["LastName"]</label>
+                                                </li>
+                                            }
+                                            @if (Session["UserId"] == null)
+                                            {
+                                                <li class="rd-nav-item"><a class="rd-nav-link" href="/Client/client_login">Client Login</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li class="rd-nav-item"><a class="rd-nav-link" href="@Url.Action("LogOut","Client")">Log Out</a></li>
+                                            }
 
                                         </ul>
                                     </div>

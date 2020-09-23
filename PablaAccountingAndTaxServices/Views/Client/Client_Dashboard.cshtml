@@ -5,16 +5,15 @@
 }
 <style>
     .table-custom th {
-        padding:10px 10px 15px!important;
+        padding: 10px 10px 15px !important;
     }
-
 </style>
 <section class="breadcrumbs-custom bg-image novi-background bg-primary">
     <div class="container">
         <ul class="breadcrumbs-custom-path">
             <li><a href="~/Client/client_login">Client</a></li>
             <li><a href="~/Client/client_dashboard">Client Dashboard</a></li>
-          
+
         </ul>
     </div>
 </section>
@@ -30,8 +29,8 @@
                         <!--Nav tabs-->
                         <ul class="nav nav-tabs">
                             <li class="nav-item" role="presentation"><a class="nav-link active show" href="#tabs-1-1" data-toggle="tab">Profile</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link " href="#tabs-1-2" data-toggle="tab">Requested Documents</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">View Requested</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link " href="#tabs-1-2" data-toggle="tab">Request Document</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">View Requested Document</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-4" data-toggle="tab">Documents</a></li>
                         </ul>
                         <!--Tab panes-->
@@ -234,12 +233,111 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade " id="tabs-1-2">
-                                <p>The layout is aesthetically appealing, contains concise texts in order not to take your precious time. Text styling allows scanning the pages quickly. Site navigation is extremely intuitive and user-friendly. You will always know where you are now and will be able to skip from one page to another with a single mouse click.</p>
-                                <p>We use only trusted, verified content, so you can believe every word we are saying. We are always happy to greet the new visitors on our site. Our blog and social media accounts are available to encourage communication and connection between clients and personnel and tell you more about us in the informal environments where we can have a dialogue instead of just a narrative like that.  With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page. It will tell you lots of interesting things about our company, its products and services, highly professional staff and happy customers.</p>
+                                <div class="container">
+                                    <div class="row justify-content-md-center justify-content-xl-start">
+                                        <div class="col-md-9 col-lg-7 col-xl-6">
+                                            <h2 class="font-weight-normal">Request Document</h2>
+
+
+                                            <form class="" action="\Client\RequestDocumentByClient" method="post">
+                                                <input type="hidden" id="UserId" value="@Model.UserId" name="UserId" />
+                                                <div class="form-wrap">
+                                                    <select class="form-input form-control-has-validation" name="DocumentType">
+                                                        <option selected="" disabled="">Document Type</option>
+                                                        <option>Notice Of Assessment</option>
+                                                        <option>T1 General</option>
+                                                        <option>T4's</option>
+                                                        <option>T4 Summary</option>
+                                                        <option>T5</option>
+                                                        <option>Financials</option>
+                                                        <option>T2</option>
+                                                        <option>T2 Notice of Assessment</option>
+                                                        <option>Paystubs</option>
+                                                        <option>Schedule 100-125</option>
+                                                        <option>PD7 A</option>
+                                                        <option>Job letter</option>
+                                                        <option>GST</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-wrap">
+                                                    <select class="form-input form-control-has-validation" name="Year">
+                                                        <option selected="" disabled="">Select Year</option>
+                                                        <option>2011</option>
+                                                        <option>2012</option>
+                                                        <option>2013</option>
+                                                        <option>2014</option>
+                                                        <option>2015</option>
+                                                        <option>2016</option>
+                                                        <option>2017</option>
+                                                        <option>2018</option>
+                                                        <option>2019</option>
+                                                        <option>2020</option>
+                                                        <option>2021</option>
+                                                        <option>2022</option>
+                                                        <option>2023</option>
+                                                        <option>2024</option>
+                                                        <option>2025</option>
+                                                        <option>2026</option>
+                                                        <option>2027</option>
+                                                        <option>2028</option>
+                                                        <option>2029</option>
+                                                        <option>2030</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-wrap">
+                                                    <select class="form-input form-control-has-validation" name="PersonName">
+                                                        <option selected="" disabled="">Person Name</option>
+                                                        <option>Sahil </option>
+                                                        <option>Anuj</option>
+                                                        <option>Others</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-wrap">
+                                                    <textarea class="form-input form-control-has-validation" name="Description" id="request-description"></textarea>
+                                                    <label class="form-label rd-input-label" for="request-description">Description</label>
+                                                </div>
+                                                <div class="button-link-wrap text-right">
+                                                    <button class="button button-primary" type="submit">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="tabs-1-3">
-                                <p>We sincerely hope that each and every user entering our website will find exactly what he/she is looking for. With advanced features of activating account and new login widgets, you will definitely have a great experience of using our web page. It will tell you lots of interesting things about our company, its products and services, highly professional staff and happy customers.</p>
-                                <p>Our site design and navigation has been thoroughly thought out. The layout is aesthetically appealing, contains concise texts in order not to take your precious time. Text styling allows scanning the pages quickly. Site navigation is extremely intuitive and user-friendly. You will always know where you are now and will be able to skip from one page to another with a single mouse click. We use only trusted, verified content, so you can believe every word we are saying. We are always happy to greet the new visitors on our site. Our blog and social media accounts are available to encourage communication and connection between clients and personnel and tell you more about us.</p>
+                                <div class="table-custom-wrap table-custom-striped big">
+                                    <div class="table-custom-responsive number-counter-2">
+                                        <table id="Requestedexample1" class="table-custom">
+                                            <thead>
+                                                <tr>
+                                                    <th>Operation</th>
+                                                    <th>Document Type</th>
+                                                    <th>Year</th>
+                                                    <th>Person</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    @foreach (var item in ViewBag.Request)
+                                                    {
+
+                                                        <td>
+                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.UserId);">
+                                                                <i class="fas fa-trash">
+                                                                </i>
+                                                            </a>
+                                                        </td>
+                                                        <td>@item.DocumentType</td>
+                                                        <td>@item.Year</td>
+                                                        <td>@item.PersonName</td>
+                                                        <td>@item.Description</td>
+                                                    }
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="tabs-1-4">
                                 <div class="table-custom-wrap table-custom-striped big">
@@ -286,11 +384,29 @@
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $("#example1").DataTable();
-    });
+    //$(function () {
+    //    $("#example1").DataTable();
+    //});
 
     $(document).ready(function () {
         bsCustomFileInput.init();
     });
+</script>
+<script>
+    function Delete(UserId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Client/DeleteRequest?UserId=" + UserId
+
+            }
+        })
+    }
 </script>

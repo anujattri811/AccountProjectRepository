@@ -29,6 +29,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
     
         public virtual DbSet<tblClientDocument> tblClientDocuments { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tbl_RequestedDocument> tbl_RequestedDocument { get; set; }
     
         public virtual int usp_insertclient(string firstName, string lastName, string email, string dateOfBirth, string mobileNo, string companryName, string address, string city, string postalCode, string province, string country, string sIN, string gSTNumber, string wCB, string password, Nullable<int> roleId)
         {
@@ -217,6 +218,31 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GeneratePassword", userIdParameter, userNameParameter, passwordParameter);
+        }
+    
+        public virtual int usp_insertRequestdocument(Nullable<long> userId, string documentType, string year, string personName, string description)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(long));
+    
+            var documentTypeParameter = documentType != null ?
+                new ObjectParameter("DocumentType", documentType) :
+                new ObjectParameter("DocumentType", typeof(string));
+    
+            var yearParameter = year != null ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(string));
+    
+            var personNameParameter = personName != null ?
+                new ObjectParameter("PersonName", personName) :
+                new ObjectParameter("PersonName", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertRequestdocument", userIdParameter, documentTypeParameter, yearParameter, personNameParameter, descriptionParameter);
         }
     }
 }

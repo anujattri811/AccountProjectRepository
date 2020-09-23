@@ -23,46 +23,46 @@
         <div class="row row-40">
             <div class="col-md-6 contact-2-info wow fadeInDown animated animated animated" data-wow-animation-name="fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
                 @*<h5 style="font-size: 15px;">Contact Info</h5>*@
-                <div class="inforow">
+                <div class="inforow" style="margin-bottom:1rem;">
                     <div class="col-md-12">
-                        <div class="col-md-2" style="float:left">
-                            <div class="info-icn"><i class="fa fa-1x-before fa-map-marker icons-blue"></i></div>
+                        <div class="col-md-2" style="float:left;max-width: 7%;">
+                            <div class="info-icn"><i class="fa fa-1x-before fa-map-marker icons-blue" style="color: #009CFF !important;"></i></div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="contact-info"><p> #11, Floor 11, Sushma Infinium,Chandigarh - Ambala Highway,Near Best Price Zirakpur, Punjab – 140603 India.</p></div>
+                        <div class="col-md-6" style="max-width: 100%;display: table-cell;">
+                            <div class="contact-info"><p style="color:black;"> #11, Floor 11, Sushma Infinium,Chandigarh - Ambala Highway,Near Best Price Zirakpur, Punjab – 140603 India.</p></div>
                             <div class="clr"></div>
                         </div>
                     </div>
                 </div>
-                <div class="inforow">
+                <div class="inforow" style="margin-bottom:1rem;">
                     <div class="col-md-12">
                         <div class="col-md-2" style="float:left;width:10%">
-                            <div class="info-icn"><i class="fa fa-1x-before fa-phone icons-blue"></i></div>
+                            <div class="info-icn"><i class="fa fa-1x-before fa-phone icons-blue" style="color: #009CFF !important;"></i></div>
                         </div>
                         <div class="col-md-6">
-                            <div class="contact-info"><p><a href="tel:+91 9815-34-0123">+91 9815-34-0123</a></p></div>
+                            <div class="contact-info"><p><a style="color: #009CFF !important;" href="tel:+91 9815-34-0123">+91 9815-34-0123</a></p></div>
                             <div class="clr"></div>
                         </div>
                     </div>
                 </div>
-                <div class="inforow">
+                <div class="inforow" style="margin-bottom:1rem;">
                     <div class="col-md-12">
                         <div class="col-md-2" style="float:left;width:10%">
-                            <div class="info-icn"><i class="fa fa-1x-before fa-envelope icons-blue"></i></div>
+                            <div class="info-icn"><i class="fa fa-1x-before fa-envelope icons-blue" style="color: #009CFF !important;"></i></div>
                         </div>
                         <div class="col-md-6">
-                            <div class="contact-info"><p><a href="mailto:info@antheminfotech.com">info@antheminfotech.com</a></p></div>
+                            <div class="contact-info"><p><a style="color: #009CFF !important;" href="mailto:info@antheminfotech.com">info@antheminfotech.com</a></p></div>
                             <div class="clr"></div>
                         </div>
                     </div>
                 </div>
-                <div class="inforow">
+                <div class="inforow" style="margin-bottom:1rem;">
                     <div class="col-md-12">
                         <div class="col-md-2" style="float:left;width:10%">
-                            <div class="info-icn"><i class="fa fa-1x-before fa-clock-o icons-blue"></i></div>
+                            <div class="info-icn"><i class="fa fa-1x-before fa-clock-o icons-blue" style="color: #009CFF !important;"></i></div>
                         </div>
                         <div class="col-md-8">
-                            <div class="contact-info"><p>Monday - Friday : <strong>9:30am to 6:30pm</strong> <br>Saturday - Sunday : <strong>Closed</strong></p></div>
+                            <div class="contact-info"><p style="display: inline-block;color:black;">Monday - Friday : <strong>9:30am to 6:30pm</strong> <br>Saturday - Sunday : <strong>Closed</strong></p></div>
                             <div class="clr"></div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                 <div id="map"></div>
                 <div class="google-map-container" data-key="YOUR_API_KEY">
                     <div class="google-map-container google-map-container-2 lazy-loaded">
-                        <div class="google-map"></div>
+                        @*<div class="google-map"></div>*@
                         <ul class="google-map-markers">
                             <li data-location="https://www.google.com/maps/place/203-9613+41+Ave+NW,+Edmonton,+AB+T6E+5X7,+Canada/53.4760456,-113.4803807,17z/data=!3m1!4b1!4m5!3m4!1s0x53a018d2eaa94dd5:0xbb48258ec2c8bc59!8m2!3d53.4760424!4d-113.478192" data-description="https://www.google.com/maps/place/203-9613+41+Ave+NW,+Edmonton,+AB+T6E+5X7,+Canada/53.4760456,-113.4803807,17z/data=!3m1!4b1!4m5!3m4!1s0x53a018d2eaa94dd5:0xbb48258ec2c8bc59!8m2!3d53.4760424!4d-113.478192"></li>
                         </ul>
@@ -129,13 +129,13 @@
                     <form class="rd-form rd-mailform" data-form-output="form-output-global" id="ContactUs" data-form-type="contact" method="post" action="/Client/ContactUs">
                         <div class="row row-10">
                             <div class="col-md-6 form-group">
-                                <div class="">
-                                    <input class="form-input form-control-has-validation " id="Name" placeholder="Name" type="text" name="Name">
+                                <div class="form-wrap">
+                                    <input class="form-input form-control-has-validation" id="Name" placeholder="Name" type="text" name="Name" data-constraints="Required">
                                     @*<label class="form-label  rd-input-label" for="Name">Name</label>*@
                                 </div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <div class="form-wrap form-group">
+                                <div class="form-wrap">
                                     <input class="form-input form-control-has-validation " id="Email" type="email" name="Email" placeholder="Email" data-constraints="Required">
                                     @*<label class="form-label rd-input-label" for="Email">Email</label>*@
                                 </div>

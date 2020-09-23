@@ -122,9 +122,16 @@ namespace PablaAccountingAndTaxServices.Controllers
             List<tblClientDocument> result = new List<tblClientDocument>();
             result = clientBLL.selectAllDocumentForClient(ClientId);
             model = clientBLL.GetAllClient(ClientId);
+            ViewBag.Request = clientBLL.GetRequest(ClientId);
             ViewBag.TotalDocument = result;
 
             return View(model);
+        }
+        [HttpPost]
+        public  ActionResult RequestDocumentByClient(int UserId = 0,string DocumentType="", string Year="", string PersonName="", string Description="")
+        {
+            clientBLL.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description);
+            return RedirectToAction("client_dashboard","Client");
         }
         #endregion
         [HttpGet]
@@ -230,6 +237,12 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult AboutUs()
         {
             return View();
+        }
+        public ActionResult DeleteRequest(int UserId)
+        {
+            clientBLL.DeleteRequest(UserId);
+            TempData["Delete"] = "1";
+            return RedirectToAction("client");
         }
     }
 }

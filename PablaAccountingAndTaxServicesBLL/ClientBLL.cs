@@ -32,6 +32,10 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             return client.GetAllClient(ClientId);
         }
+        public List<tbl_RequestedDocument> GetRequest(int ClientId)
+        {
+            return client.GetRequest(ClientId);
+        }
         public void UpdateClient(ClientEntity clientEntity)
         {
             client.UpdateClient(clientEntity);
@@ -44,6 +48,11 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             client.DeleteClient(UserId);
         }
+
+        public void DeleteRequest(int UserId)
+        {
+            client.DeleteRequest(UserId);
+        }
         public List<tblClientDocument> selectAllDocumentForClient(int clientId)
         {
             return client.selectAllDocumentForClient(clientId);
@@ -55,6 +64,11 @@ namespace PablaAccountingAndTaxServicesBLL
         public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year)
         {
             return client.SearchDocumentByQuery(UserId, PersonName, DocumentType, Year);
+        }
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description)
+        {
+            client.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description);
+         
         }
     }
 }

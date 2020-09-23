@@ -46,6 +46,21 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsPassword" Type="bit" />
         </EntityType>
+        <EntityType Name="tbl_RequestedDocument">
+          <Key>
+            <PropertyRef Name="RequestDocumentId" />
+          </Key>
+          <Property Name="RequestDocumentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="100" />
+          <Property Name="DocumentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Other" Type="nvarchar" MaxLength="100" />
+          <Property Name="PersonName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Year" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="RequestedBy" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
         <Function Name="usp_insertclient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
@@ -97,9 +112,17 @@
         <Function Name="GetPersonName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="usp_insertRequestdocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
+          <Parameter Name="UserId" Type="bigint" Mode="In" />
+          <Parameter Name="DocumentType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Year" Type="nvarchar" Mode="In" />
+          <Parameter Name="PersonName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <EntityContainer Name="PablaAccountsModelStoreContainer">
           <EntitySet Name="tblClientDocument" EntityType="Self.tblClientDocument" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RequestedDocument" EntityType="Self.tbl_RequestedDocument" Schema="pablaaccounts" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -159,6 +182,14 @@
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="tbl_RequestedDocument" EntityType="PablaAccountsModel.tbl_RequestedDocument" />
+          <FunctionImport Name="usp_insertRequestdocument">
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
+            <Parameter Name="DocumentType" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="String" />
+            <Parameter Name="PersonName" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblClientDocument">
           <Key>
@@ -200,6 +231,21 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsPassword" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_RequestedDocument">
+          <Key>
+            <PropertyRef Name="RequestDocumentId" />
+          </Key>
+          <Property Name="RequestDocumentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Other" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -255,6 +301,23 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetPersonName" FunctionName="PablaAccountsModel.Store.GetPersonName" />
           <FunctionImportMapping FunctionImportName="GeneratePassword" FunctionName="PablaAccountsModel.Store.GeneratePassword" />
+          <EntitySetMapping Name="tbl_RequestedDocument">
+            <EntityTypeMapping TypeName="PablaAccountsModel.tbl_RequestedDocument">
+              <MappingFragment StoreEntitySet="tbl_RequestedDocument">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="RequestDocumentId" ColumnName="RequestDocumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_insertRequestdocument" FunctionName="PablaAccountsModel.Store.usp_insertRequestdocument" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
