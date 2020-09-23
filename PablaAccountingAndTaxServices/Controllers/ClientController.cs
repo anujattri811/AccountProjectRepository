@@ -16,6 +16,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         LoginBLL loginBLL = new LoginBLL();
         EncryDecry encryDecry = new EncryDecry();
         ClientBLL clientBLL = new ClientBLL();
+        PablaAccountsEntities pablaAccountsEntities = new PablaAccountsEntities();
 
         #region client_login
         [HttpGet]
@@ -122,6 +123,16 @@ namespace PablaAccountingAndTaxServices.Controllers
             List<tblClientDocument> result = new List<tblClientDocument>();
             result = clientBLL.selectAllDocumentForClient(ClientId);
             model = clientBLL.GetAllClient(ClientId);
+            var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).ToList();
+
+
+            IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
+                                                           select new SelectListItem
+                                                           {
+                                                               Text = Person.ToString(),
+                                                               Value = Person.ToString()
+                                                           };
+            ViewBag.PersonName = new SelectList(selectPersonList, "Text", "Value");
             ViewBag.Request = clientBLL.GetRequest(ClientId);
             ViewBag.TotalDocument = result;
 

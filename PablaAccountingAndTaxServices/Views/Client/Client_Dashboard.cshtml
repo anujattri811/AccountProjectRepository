@@ -3,6 +3,9 @@
     ViewBag.Title = "Client_Dashboard";
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
+@{
+    var PersonName = new SelectList(ViewBag.PersonName, "Text", "Value");
+}
 <style>
     .table-custom th {
         padding: 10px 10px 15px !important;
@@ -285,12 +288,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-wrap">
-                                                    <select class="form-input form-control-has-validation" name="PersonName">
-                                                        <option selected="" disabled="">Person Name</option>
-                                                        <option>Sahil </option>
-                                                        <option>Anuj</option>
-                                                        <option>Others</option>
-                                                    </select>
+                                                    @Html.DropDownList("PersonName", PersonName, new { @class = "form-input form-control-has-validation" })
                                                 </div>
                                                 <div class="form-wrap">
                                                     <textarea class="form-input form-control-has-validation" name="Description" id="request-description"></textarea>
@@ -323,7 +321,7 @@
                                                     {
 
                                                         <td>
-                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.UserId);">
+                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestedBy);">
                                                                 <i class="fas fa-trash">
                                                                 </i>
                                                             </a>
