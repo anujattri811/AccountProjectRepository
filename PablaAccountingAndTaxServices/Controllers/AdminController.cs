@@ -56,7 +56,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpPost]
         public ActionResult Admin_forgotpassword(string Email = "")
         {
-            var result = loginBLL.ForgetPassword(Email,1);
+            var result = loginBLL.ForgetPassword(Email, 1);
             var Password = encryDecry.DecryptPassword(result.Password);
             SendForgetPasswordEmail(Email, result.FirstName, result.LastName, Password);
             return View();
@@ -326,6 +326,17 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult Test()
         {
             return View();
+        }
+
+        public ActionResult requested_document()
+        {
+            List<tbl_RequestedDocument> rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.IsDeleted == false).ToList();
+            return View(rd);
+        }
+        public ActionResult approve_document(int requestedDocumentId)
+        {
+            //tbl_RequestedDocument rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId).ToList();
+            return RedirectToAction("requested_document", "admin");
         }
     }
 }
