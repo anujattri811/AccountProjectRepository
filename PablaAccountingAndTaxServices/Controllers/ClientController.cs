@@ -124,10 +124,9 @@ namespace PablaAccountingAndTaxServices.Controllers
             List<tblClientDocument> result = new List<tblClientDocument>();
             result = clientBLL.selectAllDocumentForClient(ClientId);
             model = clientBLL.GetAllClient(ClientId);
-            var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).ToList();
-            
+            var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).Distinct().ToList().Distinct().ToList();
 
-            IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
+            IEnumerable<SelectListItem> selectPersonList = from Person in PersonList.Distinct().ToList()
                                                            select new SelectListItem
                                                            {
                                                                
