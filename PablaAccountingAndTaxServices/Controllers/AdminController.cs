@@ -29,6 +29,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpGet]
         public ActionResult admin_login()
         {
+
             return View();
         }
         [HttpPost]
@@ -221,8 +222,8 @@ namespace PablaAccountingAndTaxServices.Controllers
                 IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
                                                                select new SelectListItem
                                                                {
-                                                                   Text = Person.ToString(),
-                                                                   Value = Person.ToString()
+                                                                   Text = Convert.ToString(Person),
+                                                                   Value = Convert.ToString(Person)
                                                                };
                 ViewBag.PersonName = new SelectList(selectPersonList, "Text", "Value");
                 ViewBag.userid = model.UserId;

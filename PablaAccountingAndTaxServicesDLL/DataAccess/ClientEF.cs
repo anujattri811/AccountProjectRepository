@@ -85,5 +85,13 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             return pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == clientId && x.IsDeleted == false).ToList();
         }
+        //public List<tblClientDocument> selectClientname(int ClientId)
+        //{
+        //    ClientEntity clientEntity = new ClientEntity();
+        //    var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == ClientId).SingleOrDefault();
+        //    clientEntity.UserId = Convert.ToInt32(result.UserId);
+        //    clientEntity.FirstName = result.FirstName;
+        //    return clientEntity;
+        //}
     }
 }

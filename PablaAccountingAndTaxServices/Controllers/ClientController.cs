@@ -22,6 +22,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.IMG = "Home";
             return View();
         }
 
@@ -124,13 +125,14 @@ namespace PablaAccountingAndTaxServices.Controllers
             result = clientBLL.selectAllDocumentForClient(ClientId);
             model = clientBLL.GetAllClient(ClientId);
             var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).ToList();
-
+            
 
             IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
                                                            select new SelectListItem
                                                            {
-                                                               Text = Person.ToString(),
-                                                               Value = Person.ToString()
+                                                               
+                                                               Text = Convert.ToString(Person),
+                                                               Value = Convert.ToString(Person)
                                                            };
             ViewBag.PersonName = new SelectList(selectPersonList, "Text", "Value");
             ViewBag.Request = clientBLL.GetRequest(ClientId);

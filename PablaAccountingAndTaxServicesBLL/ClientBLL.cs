@@ -70,5 +70,9 @@ namespace PablaAccountingAndTaxServicesBLL
             client.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description);
          
         }
+        //public List<tblClientDocument> selectClientname(int ClientId)
+        //{
+        //    return client.selectClientname(ClientId);
+        //}
     }
 }
