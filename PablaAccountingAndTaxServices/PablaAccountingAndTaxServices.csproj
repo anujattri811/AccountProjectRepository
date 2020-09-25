@@ -198,6 +198,7 @@
     <Content Include="ClientContent\images\gmap_marker.png" />
     <Content Include="ClientContent\images\gmap_marker_active.png" />
     <Content Include="ClientContent\images\ie8-panel\warning_bar_0000_us.jpg" />
+    <Content Include="ClientContent\images\imgpsh_fullsize_anim.png" />
     <Content Include="ClientContent\images\index-1-2-586x334.jpg" />
     <Content Include="ClientContent\images\index-1-3-580x334.jpg" />
     <Content Include="ClientContent\images\index-1-slider-1-1920x768.jpg" />
@@ -222,6 +223,8 @@
     <Content Include="ClientContent\images\logo-default-240x44.png" />
     <Content Include="ClientContent\images\logo-inverse-240x44.png" />
     <Content Include="ClientContent\images\our-story-1-572x335.jpg" />
+    <Content Include="ClientContent\images\Website-Logo-Transparent.png" />
+    <Content Include="ClientContent\images\Website-Logo.png" />
     <Content Include="ClientContent\images\parallax-1-1920x1026.jpg" />
     <Content Include="ClientContent\images\parallax-2-1920x1004.jpg" />
     <Content Include="ClientContent\images\pay-item-1-133x45.png" />
