@@ -4,12 +4,14 @@ using PablaAccountingAndTaxServicesDLL.DataAccess;
 using PablaAccountingAndTaxServicesEntity;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace PablaAccountingAndTaxServices.Controllers
 {
@@ -43,7 +45,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             {
                 Session["FirstName"] = result.FirstName;
                 Session["LastName"] = result.LastName;
-                return RedirectToAction("client");
+                return RedirectToAction("admin_dashboard");
             }
 
         }
@@ -102,6 +104,10 @@ namespace PablaAccountingAndTaxServices.Controllers
         #endregion 
         public ActionResult admin_dashboard()
         {
+            var clients = clientBLL.selectClientList().Count;
+            ViewBag.ClientList = clients;
+            var requestedDocuments = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.IsDeleted == false).ToList().Count;
+            ViewBag.RequestedDocuments = requestedDocuments;
             return View();
         }
         [HttpGet]
@@ -330,12 +336,136 @@ namespace PablaAccountingAndTaxServices.Controllers
 
         public ActionResult requested_document()
         {
-            List<tbl_RequestedDocument> rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.IsDeleted == false).ToList();
-            return View(rd);
+            //dynamic model = new ExpandoObject();
+            dynamic joinResult = (from d in pablaAccountsEntities.tbl_RequestedDocument
+                                  from p in pablaAccountsEntities.tblUsers
+                                  where d.RequestedBy == p.UserId
+                                  select new
+                                  {
+                                      RequestDocumentId = d.RequestDocumentId,
+                                      DocumentType = d.DocumentType,
+                                      Other = d.Other,
+                                      PersonName = d.PersonName,
+                                      Year = d.Year,
+                                      Description = d.Description,
+                                      RequestedBy = p.FirstName + " " + p.LastName,
+                                      RequestedById = p.UserId,
+                                      CreatedOn = d.CreatedOn,
+                                      IsDeleted = d.IsDeleted,
+                                      IsApprooved = d.IsApprooved,
+                                      IsDeclined = d.IsDeclined
+                                  }).Where(x => x.IsDeleted == false && x.IsDeclined == false).OrderByDescending(x => x.RequestDocumentId)
+                                  .AsEnumerable()    //important to convert to Enumerable
+                        .Select(c => c.ToExpando()); //convert to ExpandoObject;
+
+            //List<tbl_RequestedDocument> rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.IsDeleted == false).OrderByDescending(x=>x.RequestDocumentId).ToList();
+            //ViewBag.Result = joinResult;
+            //model = joinResult;
+
+            // Create a list of dynamic objects to form the view model
+            // that has prettified rate code
+            var forecastRates = new List<dynamic>();
+            //forecastRates = joinResult.ToExpando();
+            //foreach (var fr in joinResult)
+            //{
+            //    dynamic f = new ExpandoObject();
+
+            //    f.RequestDocumentId = fr.RequestDocumentId;
+            //    f.DocumentType = fr.DocumentType;
+            //    f.Other = fr.Other;
+            //    f.PersonName = fr.PersonName;
+            //    f.Year = fr.Year;
+            //    f.Description = fr.Description;
+            //    f.RequestedBy = fr.RequestedBy;
+            //    f.CreatedOn = fr.CreatedOn;
+            //    f.IsDeleted = fr.IsDeleted;
+            //    f.IsApprooved = fr.IsApprooved;
+            //    f.IsDeclined = fr.IsDeclined;
+
+            //    forecastRates.Add(f);
+            //}
+
+
+
+            return View(joinResult);
         }
+        //public static ExpandoObject ToExpando(this object anonymousObject)
+        //{
+        //    IDictionary<string, object> anonymousDictionary = new RouteValueDictionary(anonymousObject);
+        //    IDictionary<string, object> expando = new ExpandoObject();
+        //    foreach (var item in anonymousDictionary)
+        //        expando.Add(item);
+        //    return (ExpandoObject)expando;
+        //}
+        //public static ExpandoObject ToExpando(this object anonymousObject)
+        //{
+        //    IDictionary<string, object> expando = new ExpandoObject();
+        //    foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(anonymousObject))
+        //    {
+        //        var obj = propertyDescriptor.GetValue(anonymousObject);
+        //        expando.Add(propertyDescriptor.Name, obj);
+        //    }
+
+        //    return (ExpandoObject)expando;
+        //}
         public ActionResult approve_document(int requestedDocumentId)
         {
             //tbl_RequestedDocument rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId).ToList();
+            var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == requestedDocumentId);
+            if (result != null)
+            {
+                result.IsApprooved = true;
+                pablaAccountsEntities.SaveChanges();
+            }
+            return RedirectToAction("requested_document", "admin");
+        }
+
+        public ActionResult deny_document(int requestedDocumentId)
+        {
+            //tbl_RequestedDocument rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId).ToList();
+            var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == requestedDocumentId);
+            if (result != null)
+            {
+                result.IsDeclined = true;
+                pablaAccountsEntities.SaveChanges();
+            }
+            return RedirectToAction("requested_document", "admin");
+        }
+
+        public ActionResult add_document(int requestedDocumentId, string clientName)
+        {
+            FileUploadEntity fileuploadentity = new FileUploadEntity();
+            var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == requestedDocumentId);
+            if (result != null)
+            {
+
+                fileuploadentity.UserId = (int)result.RequestedBy;
+                fileuploadentity.PersonName = result.PersonName;
+                fileuploadentity.year = result.Year;
+                fileuploadentity.DocumentType = result.DocumentType;
+                fileuploadentity.Other = result.Other;
+            }
+            ViewBag.ClientName = clientName;
+            return View(fileuploadentity);
+
+        }
+        [HttpPost]
+        public ActionResult add_document(FileUploadEntity fileUploadEntity)
+        {
+            ClientBLL clientBLL = new ClientBLL();
+            string path = Server.MapPath("~/Documents/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string DocumentName = Path.GetFileNameWithoutExtension(fileUploadEntity.UploadFile.FileName);
+            string Extention = Path.GetExtension(fileUploadEntity.UploadFile.FileName).Replace(".", "");
+            string Ext = Path.GetExtension(fileUploadEntity.UploadFile.FileName);
+            string fileName = DocumentName + Ext;
+            fileUploadEntity.UploadFile.SaveAs(path + fileName);
+            fileUploadEntity.DocumentName = DocumentName;
+            fileUploadEntity.Extension = Extention;
+            clientBLL.Savedocuments(fileUploadEntity);
             return RedirectToAction("requested_document", "admin");
         }
     }

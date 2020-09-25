@@ -1,136 +1,84 @@
-﻿@model IEnumerable<PablaAccountingAndTaxServicesDLL.DataAccess.tbl_RequestedDocument>
+﻿@inherits System.Web.Mvc.WebViewPage<IEnumerable<dynamic>>
 
 @{
     ViewBag.Title = "requested_document";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-    <section class="content header">
+<section class="content header">
 
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header card_color" style="padding-top: 1px;
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header card_color" style="padding-top: 1px;
     padding-bottom: 1px;">
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Document Information</h3>
-
-                    </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Document Information</h3>
 
                 </div>
-            </div>
-            
 
-            <div class="card-body" style="padding:0px;">
-                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="col-sm-12" style="overflow-x:auto;">
-                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                            <thead>
-                                <tr role="row">
-                                    <th>Operations</th>
-                                    <th>Document Type</th>
-                                    <th>Other</th>
-                                    <th>Person Name</th>
-                                    <th>Year</th>
-                                    <th>Requested By</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @*<a href="@Url.Action("","")"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>*@
-                                            <a href="@Url.Action("approve_document","admin",new { requestedDocumentId = item.RequestDocumentId})" target="_blank"><span class="btn btn-block btn-outline-primary"><i class="fas fa-cloud-download-alt"></i></span></a>
-                                        </td>
-                                        <td>@item.DocumentType</td>
-                                        <td>@item.Other</td>
-                                        <td>@item.PersonName</td>
-                                        <td>@item.Year</td>
-                                        <td>@item.RequestedBy</td>
-                                    </tr>
-                                }
-
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
             </div>
         </div>
 
 
-    </section>
+        <div class="card-body" style="">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="col-sm-12" style="overflow-x:auto;">
+                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                        <thead>
+                            <tr role="row">
+                                <th>Operations</th>
+                                <th>Document Type</th>
+                                <th>Other</th>
+                                <th>Person Name</th>
+                                <th>Year</th>
+                                <th>Requested By</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @*<a href="@Url.Action("","")"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>*@
+                                        @if (item.IsApprooved == false && item.IsDeclined == false)
+                                        {
+                                            <a href="@Url.Action("approve_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Approve</span></a>
+                                            <a href="@Url.Action("deny_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Deny</span></a>
+
+                                        }
+                                        @if (item.IsApprooved == true)
+                                        {
+                                            <a href="@Url.Action("add_document","admin",new { requestedDocumentId = item.RequestDocumentId,clientName=item.RequestedBy})"><span class="btn btn-outline-primary">Add</span></a>
+                                        }
+
+                                    </td>
+                                    <td>@item.DocumentType</td>
+                                    <td>@item.Other</td>
+                                    <td>@item.PersonName</td>
+                                    <td>@item.Year</td>
+                                    <td>@item.RequestedBy</td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DocumentType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DocumentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Other)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th></th>
-    </tr>
+</section>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DocumentType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DocumentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Other)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RequestDocumentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RequestDocumentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequestDocumentId })
-        </td>
-    </tr>
-}
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<link href="~/Content/css/AdminStyle.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        $("#example1").DataTable();
+    });
 
-</table>
+
+</script>
