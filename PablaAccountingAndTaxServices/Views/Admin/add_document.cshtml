@@ -1,0 +1,88 @@
+﻿@model PablaAccountingAndTaxServicesEntity.FileUploadEntity
+@{
+    ViewBag.Title = "add_document";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content header">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header card_color" style="padding-top: 1px;padding-bottom: 1px;">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Upload Document for @Model.PersonName</h3>
+
+                </div>
+
+            </div>
+        </div>
+        @using (Html.BeginForm("add_document", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @id = "AddDocument" }))
+        {
+
+
+            <div class="col-md-12 row" style="padding-top:10px;">
+                
+                <div class="form-group col-md-3">
+                    <label>Client Name: </label>
+                    @ViewBag.ClientName
+                    <input type="hidden" id="hdfUserId" name="UserId" value="@Model.UserId" />
+                </div>
+            </div>
+            <div class="col-md-12 row" style="padding-top:10px;">
+                
+                <div class="form-group col-md-3">
+                    <label>Person Name: </label>
+                    <input type="text" id="txtPersonName" name="PersonName" placeholder="Person Name" class="form-control" value="@Model.PersonName" readonly/>
+                </div>
+                
+                <div class="col-md-3">
+                    <label>Document Type: </label>
+                    <input class="form-control" id="txtDocumentType" type="text" name="DocumentType" value="@Model.DocumentType" readonly/>
+                </div>
+
+                @if (Model.DocumentType == "Other")
+                {
+                    
+                    <div class="col-md-3">
+                        <label>Other: </label>
+                        <input class="form-control" id="txtOther" type="text" name="Other" value="@Model.Other" readonly/>
+                    </div>
+                }
+
+
+            </div>
+            <div class="col-md-12 row" style="padding-top:10px;">
+                
+                <div class="col-md-3">
+                    <label>Year: </label>
+                    <input class="form-control" id="txtYear" type="text" name="Year" value="@Model.year" readonly/>
+                </div>
+                
+                <div class="col-md-3">
+                    <label>File: </label>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" placeholder="Choose file" name="UploadFile">
+                                <label class="custom-file-label" for="exampleInputFile"></label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 row" style="padding-top:10px;padding-bottom:10px;">
+                
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-block btn-outline-primary">Save</button>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+</section>
+

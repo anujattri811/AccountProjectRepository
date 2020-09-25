@@ -132,6 +132,7 @@
     <Compile Include="CommanClass\EncryDecry.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="ExpandoClass.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1066,6 +1067,7 @@
     <Content Include="Views\Admin\Test.cshtml" />
     <Content Include="Views\Admin\Admin_forgotpassword.cshtml" />
     <Content Include="Views\Admin\requested_document.cshtml" />
+    <Content Include="Views\Admin\add_document.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PablaAccountingAndTaxServicesBLL\PablaAccountingAndTaxServicesBLL.csproj">

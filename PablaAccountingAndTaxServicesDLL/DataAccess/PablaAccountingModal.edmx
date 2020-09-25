@@ -60,6 +60,8 @@
           <Property Name="RequestedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsApprooved" Type="bit" />
+          <Property Name="IsDeclined" Type="bit" />
         </EntityType>
         <Function Name="usp_insertclient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
@@ -246,6 +248,8 @@
           <Property Name="RequestedBy" Type="Int32" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsApprooved" Type="Boolean" />
+          <Property Name="IsDeclined" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -304,6 +308,8 @@
           <EntitySetMapping Name="tbl_RequestedDocument">
             <EntityTypeMapping TypeName="PablaAccountsModel.tbl_RequestedDocument">
               <MappingFragment StoreEntitySet="tbl_RequestedDocument">
+                <ScalarProperty Name="IsDeclined" ColumnName="IsDeclined" />
+                <ScalarProperty Name="IsApprooved" ColumnName="IsApprooved" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
