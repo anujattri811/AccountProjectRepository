@@ -293,7 +293,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-wrap form-group">
-                                                    @Html.DropDownList("PersonName", PersonName, "Select Person", new { @onchange="ShowOtherPerson()", @class = "form-input form-control-has-validation" })
+                                                    @Html.DropDownList("PersonName", PersonName, "Select Person", new { @onchange = "ShowOtherPerson()", @class = "form-input form-control-has-validation" })
                                                 </div>
                                                 <div class="form-wrap" id="Show-OtherPersonName" style="display:none;">
                                                     <input type="text" name="OtherPersonName" id="OtherPersonName" class="form-input form-control-has-validation" />
@@ -329,44 +329,54 @@
                                             <tbody>
                                                 @foreach (var item in ViewBag.Request)
                                                 {
-                                                   
-                                                        <tr>
 
-                                                            @if (ViewBag.CurrentDays <= item.CreatedOn)
-                                                            {
-                                                                <td>
-                                                                    <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
-                                                                        <i class="fas fa-trash">
-                                                                        </i>
-                                                                    </a>
-                                                                </td>
+                                                <tr>
 
-                                                            }
-                                                            else
-                                                            {
-                                                                <td>-NA-</td>
-                                                            }
-                                                            @if (item.IsApprooved == true)
-                                                            {
-                                                                <td style="background:green;font-weight:bold;color:black;">Approved</td>
-                                                            }
-                                                            else if (item.IsDeclined == true)
-                                                            {
-                                                                <td style="background:red;font-weight:bold;color:black;">Declined</td>
-                                                            }
-                                                            else
-                                                            {
-                                                                <td style="background:yellow;font-weight:bold;color:black;">Pending</td>
-                                                            }
-                                                            <td>@item.DocumentType</td>
-                                                            <td>@item.Other</td>
-                                                            <td>@item.Year</td>
-                                                            <td>@item.PersonName</td>
-                                                            <td>@item.Description</td>
+                                                    @if (ViewBag.CurrentDays <= item.CreatedOn)
+                                                    {
+                                                        <td>
+                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
+                                                                <i class="fas fa-trash">
+                                                                </i>
+                                                            </a>
+                                                        </td>
 
-                                                        </tr>
-                                                    
-                                                  
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>-NA-</td>
+                                                    }
+                                                    @if (item.IsApprooved == true)
+                                                    {
+                                                        <td>
+                                                            <div class="button button-xs button-primary" style="background:green;font-weight:bold;color:black;pointer-events:none;">Approved</div>
+                                                        </td>
+
+                                                        @*<td style="background:green;font-weight:bold;color:black;">Approved</td>*@
+                                                    }
+                                                    else if (item.IsDeclined == true)
+                                                    {
+                                                        <td>
+                                                            <div class="button button-xs button-primary" style="background:red;font-weight:bold;color:black;pointer-events:none;">Declined</div>
+                                                        </td>
+                                                        @*<td style="background:red;font-weight:bold;color:black;">Declined</td>*@
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <div class="button button-xs button-primary" style="background:yellow;font-weight:bold;color:black;pointer-events:none;">Pending</div>
+                                                        </td>
+                                                        @*<td style="background:yellow;font-weight:bold;color:black;">Pending</td>*@
+                                                    }
+                                                    <td>@item.DocumentType</td>
+                                                    <td>@item.Other</td>
+                                                    <td>@item.Year</td>
+                                                    <td>@item.PersonName</td>
+                                                    <td>@item.Description</td>
+
+                                                </tr>
+
+
                                                 }
                                             </tbody>
                                         </table>
@@ -383,7 +393,7 @@
                                                     <th>Person Name</th>
                                                     <th>Document Name</th>
                                                     <th>Document Type</th>
-                                                    <th>Other</th>
+                                                    @*<th>Other</th>*@
                                                     <th>Year</th>
                                                 </tr>
                                             </thead>
@@ -398,7 +408,7 @@
                                                         <td class="text-gray-800">@item.PersonName</td>
                                                         <td class="text-gray-800">@item.DocumentName</td>
                                                         <td class="text-gray-800">@item.DocumentType</td>
-                                                        <td class="text-gray-800">@item.Other</td>
+                                                        @*<td class="text-gray-800">@item.Other</td>*@
                                                         <td class="text-gray-800">@item.Year</td>
                                                     </tr>
                                                 }
@@ -431,6 +441,13 @@
     $(document).ready(function () {
         bsCustomFileInput.init();
     });
+
+    //$(function () {
+    //    $("#example1").DataTable();
+    //});
+    // $(function () {
+    //    $("#Requestedexample1").DataTable();
+    //});
 </script>
 <script>
     $('#RequestedDocumentForm').validate({
