@@ -887,9 +887,6 @@
     <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.min.css" />
     <Content Include="Content\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.js" />
     <Content Include="Content\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.min.js" />
-    <Content Include="Content\plugins\toastr\toastr.css" />
-    <Content Include="Content\plugins\toastr\toastr.min.css" />
-    <Content Include="Content\plugins\toastr\toastr.min.js" />
     <Content Include="dist\css\adminlte.css" />
     <Content Include="dist\css\adminlte.min.css" />
     <Content Include="dist\css\alt\adminlte.components.css" />
@@ -1048,7 +1045,6 @@
     <Content Include="ClientContent\fonts\mercury-regular.ttf" />
     <Content Include="ClientContent\fonts\mercury-regular.woff" />
     <Content Include="Documents\dummy.pdf" />
-    <Content Include="Content\plugins\toastr\toastr.js.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\js\adminlte.js.map" />
     <Content Include="Scripts\js\adminlte.min.js.map" />
