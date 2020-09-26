@@ -124,18 +124,24 @@ namespace PablaAccountingAndTaxServices.Controllers
             List<tblClientDocument> result = new List<tblClientDocument>();
             result = clientBLL.selectAllDocumentForClient(ClientId);
             model = clientBLL.GetAllClient(ClientId);
-            var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).ToList();
+            var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).Distinct().ToList();
             
 
             IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
                                                            select new SelectListItem
                                                            {
-                                                               
                                                                Text = Convert.ToString(Person),
                                                                Value = Convert.ToString(Person)
                                                            };
             ViewBag.PersonName = new SelectList(selectPersonList, "Text", "Value");
-            ViewBag.Request = clientBLL.GetRequest(ClientId);
+            var resultList = clientBLL.GetRequest(ClientId);
+            foreach (var item in resultList)
+            {
+                item.CreatedOn = Convert.ToDateTime(item.CreatedOn).AddDays(7);
+            }
+            var date= DateTime.Now;
+            ViewBag.CurrentDays = date;
+            ViewBag.Request = resultList;
             ViewBag.TotalDocument = result;
 
             return View(model);
@@ -256,6 +262,11 @@ namespace PablaAccountingAndTaxServices.Controllers
             clientBLL.DeleteRequest(UserId);
             TempData["Delete"] = "1";
             return RedirectToAction("client");
+        }
+
+        public ActionResult Demo()
+        {
+            return View();
         }
     }
 }
