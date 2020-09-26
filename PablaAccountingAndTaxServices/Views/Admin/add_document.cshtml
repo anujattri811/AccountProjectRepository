@@ -22,7 +22,7 @@
 
 
             <div class="col-md-12 row" style="padding-top:10px;">
-                
+
                 <div class="form-group col-md-3">
                     <label>Client Name: </label>
                     @ViewBag.ClientName
@@ -31,35 +31,35 @@
                 </div>
             </div>
             <div class="col-md-12 row" style="padding-top:10px;">
-                
+
                 <div class="form-group col-md-3">
                     <label>Person Name: </label>
-                    <input type="text" id="txtPersonName" name="PersonName" placeholder="Person Name" class="form-control" value="@Model.PersonName" readonly/>
+                    <input type="text" id="txtPersonName" name="PersonName" placeholder="Person Name" class="form-control" value="@Model.PersonName" readonly />
                 </div>
-                
+
                 <div class="col-md-3">
                     <label>Document Type: </label>
-                    <input class="form-control" id="txtDocumentType" type="text" name="DocumentType" value="@Model.DocumentType" readonly/>
+                    <input class="form-control" id="txtDocumentType" type="text" name="DocumentType" value="@Model.DocumentType" readonly />
                 </div>
 
                 @if (Model.DocumentType == "Other")
                 {
-                    
+
                     <div class="col-md-3">
                         <label>Other: </label>
-                        <input class="form-control" id="txtOther" type="text" name="Other" value="@Model.Other" readonly/>
+                        <input class="form-control" id="txtOther" type="text" name="Other" value="@Model.Other" readonly />
                     </div>
                 }
 
 
             </div>
             <div class="col-md-12 row" style="padding-top:10px;">
-                
+
                 <div class="col-md-3">
                     <label>Year: </label>
-                    <input class="form-control" id="txtYear" type="text" name="Year" value="@Model.year" readonly/>
+                    <input class="form-control" id="txtYear" type="text" name="Year" value="@Model.year" readonly />
                 </div>
-                
+
                 <div class="col-md-3">
                     <label>File: </label>
                     <div class="form-group">
@@ -75,7 +75,7 @@
 
             </div>
             <div class="col-md-12 row" style="padding-top:10px;padding-bottom:10px;">
-                
+
                 <div class="col-md-1">
                     <button type="submit" class="btn btn-block btn-outline-primary">Save</button>
                 </div>
@@ -86,4 +86,12 @@
 
 
 </section>
-
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<link href="~/Content/css/AdminStyle.css" rel="stylesheet" />
+<script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
+</script>

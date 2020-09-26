@@ -4,13 +4,19 @@
     ViewBag.Title = "requested_document";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<style>
+    .table-color {
+        color: white;
+        background-color: #007bff;
+    }
+</style>
 <section class="content header">
 
     <!-- Default box -->
     <div class="card">
-        <div class="card-header card_color" style="padding-top: 1px;
-    padding-bottom: 1px;">
+        <div class="card-header card_color" style="        padding-top: 1px;
+        padding-bottom: 1px;
+">
             <div class="col-md-12">
                 <div class="col-md-6">
                     <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Document Information</h3>
@@ -26,7 +32,7 @@
                 <div class="col-sm-12" style="overflow-x:auto;">
                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                         <thead>
-                            <tr role="row">
+                            <tr role="row" class="table-color">
                                 <th>Operations</th>
                                 <th>Document Type</th>
                                 <th>Other</th>
@@ -50,7 +56,7 @@
                                         }
                                         @if (item.IsApprooved == true)
                                         {
-                                            <a href="@Url.Action("add_document","admin",new { requestedDocumentId = item.RequestDocumentId,clientName=item.RequestedBy})"><span class="btn btn-outline-primary">Add</span></a>
+                                            <a href="@Url.Action("add_document","admin",new { requestedDocumentId = item.RequestDocumentId,clientName=item.RequestedBy})"><span class="btn btn-outline-primary">Add Document</span></a>
                                         }
 
                                     </td>

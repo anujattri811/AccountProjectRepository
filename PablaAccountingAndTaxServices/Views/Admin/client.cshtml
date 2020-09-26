@@ -3,7 +3,12 @@
     ViewBag.Title = "client";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+    <style>
+        .table-color {
+            color: white;
+            background-color: #007bff;
+        }
+    </style>
 <section class="content header">
     <div class="row">
         <div class="col-12">
@@ -31,7 +36,7 @@
                         <div class="col-sm-12" style="overflow-x:auto;">
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
-                                    <tr role="row">
+                                    <tr role="row" class="table-color">
                                         <th>Operation</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>

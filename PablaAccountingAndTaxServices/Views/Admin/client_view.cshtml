@@ -5,11 +5,13 @@
 }
 @{
     var PersonName = new SelectList(ViewBag.PersonName, "Text", "Value");
-
-
-
 }
-
+<style>
+    .table-color {
+        color: white;
+        background-color: #007bff;
+    }
+</style>
 <section class="content header">
 
     <!-- Default box -->
@@ -243,16 +245,16 @@
                         </button>
                     </div>
                 }
+            </div>
+            </div>
 
-
+        </div>
 </section>
 
 <section class="content header">
-
     <!-- Default box -->
     <div class="card">
-        <div class="card-header card_color" style="padding-top: 1px;
-    padding-bottom: 1px;">
+        <div class="card-header card_color" style="padding-top: 1px;padding-bottom: 1px;">
             <div class="col-md-12">
                 <div class="col-md-6">
                     <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Document Information</h3>
@@ -400,7 +402,7 @@
                 <div class="col-sm-12" style="overflow-x:auto;">
                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                         <thead>
-                            <tr role="row">
+                            <tr role="row" class="table-color">
                                 <th>Operation</th>
                                 <th>Person Name</th>
                                 <th>Document Name</th>
@@ -423,7 +425,7 @@
                                     <td>@item.Year</td>
                                 </tr>
                             }
-   
+
                         </tbody>
 
                     </table>
@@ -440,7 +442,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Credential Info</h4>
-               
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -457,7 +459,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              
+
             </div>
         </div>
         <!-- /.modal-content -->

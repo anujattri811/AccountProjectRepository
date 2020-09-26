@@ -29,7 +29,10 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpGet]
         public ActionResult admin_login()
         {
-
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = Convert.ToString(TempData["Message"]);
+            }
             return View();
         }
         [HttpPost]
@@ -39,7 +42,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             var result = loginBLL.CheckLogin(UserName, EncryPassword);
             if (result.FirstName == null && result.LastName == null)
             {
-                ViewBag.Message = "You have entered incorrect Username and Password.";
+                TempData["Message"] = "You have entered incorrect Username and Password.";
                 return RedirectToAction("admin_login");
             }
             else
