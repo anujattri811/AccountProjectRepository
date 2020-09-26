@@ -124,6 +124,7 @@
           <Parameter Name="Year" Type="nvarchar" Mode="In" />
           <Parameter Name="PersonName" Type="nvarchar" Mode="In" />
           <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Other" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="PablaAccountsModelStoreContainer">
           <EntitySet Name="tblClientDocument" EntityType="Self.tblClientDocument" Schema="dbo" store:Type="Tables" />
@@ -195,9 +196,10 @@
             <Parameter Name="Year" Mode="In" Type="String" />
             <Parameter Name="PersonName" Mode="In" Type="String" />
             <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Other" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblClientDocument">

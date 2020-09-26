@@ -125,7 +125,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             result = clientBLL.selectAllDocumentForClient(ClientId);
             model = clientBLL.GetAllClient(ClientId);
             var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).Distinct().ToList();
-
+            PersonList.Add("Other");
             IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
                                                            select new SelectListItem
                                                            {
@@ -147,9 +147,13 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View(model);
         }
         [HttpPost]
-        public  ActionResult RequestDocumentByClient(int UserId = 0,string DocumentType="", string Year="", string PersonName="", string Description="")
+        public  ActionResult RequestDocumentByClient(int UserId = 0,string DocumentType="", string Year="", string PersonName="", string Description="",string OtherDocuments= "",string OtherPersonName="")
         {
-            clientBLL.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description);
+            if(PersonName == "Other")
+            {
+                PersonName = OtherPersonName;
+            }
+            clientBLL.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description, OtherDocuments);
             return RedirectToAction("client_dashboard","Client");
         }
         #endregion
@@ -261,7 +265,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             clientBLL.DeleteRequest(UserId);
             TempData["Delete"] = "1";
-            return RedirectToAction("client");
+            return RedirectToAction("client_dashboard");
         }
         public ActionResult Demo()
         {

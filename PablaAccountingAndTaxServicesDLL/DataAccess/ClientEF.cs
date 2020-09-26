@@ -60,7 +60,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
 
         public void DeleteRequest(int UserId)
         {
-            var result = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == UserId).SingleOrDefault();
+            var result = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId == UserId).SingleOrDefault();
             result.IsDeleted = true;
             pablaAccountsEntities.SaveChanges();
         }
@@ -77,21 +77,14 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year).ToList();
         }
-        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description)
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments)
         {
-            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType,Year,PersonName,Description);
+            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType,Year,PersonName,Description, OtherDocuments);
         }
         public List<tbl_RequestedDocument> GetRequest(int clientId)
         {
             return pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == clientId && x.IsDeleted == false).ToList();
         }
-        //public List<tblClientDocument> selectClientname(int ClientId)
-        //{
-        //    ClientEntity clientEntity = new ClientEntity();
-        //    var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == ClientId).SingleOrDefault();
-        //    clientEntity.UserId = Convert.ToInt32(result.UserId);
-        //    clientEntity.FirstName = result.FirstName;
-        //    return clientEntity;
-        //}
+       
     }
 }

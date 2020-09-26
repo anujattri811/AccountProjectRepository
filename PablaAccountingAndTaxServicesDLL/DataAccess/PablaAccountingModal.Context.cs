@@ -220,7 +220,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GeneratePassword", userIdParameter, userNameParameter, passwordParameter);
         }
     
-        public virtual int usp_insertRequestdocument(Nullable<long> userId, string documentType, string year, string personName, string description)
+        public virtual int usp_insertRequestdocument(Nullable<long> userId, string documentType, string year, string personName, string description, string other)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
@@ -242,7 +242,11 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("Description", description) :
                 new ObjectParameter("Description", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertRequestdocument", userIdParameter, documentTypeParameter, yearParameter, personNameParameter, descriptionParameter);
+            var otherParameter = other != null ?
+                new ObjectParameter("Other", other) :
+                new ObjectParameter("Other", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertRequestdocument", userIdParameter, documentTypeParameter, yearParameter, personNameParameter, descriptionParameter, otherParameter);
         }
     
         public virtual ObjectResult<string> Selectpersonname(Nullable<long> userId)

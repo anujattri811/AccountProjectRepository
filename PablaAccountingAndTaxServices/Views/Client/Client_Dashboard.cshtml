@@ -8,7 +8,7 @@
 }
 <style>
     .table-custom th {
-        padding: 10px 10px 15px !important;
+        padding: 5px 40px 4px !important;
     }
 </style>
 <section class="breadcrumbs-custom bg-image novi-background bg-primary">
@@ -293,7 +293,11 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-wrap form-group">
-                                                    @Html.DropDownList("PersonName", PersonName, new { @class = "form-input form-control-has-validation" })
+                                                    @Html.DropDownList("PersonName", PersonName, "Select Person", new { @onchange="ShowOtherPerson()", @class = "form-input form-control-has-validation" })
+                                                </div>
+                                                <div class="form-wrap" id="Show-OtherPersonName" style="display:none;">
+                                                    <input type="text" name="OtherPersonName" id="OtherPersonName" class="form-input form-control-has-validation" />
+                                                    <label class="form-label rd-input-label" for="OtherPersonName">Other Person</label>
                                                 </div>
                                                 <div class="form-wrap form-group">
                                                     <textarea class="form-input form-control-has-validation" name="Description" id="request-description"></textarea>
@@ -314,32 +318,56 @@
                                             <thead>
                                                 <tr>
                                                     <th>Operation</th>
+                                                    <th>Status</th>
                                                     <th>Document Type</th>
+                                                    <th>Other</th>
                                                     <th>Year</th>
                                                     <th>Person</th>
                                                     <th>Description</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    @foreach (var item in ViewBag.Request)
-                                                    {
-                                                        if (ViewBag.CurrentDays >= item.CreatedOn)
-                                                        {
-                                                            <td>
-                                                                <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestedBy);">
-                                                                    <i class="fas fa-trash">
-                                                                    </i>
-                                                                </a>
-                                                            </td>
-                                                        }
+                                                @foreach (var item in ViewBag.Request)
+                                                {
+                                                   
+                                                        <tr>
 
-                                                        <td>@item.DocumentType</td>
-                                                        <td>@item.Year</td>
-                                                        <td>@item.PersonName</td>
-                                                        <td>@item.Description</td>
-                                                    }
-                                                </tr>
+                                                            @if (ViewBag.CurrentDays <= item.CreatedOn)
+                                                            {
+                                                                <td>
+                                                                    <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
+                                                                        <i class="fas fa-trash">
+                                                                        </i>
+                                                                    </a>
+                                                                </td>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>-NA-</td>
+                                                            }
+                                                            @if (item.IsApprooved == true)
+                                                            {
+                                                                <td style="background:green;font-weight:bold;color:black;">Approved</td>
+                                                            }
+                                                            else if (item.IsDeclined == true)
+                                                            {
+                                                                <td style="background:red;font-weight:bold;color:black;">Declined</td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td style="background:yellow;font-weight:bold;color:black;">Pending</td>
+                                                            }
+                                                            <td>@item.DocumentType</td>
+                                                            <td>@item.Other</td>
+                                                            <td>@item.Year</td>
+                                                            <td>@item.PersonName</td>
+                                                            <td>@item.Description</td>
+
+                                                        </tr>
+                                                    
+                                                  
+                                                }
                                             </tbody>
                                         </table>
                                     </div>
@@ -355,6 +383,7 @@
                                                     <th>Person Name</th>
                                                     <th>Document Name</th>
                                                     <th>Document Type</th>
+                                                    <th>Other</th>
                                                     <th>Year</th>
                                                 </tr>
                                             </thead>
@@ -369,6 +398,7 @@
                                                         <td class="text-gray-800">@item.PersonName</td>
                                                         <td class="text-gray-800">@item.DocumentName</td>
                                                         <td class="text-gray-800">@item.DocumentType</td>
+                                                        <td class="text-gray-800">@item.Other</td>
                                                         <td class="text-gray-800">@item.Year</td>
                                                     </tr>
                                                 }
@@ -389,6 +419,7 @@
 </section>
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="~/Content/plugins/sweetalert2/SweetAlert.js"></script>
 
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
@@ -453,6 +484,15 @@
         }
     }
 
+    function ShowOtherPerson() {
+        if ($("#PersonName").val() == "Other") {
+            $("#Show-OtherPersonName").fadeIn();
+        }
+        else {
+            $("#Show-OtherPersonName").fadeOut();
+        }
+    }
+
     function Delete(UserId) {
         Swal.fire({
             title: 'Are you sure?',
@@ -466,6 +506,13 @@
             if (result.isConfirmed) {
                 window.location.href = "/Client/DeleteRequest?UserId=" + UserId
 
+            }
+            else {
+                Swal.fire(
+                    'Cancelled',
+                    'Your document is safe :)',
+                    'error'
+                )
             }
         })
     }
