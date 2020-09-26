@@ -6,12 +6,7 @@
 @{
     var PersonName = new SelectList(ViewBag.PersonName, "Text", "Value");
 }
-<style>
-    .table-color {
-        color: white;
-        background-color: #007bff;
-    }
-</style>
+
 <section class="content header">
 
     <!-- Default box -->
@@ -138,6 +133,20 @@
                     <div class="col-md-6 mb-3" style="overflow:auto;">
 
                         <label for="showEasing" style="width:100%;font-weight: normal!important">@Model.GSTNumber</label>
+
+                    </div>
+
+
+                </div>
+                <div class="form-row" style="margin-bottom: -10px;">
+                    <div class="col-md-4 mb-3" style="padding-left:5px;">
+
+                        <label for="showEasing"><strong>Corporate Access Number</strong></label>
+
+                    </div>
+                    <div class="col-md-6 mb-3" style="overflow:auto;">
+
+                        <label for="showEasing" style="width:100%;font-weight: normal!important">@Model.CorporateAccessNumber</label>
 
                     </div>
 
@@ -287,6 +296,7 @@
                         <option>PD7 A</option>
                         <option>Job letter</option>
                         <option>GST</option>
+                        <option>Company Incorporation Papers</option>
                     </select>
                 </div>
 
@@ -364,6 +374,7 @@
                         <option>PD7 A</option>
                         <option>Job letter</option>
                         <option>GST</option>
+                        <option>Company Incorporation Papers</option>
                     </select>
                 </div>
                 <div class="col-md-3">

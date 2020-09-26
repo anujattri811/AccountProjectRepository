@@ -165,7 +165,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_updateclient", userIdParameter, firstNameParameter, lastNameParameter, dateOfBirthParameter, emailParameter, mobileNoParameter, companyNameParameter, addressParameter, cityParameter, postalCodeParameter, provinceParameter, countryParameter, sINParameter, gSTNumberParameter, wCBParameter);
         }
     
-        public virtual int usp_insertclientdocument(Nullable<long> userId, string personName, string documentType, string year, string documentName, string discription)
+        public virtual int usp_insertclientdocument(Nullable<long> userId, string personName, string documentType, string year, string documentName, string discription, string other)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
@@ -191,7 +191,11 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("Discription", discription) :
                 new ObjectParameter("Discription", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertclientdocument", userIdParameter, personNameParameter, documentTypeParameter, yearParameter, documentNameParameter, discriptionParameter);
+            var otherParameter = other != null ?
+                new ObjectParameter("Other", other) :
+                new ObjectParameter("Other", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertclientdocument", userIdParameter, personNameParameter, documentTypeParameter, yearParameter, documentNameParameter, discriptionParameter, otherParameter);
         }
     
         public virtual ObjectResult<string> GetPersonName(Nullable<long> userId)

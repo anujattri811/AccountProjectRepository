@@ -7,11 +7,11 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 
-namespace PablaAccountingAndTaxServices
+namespace PablaAccountingAndTaxServices.CommanClass
 {
     public class CustomMethod
     {
-        public bool SendEmail(string To, string Subject, string Body)
+        public bool SendEmail(string To, string Subject, string Body, string attachedfile)
         {
             try
             {
@@ -24,13 +24,19 @@ namespace PablaAccountingAndTaxServices
                 Msg.Subject = Subject;
                 Msg.Body = Body;
                 Msg.IsBodyHtml = true;
+                if (attachedfile != "")
+                {
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment(attachedfile);
+                    Msg.Attachments.Add(attachment);
+                }
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = emailserver;
                 NetworkCredential networkCredential = new NetworkCredential(Senderemail, SenderPassword);
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = networkCredential;
                 smtp.Port = 587;
-                smtp.EnableSsl = false;
+                smtp.EnableSsl = true;
                 smtp.Send(Msg);
                 return true;
             }
@@ -39,7 +45,5 @@ namespace PablaAccountingAndTaxServices
                 return false;
             }
         }
-
-       
     }
 }

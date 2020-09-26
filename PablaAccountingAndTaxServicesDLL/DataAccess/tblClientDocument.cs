@@ -23,5 +23,6 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string PersonName { get; set; }
+        public string Other { get; set; }
     }
 }

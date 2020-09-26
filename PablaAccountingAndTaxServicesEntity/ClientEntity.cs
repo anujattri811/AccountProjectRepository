@@ -22,6 +22,7 @@ namespace PablaAccountingAndTaxServicesEntity
         public string Country { get; set; }
         public string SIN { get; set; }
         public string GSTNumber { get; set; }
+        public string CorporateAccessNumber { get; set; }
         public string WCB { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }

@@ -18,6 +18,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="PersonName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Other" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -45,6 +46,7 @@
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsPassword" Type="bit" />
+          <Property Name="CorporateAccessNumber" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -89,6 +91,7 @@
           <Parameter Name="Year" Type="nvarchar" Mode="In" />
           <Parameter Name="DocumentName" Type="nvarchar" Mode="In" />
           <Parameter Name="Discription" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Other" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="usp_updateclient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
@@ -137,7 +140,7 @@
       <Schema Namespace="PablaAccountsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PablaAccountsEntities" annotation:LazyLoadingEnabled="true">
           <FunctionImport Name="usp_insertclient">
-            <Parameter Name="FirstName" Mode="In" Type="String" />
+          <Parameter Name="FirstName" Mode="In" Type="String" />
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="DateOfBirth" Mode="In" Type="String" />
@@ -155,7 +158,7 @@
             <Parameter Name="RoleId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_updateclient">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="FirstName" Mode="In" Type="String" />
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="DateOfBirth" Mode="In" Type="String" />
@@ -173,25 +176,26 @@
           </FunctionImport>
           <EntitySet Name="tblClientDocuments" EntityType="PablaAccountsModel.tblClientDocument" />
           <FunctionImport Name="usp_insertclientdocument">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="PersonName" Mode="In" Type="String" />
             <Parameter Name="DocumentType" Mode="In" Type="String" />
             <Parameter Name="Year" Mode="In" Type="String" />
             <Parameter Name="DocumentName" Mode="In" Type="String" />
             <Parameter Name="Discription" Mode="In" Type="String" />
+            <Parameter Name="Other" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="tblUsers" EntityType="PablaAccountsModel.tblUser" />
           <FunctionImport Name="GetPersonName" ReturnType="Collection(String)" >
           <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="GeneratePassword">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="tbl_RequestedDocument" EntityType="PablaAccountsModel.tbl_RequestedDocument" />
           <FunctionImport Name="usp_insertRequestdocument">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="DocumentType" Mode="In" Type="String" />
             <Parameter Name="Year" Mode="In" Type="String" />
             <Parameter Name="PersonName" Mode="In" Type="String" />
@@ -215,6 +219,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="PersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Other" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -242,6 +247,7 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsPassword" Type="Boolean" />
+          <Property Name="CorporateAccessNumber" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -272,6 +278,7 @@
           <EntitySetMapping Name="tblClientDocuments">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblClientDocument">
               <MappingFragment StoreEntitySet="tblClientDocument">
+                <ScalarProperty Name="Other" ColumnName="Other" />
                 <ScalarProperty Name="PersonName" ColumnName="PersonName" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -288,6 +295,7 @@
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="CorporateAccessNumber" ColumnName="CorporateAccessNumber" />
                 <ScalarProperty Name="IsPassword" ColumnName="IsPassword" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />

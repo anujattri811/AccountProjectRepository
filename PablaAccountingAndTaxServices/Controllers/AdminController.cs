@@ -21,6 +21,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         LoginBLL loginBLL = new LoginBLL();
         ClientBLL clientBLL = new ClientBLL();
         EncryDecry encryDecry = new EncryDecry();
+        CustomMethod customMethod = new CustomMethod();
 
         PablaAccountsEntities pablaAccountsEntities = new PablaAccountsEntities();
 
@@ -413,27 +414,53 @@ namespace PablaAccountingAndTaxServices.Controllers
 
         //    return (ExpandoObject)expando;
         //}
-        public ActionResult approve_document(int requestedDocumentId)
+
+        [HttpPost]
+        public ActionResult approve_document(int requestedDocumentId, string Message)
         {
             //tbl_RequestedDocument rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId).ToList();
             var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == requestedDocumentId);
+            tblUser tbluser = new tblUser();
             if (result != null)
             {
                 result.IsApprooved = true;
                 pablaAccountsEntities.SaveChanges();
+                tbluser = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == result.RequestedBy);
             }
+            string htmlBody = "";
+            string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
+            string startTable = "<table>";
+            string emailText = "<tr><td><br/>You request for addition of document has been successfully approved by our company. You will get a document attached with your email shortly. The message for approval of your document from company is as below:-</br></br></td></tr>";
+            emailText += "<tr><td>" + Message + "</td></tr>";
+            emailText += "<tr><td>Regards</td></tr>";
+            emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
+            string endTable = "<br/></table> </br> </br> Thanks";
+            htmlBody = headerText + startTable + emailText + endTable;
+            customMethod.SendEmail(tbluser.Email, "Document Approved", htmlBody, "");
             return RedirectToAction("requested_document", "admin");
         }
-
-        public ActionResult deny_document(int requestedDocumentId)
+        [HttpPost]
+        public ActionResult deny_document(int requestedDocumentId, string Reason)
         {
             //tbl_RequestedDocument rd = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId).ToList();
             var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == requestedDocumentId);
+            tblUser tbluser = new tblUser();
             if (result != null)
             {
                 result.IsDeclined = true;
                 pablaAccountsEntities.SaveChanges();
+                tbluser = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == result.RequestedBy);
             }
+            string htmlBody = "";
+            string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
+            string startTable = "<table>";
+            string emailText = "<tr><td><br/>You request for addition of document has been declined by our company. The reason for decline is as below:-</br></br></td></tr>";
+            emailText += "<tr><td>" + Reason + "</td></tr>";
+            emailText += "<tr><td>Regards</td></tr>";
+            emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
+            string endTable = "<br/></table> </br> </br> Thanks";
+            htmlBody = headerText + startTable + emailText + endTable;
+            customMethod.SendEmail(tbluser.Email, "Document Declined", htmlBody, "");
             return RedirectToAction("requested_document", "admin");
         }
 
@@ -473,11 +500,23 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.Extension = Extention;
             clientBLL.Savedocuments(fileUploadEntity);
             var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == fileUploadEntity.RequestedDocumentId);
+            tblUser tbluser = new tblUser();
             if (result != null)
             {
                 result.IsUploaded = true;
                 pablaAccountsEntities.SaveChanges();
+                tbluser = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == result.RequestedBy);
             }
+            string htmlBody = "";
+            string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
+            string startTable = "<table>";
+            string emailText = "<tr><td><br/>As per Your request for addition of document for <b> " + fileUploadEntity.PersonName + " </b> , We have uploaded a document Please find an attachment below:-</br></br></td></tr>";
+            emailText += "<tr><td>Regards</td></tr>";
+            emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
+            string endTable = "<br/></table> </br> </br> Thanks";
+            htmlBody = headerText + startTable + emailText + endTable;
+            string fullfilepath = path + fileName;
+            customMethod.SendEmail(tbluser.Email, "Document Uploaded", htmlBody, fullfilepath);
             return RedirectToAction("requested_document", "admin");
         }
     }

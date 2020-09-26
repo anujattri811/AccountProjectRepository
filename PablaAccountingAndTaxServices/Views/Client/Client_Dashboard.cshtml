@@ -153,6 +153,20 @@
                                         <div class="form-row" style="margin-bottom: -10px;">
                                             <div class="col-md-4 mb-3" style="padding-left:5px;">
 
+                                                <label for="showEasing"><strong>Corporate Access Number</strong></label>
+
+                                            </div>
+                                            <div class="col-md-6 mb-3" style="overflow:auto;">
+
+                                                <label for="showEasing" style="width:100%;font-weight: normal!important">@Model.CorporateAccessNumber</label>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="form-row" style="margin-bottom: -10px;">
+                                            <div class="col-md-4 mb-3" style="padding-left:5px;">
+
                                                 <label for="showEasing"><strong>WCB</strong></label>
 
                                             </div>
@@ -260,6 +274,7 @@
                                                         <option>PD7 A</option>
                                                         <option>Job letter</option>
                                                         <option>GST</option>
+                                                        <option>Company Incorporation Papers</option>
                                                         <option>Other</option>
                                                     </select>
                                                 </div>
@@ -330,51 +345,59 @@
                                                 @foreach (var item in ViewBag.Request)
                                                 {
 
-                                                <tr>
+                                                    <tr>
 
-                                                    @if (ViewBag.CurrentDays <= item.CreatedOn)
-                                                    {
-                                                        <td>
-                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                            </a>
-                                                        </td>
+                                                        @if (ViewBag.CurrentDays <= item.CreatedOn)
+                                                        {
+                                                            <td>
+                                                                <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
+                                                                    <i class="fas fa-trash">
+                                                                    </i>
+                                                                </a>
+                                                            </td>
 
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>-NA-</td>
-                                                    }
-                                                    @if (item.IsApprooved == true)
-                                                    {
-                                                        <td>
-                                                            <div class="button button-xs button-primary" style="background:green;font-weight:bold;color:black;pointer-events:none;">Approved</div>
-                                                        </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>-NA-</td>
+                                                        }
+                                                        @if (item.IsApprooved == true)
+                                                        {
+                                                            <td>
+                                                                <div class="button button-xs button-primary" style="background:green;font-weight:bold;color:black;pointer-events:none;">Approved</div>
+                                                            </td>
 
-                                                        @*<td style="background:green;font-weight:bold;color:black;">Approved</td>*@
-                                                    }
-                                                    else if (item.IsDeclined == true)
-                                                    {
-                                                        <td>
-                                                            <div class="button button-xs button-primary" style="background:red;font-weight:bold;color:black;pointer-events:none;">Declined</div>
-                                                        </td>
-                                                        @*<td style="background:red;font-weight:bold;color:black;">Declined</td>*@
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>
-                                                            <div class="button button-xs button-primary" style="background:yellow;font-weight:bold;color:black;pointer-events:none;">Pending</div>
-                                                        </td>
-                                                        @*<td style="background:yellow;font-weight:bold;color:black;">Pending</td>*@
-                                                    }
-                                                    <td>@item.DocumentType</td>
-                                                    <td>@item.Other</td>
-                                                    <td>@item.Year</td>
-                                                    <td>@item.PersonName</td>
-                                                    <td>@item.Description</td>
+                                                            @*<td style="background:green;font-weight:bold;color:black;">Approved</td>*@
+                                                        }
+                                                        else if (item.IsDeclined == true)
+                                                        {
+                                                            <td>
+                                                                <div class="button button-xs button-primary" style="background:red;font-weight:bold;color:black;pointer-events:none;">Declined</div>
+                                                            </td>
+                                                            @*<td style="background:red;font-weight:bold;color:black;">Declined</td>*@
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>
+                                                                <div class="button button-xs button-primary" style="background:yellow;font-weight:bold;color:black;pointer-events:none;">Pending</div>
+                                                            </td>
+                                                            @*<td style="background:yellow;font-weight:bold;color:black;">Pending</td>*@
+                                                        }
+                                                        <td>@item.DocumentType</td>
+                                                        <td>@item.Other</td>
+                                                        <td>@item.Year</td>
+                                                        <td>@item.PersonName</td>
+                                                        @if (item.Description.Length < 10)
+                                                        {
+                                                            <td title="@item.Description">@item.Description</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td title="@item.Description">@item.Description.Substring(0, 10)...</td>
+                                                        }
 
-                                                </tr>
+
+                                                    </tr>
 
 
                                                 }
@@ -393,7 +416,7 @@
                                                     <th>Person Name</th>
                                                     <th>Document Name</th>
                                                     <th>Document Type</th>
-                                                    @*<th>Other</th>*@
+                                                    <th>Other</th>
                                                     <th>Year</th>
                                                 </tr>
                                             </thead>
@@ -408,7 +431,7 @@
                                                         <td class="text-gray-800">@item.PersonName</td>
                                                         <td class="text-gray-800">@item.DocumentName</td>
                                                         <td class="text-gray-800">@item.DocumentType</td>
-                                                        @*<td class="text-gray-800">@item.Other</td>*@
+                                                        <td class="text-gray-800">@item.Other</td>
                                                         <td class="text-gray-800">@item.Year</td>
                                                     </tr>
                                                 }

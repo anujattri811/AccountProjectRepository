@@ -50,8 +50,14 @@
                                         @*<a href="@Url.Action("","")"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>*@
                                         @if (item.IsApprooved == false && item.IsDeclined == false)
                                         {
-                                            <a href="@Url.Action("approve_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Approve</span></a>
-                                            <a href="@Url.Action("deny_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Deny</span></a>
+                                            <button type="button" class="btn btn-outline-primary" style="" data-toggle="modal" data-target="#modal-Approval">
+                                                Approve
+                                            </button>
+                                            <button type="button" class="btn btn-outline-primary" style="" data-toggle="modal" data-target="#modal-Decline">
+                                                Deny
+                                            </button>
+                                            @*<a href="@Url.Action("approve_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Approve</span></a>
+                        <a href="@Url.Action("deny_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Deny</span></a>*@
 
                                         }
                                         @if (item.IsApprooved == true)
@@ -66,6 +72,77 @@
                                     <td>@item.Year</td>
                                     <td>@item.RequestedBy</td>
                                 </tr>
+                                <div class="modal fade" id="modal-Approval">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Approval Message</h4>
+
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            @using (Html.BeginForm("approve_document", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @id = "ApprooveDocument" }))
+                                            {
+                                                <div class="modal-body">
+                                                    <div class="">
+                                                        <label>Client Name :</label>
+                                                        <label style="font-weight:400;">@item.RequestedBy</label>
+                                                        <input type="hidden" id="hdfRequestedDocumentId" name="requestedDocumentId" value="@item.RequestDocumentId" />
+                                                    </div>
+                                                    <div class="">
+                                                        <label>Message: </label>
+                                                        <textarea type="text" id="txtMessage" name="Message" rows="5" placeholder="Document Approval Message" class="form-control" required ></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="submit" class="btn btn-block btn-outline-primary col-md-2">Submit</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                                </div>
+                                            }
+
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <div class="modal fade" id="modal-Decline">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Decline Reason</h4>
+
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            @using (Html.BeginForm("deny_document", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @id = "DenyDocument" }))
+                                            {
+                                                <div class="modal-body">
+                                                    <div class="">
+                                                        <label>Client Name :</label>
+                                                        <label style="font-weight:400;">@item.RequestedBy</label>
+                                                        <input type="hidden" id="hdfRequestedDocumentId" name="requestedDocumentId" value="@item.RequestDocumentId" />
+                                                    </div>
+                                                    <div class="">
+                                                        <label>Reason: </label>
+                                                        <textarea type="text" id="txtMReason" name="Reason" rows="5" placeholder="Document Decline Reason" class="form-control" required ></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="submit" class="btn btn-block btn-outline-primary col-md-2">Submit</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                                </div>
+                                            }
+
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+
                             }
 
                         </tbody>
@@ -78,6 +155,7 @@
 
 
 </section>
+
 
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <link href="~/Content/css/AdminStyle.css" rel="stylesheet" />

@@ -37,6 +37,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             clientEntity.Country = result.Country;
             clientEntity.SIN = result.SIN;
             clientEntity.GSTNumber = result.GSTNumber;
+            clientEntity.CorporateAccessNumber = result.CorporateAccessNumber;
             clientEntity.WCB = result.WCB;
             clientEntity.IsPassword = result.IsPassword;
             clientEntity.UserName = result.UserName;
@@ -66,11 +67,11 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public List<tblClientDocument> selectAllDocumentForClient(int clientId)
         {
-            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == clientId).ToList();
+            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == clientId && x.IsDeleted == false).ToList();
         }
         public void Savedocuments(FileUploadEntity fileUploadEntity)
         {
-            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName,fileUploadEntity.Extension);
+            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName, fileUploadEntity.Extension, fileUploadEntity.Other);
 
         }
         public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year)
@@ -79,12 +80,12 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments)
         {
-            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType,Year,PersonName,Description, OtherDocuments);
+            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments);
         }
         public List<tbl_RequestedDocument> GetRequest(int clientId)
         {
             return pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == clientId && x.IsDeleted == false).ToList();
         }
-       
+
     }
 }
