@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="~/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link href="~/Content/plugins/toastr/toastr.min.css" rel="stylesheet" />
     <!-- Theme style -->
 
     <link href="~/Content/css/adminlte.min.css" rel="stylesheet" />
@@ -28,13 +29,13 @@
         </div>
         <!-- /.login-logo -->
         <div class="card">
-            
+
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 <form action="/Admin/admin_login" method="post" id="Login">
                     <div class="input-group mb-3 form-group">
-                        
+
                         <input type="email" class="form-control" name="UserName" placeholder="Email" autocomplete="off">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -43,7 +44,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3 form-group">
-                       
+
                         <input type="password" class="form-control" name="Password" placeholder="Password" autocomplete="off">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -99,46 +100,51 @@
     <!-- AdminLTE App -->
 
     <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Content/plugins/toastr/toastr.min.js"></script>
     <script src="~/Scripts/js/adminlte.min.js"></script>
     <script type="text/javascript">
-        
-            $('#Login').validate({
-                rules: {
-                    UserName: {
-                        required: true,
-                        email: true,
-                    },
-                    Password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    //terms: {
-                    //    required: true
-                    //},
+
+        $(document).ready(function () {
+            toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
+        });
+
+        $('#Login').validate({
+            rules: {
+                UserName: {
+                    required: true,
+                    email: true,
                 },
-                messages: {
-                    UserName: {
-                        required: "Please enter a email address",
-                        email: "Please enter a vaild email address"
-                    },
-                    Password: {
-                        required: "Please enter a password",
-                        //minlength: "Your password must be at least 8 characters long"
-                    },
-                    //terms: "Please accept our terms"
+                Password: {
+                    required: true,
+                    minlength: 5
                 },
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
+                //terms: {
+                //    required: true
+                //},
+            },
+            messages: {
+                UserName: {
+                    required: "Please enter a email address",
+                    email: "Please enter a vaild email address"
                 },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
+                Password: {
+                    required: "Please enter a password",
+                    //minlength: "Your password must be at least 8 characters long"
                 },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
+                //terms: "Please accept our terms"
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
     </script>
 </body>
 </html>
