@@ -242,10 +242,10 @@
                                             <h2 class="font-weight-normal">Request Document</h2>
 
 
-                                            <form class="" action="\Client\RequestDocumentByClient" method="post">
+                                            <form class="rd-form" action="\Client\RequestDocumentByClient" method="post" id="RequestedDocumentForm">
                                                 <input type="hidden" id="UserId" value="@Model.UserId" name="UserId" />
-                                                <div class="form-wrap">
-                                                    <select class="form-input form-control-has-validation" name="DocumentType">
+                                                <div class="form-wrap form-group">
+                                                    <select class="form-input form-control-has-validation" id="DocumentType" name="DocumentType" onchange="ShowOther()">
                                                         <option selected="" disabled="">Document Type</option>
                                                         <option>Notice Of Assessment</option>
                                                         <option>T1 General</option>
@@ -260,9 +260,14 @@
                                                         <option>PD7 A</option>
                                                         <option>Job letter</option>
                                                         <option>GST</option>
+                                                        <option>Other</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-wrap">
+                                                <div class="form-wrap" id="Show-OtherDocuments" style="display:none;">
+                                                    <input type="text" name="OtherDocuments" id="OtherDocuments" class="form-input form-control-has-validation" />
+                                                    <label class="form-label rd-input-label" for="OtherDocuments">Other Document</label>
+                                                </div>
+                                                <div class="form-wrap form-group">
                                                     <select class="form-input form-control-has-validation" name="Year">
                                                         <option selected="" disabled="">Select Year</option>
                                                         <option>2011</option>
@@ -287,10 +292,10 @@
                                                         <option>2030</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-wrap">
+                                                <div class="form-wrap form-group">
                                                     @Html.DropDownList("PersonName", PersonName, new { @class = "form-input form-control-has-validation" })
                                                 </div>
-                                                <div class="form-wrap">
+                                                <div class="form-wrap form-group">
                                                     <textarea class="form-input form-control-has-validation" name="Description" id="request-description"></textarea>
                                                     <label class="form-label rd-input-label" for="request-description">Description</label>
                                                 </div>
@@ -319,13 +324,16 @@
                                                 <tr>
                                                     @foreach (var item in ViewBag.Request)
                                                     {
+                                                        if (ViewBag.CurrentDays >= item.CreatedOn)
+                                                        {
+                                                            <td>
+                                                                <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestedBy);">
+                                                                    <i class="fas fa-trash">
+                                                                    </i>
+                                                                </a>
+                                                            </td>
+                                                        }
 
-                                                        <td>
-                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestedBy);">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                            </a>
-                                                        </td>
                                                         <td>@item.DocumentType</td>
                                                         <td>@item.Year</td>
                                                         <td>@item.PersonName</td>
@@ -381,6 +389,9 @@
 </section>
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script type="text/javascript">
     //$(function () {
     //    $("#example1").DataTable();
@@ -391,6 +402,57 @@
     });
 </script>
 <script>
+    $('#RequestedDocumentForm').validate({
+        rules: {
+            DocumentType: {
+                required: true,
+            },
+            Year: {
+                required: true,
+            },
+            PersonName: {
+                required: true,
+            },
+            Description: {
+                required: true,
+            },
+        },
+        messages: {
+            DocumentType: {
+                required: "Please select Document Type.",
+            },
+            Year: {
+                required: "Please select year.",
+            },
+            PersonName: {
+                required: "Please select person name.",
+            },
+            Description: {
+                required: "Please select description.",
+            },
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+
+    function ShowOther() {
+        if ($("#DocumentType").val() == "Other") {
+            $("#Show-OtherDocuments").fadeIn();
+        }
+        else {
+            $("#Show-OtherDocuments").fadeOut();
+        }
+    }
+
     function Delete(UserId) {
         Swal.fire({
             title: 'Are you sure?',

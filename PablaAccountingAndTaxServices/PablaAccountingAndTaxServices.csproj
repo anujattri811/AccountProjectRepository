@@ -224,6 +224,9 @@
     <Content Include="ClientContent\images\logo-default-240x44.png" />
     <Content Include="ClientContent\images\logo-inverse-240x44.png" />
     <Content Include="ClientContent\images\our-story-1-572x335.jpg" />
+    <Content Include="ClientContent\images\onlinepngtools.png" />
+    <Content Include="ClientContent\images\Resizeimage2.png" />
+    <Content Include="ClientContent\images\Resizeimage3.png" />
     <Content Include="ClientContent\images\Website-Logo-Transparent.png" />
     <Content Include="ClientContent\images\Website-Logo.png" />
     <Content Include="ClientContent\images\parallax-1-1920x1026.jpg" />
@@ -1068,6 +1071,7 @@
     <Content Include="Views\Admin\Admin_forgotpassword.cshtml" />
     <Content Include="Views\Admin\requested_document.cshtml" />
     <Content Include="Views\Admin\add_document.cshtml" />
+    <Content Include="Views\Client\Demo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PablaAccountingAndTaxServicesBLL\PablaAccountingAndTaxServicesBLL.csproj">
