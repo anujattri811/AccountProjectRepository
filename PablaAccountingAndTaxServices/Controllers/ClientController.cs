@@ -125,11 +125,11 @@ namespace PablaAccountingAndTaxServices.Controllers
             result = clientBLL.selectAllDocumentForClient(ClientId);
             model = clientBLL.GetAllClient(ClientId);
             var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).Distinct().ToList();
-            
 
             IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
                                                            select new SelectListItem
                                                            {
+                                                               
                                                                Text = Convert.ToString(Person),
                                                                Value = Convert.ToString(Person)
                                                            };
@@ -139,7 +139,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             {
                 item.CreatedOn = Convert.ToDateTime(item.CreatedOn).AddDays(7);
             }
-            var date= DateTime.Now;
+            var date = DateTime.Now;
             ViewBag.CurrentDays = date;
             ViewBag.Request = resultList;
             ViewBag.TotalDocument = result;
@@ -263,7 +263,6 @@ namespace PablaAccountingAndTaxServices.Controllers
             TempData["Delete"] = "1";
             return RedirectToAction("client");
         }
-
         public ActionResult Demo()
         {
             return View();

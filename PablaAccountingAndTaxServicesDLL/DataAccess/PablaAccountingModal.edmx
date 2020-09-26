@@ -62,6 +62,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsApprooved" Type="bit" />
           <Property Name="IsDeclined" Type="bit" />
+          <Property Name="IsUploaded" Type="bit" />
         </EntityType>
         <Function Name="usp_insertclient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
@@ -112,6 +113,9 @@
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetPersonName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
+          <Parameter Name="UserId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Selectpersonname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
         </Function>
         <Function Name="usp_insertRequestdocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
@@ -192,6 +196,9 @@
             <Parameter Name="PersonName" Mode="In" Type="String" />
             <Parameter Name="Description" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblClientDocument">
           <Key>
@@ -250,6 +257,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsApprooved" Type="Boolean" />
           <Property Name="IsDeclined" Type="Boolean" />
+          <Property Name="IsUploaded" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -308,6 +316,7 @@
           <EntitySetMapping Name="tbl_RequestedDocument">
             <EntityTypeMapping TypeName="PablaAccountsModel.tbl_RequestedDocument">
               <MappingFragment StoreEntitySet="tbl_RequestedDocument">
+                <ScalarProperty Name="IsUploaded" ColumnName="IsUploaded" />
                 <ScalarProperty Name="IsDeclined" ColumnName="IsDeclined" />
                 <ScalarProperty Name="IsApprooved" ColumnName="IsApprooved" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -324,6 +333,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_insertRequestdocument" FunctionName="PablaAccountsModel.Store.usp_insertRequestdocument" />
+          <FunctionImportMapping FunctionImportName="Selectpersonname" FunctionName="PablaAccountsModel.Store.Selectpersonname" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

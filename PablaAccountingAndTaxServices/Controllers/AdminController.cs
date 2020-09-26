@@ -107,7 +107,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             var clients = clientBLL.selectClientList().Count;
             ViewBag.ClientList = clients;
-            var requestedDocuments = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.IsDeleted == false).ToList().Count;
+            var requestedDocuments = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.IsDeleted == false && x.IsDeclined == false && x.IsUploaded == false).ToList().Count;
             ViewBag.RequestedDocuments = requestedDocuments;
             return View();
         }
@@ -354,8 +354,9 @@ namespace PablaAccountingAndTaxServices.Controllers
                                       CreatedOn = d.CreatedOn,
                                       IsDeleted = d.IsDeleted,
                                       IsApprooved = d.IsApprooved,
-                                      IsDeclined = d.IsDeclined
-                                  }).Where(x => x.IsDeleted == false && x.IsDeclined == false).OrderByDescending(x => x.RequestDocumentId)
+                                      IsDeclined = d.IsDeclined,
+                                      IsUploaded = d.IsUploaded
+                                  }).Where(x => x.IsDeleted == false && x.IsDeclined == false && x.IsUploaded == false).OrderByDescending(x => x.RequestDocumentId)
                                   .AsEnumerable()    //important to convert to Enumerable
                         .Select(c => c.ToExpando()); //convert to ExpandoObject;
 
@@ -445,6 +446,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 fileuploadentity.year = result.Year;
                 fileuploadentity.DocumentType = result.DocumentType;
                 fileuploadentity.Other = result.Other;
+                fileuploadentity.RequestedDocumentId = requestedDocumentId;
             }
             ViewBag.ClientName = clientName;
             return View(fileuploadentity);
@@ -467,6 +469,12 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.DocumentName = DocumentName;
             fileUploadEntity.Extension = Extention;
             clientBLL.Savedocuments(fileUploadEntity);
+            var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == fileUploadEntity.RequestedDocumentId);
+            if (result != null)
+            {
+                result.IsUploaded = true;
+                pablaAccountsEntities.SaveChanges();
+            }
             return RedirectToAction("requested_document", "admin");
         }
     }

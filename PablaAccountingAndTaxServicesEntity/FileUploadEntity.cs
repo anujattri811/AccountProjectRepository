@@ -11,15 +11,13 @@ namespace PablaAccountingAndTaxServicesEntity
     {
         public int UserId { get; set; }
         public string PersonName { get; set; }
-
         public string DocumentType { get; set; }
         public string Other { get; set; }
         public HttpPostedFileBase UploadFile { get; set; }
         public string year { get; set; }
-       
-        
         public string Extension { get; set; }
         public string DocumentName { get; set; }
+        public int RequestedDocumentId { get; set; }
        
 
        

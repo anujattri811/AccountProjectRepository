@@ -26,5 +26,6 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<bool> IsApprooved { get; set; }
         public Nullable<bool> IsDeclined { get; set; }
+        public Nullable<bool> IsUploaded { get; set; }
     }
 }
