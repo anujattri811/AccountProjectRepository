@@ -341,6 +341,14 @@ namespace PablaAccountingAndTaxServices.Controllers
 
         public ActionResult requested_document()
         {
+            //if (TempData["ApproveSuccess"] != null)
+            //{
+            //    ViewBag.ApproveSuccess = Convert.ToString(TempData["ApproveSuccess"]);
+            //}
+            //if (TempData["ApproveError"] != null)
+            //{
+            //    ViewBag.ApproveError = Convert.ToString(TempData["ApproveError"]);
+            //}
             //dynamic model = new ExpandoObject();
             dynamic joinResult = (from d in pablaAccountsEntities.tbl_RequestedDocument
                                   from p in pablaAccountsEntities.tblUsers
@@ -436,7 +444,15 @@ namespace PablaAccountingAndTaxServices.Controllers
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
             htmlBody = headerText + startTable + emailText + endTable;
-            customMethod.SendEmail(tbluser.Email, "Document Approved", htmlBody, "");
+            bool status = customMethod.SendEmail(tbluser.Email, "Document Approved", htmlBody, "");
+            //if (status == "success")
+            //{
+            //    TempData["ApproveSuccess"] = "Document approved successfully";
+            //}
+            //else
+            //{
+            //    TempData["ApproveError"] = status;
+            //}
             return RedirectToAction("requested_document", "admin");
         }
         [HttpPost]

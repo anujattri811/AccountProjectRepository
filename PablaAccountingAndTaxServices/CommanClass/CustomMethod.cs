@@ -32,6 +32,7 @@ namespace PablaAccountingAndTaxServices.CommanClass
                 }
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = emailserver;
+                smtp.UseDefaultCredentials = false;
                 NetworkCredential networkCredential = new NetworkCredential(Senderemail, SenderPassword);
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = networkCredential;
