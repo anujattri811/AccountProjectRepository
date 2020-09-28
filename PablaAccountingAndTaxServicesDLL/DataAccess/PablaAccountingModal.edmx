@@ -83,6 +83,7 @@
           <Parameter Name="WCB" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
           <Parameter Name="RoleId" Type="int" Mode="In" />
+          <Parameter Name="CorporateAccessNumber" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="usp_insertclientdocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
@@ -109,6 +110,7 @@
           <Parameter Name="SIN" Type="nvarchar" Mode="In" />
           <Parameter Name="GSTNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="WCB" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorporateAccessNumber" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GeneratePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
@@ -140,7 +142,7 @@
       <Schema Namespace="PablaAccountsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PablaAccountsEntities" annotation:LazyLoadingEnabled="true">
           <FunctionImport Name="usp_insertclient">
-          <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="DateOfBirth" Mode="In" Type="String" />
@@ -156,9 +158,10 @@
             <Parameter Name="WCB" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="RoleId" Mode="In" Type="Int32" />
+            <Parameter Name="CorporateAccessNumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_updateclient">
-          <Parameter Name="UserId" Mode="In" Type="Int64" />
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="FirstName" Mode="In" Type="String" />
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="DateOfBirth" Mode="In" Type="String" />
@@ -173,10 +176,11 @@
             <Parameter Name="SIN" Mode="In" Type="String" />
             <Parameter Name="GSTNumber" Mode="In" Type="String" />
             <Parameter Name="WCB" Mode="In" Type="String" />
+            <Parameter Name="CorporateAccessNumber" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="tblClientDocuments" EntityType="PablaAccountsModel.tblClientDocument" />
           <FunctionImport Name="usp_insertclientdocument">
-          <Parameter Name="UserId" Mode="In" Type="Int64" />
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="PersonName" Mode="In" Type="String" />
             <Parameter Name="DocumentType" Mode="In" Type="String" />
             <Parameter Name="Year" Mode="In" Type="String" />
@@ -189,13 +193,13 @@
           <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="GeneratePassword">
-          <Parameter Name="UserId" Mode="In" Type="Int64" />
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="tbl_RequestedDocument" EntityType="PablaAccountsModel.tbl_RequestedDocument" />
           <FunctionImport Name="usp_insertRequestdocument">
-          <Parameter Name="UserId" Mode="In" Type="Int64" />
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
             <Parameter Name="DocumentType" Mode="In" Type="String" />
             <Parameter Name="Year" Mode="In" Type="String" />
             <Parameter Name="PersonName" Mode="In" Type="String" />

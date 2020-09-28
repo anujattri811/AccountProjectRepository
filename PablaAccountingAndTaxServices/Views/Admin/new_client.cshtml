@@ -96,6 +96,13 @@
                     </div>
 
                 </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 form-group">
+                        <label for="CorporateAccessNumber">Corporate Access Number</label>
+                        <input type="text" class="form-control" id="CorporateAccessNumber" name="CorporateAccessNumber" placeholder="Corporate Access Number">
+                    </div>
+
+                </div>
 
 
             </div>
@@ -170,6 +177,9 @@
                 email: true,
 
             },
+            Dateofbirth: {
+                required: true,
+            },
             MobileNo: {
                 required: true,
                 minlength: 10,
@@ -213,6 +223,10 @@
                 required: true,
 
             },
+            CorporateAccessNumber: {
+                required: true,
+
+            },
 
 
         },
@@ -228,6 +242,10 @@
             Email: {
                 required: "Please enter a Email.",
                 email: "Please enter a vaild email address."
+
+            },
+             Dateofbirth: {
+                required: "Please Select your Birth date.",
 
             },
             MobileNo: {
@@ -268,6 +286,10 @@
             },
             WCB: {
                 required: "Please enter a WCB.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+             CorporateAccessNumber: {
+                required: "Please enter a Corporate Access Number.",
                 //minlength: "Your password must be at least 8 characters long"
             },
 

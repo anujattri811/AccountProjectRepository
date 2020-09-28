@@ -465,6 +465,16 @@
         bsCustomFileInput.init();
     });
 
+    $( document ).ready(function() {
+        if ('@TempData["Delete"]' == "1") {
+        Swal.fire(
+                    'Deleted!',
+                    'Your Request has been deleted.',
+                    'success'
+                )
+        }
+});
+
     //$(function () {
     //    $("#example1").DataTable();
     //});

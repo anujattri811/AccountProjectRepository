@@ -31,7 +31,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tbl_RequestedDocument> tbl_RequestedDocument { get; set; }
     
-        public virtual int usp_insertclient(string firstName, string lastName, string email, string dateOfBirth, string mobileNo, string companryName, string address, string city, string postalCode, string province, string country, string sIN, string gSTNumber, string wCB, string password, Nullable<int> roleId)
+        public virtual int usp_insertclient(string firstName, string lastName, string email, string dateOfBirth, string mobileNo, string companryName, string address, string city, string postalCode, string province, string country, string sIN, string gSTNumber, string wCB, string password, Nullable<int> roleId, string corporateAccessNumber)
         {
             var firstNameParameter = firstName != null ?
                 new ObjectParameter("FirstName", firstName) :
@@ -97,10 +97,14 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertclient", firstNameParameter, lastNameParameter, emailParameter, dateOfBirthParameter, mobileNoParameter, companryNameParameter, addressParameter, cityParameter, postalCodeParameter, provinceParameter, countryParameter, sINParameter, gSTNumberParameter, wCBParameter, passwordParameter, roleIdParameter);
+            var corporateAccessNumberParameter = corporateAccessNumber != null ?
+                new ObjectParameter("CorporateAccessNumber", corporateAccessNumber) :
+                new ObjectParameter("CorporateAccessNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertclient", firstNameParameter, lastNameParameter, emailParameter, dateOfBirthParameter, mobileNoParameter, companryNameParameter, addressParameter, cityParameter, postalCodeParameter, provinceParameter, countryParameter, sINParameter, gSTNumberParameter, wCBParameter, passwordParameter, roleIdParameter, corporateAccessNumberParameter);
         }
     
-        public virtual int usp_updateclient(Nullable<long> userId, string firstName, string lastName, string dateOfBirth, string email, string mobileNo, string companyName, string address, string city, string postalCode, string province, string country, string sIN, string gSTNumber, string wCB)
+        public virtual int usp_updateclient(Nullable<long> userId, string firstName, string lastName, string dateOfBirth, string email, string mobileNo, string companyName, string address, string city, string postalCode, string province, string country, string sIN, string gSTNumber, string wCB, string corporateAccessNumber)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
@@ -162,7 +166,11 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("WCB", wCB) :
                 new ObjectParameter("WCB", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_updateclient", userIdParameter, firstNameParameter, lastNameParameter, dateOfBirthParameter, emailParameter, mobileNoParameter, companyNameParameter, addressParameter, cityParameter, postalCodeParameter, provinceParameter, countryParameter, sINParameter, gSTNumberParameter, wCBParameter);
+            var corporateAccessNumberParameter = corporateAccessNumber != null ?
+                new ObjectParameter("CorporateAccessNumber", corporateAccessNumber) :
+                new ObjectParameter("CorporateAccessNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_updateclient", userIdParameter, firstNameParameter, lastNameParameter, dateOfBirthParameter, emailParameter, mobileNoParameter, companyNameParameter, addressParameter, cityParameter, postalCodeParameter, provinceParameter, countryParameter, sINParameter, gSTNumberParameter, wCBParameter, corporateAccessNumberParameter);
         }
     
         public virtual int usp_insertclientdocument(Nullable<long> userId, string personName, string documentType, string year, string documentName, string discription, string other)

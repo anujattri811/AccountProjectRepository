@@ -17,7 +17,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void AddNewClient(ClientEntity clientEntity)
         {
-            pablaAccountsEntities.usp_insertclient(clientEntity.FirstName, clientEntity.LastName, clientEntity.Email, clientEntity.DateOfBirth, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB, clientEntity.Password, clientEntity.RoleId);
+            pablaAccountsEntities.usp_insertclient(clientEntity.FirstName, clientEntity.LastName, clientEntity.Email, clientEntity.DateOfBirth, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB, clientEntity.Password, clientEntity.RoleId,clientEntity.CorporateAccessNumber);
         }
         public ClientEntity GetAllClient(int ClientId)
         {
@@ -46,7 +46,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void UpdateClient(ClientEntity clientEntity)
         {
-            pablaAccountsEntities.usp_updateclient(clientEntity.UserId, clientEntity.FirstName, clientEntity.LastName, clientEntity.DateOfBirth, clientEntity.Email, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB);
+            pablaAccountsEntities.usp_updateclient(clientEntity.UserId, clientEntity.FirstName, clientEntity.LastName, clientEntity.DateOfBirth, clientEntity.Email, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB,clientEntity.CorporateAccessNumber);
         }
         public void UpdateCredential(int ClientId, string Email, string EncryPassword)
         {
