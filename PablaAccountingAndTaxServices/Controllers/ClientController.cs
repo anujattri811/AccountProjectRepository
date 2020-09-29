@@ -271,5 +271,10 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             return View();
         }
+
+        public ActionResult services()
+        {
+            return View();
+        }
     }
 }

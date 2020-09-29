@@ -123,8 +123,8 @@
                                                     </ul>*@
                                             </li>
                                             <li class="rd-nav-item active rd-navbar--has-megamenu rd-navbar-submenu">
-                                                <a class="rd-nav-link" href="#">Services</a><span class=""></span>
-                                                <ul class="rd-menu rd-navbar-megamenu rd-navbar-open-right">
+                                                <a class="rd-nav-link" href="@Url.Action("services","Client")">Services</a><span class=""></span>
+                                                @*<ul class="rd-menu rd-navbar-megamenu rd-navbar-open-right">
                                                     <li class="rd-megamenu-item">
 
                                                         <h6 class="rd-megamenu-title">Personal</h6>
@@ -153,7 +153,7 @@
                                                             <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#">Tax Planning</a></li>
                                                         </ul>
                                                     </li>
-                                                </ul>
+                                                </ul>*@
                                             </li>
                                             @*<li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
                                                     <a class="rd-nav-link" href="#">Services</a><span class=""></span>
@@ -187,7 +187,7 @@
                                             @if (Session["UserId"] == null)
                                             {
                                                 <li class="rd-nav-item">
-                                                    <a class="rd-nav-link" href="#">File Personal Tax Online</a>
+                                                    <a class="rd-nav-link" href="#">File Personal Tax</a>
                                                 </li>
                                             }
 
@@ -254,8 +254,8 @@
                                         </div>
                                         <div class="unit-body">
                                             <ul class="list-0">
-                                                <li>Weekdays: 8:00–17:00</li>
-                                                <li>Weekends: Closed</li>
+                                                <li>Monday to Friday: 9 Am–5 Pm</li>
+                                                <li>Saturday Sunday: Closed</li>
                                             </ul>
                                         </div>
                                     </div>
