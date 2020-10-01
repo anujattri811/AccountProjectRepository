@@ -1078,6 +1078,7 @@
     <Content Include="Views\Admin\add_document.cshtml" />
     <Content Include="Views\Client\Demo.cshtml" />
     <Content Include="Views\Client\services.cshtml" />
+    <Content Include="Views\Client\FilePersonalTax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PablaAccountingAndTaxServicesBLL\PablaAccountingAndTaxServicesBLL.csproj">

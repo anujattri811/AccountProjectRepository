@@ -137,6 +137,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             var resultList = clientBLL.GetRequest(ClientId);
             foreach (var item in resultList)
             {
+                item.CreatedOn= Convert.ToDateTime(item.CreatedOn).AddMinutes(-570);
                 item.CreatedOn = Convert.ToDateTime(item.CreatedOn).AddDays(7);
             }
             var date = DateTime.Now;
@@ -156,6 +157,8 @@ namespace PablaAccountingAndTaxServices.Controllers
             clientBLL.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description, OtherDocuments);
             return RedirectToAction("client_dashboard","Client");
         }
+
+       
         #endregion
         [HttpGet]
         public ActionResult ContactUs()
@@ -276,5 +279,12 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             return View();
         }
+        public ActionResult FilePersonalTax()
+        {
+            return View();
+        }
+        
+        
+       
     }
 }
