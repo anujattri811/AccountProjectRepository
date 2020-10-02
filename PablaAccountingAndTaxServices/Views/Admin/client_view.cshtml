@@ -255,13 +255,12 @@
                     </div>
                 }
             </div>
-            </div>
-
         </div>
+
+    </div>
 </section>
 
 <section class="content header">
-    <!-- Default box -->
     <div class="card">
         <div class="card-header card_color" style="padding-top: 1px;padding-bottom: 1px;">
             <div class="col-md-12">
@@ -277,11 +276,11 @@
 
             <input type="hidden" value="@Model.UserId" name="UserId" />
             <div class="col-md-12 row" style="padding-top:10px;">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <input type="text" id="name" name="PersonName" placeholder="Person Name" class="form-control">
                 </div>
-                <div class="col-md-3">
-                    <select class="form-control custom-select" name="DocumentType">
+                <div class="col-md-4">
+                    <select class="form-control custom-select" name="DocumentType" id="DocumentType" onchange="ShowOther()">
                         <option>Document Type</option>
                         <option>Notice Of Assessment</option>
                         <option>T1 General</option>
@@ -297,10 +296,12 @@
                         <option>Job letter</option>
                         <option>GST</option>
                         <option>Company Incorporation Papers</option>
+                        <option>Other</option>
+
                     </select>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-4">
 
                     <select class="form-control custom-select" name="year">
                         <option selected="" disabled="">Select Year</option>
@@ -327,7 +328,9 @@
                     </select>
 
                 </div>
-                <div class="col-md-3 ">
+            </div>
+            <div class="col-md-12 row">
+                <div class="col-md-4 ">
                     <div class="form-group">
                         <div class="input-group">
                             <div class="custom-file">
@@ -338,11 +341,17 @@
                         </div>
                     </div>
                 </div>
-                @*<div class="col-md-3">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Enter ..." style="height: 38px;" name="description"></textarea>
+                <div class="col-md-4 " id="Show-OtherDocuments" style="display:none;">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="text" id="OtherDocuments" name="OtherDocuments" placeholder="Other Documents" class="form-control">
+                           
+                            </div>
+
                         </div>
-                    </div>*@
+                    </div>
+                </div>
                 <div class="custom-file col-md-1">
                     <button type="submit" class="btn btn-block btn-outline-primary">Save</button>
                 </div>
@@ -418,6 +427,7 @@
                                 <th>Person Name</th>
                                 <th>Document Name</th>
                                 <th>Document Type</th>
+                                <th>Other</th>
                                 <th>Year</th>
                             </tr>
                         </thead>
@@ -433,6 +443,7 @@
                                     <td>@item.PersonName</td>
                                     <td>@item.DocumentName</td>
                                     <td>@item.DocumentType</td>
+                                    <td>@item.Other</td>
                                     <td>@item.Year</td>
                                 </tr>
                             }
@@ -546,4 +557,13 @@
         }
     });
 </script>
-@*onclick="return GeneratePassword('@Model.UserId','@Model.Email','@Model.FirstName','@Model.MobileNo')"*@
+<script>
+    function ShowOther() {
+        if ($("#DocumentType").val() == "Other") {
+            $("#Show-OtherDocuments").fadeIn();
+        }
+        else {
+            $("#Show-OtherDocuments").fadeOut();
+        }
+    }
+</script>

@@ -22,7 +22,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public ClientEntity GetAllClient(int ClientId)
         {
             ClientEntity clientEntity = new ClientEntity();
-            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == ClientId).SingleOrDefault();
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == ClientId && x.IsDeleted == false).SingleOrDefault();
             clientEntity.UserId = Convert.ToInt32(result.UserId);
             clientEntity.FirstName = result.FirstName;
             clientEntity.LastName = result.LastName;
@@ -71,7 +71,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void Savedocuments(FileUploadEntity fileUploadEntity)
         {
-            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName, fileUploadEntity.Extension, fileUploadEntity.Other);
+            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName, fileUploadEntity.Extension, fileUploadEntity.OtherDocuments);
 
         }
         public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year)

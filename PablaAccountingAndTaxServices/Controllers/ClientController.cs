@@ -283,8 +283,20 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             return View();
         }
-        
-        
-       
+        [HttpGet]
+        public ActionResult update_clientinfo(int ClientId = 0)
+        {
+            var model = new ClientEntity();
+            model = clientBLL.GetAllClient(ClientId);
+            ViewBag.userid = model.UserId;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult update_clientinfo(ClientEntity clientEntity)
+        {
+            clientBLL.UpdateClient(clientEntity);
+            return RedirectToAction("client_dashboard");
+        }
+
     }
 }

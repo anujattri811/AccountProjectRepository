@@ -9,7 +9,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         PablaAccountsEntities pablaAccountsEntities = new PablaAccountsEntities();
         public LoginEntity CheckLogin(string UserName, string Password)
         {
-            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserName == UserName && x.Password == Password && x.RoleId== 1).FirstOrDefault();
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserName == UserName && x.Password == Password && x.IsDeleted == false && x.RoleId== 1).FirstOrDefault();
             LoginEntity loginEntity = new LoginEntity();
             if (result != null)
             {
@@ -21,7 +21,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public LoginEntity CheckClientLogin(string Username, string Password)
         {
             LoginEntity loginEntity = new LoginEntity();
-            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserName == Username && x.Password == Password && x.RoleId != 1).FirstOrDefault();
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserName == Username && x.Password == Password && x.RoleId != 1 && x.IsDeleted == false).FirstOrDefault();
             if (result != null)
             {
                 loginEntity.FirstName = result.FirstName;
