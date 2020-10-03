@@ -283,6 +283,12 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
+        {
+            clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
+            return RedirectToAction("FilePersonalTax");
+        }
         [HttpGet]
         public ActionResult update_clientinfo(int ClientId = 0)
         {

@@ -14,7 +14,7 @@
 </section>
 <section class="section section-lg bg-default">
     <div class="container">
-        <form class="rd-form" action="\Client\RequestDocumentByClient" method="post" id="RequestedDocumentForm">
+        <form class="rd-form" action="\Client\FilePersonalTax" method="post" id="FilePersonalTax">
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
                 PERSONAL INFORMATION
             </div>
@@ -177,6 +177,14 @@
 
                 </div>
             </div>
+            <div class="col-md-12 row">
+                <div class="col-md-2">
+                    <button type="submit" class="button button-primary">Submit</button>
+                </div>
+                <div class="col-md-2" style="margin-left:-70px;" >
+                    <button type="button"  class="button button-primary" onclick="return cancel();">Cancel</button>
+                </div>
+            </div>
         </form>
     </div>
 </section>
@@ -196,6 +204,34 @@
     $('#datepicker2').datepicker();
     $('#datepicker3').datepicker();
     $('#datepicker4').datepicker();
+</script>
+<script>
+    function cancel() {
+        $("#FirstName").val('');
+        $("#MiddleName").val('');
+        $("#LastName").val('');
+        $("#SIN").val('');
+        $("#datepicker4").val('');
+        $("#Phone").val('');
+        $("#Email").val('');
+        $("#Address").val('');
+        $("#City").val('');
+        $("#Province").val('');
+        $("#PostalCode").val('');
+        $("#SpouseName").val('');
+        $("#MiddleName").val('');
+        $("#LastName").focus();
+        $("#SIN").focus();
+        $("#datepicker3").focus();
+        $("#Name").focus();
+        $("#datepicker2").focus();
+        $("#Name").focus();
+        $("#datepicker").focus();
+        $("#Name").focus();
+        $("#datepicker1").focus();
+        return false;
+
+    }
 </script>
 
 

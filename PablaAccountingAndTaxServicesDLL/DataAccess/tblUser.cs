@@ -37,5 +37,6 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<bool> IsPassword { get; set; }
         public string CorporateAccessNumber { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }

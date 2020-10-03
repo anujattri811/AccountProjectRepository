@@ -47,6 +47,40 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsPassword" Type="bit" />
           <Property Name="CorporateAccessNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_FilePersonalTax">
+          <Key>
+            <PropertyRef Name="FilePersonalTaxId" />
+          </Key>
+          <Property Name="FilePersonalTaxId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsExisting" Type="bit" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SIN" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaritalStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentAddress" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="Province" Type="nvarchar" MaxLength="100" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameOfSpouseFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameOfSpouseMiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameOfSpouseLastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SpouseSIN" Type="nvarchar" MaxLength="100" />
+          <Property Name="SpouseDateOfBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Children1Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Children1DateOfBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Children2Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Children2DateOfBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Children3Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Children3DateOfBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -123,6 +157,33 @@
         <Function Name="Selectpersonname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="usp_insertFilePersonalTax" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
+          <Parameter Name="IsExisting" Type="bit" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateOfBirth" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaritalStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sex" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentAddress" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Province" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="NameOfSpouseFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NameOfSpouseMiddleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NameOfSpouseLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpouseSIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpouseDateOfBirth" Type="nvarchar" Mode="In" />
+          <Parameter Name="Children1Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Children1DateOfBirth" Type="nvarchar" Mode="In" />
+          <Parameter Name="Children2Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Children2DateOfBirth" Type="nvarchar" Mode="In" />
+          <Parameter Name="Children3Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Children3DateOfBirth" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="usp_insertRequestdocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
           <Parameter Name="DocumentType" Type="nvarchar" Mode="In" />
@@ -134,6 +195,7 @@
         <EntityContainer Name="PablaAccountsModelStoreContainer">
           <EntitySet Name="tblClientDocument" EntityType="Self.tblClientDocument" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_FilePersonalTax" EntityType="Self.tbl_FilePersonalTax" Schema="pablaaccounts" store:Type="Tables" />
           <EntitySet Name="tbl_RequestedDocument" EntityType="Self.tbl_RequestedDocument" Schema="pablaaccounts" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -209,6 +271,34 @@
           <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
           <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
+          <EntitySet Name="tbl_FilePersonalTax" EntityType="PablaAccountsModel.tbl_FilePersonalTax" />
+          <FunctionImport Name="usp_insertFilePersonalTax">
+            <Parameter Name="IsExisting" Mode="In" Type="Boolean" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="MiddleName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="SIN" Mode="In" Type="String" />
+            <Parameter Name="DateOfBirth" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="MaritalStatus" Mode="In" Type="String" />
+            <Parameter Name="Sex" Mode="In" Type="String" />
+            <Parameter Name="CurrentAddress" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="Province" Mode="In" Type="String" />
+            <Parameter Name="PostalCode" Mode="In" Type="String" />
+            <Parameter Name="NameOfSpouseFirstName" Mode="In" Type="String" />
+            <Parameter Name="NameOfSpouseMiddleName" Mode="In" Type="String" />
+            <Parameter Name="NameOfSpouseLastName" Mode="In" Type="String" />
+            <Parameter Name="SpouseSIN" Mode="In" Type="String" />
+            <Parameter Name="SpouseDateOfBirth" Mode="In" Type="String" />
+            <Parameter Name="Children1Name" Mode="In" Type="String" />
+            <Parameter Name="Children1DateOfBirth" Mode="In" Type="String" />
+            <Parameter Name="Children2Name" Mode="In" Type="String" />
+            <Parameter Name="Children2DateOfBirth" Mode="In" Type="String" />
+            <Parameter Name="Children3Name" Mode="In" Type="String" />
+            <Parameter Name="Children3DateOfBirth" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblClientDocument">
           <Key>
@@ -252,6 +342,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsPassword" Type="Boolean" />
           <Property Name="CorporateAccessNumber" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -270,6 +361,39 @@
           <Property Name="IsApprooved" Type="Boolean" />
           <Property Name="IsDeclined" Type="Boolean" />
           <Property Name="IsUploaded" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_FilePersonalTax">
+          <Key>
+            <PropertyRef Name="FilePersonalTaxId" />
+          </Key>
+          <Property Name="FilePersonalTaxId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExisting" Type="Boolean" />
+          <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SIN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameOfSpouseFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameOfSpouseMiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameOfSpouseLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SpouseSIN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SpouseDateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Children1Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Children1DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Children2Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Children2DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Children3Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Children3DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -299,6 +423,7 @@
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
                 <ScalarProperty Name="CorporateAccessNumber" ColumnName="CorporateAccessNumber" />
                 <ScalarProperty Name="IsPassword" ColumnName="IsPassword" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -348,6 +473,41 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_insertRequestdocument" FunctionName="PablaAccountsModel.Store.usp_insertRequestdocument" />
           <FunctionImportMapping FunctionImportName="Selectpersonname" FunctionName="PablaAccountsModel.Store.Selectpersonname" />
+          <EntitySetMapping Name="tbl_FilePersonalTax">
+            <EntityTypeMapping TypeName="PablaAccountsModel.tbl_FilePersonalTax">
+              <MappingFragment StoreEntitySet="tbl_FilePersonalTax">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Children3DateOfBirth" ColumnName="Children3DateOfBirth" />
+                <ScalarProperty Name="Children3Name" ColumnName="Children3Name" />
+                <ScalarProperty Name="Children2DateOfBirth" ColumnName="Children2DateOfBirth" />
+                <ScalarProperty Name="Children2Name" ColumnName="Children2Name" />
+                <ScalarProperty Name="Children1DateOfBirth" ColumnName="Children1DateOfBirth" />
+                <ScalarProperty Name="Children1Name" ColumnName="Children1Name" />
+                <ScalarProperty Name="SpouseDateOfBirth" ColumnName="SpouseDateOfBirth" />
+                <ScalarProperty Name="SpouseSIN" ColumnName="SpouseSIN" />
+                <ScalarProperty Name="NameOfSpouseLastName" ColumnName="NameOfSpouseLastName" />
+                <ScalarProperty Name="NameOfSpouseMiddleName" ColumnName="NameOfSpouseMiddleName" />
+                <ScalarProperty Name="NameOfSpouseFirstName" ColumnName="NameOfSpouseFirstName" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="SIN" ColumnName="SIN" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="IsExisting" ColumnName="IsExisting" />
+                <ScalarProperty Name="FilePersonalTaxId" ColumnName="FilePersonalTaxId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_insertFilePersonalTax" FunctionName="PablaAccountsModel.Store.usp_insertFilePersonalTax" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

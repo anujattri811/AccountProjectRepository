@@ -17,7 +17,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void AddNewClient(ClientEntity clientEntity)
         {
-            pablaAccountsEntities.usp_insertclient(clientEntity.FirstName, clientEntity.LastName, clientEntity.Email, clientEntity.DateOfBirth, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB, clientEntity.Password, clientEntity.RoleId,clientEntity.CorporateAccessNumber);
+            pablaAccountsEntities.usp_insertclient(clientEntity.FirstName, clientEntity.LastName, clientEntity.Email, clientEntity.DateOfBirth, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB, clientEntity.Password, clientEntity.RoleId, clientEntity.CorporateAccessNumber);
         }
         public ClientEntity GetAllClient(int ClientId)
         {
@@ -46,7 +46,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void UpdateClient(ClientEntity clientEntity)
         {
-            pablaAccountsEntities.usp_updateclient(clientEntity.UserId, clientEntity.FirstName, clientEntity.LastName, clientEntity.DateOfBirth, clientEntity.Email, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB,clientEntity.CorporateAccessNumber);
+            pablaAccountsEntities.usp_updateclient(clientEntity.UserId, clientEntity.FirstName, clientEntity.LastName, clientEntity.DateOfBirth, clientEntity.Email, clientEntity.MobileNo, clientEntity.CompanyName, clientEntity.Address, clientEntity.City, clientEntity.PostalCode, clientEntity.Province, clientEntity.Country, clientEntity.SIN, clientEntity.GSTNumber, clientEntity.WCB, clientEntity.CorporateAccessNumber);
         }
         public void UpdateCredential(int ClientId, string Email, string EncryPassword)
         {
@@ -86,6 +86,13 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             return pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == clientId && x.IsDeleted == false).ToList();
         }
+        public void SaveFilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
+        {
+            pablaAccountsEntities.usp_insertFilePersonalTax(filePersonalTaxEntity.IsExiting, filePersonalTaxEntity.FirstName, filePersonalTaxEntity.MiddleName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.Phone, filePersonalTaxEntity.Email, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex,
+               filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName,
+                filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth);
 
+
+        }
     }
 }

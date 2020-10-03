@@ -74,5 +74,10 @@ namespace PablaAccountingAndTaxServicesBLL
         //{
         //    return client.selectClientname(ClientId);
         //}
-    }
+        public void SaveFilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
+        {
+            client.SaveFilePersonalTax(filePersonalTaxEntity);
+        }
+        
+        }
 }
