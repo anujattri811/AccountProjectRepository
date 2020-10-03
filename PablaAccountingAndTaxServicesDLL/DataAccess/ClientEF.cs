@@ -86,6 +86,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             return pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == clientId && x.IsDeleted == false).ToList();
         }
+<<<<<<< HEAD
         public void SaveFilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
         {
             pablaAccountsEntities.usp_insertFilePersonalTax(filePersonalTaxEntity.IsExiting, filePersonalTaxEntity.FirstName, filePersonalTaxEntity.MiddleName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.Phone, filePersonalTaxEntity.Email, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex,
@@ -93,6 +94,11 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth);
 
 
+=======
+        public void UpdateClientPassword(int UserId, string Password , string ConfirmPassword)
+        {
+            pablaAccountsEntities.ChangePassword(UserId,Password,ConfirmPassword);
+>>>>>>> 7b6cbb219d19476c72bc2a082eff32a4d06a9e8a
         }
     }
 }

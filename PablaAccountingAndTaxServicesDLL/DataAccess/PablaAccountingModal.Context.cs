@@ -271,6 +271,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Selectpersonname", userIdParameter);
         }
     
+<<<<<<< HEAD
         public virtual int usp_insertFilePersonalTax(Nullable<bool> isExisting, string firstName, string middleName, string lastName, string sIN, string dateOfBirth, string phone, string email, string maritalStatus, string sex, string currentAddress, string city, string province, string postalCode, string nameOfSpouseFirstName, string nameOfSpouseMiddleName, string nameOfSpouseLastName, string spouseSIN, string spouseDateOfBirth, string children1Name, string children1DateOfBirth, string children2Name, string children2DateOfBirth, string children3Name, string children3DateOfBirth)
         {
             var isExistingParameter = isExisting.HasValue ?
@@ -374,6 +375,23 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("Children3DateOfBirth", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertFilePersonalTax", isExistingParameter, firstNameParameter, middleNameParameter, lastNameParameter, sINParameter, dateOfBirthParameter, phoneParameter, emailParameter, maritalStatusParameter, sexParameter, currentAddressParameter, cityParameter, provinceParameter, postalCodeParameter, nameOfSpouseFirstNameParameter, nameOfSpouseMiddleNameParameter, nameOfSpouseLastNameParameter, spouseSINParameter, spouseDateOfBirthParameter, children1NameParameter, children1DateOfBirthParameter, children2NameParameter, children2DateOfBirthParameter, children3NameParameter, children3DateOfBirthParameter);
+=======
+        public virtual int ChangePassword(Nullable<int> userId, string password, string confirmPassword)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var confirmPasswordParameter = confirmPassword != null ?
+                new ObjectParameter("ConfirmPassword", confirmPassword) :
+                new ObjectParameter("ConfirmPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ChangePassword", userIdParameter, passwordParameter, confirmPasswordParameter);
+>>>>>>> 7b6cbb219d19476c72bc2a082eff32a4d06a9e8a
         }
     }
 }
