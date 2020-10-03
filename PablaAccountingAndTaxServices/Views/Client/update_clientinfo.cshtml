@@ -1,0 +1,250 @@
+﻿@model PablaAccountingAndTaxServicesEntity.ClientEntity
+@{
+    ViewBag.Title = "update_clientinfo";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+<section class="section section-lg bg-default" style="padding: 30px;">
+    <div class="container">
+        <h5>Client Information</h5>
+        <div class="custom-form-wrap">
+            <form class="rd-form text-right" method="post" action="\Client\update_clientinfo" id="Update_clientinfo">
+                <input type="hidden" value=" @Model.UserId" name="UserId" />
+                <div class="col-md-12 row">
+                    <div class="form-wrap form-group col-md-4" style=" margin-top: 10px;">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">First Name</label>
+                        <input class="form-input form-control-has-validation" id="FirstName" name="FirstName" value="@Model.FirstName" placeholder="First Name" readonly="readonly">
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Last Name</label>
+                        <input class="form-input form-control-has-validation" id="LastName" name="LastName" value="@Model.LastName" placeholder="Last Name" readonly="readonly">
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Email</label>
+                        <input class="form-input form-control-has-validation" id="Email" name="Email" value="@Model.Email" placeholder="Email" readonly="readonly">
+
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="form-wrap form-group col-md-4" style=" margin-top: 10px;">
+                        <label for="Dateofbirth" style="float:left;color:black;font-weight:600;padding-left: 20px;">Date Of Birth</label>
+                        <input type="text" class=" form-input form-control form-control-has-validation" id="Dateofbirth" name="Dateofbirth" value="@Model.DateOfBirth" placeholder="Date Of Birth" autocomplete="off" readonly="readonly">
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Mobile Number</label>
+                        <input class="form-input form-control-has-validation" id="MobileNumber" name="MobileNo" value="@Model.MobileNo" placeholder="Mobile Number"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Company Name</label>
+                        <input class="form-input form-control-has-validation" id="CompanyName" name="CompanyName" value="@Model.CompanyName" placeholder="Company Name"><span class="form-validation"></span>
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="form-wrap form-group col-md-4" style=" margin-top: 10px;">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Address</label>
+                        <input class="form-input form-control-has-validation" id="Address" name="Address" value="@Model.Address" placeholder="Address"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">City</label>
+                        <input class="form-input form-control-has-validation" id="City" name="City" value="@Model.City" placeholder="City"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Postal Code</label>
+                        <input class="form-input form-control-has-validation" id="PostalCode" name="PostalCode" value="@Model.PostalCode" placeholder="Postal Code"><span class="form-validation"></span>
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="form-wrap form-group col-md-4" style=" margin-top: 10px;">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Province</label>
+                        <input class="form-input form-control-has-validation" id="Province" name="Province" value="@Model.Province" placeholder="Province"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Country</label>
+                        <input class="form-input form-control-has-validation" id="Country" name="Country" value="@Model.Country" placeholder="Country"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">SIN</label>
+                        <input class="form-input form-control-has-validation" id="SIN" name="SIN" value="@Model.SIN" placeholder="SIN" readonly="readonly"><span class="form-validation"></span>
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="form-wrap form-group col-md-4" style=" margin-top: 10px;">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">GST Number</label>
+                        <input class="form-input form-control-has-validation" id="GSTNumber" name="GSTNumber" value="@Model.GSTNumber" placeholder="GST Number"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">WCB</label>
+                        <input class="form-input form-control-has-validation" id="WCB" name="WCB" value="@Model.WCB" placeholder="WCB"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap form-group col-md-4">
+                        <label for="First Name" style="float:left;color:black;font-weight:600;padding-left: 20px;">Corporate Access Number</label>
+                        <input class="form-input form-control-has-validation" id="CorporateAccessNumber" name="CorporateAccessNumber" value="@Model.CorporateAccessNumber" placeholder="Corporate Access Number"><span class="form-validation"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-12 row">
+                    <div class="">
+                        <button type="submit" class="button button-xs button-primary" style="float:left;">Update</button>
+                    </div>
+                    <div class="" style="padding-left:10px;">
+                        <button type="button" class="button button-xs button-primary" onclick="return cancel();">Cancel</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+</section>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script>
+    function cancel() {
+        $("#FirstName").val('');
+        $("#LastName").val('');
+        $("#Email").val('');
+        $("#MobileNumber").val('');
+        $("#CompanyName").val('');
+        $("#Address").val('');
+        $("#City").val('');
+        $("#PostalCode").val('');
+        $("#Province").val('');
+        $("#Country").val('');
+        $("#SIN").val('');
+        $("#GSTNumber").val('');
+        $("#WCB").val('');
+        $("#CorporateAccessNumber").val('');
+        $("#FirstName").focus();
+        return false;
+    }
+</script>
+<script type="text/javascript">
+
+    $('#Update_clientinfo').validate({
+        rules: {
+            FirstName: {
+                required: true,
+            },
+            LastName: {
+                required: true,
+
+            },
+           
+            MobileNo: {
+                required: true,
+                minlength: 10,
+
+            },
+            CompanyName: {
+                required: true,
+
+            },
+            Address: {
+                required: true,
+
+            },
+            City: {
+                required: true,
+
+            },
+            PostalCode: {
+                required: true,
+
+            },
+            Province: {
+                required: true,
+
+            },
+
+            Country: {
+                required: true,
+
+            },
+
+          
+            GSTNumber: {
+                required: true,
+
+            },
+            WCB: {
+                required: true,
+
+            },
+            CorporateAccessNumber: {
+                required: true,
+
+            }
+
+
+        },
+        messages: {
+            FirstName: {
+                required: "Please enter a First Name. ",
+
+            },
+            LastName: {
+                required: "Please enter a Last Name.",
+
+            },
+           
+            MobileNo: {
+                required: "Please enter a Mobile Number.",
+                minlength: "Your Mobile Number must be at least 10 characters long."
+            },
+            CompanyName: {
+                required: "Please enter a Company Name.",
+
+            },
+            Address: {
+                required: "Please enter a Address.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            City: {
+                required: "Please enter a City.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            PostalCode: {
+                required: "Please enter a Postal Code.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            Province: {
+                required: "Please enter a Province.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            Country: {
+                required: "Please enter a Country.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+           
+            GSTNumber: {
+                required: "Please enter a GST Number.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            WCB: {
+                required: "Please enter a WCB.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+            CorporateAccessNumber: {
+                required: "Please enter a Corporate Access Number.",
+                //minlength: "Your password must be at least 8 characters long"
+            },
+
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+</script>
+

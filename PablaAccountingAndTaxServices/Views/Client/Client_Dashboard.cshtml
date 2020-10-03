@@ -10,6 +10,7 @@
     .table-custom th {
         padding: 5px 40px 4px !important;
     }
+    
 </style>
 <section class="breadcrumbs-custom bg-image novi-background bg-primary">
     <div class="container">
@@ -245,6 +246,7 @@
                                             </div>
 
                                         </div>
+                                        <a href="/Client/update_clientinfo?ClientId=@Model.UserId" class="button button-xs button-primary">Edit</a>
 
                                     </div>
                                 </div>
@@ -454,8 +456,9 @@
 <script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="~/Content/plugins/sweetalert2/SweetAlert.js"></script>
 
-<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+@*<script src="~/Content/plugins/jquery/jquery.min.js"></script>*@
 <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+
 <script type="text/javascript">
     //$(function () {
     //    $("#example1").DataTable();
@@ -475,12 +478,12 @@
         }
 });
 
-    //$(function () {
-    //    $("#example1").DataTable();
-    //});
-    // $(function () {
-    //    $("#Requestedexample1").DataTable();
-    //});
+    $(function () {
+        $("#example1").DataTable();
+    });
+     $(function () {
+        $("#Requestedexample1").DataTable();
+    });
 </script>
 <script>
     $('#RequestedDocumentForm').validate({

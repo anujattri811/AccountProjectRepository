@@ -17,6 +17,7 @@ namespace PablaAccountingAndTaxServicesEntity
         public string year { get; set; }
         public string Extension { get; set; }
         public string DocumentName { get; set; }
+        public string OtherDocuments { get; set; }
         public int RequestedDocumentId { get; set; }
        
 
