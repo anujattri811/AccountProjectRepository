@@ -3,6 +3,202 @@
     ViewBag.Title = "FilePersonalTax";
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
+<section class="breadcrumbs-custom bg-image novi-background bg-primary">
+    <div class="container">
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li class="active">Accounting Services</li>
+        </ul>
+    </div>
+</section>
+<section class="section section-lg bg-default">
+    <div class="container">
+        <form class="rd-form" action="\Client\RequestDocumentByClient" method="post" id="RequestedDocumentForm">
+            <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
+                PERSONAL INFORMATION
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-2 form-group">
+                    <label class="form-control" for="NewClient" style="border:0px;">New Client</label>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="" id="NewClient" type="checkbox" name="NewClient" data-constraints="Required">
+                </div>
+                <div class="col-md-2 form-group">
+                    <label class="form-control" for="ReturningClient" style="border:0px;">Returning Client</label>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="" id="ReturningClient" type="checkbox" name="ReturningClient" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-4 form-group">
+                    <label class="" for="FirstName" style="border:0px; padding-left:10px;color:black">First Name</label>
+                    <input class="form-input form-control-has-validation" id="FirstName" type="text" name="FirstName" data-constraints="Required">
+                </div>
+
+                <div class="col-md-4 form-group">
+                    <label for="MiddleName" style="border:0px;color:black;padding-left:10px">Middle Name</label>
+                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="MiddleName" data-constraints="Required">
+                </div>
+
+                <div class="col-md-4 form-group">
+                    <label for="LastName" style="border:0px; color:black;padding-left:10px">Last Name</label>
+                    <input class="form-input form-control-has-validation" id="LastName" type="text" name="LastName" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="SIN" style="border:0px; color:black;padding-left:10px">SIN</label>
+                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SIN" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
+                    <input class="form-input form-control-has-validation" id="datepicker4" type="datetime" name="datepicker4" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="Phone" style="border:0px; color:black;padding-left:10px">Phone</label>
+                    <input class="form-input form-control-has-validation" id="Phone" type="number" name="Phone" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="Email" style="border:0px; color:black;padding-left:10px">Email</label>
+                    <input class="form-input form-control-has-validation" id="Email" type="email" name="Email" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-2" style="color:black">
+                    Marrital Status:
+                </div>
+                <div class="col-md-4">
+                    <div class="form-wrap form-group">
+                        <select name="MaritalStatus" id="MaritalStatus" class="form-input form-control-has-validation">
+                            <option selected="" disabled="">Select</option>
+                            <option>Single</option>
+                            <option>Married</option>
+                            <option>Divorced</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2" style="color:black">
+                    Sex:
+                </div>
+                <div class="col-md-4">
+                    <div class="form-wrap form-group">
+                        <select name="DocumentType" id="Document" class="form-input form-control-has-validation">
+                            <option selected="" disabled="">Select</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="Phone" style="border:0px; color:black;padding-left:10px">Current Address</label>
+                    <input class="form-input form-control-has-validation" id="Address" type="text" name="Address" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="Email" style="border:0px; color:black;padding-left:10px">City</label>
+                    <input class="form-input form-control-has-validation" id="City" type="text" name="City" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="Phone" style="border:0px; color:black;padding-left:10px">Province</label>
+                    <input class="form-input form-control-has-validation" id="Province" type="text" name="Province" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="Email" style="border:0px; color:black;padding-left:10px">PostalCode</label>
+                    <input class="form-input form-control-has-validation" id="PostalCode" type="number" name="PostalCode" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
+                Family INFORMATION
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-4 form-group">
+                    <label class="" for="SpouseName" style="border:0px; padding-left:10px;color:black">NameOfSpouse(FirstName)</label>
+                    <input class="form-input form-control-has-validation" id="SpouseName" type="text" name="SpouseName" data-constraints="Required">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="MiddleName" style="border:0px;color:black;padding-left:10px">Middle Name</label>
+                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="MiddleName" data-constraints="Required">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="LastName" style="border:0px; color:black;padding-left:10px">Last Name</label>
+                    <input class="form-input form-control-has-validation" id="LastName" type="text" name="LastName" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="SIN" style="border:0px; color:black;padding-left:10px">SIN(if applicable)</label>
+                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SIN" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
+                    <input class="form-input form-control-has-validation" id="datepicker3" type="datetime" name="datepicker3" data-constraints="Required">
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
+                Children INFORMATION(if the kids are in Canada)
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
+                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Name" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
+                    <input class="form-input form-control-has-validation" id="datepicker2" type="datetime" name="datepicker2" data-constraints="Required" autocomplete="off">
+                    @*<input class="form-input form-control-has-validation" id="DateOfBirth" type="text" name="DateOfBirth" data-constraints="Required">*@
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
+                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Name" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
+                    <input class="form-input form-control-has-validation" id="datepicker" type="datetime" name="Name" data-constraints="Required" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="col-md-6 form-group">
+                    <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
+                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Name" data-constraints="Required">
+                </div>
+                <div class="col-md-6 form-group ">
+                    <label for="Name" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
+                    <input class="form-input form-control-has-validation" id="datepicker1" type="datetime" name="Name" data-constraints="Required" autocomplete="off">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
+    $('#datepicker').datepicker();
+    $('#datepicker1').datepicker();
+    $('#datepicker2').datepicker();
+    $('#datepicker3').datepicker();
+    $('#datepicker4').datepicker();
+</script>
+
+
 
 
 

@@ -3,86 +3,231 @@
     ViewBag.Title = "services";
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
-    <section class="breadcrumbs-custom bg-image novi-background bg-primary">
-        <div class="container">
-            <ul class="breadcrumbs-custom-path">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li class="active">Accounting Services</li>
-            </ul>
+<section class="breadcrumbs-custom bg-image novi-background bg-primary">
+    <div class="container">
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li class="active">Accounting Services</li>
+        </ul>
+    </div>
+</section>
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="rd-navbar-main-element">
+            <div class="rd-navbar-nav-wrap toggle-original-elements">
+                <ul class="rd-navbar-nav">
+                    <li>
+                        <ul class="rd-menu rd-navbar-megamenu rd-navbar-open-right" style="display:flex;">
+                            <li class="rd-megamenu-item" style="width:90%;">
+
+                                <h6 class="rd-megamenu-title">Personal</h6>
+                                <ul class="rd-megamenu-list">
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#PersonalTaxReturn">Personal Tax Return</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#SelfEmployed">Self Employed</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#TaxBenefits">Tax Benefits</a></li>
+                                </ul>
+                            </li>
+                            <li class="rd-megamenu-item" style="width:90%;">
+                                <h6 class="rd-megamenu-title">Corporate</h6>
+                                <ul class="rd-megamenu-list">
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#BusinessTaxReturn">Business Tax Return</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#Payroll">Payroll</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#BookKeeping">Book Keeping</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#GSTFiling">GST Filing</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#FinancialStatement">Financial Statement</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#AuditReviews">Audit Reviews</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="rd-megamenu-item">
+                                <h6 class="rd-megamenu-title">Advisory</h6>
+                                <ul class="rd-megamenu-list">
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#FinancialAdvise">Financial Advise</a></li>
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#TaxPlanning">Tax Planning</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-    </section>
-    <section class="section section-lg bg-default">
-        <div class="container">
-            <h2>Accounting <span class="text-light">Services</span></h2>
-            <div class="box-image-small box-image-small-1 box-image-small-left">
-                <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-1-586x507.jpg)"></div>
-                <div class="item-body">
-                    <h3 class="font-weight-regular">Bookkeeping</h3>
-                    <ul class="list-marked list-marked-big text-gray-800">
-                        <li>Monthly / quarterly financial statements</li>
-                        <li>Detailed monthly sales and disbursement ledger</li>
-                        <li>Internal accounting reports</li>
-                        <li>
-                            Monthly and quarterly tax reports:
-                            <ul class="list-marked text-body-color">
-                                <li>State excise</li>
-                                <li>IRS forms 940 &amp; 941, W-2, W-3 &amp; 1099</li>
-                                <li>Labor &amp; Industries</li>
-                                <li>Employment Security</li>
-                                <li>All state and federal gambling tax reports</li>
-                                <li>Electronic filing of state and federal tax reports</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+        <h2>Personal Tax <span class="text-light">Return</span></h2>
+        <div class="box-image-small box-image-small-1 box-image-small-left" id="PersonalTaxReturn">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-1-586x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">Bookkeeping</h3>
+                <ul class="list-marked list-marked-big text-gray-800">
+                    <li>Monthly / quarterly financial statements</li>
+                    <li>Detailed monthly sales and disbursement ledger</li>
+                    <li>Internal accounting reports</li>
+                    <li>
+                        Monthly and quarterly tax reports:
+                        <ul class="list-marked text-body-color">
+                            <li>State excise</li>
+                            <li>IRS forms 940 &amp; 941, W-2, W-3 &amp; 1099</li>
+                            <li>Labor &amp; Industries</li>
+                            <li>Employment Security</li>
+                            <li>All state and federal gambling tax reports</li>
+                            <li>Electronic filing of state and federal tax reports</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="box-image-small box-image-small-right">
-                <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-2-583x507.jpg)"></div>
-                <div class="item-body">
-                    <h3 class="font-weight-regular">Payroll Services</h3>
-                    <p class="big">Call, fax or email your company's hours and one of our payroll specialists will be there to help you! With our Payroll Service you will be working with experienced payroll professionals in conjunction with a staff accountant who knows you and your business personally.</p>
-                    <div class="heading-6">One low monthly fee includes everything:</div>
-                    <ul class="list-marked text-gray-800">
-                        <li>No extra charges at quarter or year-end!</li>
-                        <li>Quarterly Payroll taxes, filed electronically</li>
-                        <li>W-2's and W-3's</li>
-                        <li>Direct Deposits or Paper Checks</li>
-                        <li>Electronic Payment of Payroll taxes available</li>
-                        <li>New Hire Reporting</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="box-image-small box-image-small-1 box-image-small-left">
-                <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-3-586x507.jpg)"></div>
-                <div class="item-body">
-                    <h3 class="font-weight-regular">QuickBooks Consulting</h3>
-                    <p class="big">Our professional staff can help you in all phases of QuickBooks applications. As a Certified QuickBooks ProAdvisor, we provide assistance with acquisition, setup and initial training.</p>
-                    <ul class="list-marked text-gray-800">
-                        <li>Data Entry</li>
-                        <li>Bank and Credit Card Reconciliation</li>
-                        <li>Payroll and Payroll Taxes, W-2's</li>
-                        <li>State Sales Tax (Excise Tax Return)</li>
-                        <li>1099's</li>
-                        <li>A/R &amp; A/P (Invoicing and Bill Paying)</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="box-image-small box-image-small-right">
-                <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-4-583x507.jpg)"></div>
-                <div class="item-body">
-                    <h3 class="font-weight-regular">Small Business Consulting</h3>
-                    <ul class="list-marked list-marked-big">
-                        <li>Tax Planning for business &amp; individuals</li>
-                        <li>Business entity selection and formation</li>
-                        <li>Real estate investment sales / purchases</li>
-                        <li>Business sales / purchases</li>
-                        <li>Estate planning</li>
-                        <li>Asset protection strategies</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="button-wrap-1 text-center"><a class="button button-primary" href="#">Have a question?</a></div>
         </div>
-    </section>
+        <div class="box-image-small box-image-small-right" id="SelfEmployed">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-2-583x507.jpg)"></div>
+            <div class="item-body">
+                <h2 class="font-weight-regular">Self Employed</h2>
+                <p class="big">Call, fax or email your company's hours and one of our payroll specialists will be there to help you! With our Payroll Service you will be working with experienced payroll professionals in conjunction with a staff accountant who knows you and your business personally.</p>
+                <div class="heading-6">One low monthly fee includes everything:</div>
+                <ul class="list-marked text-gray-800">
+                    <li>No extra charges at quarter or year-end!</li>
+                    <li>Quarterly Payroll taxes, filed electronically</li>
+                    <li>W-2's and W-3's</li>
+                    <li>Direct Deposits or Paper Checks</li>
+                    <li>Electronic Payment of Payroll taxes available</li>
+                    <li>New Hire Reporting</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-1 box-image-small-left" id="TaxBenefits">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-3-586x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">Tax Benefits</h3>
+                <p class="big">Our professional staff can help you in all phases of QuickBooks applications. As a Certified QuickBooks ProAdvisor, we provide assistance with acquisition, setup and initial training.</p>
+                <ul class="list-marked text-gray-800">
+                    <li>Data Entry</li>
+                    <li>Bank and Credit Card Reconciliation</li>
+                    <li>Payroll and Payroll Taxes, W-2's</li>
+                    <li>State Sales Tax (Excise Tax Return)</li>
+                    <li>1099's</li>
+                    <li>A/R &amp; A/P (Invoicing and Bill Paying)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-right" id="BusinessTaxReturn">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-4-583x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">Business Tax Return</h3>
+                <ul class="list-marked list-marked-big">
+                    <li>Tax Planning for business &amp; individuals</li>
+                    <li>Business entity selection and formation</li>
+                    <li>Real estate investment sales / purchases</li>
+                    <li>Business sales / purchases</li>
+                    <li>Estate planning</li>
+                    <li>Asset protection strategies</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-1 box-image-small-left" id="Payroll">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-3-586x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">Payroll</h3>
+                <p class="big">Our professional staff can help you in all phases of QuickBooks applications. As a Certified QuickBooks ProAdvisor, we provide assistance with acquisition, setup and initial training.</p>
+                <ul class="list-marked text-gray-800">
+                    <li>Data Entry</li>
+                    <li>Bank and Credit Card Reconciliation</li>
+                    <li>Payroll and Payroll Taxes, W-2's</li>
+                    <li>State Sales Tax (Excise Tax Return)</li>
+                    <li>1099's</li>
+                    <li>A/R &amp; A/P (Invoicing and Bill Paying)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-right" id="BookKeeping">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-4-583x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">Book Keeping</h3>
+                <ul class="list-marked list-marked-big">
+                    <li>Tax Planning for business &amp; individuals</li>
+                    <li>Business entity selection and formation</li>
+                    <li>Real estate investment sales / purchases</li>
+                    <li>Business sales / purchases</li>
+                    <li>Estate planning</li>
+                    <li>Asset protection strategies</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-1 box-image-small-left" id="GSTFiling">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-3-586x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">GST Filing</h3>
+                <p class="big">Our professional staff can help you in all phases of QuickBooks applications. As a Certified QuickBooks ProAdvisor, we provide assistance with acquisition, setup and initial training.</p>
+                <ul class="list-marked text-gray-800">
+                    <li>Data Entry</li>
+                    <li>Bank and Credit Card Reconciliation</li>
+                    <li>Payroll and Payroll Taxes, W-2's</li>
+                    <li>State Sales Tax (Excise Tax Return)</li>
+                    <li>1099's</li>
+                    <li>A/R &amp; A/P (Invoicing and Bill Paying)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-right" id="FinancialStatement">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-2-583x507.jpg)"></div>
+            <div class="item-body">
+                <h2 class="font-weight-regular">Financial Statement</h2>
+                <p class="big">Call, fax or email your company's hours and one of our payroll specialists will be there to help you! With our Payroll Service you will be working with experienced payroll professionals in conjunction with a staff accountant who knows you and your business personally.</p>
+                <div class="heading-6">One low monthly fee includes everything:</div>
+                <ul class="list-marked text-gray-800">
+                    <li>No extra charges at quarter or year-end!</li>
+                    <li>Quarterly Payroll taxes, filed electronically</li>
+                    <li>W-2's and W-3's</li>
+                    <li>Direct Deposits or Paper Checks</li>
+                    <li>Electronic Payment of Payroll taxes available</li>
+                    <li>New Hire Reporting</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-1 box-image-small-left" id="AuditReviews">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-3-586x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">Audit Reviews</h3>
+                <p class="big">Our professional staff can help you in all phases of QuickBooks applications. As a Certified QuickBooks ProAdvisor, we provide assistance with acquisition, setup and initial training.</p>
+                <ul class="list-marked text-gray-800">
+                    <li>Data Entry</li>
+                    <li>Bank and Credit Card Reconciliation</li>
+                    <li>Payroll and Payroll Taxes, W-2's</li>
+                    <li>State Sales Tax (Excise Tax Return)</li>
+                    <li>1099's</li>
+                    <li>A/R &amp; A/P (Invoicing and Bill Paying)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-right" id="FinancialAdvise">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-2-583x507.jpg)"></div>
+            <div class="item-body">
+                <h2 class="font-weight-regular">Financial Advise</h2>
+                <p class="big">Call, fax or email your company's hours and one of our payroll specialists will be there to help you! With our Payroll Service you will be working with experienced payroll professionals in conjunction with a staff accountant who knows you and your business personally.</p>
+                <div class="heading-6">One low monthly fee includes everything:</div>
+                <ul class="list-marked text-gray-800">
+                    <li>No extra charges at quarter or year-end!</li>
+                    <li>Quarterly Payroll taxes, filed electronically</li>
+                    <li>W-2's and W-3's</li>
+                    <li>Direct Deposits or Paper Checks</li>
+                    <li>Electronic Payment of Payroll taxes available</li>
+                    <li>New Hire Reporting</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-image-small box-image-small-1 box-image-small-left" id="TaxPlanning">
+            <div class="item-image bg-image novi-nackground" style="background-image: url(../ClientContent/images/accounting-services-3-586x507.jpg)"></div>
+            <div class="item-body">
+                <h3 class="font-weight-regular">Tax Planning</h3>
+                <p class="big">Our professional staff can help you in all phases of QuickBooks applications. As a Certified QuickBooks ProAdvisor, we provide assistance with acquisition, setup and initial training.</p>
+                <ul class="list-marked text-gray-800">
+                    <li>Data Entry</li>
+                    <li>Bank and Credit Card Reconciliation</li>
+                    <li>Payroll and Payroll Taxes, W-2's</li>
+                    <li>State Sales Tax (Excise Tax Return)</li>
+                    <li>1099's</li>
+                    <li>A/R &amp; A/P (Invoicing and Bill Paying)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="button-wrap-1 text-center"><a class="button button-primary" href="#">Have a question?</a></div>
+    </div>
+</section>
 
