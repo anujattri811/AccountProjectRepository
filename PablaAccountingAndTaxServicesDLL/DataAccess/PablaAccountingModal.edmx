@@ -47,6 +47,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsPassword" Type="bit" />
           <Property Name="CorporateAccessNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -111,6 +112,11 @@
           <Parameter Name="GSTNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="WCB" Type="nvarchar" Mode="In" />
           <Parameter Name="CorporateAccessNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="ConfirmPassword" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GeneratePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
@@ -209,6 +215,11 @@
           <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
           <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
+          <FunctionImport Name="ChangePassword">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="ConfirmPassword" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblClientDocument">
           <Key>
@@ -252,6 +263,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsPassword" Type="Boolean" />
           <Property Name="CorporateAccessNumber" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -299,6 +311,7 @@
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
                 <ScalarProperty Name="CorporateAccessNumber" ColumnName="CorporateAccessNumber" />
                 <ScalarProperty Name="IsPassword" ColumnName="IsPassword" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -348,6 +361,7 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_insertRequestdocument" FunctionName="PablaAccountsModel.Store.usp_insertRequestdocument" />
           <FunctionImportMapping FunctionImportName="Selectpersonname" FunctionName="PablaAccountsModel.Store.Selectpersonname" />
+          <FunctionImportMapping FunctionImportName="ChangePassword" FunctionName="PablaAccountsModel.Store.ChangePassword" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

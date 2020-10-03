@@ -65,10 +65,10 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             var result = loginBLL.ForgetPassword(Email, 1);
             var Password = encryDecry.DecryptPassword(result.Password);
-            SendForgetPasswordEmail(Email, result.FirstName, result.LastName, Password);
+            SendForgetPasswordEmail(Convert.ToInt32(result.UserId),Email, result.FirstName, result.LastName, Password);
             return View();
         }
-        public bool SendForgetPasswordEmail(string Email, string FirstName, string LastName, string Password)
+        public bool SendForgetPasswordEmail(int UserId,string Email, string FirstName, string LastName, string Password)
         {
             try
             {
@@ -78,6 +78,8 @@ namespace PablaAccountingAndTaxServices.Controllers
                 string emailText = "<tr><td><br/>You have requested to get your password this is your password below:-</br></br></td></tr>";
                 emailText += "<tr><td>UserName:<b> " + Email + "</b></td></tr>";
                 emailText += "<tr><td>Password:<b> " + Password + "</b></td></tr>";
+                emailText += "<tr><td> You can Change Password from below link:-</td></tr>";
+                emailText += "<tr><td><b>https://pablaaccounts.globalroot.net/admin/admin_changepassword?UserId=" + UserId + "</b></td></tr>";
                 emailText += "<tr><td>Regards</td></tr>";
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
@@ -534,6 +536,21 @@ namespace PablaAccountingAndTaxServices.Controllers
             string fullfilepath = path + fileName;
             customMethod.SendEmail(tbluser.Email, "Document Uploaded", htmlBody, fullfilepath);
             return RedirectToAction("requested_document", "admin");
+        }
+        [HttpGet]
+        public ActionResult admin_changepassword(int UserId = 0)
+        {
+            ViewBag.UserId = UserId;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult admin_changepassword(int UserId,string Password, string ConfirmPassword)
+        {
+            var EncryPassword = encryDecry.EncryptPassword(Password);
+            var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);
+            clientBLL.UpdateClientPassword(UserId, EncryPassword, EncryConfirmPassword);
+            return RedirectToAction("admin_login");
         }
     }
 }

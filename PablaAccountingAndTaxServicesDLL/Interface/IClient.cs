@@ -14,6 +14,7 @@ namespace PablaAccountingAndTaxServicesDLL.Interface
         List<tbl_RequestedDocument> GetRequest(int ClientId);
         void AddNewClient(ClientEntity clientEntity);
         void UpdateClient(ClientEntity clientEntity);
+        void UpdateClientPassword(int UserId, string Password, string ConfirmPassword);
         void UpdateCredential(int UserId,string Email,string EncryPassword);
         ClientEntity GetAllClient(int userId);
         void DeleteClient(int UserId);

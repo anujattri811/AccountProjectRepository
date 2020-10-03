@@ -86,6 +86,9 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             return pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestedBy == clientId && x.IsDeleted == false).ToList();
         }
-
+        public void UpdateClientPassword(int UserId, string Password , string ConfirmPassword)
+        {
+            pablaAccountsEntities.ChangePassword(UserId,Password,ConfirmPassword);
+        }
     }
 }

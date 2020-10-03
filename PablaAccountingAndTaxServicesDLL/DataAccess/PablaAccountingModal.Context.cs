@@ -269,5 +269,22 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Selectpersonname", userIdParameter);
         }
+    
+        public virtual int ChangePassword(Nullable<int> userId, string password, string confirmPassword)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var confirmPasswordParameter = confirmPassword != null ?
+                new ObjectParameter("ConfirmPassword", confirmPassword) :
+                new ObjectParameter("ConfirmPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ChangePassword", userIdParameter, passwordParameter, confirmPasswordParameter);
+        }
     }
 }

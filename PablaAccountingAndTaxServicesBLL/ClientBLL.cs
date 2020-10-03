@@ -40,6 +40,10 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             client.UpdateClient(clientEntity);
         }
+        public void UpdateClientPassword(int UserId, string Password, string ConfirmPassword)
+        {
+            client.UpdateClientPassword(UserId, Password, ConfirmPassword);
+        }
         public void UpdateCredential(int ClientId, string Email,string EncryPassword)
         {
             client.UpdateCredential(ClientId, Email, EncryPassword);
