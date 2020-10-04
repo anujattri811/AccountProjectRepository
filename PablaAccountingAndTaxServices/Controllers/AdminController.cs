@@ -496,7 +496,6 @@ namespace PablaAccountingAndTaxServices.Controllers
                 fileuploadentity.Other = result.Other;
                 fileuploadentity.RequestedDocumentId = requestedDocumentId;
             }
-            ViewBag.test = "hhhh";
             ViewBag.ClientName = clientName;
             return View(fileuploadentity);
 
