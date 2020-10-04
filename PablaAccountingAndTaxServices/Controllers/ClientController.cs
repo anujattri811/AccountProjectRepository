@@ -287,7 +287,45 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
         {
             clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
+            SendFilePersonalTax(filePersonalTaxEntity.FirstName,filePersonalTaxEntity.LastName,filePersonalTaxEntity.Email,filePersonalTaxEntity.Phone);
+            TempData["Success"] = "Your Data is Submitted Successfully";
             return RedirectToAction("FilePersonalTax");
+        }
+        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone)
+        {
+            try
+            {
+                string htmlBody = "";
+                string headerText = "Hi,<b></b>";
+                string startTable = "<table>";
+                string emailText = "<tr><td><br/>Your Data is Submitted Successfully:-</br></br></td></tr>";
+                emailText += "<tr><td>FirstName:<b> " + FirstName + "</b></td></tr>";
+                emailText += "<tr><td>LastName:<b> " + LastName + "</b></td></tr>";
+                emailText += "<tr><td>Email:<b> " + Email + "</b></td></tr>";
+                emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
+                string endTable = "<br/></table> </br> </br> Thanks";
+                htmlBody = headerText + startTable + emailText + endTable;
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.To.Add("rs3551370@gmail.com");
+                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+                mailMessage.Subject = "File Personal Tax";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Body = htmlBody;
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new System.Net.NetworkCredential()
+                {
+                    UserName = "Websiteindia2020@gmail.com",
+                    Password = "Sandeepanuj2020"
+                };
+                smtpClient.EnableSsl = true;
+                smtpClient.Send(mailMessage);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
         [HttpGet]
         public ActionResult update_clientinfo(int ClientId = 0)

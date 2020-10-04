@@ -270,112 +270,111 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Selectpersonname", userIdParameter);
         }
-    
-<<<<<<< HEAD
+
         public virtual int usp_insertFilePersonalTax(Nullable<bool> isExisting, string firstName, string middleName, string lastName, string sIN, string dateOfBirth, string phone, string email, string maritalStatus, string sex, string currentAddress, string city, string province, string postalCode, string nameOfSpouseFirstName, string nameOfSpouseMiddleName, string nameOfSpouseLastName, string spouseSIN, string spouseDateOfBirth, string children1Name, string children1DateOfBirth, string children2Name, string children2DateOfBirth, string children3Name, string children3DateOfBirth)
         {
             var isExistingParameter = isExisting.HasValue ?
                 new ObjectParameter("IsExisting", isExisting) :
                 new ObjectParameter("IsExisting", typeof(bool));
-    
+
             var firstNameParameter = firstName != null ?
                 new ObjectParameter("FirstName", firstName) :
                 new ObjectParameter("FirstName", typeof(string));
-    
+
             var middleNameParameter = middleName != null ?
                 new ObjectParameter("MiddleName", middleName) :
                 new ObjectParameter("MiddleName", typeof(string));
-    
+
             var lastNameParameter = lastName != null ?
                 new ObjectParameter("LastName", lastName) :
                 new ObjectParameter("LastName", typeof(string));
-    
+
             var sINParameter = sIN != null ?
                 new ObjectParameter("SIN", sIN) :
                 new ObjectParameter("SIN", typeof(string));
-    
+
             var dateOfBirthParameter = dateOfBirth != null ?
                 new ObjectParameter("DateOfBirth", dateOfBirth) :
                 new ObjectParameter("DateOfBirth", typeof(string));
-    
+
             var phoneParameter = phone != null ?
                 new ObjectParameter("Phone", phone) :
                 new ObjectParameter("Phone", typeof(string));
-    
+
             var emailParameter = email != null ?
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
-    
+
             var maritalStatusParameter = maritalStatus != null ?
                 new ObjectParameter("MaritalStatus", maritalStatus) :
                 new ObjectParameter("MaritalStatus", typeof(string));
-    
+
             var sexParameter = sex != null ?
                 new ObjectParameter("Sex", sex) :
                 new ObjectParameter("Sex", typeof(string));
-    
+
             var currentAddressParameter = currentAddress != null ?
                 new ObjectParameter("CurrentAddress", currentAddress) :
                 new ObjectParameter("CurrentAddress", typeof(string));
-    
+
             var cityParameter = city != null ?
                 new ObjectParameter("City", city) :
                 new ObjectParameter("City", typeof(string));
-    
+
             var provinceParameter = province != null ?
                 new ObjectParameter("Province", province) :
                 new ObjectParameter("Province", typeof(string));
-    
+
             var postalCodeParameter = postalCode != null ?
                 new ObjectParameter("PostalCode", postalCode) :
                 new ObjectParameter("PostalCode", typeof(string));
-    
+
             var nameOfSpouseFirstNameParameter = nameOfSpouseFirstName != null ?
                 new ObjectParameter("NameOfSpouseFirstName", nameOfSpouseFirstName) :
                 new ObjectParameter("NameOfSpouseFirstName", typeof(string));
-    
+
             var nameOfSpouseMiddleNameParameter = nameOfSpouseMiddleName != null ?
                 new ObjectParameter("NameOfSpouseMiddleName", nameOfSpouseMiddleName) :
                 new ObjectParameter("NameOfSpouseMiddleName", typeof(string));
-    
+
             var nameOfSpouseLastNameParameter = nameOfSpouseLastName != null ?
                 new ObjectParameter("NameOfSpouseLastName", nameOfSpouseLastName) :
                 new ObjectParameter("NameOfSpouseLastName", typeof(string));
-    
+
             var spouseSINParameter = spouseSIN != null ?
                 new ObjectParameter("SpouseSIN", spouseSIN) :
                 new ObjectParameter("SpouseSIN", typeof(string));
-    
+
             var spouseDateOfBirthParameter = spouseDateOfBirth != null ?
                 new ObjectParameter("SpouseDateOfBirth", spouseDateOfBirth) :
                 new ObjectParameter("SpouseDateOfBirth", typeof(string));
-    
+
             var children1NameParameter = children1Name != null ?
                 new ObjectParameter("Children1Name", children1Name) :
                 new ObjectParameter("Children1Name", typeof(string));
-    
+
             var children1DateOfBirthParameter = children1DateOfBirth != null ?
                 new ObjectParameter("Children1DateOfBirth", children1DateOfBirth) :
                 new ObjectParameter("Children1DateOfBirth", typeof(string));
-    
+
             var children2NameParameter = children2Name != null ?
                 new ObjectParameter("Children2Name", children2Name) :
                 new ObjectParameter("Children2Name", typeof(string));
-    
+
             var children2DateOfBirthParameter = children2DateOfBirth != null ?
                 new ObjectParameter("Children2DateOfBirth", children2DateOfBirth) :
                 new ObjectParameter("Children2DateOfBirth", typeof(string));
-    
+
             var children3NameParameter = children3Name != null ?
                 new ObjectParameter("Children3Name", children3Name) :
                 new ObjectParameter("Children3Name", typeof(string));
-    
+
             var children3DateOfBirthParameter = children3DateOfBirth != null ?
                 new ObjectParameter("Children3DateOfBirth", children3DateOfBirth) :
                 new ObjectParameter("Children3DateOfBirth", typeof(string));
-    
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertFilePersonalTax", isExistingParameter, firstNameParameter, middleNameParameter, lastNameParameter, sINParameter, dateOfBirthParameter, phoneParameter, emailParameter, maritalStatusParameter, sexParameter, currentAddressParameter, cityParameter, provinceParameter, postalCodeParameter, nameOfSpouseFirstNameParameter, nameOfSpouseMiddleNameParameter, nameOfSpouseLastNameParameter, spouseSINParameter, spouseDateOfBirthParameter, children1NameParameter, children1DateOfBirthParameter, children2NameParameter, children2DateOfBirthParameter, children3NameParameter, children3DateOfBirthParameter);
-=======
+        }
         public virtual int ChangePassword(Nullable<int> userId, string password, string confirmPassword)
         {
             var userIdParameter = userId.HasValue ?
@@ -391,7 +390,6 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("ConfirmPassword", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ChangePassword", userIdParameter, passwordParameter, confirmPasswordParameter);
->>>>>>> 7b6cbb219d19476c72bc2a082eff32a4d06a9e8a
         }
     }
 }
