@@ -15,9 +15,17 @@
 <section class="section section-lg bg-default">
     
     <div class="container">
-        <div class="col-md-12">
-            <label style="color:green;font-weight:bold;">@TempData["Success"]</label>
-        </div>
+       
+            @if (TempData["Success"] != null)
+            {
+                
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="color:white;background: #90EE90;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Success!</strong> @TempData["Success"]
+            </div>
+            }
         <form class="rd-form" action="\Client\FilePersonalTax" method="post" id="FilePersonalTax">
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
                 PERSONAL INFORMATION
@@ -59,7 +67,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker4" type="datetime" name="datepicker4">
+                    <input class="form-input form-control-has-validation" id="datepicker5" type="datetime" name="DateOfBirth">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
@@ -121,25 +129,25 @@
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-4 form-group">
                     <label class="" for="SpouseName" style="border:0px; padding-left:10px;color:black">NameOfSpouse(FirstName)</label>
-                    <input class="form-input form-control-has-validation" id="SpouseName" type="text" name="SpouseName">
+                    <input class="form-input form-control-has-validation" id="SpouseName" type="text" name="SpouseFirstName">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="MiddleName" style="border:0px;color:black;padding-left:10px">Middle Name</label>
-                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="MiddleName">
+                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="SpouseMiddleName">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="LastName" style="border:0px; color:black;padding-left:10px">Last Name</label>
-                    <input class="form-input form-control-has-validation" id="LastName" type="text" name="LastName">
+                    <input class="form-input form-control-has-validation" id="LastName" type="text" name="SpouseLastName">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="SIN" style="border:0px; color:black;padding-left:10px">SIN(if applicable)</label>
-                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SIN">
+                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SpouseSIN">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker3" type="datetime" name="datepicker3">
+                    <input class="form-input form-control-has-validation" id="datepicker4" type="datetime" name="SpouseDateOfBirth">
                 </div>
             </div>
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
@@ -148,32 +156,32 @@
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
-                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Name">
+                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Children1Name">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker2" type="datetime" name="datepicker2" autocomplete="off">
+                    <input class="form-input form-control-has-validation" id="datepicker3" type="datetime" name="Children1DateOfBirth" autocomplete="off">
                     @*<input class="form-input form-control-has-validation" id="DateOfBirth" type="text" name="DateOfBirth" data-constraints="Required">*@
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
-                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Name">
+                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Children2Name">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker" type="datetime" name="Name" autocomplete="off">
+                    <input class="form-input form-control-has-validation" id="datepicker2" type="datetime" name="Children2DateOfBirth" autocomplete="off">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
-                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Name">
+                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Children3Name">
                 </div>
                 <div class="col-md-6 form-group ">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker1" type="datetime" name="Name" autocomplete="off">
+                    <input class="form-input form-control-has-validation" id="datepicker1" type="datetime" name="Children3DateOfBirth" autocomplete="off">
 
                 </div>
             </div>

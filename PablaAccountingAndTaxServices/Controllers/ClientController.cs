@@ -287,26 +287,45 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
         {
             clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
-            SendFilePersonalTax(filePersonalTaxEntity.FirstName,filePersonalTaxEntity.LastName,filePersonalTaxEntity.Email,filePersonalTaxEntity.Phone);
+            SendFilePersonalTax(filePersonalTaxEntity.FirstName,filePersonalTaxEntity.LastName,filePersonalTaxEntity.Email,filePersonalTaxEntity.Phone,filePersonalTaxEntity.SIN,filePersonalTaxEntity.DateOfBirth,filePersonalTaxEntity.MaritalStatus,filePersonalTaxEntity.Sex,filePersonalTaxEntity.CurrentAddress,filePersonalTaxEntity.City,filePersonalTaxEntity.Province,filePersonalTaxEntity.PostalCode,filePersonalTaxEntity.SpouseFirstName,filePersonalTaxEntity.SpouseMiddleName,filePersonalTaxEntity.SpouseLastName,filePersonalTaxEntity.SpouseDateOfBirth,filePersonalTaxEntity.SpouseSIN,filePersonalTaxEntity.Children1Name,filePersonalTaxEntity.Children1DateOfBirth,filePersonalTaxEntity.Children2Name,filePersonalTaxEntity.Children2DateOfBirth,filePersonalTaxEntity.Children3Name,filePersonalTaxEntity.Children3DateOfBirth);
             TempData["Success"] = "Your Data is Submitted Successfully";
             return RedirectToAction("FilePersonalTax");
         }
-        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone)
+        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone,string SIN,string DateOfBirth, string MaritalStatus , string Sex ,string CurrentAddress,string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name,string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth)
         {
             try
             {
                 string htmlBody = "";
                 string headerText = "Hi,<b></b>";
                 string startTable = "<table>";
-                string emailText = "<tr><td><br/>Your Data is Submitted Successfully:-</br></br></td></tr>";
-                emailText += "<tr><td>FirstName:<b> " + FirstName + "</b></td></tr>";
-                emailText += "<tr><td>LastName:<b> " + LastName + "</b></td></tr>";
+                string emailText = "<tr><td><br/>Someone has filed a Tax Online. Here is the information below:-</br></br></td></tr>";
+                emailText += "<tr><td>First Name:<b> " + FirstName + "</b></td></tr>";
+                emailText += "<tr><td>Last Name:<b> " + LastName + "</b></td></tr>";
                 emailText += "<tr><td>Email:<b> " + Email + "</b></td></tr>";
+                emailText += "<tr><td>SIN:<b> " + SIN + "</b></td></tr>";
+                emailText += "<tr><td>Date Of Birth:<b> " + DateOfBirth + "</b></td></tr>";
+                emailText += "<tr><td>Marital Status:<b> " + MaritalStatus + "</b></td></tr>";
+                emailText += "<tr><td>Sex:<b> " + Sex + "</b></td></tr>";
+                emailText += "<tr><td>Current Address:<b> " + CurrentAddress + "</b></td></tr>";
+                emailText += "<tr><td>City:<b> " + City + "</b></td></tr>";
+                emailText += "<tr><td>Province:<b> " + Province + "</b></td></tr>";
+                emailText += "<tr><td>PostalCode:<b> " + PostalCode + "</b></td></tr>";
+                emailText += "<tr><td>Spouse First Name:<b> " + SpouseFirstName + "</b></td></tr>";
+                emailText += "<tr><td>Spouse Middle Name:<b> " + SpouseMiddleName + "</b></td></tr>";
+                emailText += "<tr><td>Spouse Last Name:<b> " + SpouseLastName + "</b></td></tr>";
+                emailText += "<tr><td>Spouse Date Of Birth:<b> " + SpouseDateOfBirth + "</b></td></tr>";
+                emailText += "<tr><td>Spouse SIN:<b> " + SpouseSIN + "</b></td></tr>";
+                emailText += "<tr><td>Children1 Name:<b> " + Children1Name + "</b></td></tr>";
+                emailText += "<tr><td>Children1 DateOfBirth:<b> " + Children1DateOfBirth + "</b></td></tr>";
+                emailText += "<tr><td>Children2 Name:<b> " + Children2Name + "</b></td></tr>";
+                emailText += "<tr><td>Children2 DateOfBirth:<b> " + Children2DateOfBirth + "</b></td></tr>";
+                emailText += "<tr><td>Children3 Name:<b> " + Children3Name + "</b></td></tr>";
+                emailText += "<tr><td>Children3 DateOfBirth:<b> " + Children3DateOfBirth + "</b></td></tr>";
                 emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
                 MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add("rs3551370@gmail.com");
+                mailMessage.To.Add(Email);
                 mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
                 mailMessage.Subject = "File Personal Tax";
                 mailMessage.IsBodyHtml = true;
