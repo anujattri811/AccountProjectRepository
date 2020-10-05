@@ -12,20 +12,30 @@
         </ul>
     </div>
 </section>
-<section class="section section-lg bg-default">
+<section class="section section-lg bg-default" style="padding:50px;">
     
     <div class="container">
        
-            @if (TempData["Success"] != null)
-            {
-                
+        @if (TempData["Success"] != null)
+        {
+
             <div class="alert alert-warning alert-dismissible fade show" role="alert" style="color:white;background: #90EE90;">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <strong>Success!</strong> @TempData["Success"]
             </div>
-            }
+        }
+        @if (TempData["Error"] != null)
+        {
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color:white;background: #90EE90;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error!</strong> @TempData["Error"]
+            </div>
+        }
         <form class="rd-form" action="\Client\FilePersonalTax" method="post" id="FilePersonalTax">
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
                 PERSONAL INFORMATION

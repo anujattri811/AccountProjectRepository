@@ -17,6 +17,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         EncryDecry encryDecry = new EncryDecry();
         ClientBLL clientBLL = new ClientBLL();
         PablaAccountsEntities pablaAccountsEntities = new PablaAccountsEntities();
+        CustomMethod customMethod = new CustomMethod();
 
         #region client_login
         [HttpGet]
@@ -70,12 +71,12 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpPost]
         public ActionResult client_forgotpassword(string Email = "")
         {
-            var result= loginBLL.ForgetPassword(Email,0);
-           var Password = encryDecry.DecryptPassword(result.Password);
-            SendForgetPasswordEmail(Convert.ToInt32(result.UserId),Email,result.FirstName, result.LastName, Password);
+            var result = loginBLL.ForgetPassword(Email, 0);
+            var Password = encryDecry.DecryptPassword(result.Password);
+            SendForgetPasswordEmail(Convert.ToInt32(result.UserId), Email, result.FirstName, result.LastName, Password);
             return View();
         }
-        public bool SendForgetPasswordEmail(int UserId,string Email,string FirstName, string LastName, string Password)
+        public bool SendForgetPasswordEmail(int UserId, string Email, string FirstName, string LastName, string Password)
         {
             try
             {
@@ -93,16 +94,16 @@ namespace PablaAccountingAndTaxServices.Controllers
                 htmlBody = headerText + startTable + emailText + endTable;
                 MailMessage mailMessage = new MailMessage();
                 mailMessage.To.Add(Email);
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+                mailMessage.From = new MailAddress("grootmanagement@globalroot.net");
                 mailMessage.Subject = "Credential Information";
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
+                SmtpClient smtpClient = new SmtpClient("smtpout.secureserver.net");
+                smtpClient.Port = 25;
                 smtpClient.Credentials = new System.Net.NetworkCredential()
                 {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
+                    UserName = "grootmanagement@globalroot.net",
+                    Password = "gr00tw@gl03@l99"
                 };
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mailMessage);
@@ -130,7 +131,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             IEnumerable<SelectListItem> selectPersonList = from Person in PersonList
                                                            select new SelectListItem
                                                            {
-                                                               
+
                                                                Text = Convert.ToString(Person),
                                                                Value = Convert.ToString(Person)
                                                            };
@@ -138,7 +139,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             var resultList = clientBLL.GetRequest(ClientId);
             foreach (var item in resultList)
             {
-                item.CreatedOn= Convert.ToDateTime(item.CreatedOn).AddMinutes(-570);
+                item.CreatedOn = Convert.ToDateTime(item.CreatedOn).AddMinutes(-570);
                 item.CreatedOn = Convert.ToDateTime(item.CreatedOn).AddDays(7);
             }
             var date = DateTime.Now;
@@ -149,17 +150,17 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View(model);
         }
         [HttpPost]
-        public  ActionResult RequestDocumentByClient(int UserId = 0,string DocumentType="", string Year="", string PersonName="", string Description="",string OtherDocuments= "",string OtherPersonName="")
+        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "")
         {
-            if(PersonName == "Other")
+            if (PersonName == "Other")
             {
                 PersonName = OtherPersonName;
             }
-            clientBLL.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description, OtherDocuments);
-            return RedirectToAction("client_dashboard","Client");
+            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments);
+            return RedirectToAction("client_dashboard", "Client");
         }
 
-       
+
         #endregion
         [HttpGet]
         public ActionResult ContactUs()
@@ -167,8 +168,9 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ContactUs(string Name = "", string Email = "", string Phone = "", string Subject = "", string Message = "")
+        public ActionResult ContactUs(string Name = "", string Email = "", string Phone = "", string Subject = "",string Message="")
         {
+
             SendContactUsEmail(Name, Email, Phone, Subject, Message);
             return View();
         }
@@ -188,7 +190,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
                 MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add("Sahilattri740@gmail.com");
+                mailMessage.To.Add("rs3551370@gmail.com");
                 mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
                 mailMessage.Subject = "Contact Us";
                 mailMessage.IsBodyHtml = true;
@@ -200,64 +202,66 @@ namespace PablaAccountingAndTaxServices.Controllers
                     UserName = "Websiteindia2020@gmail.com",
                     Password = "Sandeepanuj2020"
                 };
-                smtpClient.EnableSsl = true;
+                smtpClient.EnableSsl = false;
                 smtpClient.Send(mailMessage);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
         }
-        [HttpGet]
-        public ActionResult RequestPhoneCall()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult RequestPhoneCall(string FirstName = "", string LastName = "", string Email = "", string Phone = "", string ServiceType = "", string Comment = "")
-        {
-            SendRequestForPhoneCall(FirstName, LastName, Email, Phone, ServiceType, Comment);
-            return View();
-        }
-        public bool SendRequestForPhoneCall(string FirstName, string LastName, string Email, string Phone, string ServiceType, string Comment)
-        {
-            try
-            {
-                string htmlBody = "";
-                string headerText = "Hi,<b></b>";
-                string startTable = "<table>";
-                string emailText = "<tr><td><br/>Someone has Requested a Phone Call With The Detail:-</br></br></td></tr>";
-                emailText += "<tr><td>FirstName:<b> " + FirstName + "</b></td></tr>";
-                emailText += "<tr><td>LastName:<b> " + LastName + "</b></td></tr>";
-                emailText += "<tr><td>Email:<b> " + Email + "</b></td></tr>";
-                emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
-                emailText += "<tr><td>ServiceType:<b> " + ServiceType + "</b></td></tr>";
-                emailText += "<tr><td>Comment:<b> " + Comment + "</b></td></tr>";
-                string endTable = "<br/></table> </br> </br> Thanks";
-                htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add("Sahilattri740@gmail.com");
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
-                mailMessage.Subject = "Requested For a Phone Call";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
-                };
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+   
+        //public ActionResult RequestPhoneCall()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult RequestPhoneCall(string FirstName = "", string LastName = "", string Email = "", string Phone = "", string ServiceType = "", string Comment = "")
+        //{
+        //    string htmlBody = "";
+        //    string headerText = "Hi,<b></b>";
+        //    string startTable = "<table>";
+        //    string emailText = "<tr><td><br/>Someone has Requested a Phone Call With The Detail:-</br></br></td></tr>";
+        //    emailText += "<tr><td>FirstName:<b> " + FirstName + "</b></td></tr>";
+        //    emailText += "<tr><td>LastName:<b> " + LastName + "</b></td></tr>";
+        //    emailText += "<tr><td>Email:<b> " + Email + "</b></td></tr>";
+        //    emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
+        //    emailText += "<tr><td>ServiceType:<b> " + ServiceType + "</b></td></tr>";
+        //    emailText += "<tr><td>Comment:<b> " + Comment + "</b></td></tr>";
+        //    string endTable = "<br/></table> </br> </br> Thanks";
+        //    htmlBody = headerText + startTable + emailText + endTable;
+        //    //SendRequestForPhoneCall(FirstName, LastName, Email, Phone, ServiceType, Comment);
+        //    bool status = customMethod.SendEmail("Sahilattri740@gmail.com", "Contact Us", htmlBody, "");
+        //    return View();
+        //}
+        //public bool SendRequestForPhoneCall(string FirstName, string LastName, string Email, string Phone, string ServiceType, string Comment)
+        //{
+        //    try
+        //    {
+                
+        //        MailMessage mailMessage = new MailMessage();
+        //        mailMessage.To.Add("Sahilattri740@gmail.com");
+        //        mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+        //        mailMessage.Subject = "Requested For a Phone Call";
+        //        mailMessage.IsBodyHtml = true;
+        //        mailMessage.Body = htmlBody;
+        //        SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+        //        smtpClient.Port = 587;
+        //        smtpClient.Credentials = new System.Net.NetworkCredential()
+        //        {
+        //            UserName = "Websiteindia2020@gmail.com",
+        //            Password = "Sandeepanuj2020"
+        //        };
+        //        smtpClient.EnableSsl = true;
+        //        smtpClient.Send(mailMessage);
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
         [HttpGet]
         public ActionResult AboutUs()
@@ -287,11 +291,19 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
         {
             clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
-            SendFilePersonalTax(filePersonalTaxEntity.FirstName,filePersonalTaxEntity.LastName,filePersonalTaxEntity.Email,filePersonalTaxEntity.Phone,filePersonalTaxEntity.SIN,filePersonalTaxEntity.DateOfBirth,filePersonalTaxEntity.MaritalStatus,filePersonalTaxEntity.Sex,filePersonalTaxEntity.CurrentAddress,filePersonalTaxEntity.City,filePersonalTaxEntity.Province,filePersonalTaxEntity.PostalCode,filePersonalTaxEntity.SpouseFirstName,filePersonalTaxEntity.SpouseMiddleName,filePersonalTaxEntity.SpouseLastName,filePersonalTaxEntity.SpouseDateOfBirth,filePersonalTaxEntity.SpouseSIN,filePersonalTaxEntity.Children1Name,filePersonalTaxEntity.Children1DateOfBirth,filePersonalTaxEntity.Children2Name,filePersonalTaxEntity.Children2DateOfBirth,filePersonalTaxEntity.Children3Name,filePersonalTaxEntity.Children3DateOfBirth);
-            TempData["Success"] = "Your Data is Submitted Successfully";
+            bool status = SendFilePersonalTax(filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth);
+            if (status == true)
+            {
+                TempData["Success"] = "Your Data is Submitted Successfully. We will get back to you soon.";
+            }
+            else
+            {
+                TempData["Error"] = "Something went wrong while submitting. Please try after some time.";
+            }
+            
             return RedirectToAction("FilePersonalTax");
         }
-        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone,string SIN,string DateOfBirth, string MaritalStatus , string Sex ,string CurrentAddress,string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name,string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth)
+        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone, string SIN, string DateOfBirth, string MaritalStatus, string Sex, string CurrentAddress, string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name, string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth)
         {
             try
             {
@@ -326,22 +338,22 @@ namespace PablaAccountingAndTaxServices.Controllers
                 htmlBody = headerText + startTable + emailText + endTable;
                 MailMessage mailMessage = new MailMessage();
                 mailMessage.To.Add(Email);
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+                mailMessage.From = new MailAddress("grootmanagement@globalroot.net");
                 mailMessage.Subject = "File Personal Tax";
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
+                SmtpClient smtpClient = new SmtpClient("relay-hosting.secureserver.net");
+                smtpClient.Port = 25;
                 smtpClient.Credentials = new System.Net.NetworkCredential()
                 {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
+                    UserName = "grootmanagement@globalroot.net",
+                    Password = "gr00tw@gl03@l99"
                 };
-                smtpClient.EnableSsl = true;
+                smtpClient.EnableSsl = false;
                 smtpClient.Send(mailMessage);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
@@ -363,12 +375,12 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpGet]
         public ActionResult client_changepassword(int UserId = 0)
         {
-            ViewBag.UserId =UserId;
+            ViewBag.UserId = UserId;
             return View();
         }
 
         [HttpPost]
-        public ActionResult client_changepassword(int UserId=0, string Password= "", string ConfirmPassword= "")
+        public ActionResult client_changepassword(int UserId = 0, string Password = "", string ConfirmPassword = "")
         {
             var EncryPassword = encryDecry.EncryptPassword(Password);
             var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);

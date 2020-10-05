@@ -403,6 +403,8 @@
     <Content Include="ClientContent\images\logo-inverse-240x44.png" />
     <Content Include="ClientContent\images\our-story-1-572x335.jpg" />
     <Content Include="ClientContent\images\onlinepngtools.png" />
+    <Content Include="ClientContent\images\Partner Group of companies.jpg" />
+    <Content Include="ClientContent\images\Partner Immi.jpg" />
     <Content Include="ClientContent\images\Resizeimage2.png" />
     <Content Include="ClientContent\images\Resizeimage3.png" />
     <Content Include="ClientContent\images\Website-Logo-Transparent.png" />
