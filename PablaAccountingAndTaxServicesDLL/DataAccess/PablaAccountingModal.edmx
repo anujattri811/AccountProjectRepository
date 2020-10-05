@@ -48,7 +48,6 @@
           <Property Name="IsPassword" Type="bit" />
           <Property Name="CorporateAccessNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="100" />
-<<<<<<< HEAD
         </EntityType>
         <EntityType Name="tbl_FilePersonalTax">
           <Key>
@@ -82,8 +81,6 @@
           <Property Name="Children3DateOfBirth" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
-=======
->>>>>>> 7b6cbb219d19476c72bc2a082eff32a4d06a9e8a
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -279,7 +276,6 @@
           <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
           <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
-<<<<<<< HEAD
           <EntitySet Name="tbl_FilePersonalTax" EntityType="PablaAccountsModel.tbl_FilePersonalTax" />
           <FunctionImport Name="usp_insertFilePersonalTax">
             <Parameter Name="IsExisting" Mode="In" Type="Boolean" />
@@ -307,12 +303,11 @@
             <Parameter Name="Children2DateOfBirth" Mode="In" Type="String" />
             <Parameter Name="Children3Name" Mode="In" Type="String" />
             <Parameter Name="Children3DateOfBirth" Mode="In" Type="String" />
-=======
+          </FunctionImport>
           <FunctionImport Name="ChangePassword">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="ConfirmPassword" Mode="In" Type="String" />
->>>>>>> 7b6cbb219d19476c72bc2a082eff32a4d06a9e8a
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblClientDocument">
@@ -488,7 +483,6 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_insertRequestdocument" FunctionName="PablaAccountsModel.Store.usp_insertRequestdocument" />
           <FunctionImportMapping FunctionImportName="Selectpersonname" FunctionName="PablaAccountsModel.Store.Selectpersonname" />
-<<<<<<< HEAD
           <EntitySetMapping Name="tbl_FilePersonalTax">
             <EntityTypeMapping TypeName="PablaAccountsModel.tbl_FilePersonalTax">
               <MappingFragment StoreEntitySet="tbl_FilePersonalTax">
@@ -524,9 +518,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_insertFilePersonalTax" FunctionName="PablaAccountsModel.Store.usp_insertFilePersonalTax" />
-=======
           <FunctionImportMapping FunctionImportName="ChangePassword" FunctionName="PablaAccountsModel.Store.ChangePassword" />
->>>>>>> 7b6cbb219d19476c72bc2a082eff32a4d06a9e8a
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
