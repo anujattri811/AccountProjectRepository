@@ -150,17 +150,17 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "")
+        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime="", string Months="")
         {
             if (PersonName == "Other")
             {
                 PersonName = OtherPersonName;
             }
-            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments);
-            SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments);
+            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months,PeriodTime);
+            SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months);
             return RedirectToAction("client_dashboard", "Client");
         }
-        public bool SendRequestDocumentEmail( string DocumentType, string Year, string PersonName, string Description,string OtherDocuments)
+        public bool SendRequestDocumentEmail( string DocumentType, string Year, string PersonName, string Description,string OtherDocuments, string PeriodTime, string Months)
         {
             try
             {

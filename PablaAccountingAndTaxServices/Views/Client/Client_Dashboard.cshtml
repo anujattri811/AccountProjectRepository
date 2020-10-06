@@ -10,7 +10,6 @@
     .table-custom th {
         padding: 5px 40px 4px !important;
     }
-    
 </style>
 <section class="breadcrumbs-custom bg-image novi-background bg-primary">
     <div class="container">
@@ -285,10 +284,27 @@
                                                     <label class="form-label rd-input-label" for="OtherDocuments">Other Document</label>
                                                 </div>
                                                 <div class="form-wrap form-group" id="Show-years" style="display:none;">
-                                                    <select class="form-input form-control-has-validation" name="Show-years">
-                                                        <option selected="" disabled="">Select Year</option>
+                                                    <select class="form-input form-control-has-validation" id="PeriodTime" name="PeriodTime" onchange="Test()">
+                                                        <option selected="" disabled="">Period Time</option>
                                                         <option>Monthly</option>
                                                         <option>Annualy</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-wrap form-group" id="Show-months" style="display:none;">
+                                                    <select class="form-input form-control-has-validation" name="Months">
+                                                        <option selected="" disabled="">Select Month</option>
+                                                        <option>January</option>
+                                                        <option>Febuary</option>
+                                                        <option>March</option>
+                                                        <option>April</option>
+                                                        <option>May</option>
+                                                        <option>June</option>
+                                                        <option>July</option>
+                                                        <option>August</option>
+                                                        <option>September</option>
+                                                        <option>October</option>
+                                                        <option>November</option>
+                                                        <option>December</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-wrap form-group">
@@ -337,7 +353,7 @@
                             </div>
                             <div class="tab-pane fade" id="tabs-1-3">
                                 <div class="table-custom-wrap table-custom-striped big">
-                                    <div class="table-custom-responsive number-counter-2">
+                                    <div class="table-custom-responsive number-counter-2" style="overflow-x:scroll">
                                         <table id="Requestedexample1" class="table-custom">
                                             <thead>
                                                 <tr>
@@ -348,65 +364,68 @@
                                                     <th>Year</th>
                                                     <th>Person</th>
                                                     <th>Description</th>
+                                                    <th>PeriodEnding</th>
+                                                    <th>Monthly</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach (var item in ViewBag.Request)
                                                 {
 
-                                                    <tr>
+                                                <tr>
 
-                                                        @if (ViewBag.CurrentDays <= item.CreatedOn)
-                                                        {
-                                                            <td>
-                                                                <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
-                                                                    <i class="fas fa-trash">
-                                                                    </i>
-                                                                </a>
-                                                            </td>
+                                                    @if (ViewBag.CurrentDays <= item.CreatedOn)
+                                                    {
+                                                        <td>
+                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
+                                                                <i class="fas fa-trash">
+                                                                </i>
+                                                            </a>
+                                                        </td>
 
-                                                        }
-                                                        else
-                                                        {
-                                                            <td>-NA-</td>
-                                                        }
-                                                        @if (item.IsApprooved == true)
-                                                        {
-                                                            <td>
-                                                                <div class="button button-xs button-primary" style="background:green;font-weight:bold;color:black;pointer-events:none;">Approved</div>
-                                                            </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>-NA-</td>
+                                                    }
+                                                    @if (item.IsApprooved == true)
+                                                    {
+                                                        <td>
+                                                            <div class="button button-xs button-primary" style="background:green;font-weight:bold;color:black;pointer-events:none;">Approved</div>
+                                                        </td>
 
-                                                            @*<td style="background:green;font-weight:bold;color:black;">Approved</td>*@
-                                                        }
-                                                        else if (item.IsDeclined == true)
-                                                        {
-                                                            <td>
-                                                                <div class="button button-xs button-primary" style="background:red;font-weight:bold;color:black;pointer-events:none;">Declined</div>
-                                                            </td>
-                                                            @*<td style="background:red;font-weight:bold;color:black;">Declined</td>*@
-                                                        }
-                                                        else
-                                                        {
-                                                            <td>
-                                                                <div class="button button-xs button-primary" style="background:yellow;font-weight:bold;color:black;pointer-events:none;">Pending</div>
-                                                            </td>
-                                                            @*<td style="background:yellow;font-weight:bold;color:black;">Pending</td>*@
-                                                        }
-                                                        <td>@item.DocumentType</td>
-                                                        <td>@item.Other</td>
-                                                        <td>@item.Year</td>
-                                                        <td>@item.PersonName</td>
-                                                        @if (item.Description.Length < 10)
-                                                        {
-                                                            <td title="@item.Description">@item.Description</td>
-                                                        }
-                                                        else
-                                                        {
-                                                            <td title="@item.Description">@item.Description.Substring(0, 10)...</td>
-                                                        }
+                                                        @*<td style="background:green;font-weight:bold;color:black;">Approved</td>*@
+                                                    }
+                                                    else if (item.IsDeclined == true)
+                                                    {
+                                                        <td>
+                                                            <div class="button button-xs button-primary" style="background:red;font-weight:bold;color:black;pointer-events:none;">Declined</div>
+                                                        </td>
+                                                        @*<td style="background:red;font-weight:bold;color:black;">Declined</td>*@
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <div class="button button-xs button-primary" style="background:yellow;font-weight:bold;color:black;pointer-events:none;">Pending</div>
+                                                        </td>
+                                                        @*<td style="background:yellow;font-weight:bold;color:black;">Pending</td>*@
+                                                    }
+                                                    <td>@item.DocumentType</td>
+                                                    <td>@item.Other</td>
+                                                    <td>@item.Year</td>
+                                                    <td>@item.PersonName</td>
+                                                    @if (item.Description.Length < 10)
+                                                    {
+                                                        <td title="@item.Description">@item.Description</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td title="@item.Description">@item.Description.Substring(0, 10)...</td>
+                                                    }
+                                                    <td>@item.Periodending</td>
+                                                    <td>@item.Monthly</td>
 
-
-                                                    </tr>
+                                                </tr>
 
 
                                                 }
@@ -538,9 +557,27 @@
     function ShowOther() {
         if ($("#DocumentType").val() == "Other") {
             $("#Show-OtherDocuments").fadeIn();
+            $("#Show-years").fadeOut();
+
         }
         else {
-            $("#Show-OtherDocuments").fadeOut();
+            if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A" || $("#DocumentType").val() == "GST") {
+                $("#Show-years").fadeIn();
+                $("#Show-OtherDocuments").fadeOut();
+            }
+            else {
+                $("#Show-OtherDocuments").fadeOut();
+                $("#Show-years").fadeOut();
+            }
+
+        }
+    }
+    function Test() {
+        if ($("#PeriodTime").val() == "Monthly") {
+            $("#Show-months").fadeIn();
+        }
+        else {
+            $("#Show-months").fadeOut();
         }
     }
 
@@ -552,7 +589,7 @@
             $("#Show-OtherPersonName").fadeOut();
         }
     }
-
+    
     function Delete(UserId) {
         Swal.fire({
             title: 'Are you sure?',
