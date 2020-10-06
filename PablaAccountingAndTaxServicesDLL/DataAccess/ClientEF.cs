@@ -90,7 +90,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             pablaAccountsEntities.usp_insertFilePersonalTax(filePersonalTaxEntity.IsExiting, filePersonalTaxEntity.FirstName, filePersonalTaxEntity.MiddleName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.Phone, filePersonalTaxEntity.Email, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex,
                filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName,
-                filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth);
+                filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth,filePersonalTaxEntity.Entrydatetime,filePersonalTaxEntity.Entrydatetime1);
         }
         public void UpdateClientPassword(int UserId, string Password, string ConfirmPassword)
         {

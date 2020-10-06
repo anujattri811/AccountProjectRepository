@@ -81,6 +81,8 @@
           <Property Name="Children3DateOfBirth" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Entrydatetime" Type="nvarchar" MaxLength="50" />
+          <Property Name="Entrydatetime1" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_RequestedDocument">
           <Key>
@@ -188,6 +190,8 @@
           <Parameter Name="Children2DateOfBirth" Type="nvarchar" Mode="In" />
           <Parameter Name="Children3Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Children3DateOfBirth" Type="nvarchar" Mode="In" />
+          <Parameter Name="Entrydatetime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Entrydatetime1" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="usp_insertRequestdocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablaaccounts">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
@@ -303,6 +307,8 @@
             <Parameter Name="Children2DateOfBirth" Mode="In" Type="String" />
             <Parameter Name="Children3Name" Mode="In" Type="String" />
             <Parameter Name="Children3DateOfBirth" Mode="In" Type="String" />
+            <Parameter Name="Entrydatetime" Mode="In" Type="String" />
+            <Parameter Name="Entrydatetime1" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ChangePassword">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
@@ -404,6 +410,8 @@
           <Property Name="Children3DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Entrydatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Entrydatetime1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -486,6 +494,8 @@
           <EntitySetMapping Name="tbl_FilePersonalTax">
             <EntityTypeMapping TypeName="PablaAccountsModel.tbl_FilePersonalTax">
               <MappingFragment StoreEntitySet="tbl_FilePersonalTax">
+                <ScalarProperty Name="Entrydatetime1" ColumnName="Entrydatetime1" />
+                <ScalarProperty Name="Entrydatetime" ColumnName="Entrydatetime" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Children3DateOfBirth" ColumnName="Children3DateOfBirth" />

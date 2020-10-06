@@ -12,39 +12,49 @@
         </ul>
     </div>
 </section>
-<section class="section section-lg bg-default">
-    
+<section class="section section-lg bg-default" style="padding:50px;">
+
     <div class="container">
-       
-            @if (TempData["Success"] != null)
-            {
-                
+
+        @if (TempData["Success"] != null)
+        {
+
             <div class="alert alert-warning alert-dismissible fade show" role="alert" style="color:white;background: #90EE90;">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <strong>Success!</strong> @TempData["Success"]
             </div>
-            }
+        }
+        @if (TempData["Error"] != null)
+        {
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color:white;background: #90EE90;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error!</strong> @TempData["Error"]
+            </div>
+        }
         <form class="rd-form" action="\Client\FilePersonalTax" method="post" id="FilePersonalTax">
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
                 PERSONAL INFORMATION
             </div>
-            <div class="col-md-12 row" style="margin-top:10px">
-                <div class="col-md-2 form-group">
+            <div class="col-md-12 row form-group" style="margin-top:10px">
+                <div class="col-md-2 ">
                     <label class="form-control" for="NewClient" style="border:0px;">New Client</label>
                 </div>
-                <div class="col-md-4 form-group">
+                <div class="col-md-4 ">
                     <input class="" id="NewClient" type="checkbox" name="NewClient">
                 </div>
-                <div class="col-md-2 form-group">
+                <div class="col-md-2 ">
                     <label class="form-control" for="ReturningClient" style="border:0px;">Returning Client</label>
                 </div>
-                <div class="col-md-4 form-group">
+                <div class="col-md-4 ">
                     <input class="" id="ReturningClient" type="checkbox" name="ReturningClient">
                 </div>
             </div>
-            <div class="col-md-12 row" style="margin-top:10px">
+            <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-4 form-group">
                     <label class="" for="FirstName" style="border:0px; padding-left:10px;color:black">First Name</label>
                     <input class="form-input form-control-has-validation" id="FirstName" type="text" name="FirstName">
@@ -60,17 +70,17 @@
                     <input class="form-input form-control-has-validation" id="LastName" type="text" name="LastName">
                 </div>
             </div>
-            <div class="col-md-12 row" style="margin-top:10px">
+            <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="SIN" style="border:0px; color:black;padding-left:10px">SIN</label>
                     <input class="form-input form-control-has-validation" id="SIN" type="text" name="SIN">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker5" type="datetime" name="DateOfBirth">
+                    <input class="form-input form-control-has-validation" id="datepicker" type="datetime" name="DateOfBirth">
                 </div>
             </div>
-            <div class="col-md-12 row" style="margin-top:10px">
+            <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Phone" style="border:0px; color:black;padding-left:10px">Phone</label>
                     <input class="form-input form-control-has-validation" id="Phone" type="number" name="Phone">
@@ -80,19 +90,22 @@
                     <input class="form-input form-control-has-validation" id="Email" type="email" name="Email">
                 </div>
             </div>
-            <div class="col-md-12 row" style="margin-top:10px">
+            <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-6">
-                    <label for="MaritalStatus" style="border:0px; color:black;padding-left:10px"> Marrital Status:</label>
+                    <label for="MaritalStatus" style="border:0px; color:black;padding-left:10px"> Marital Status:</label>
                     <div class="form-wrap form-group">
                         <select class="form-input form-control-has-validation" name="MaritalStatus" id="MaritalStatus" style="border: 1px solid grey;">
                             <option selected="" disabled="">Select</option>
                             <option>Single</option>
                             <option>Married</option>
                             <option>Divorced</option>
+                            <option>Separated</option>
+                            <option>Widow</option>
+                            <option>Spouse</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 form-group">
                     <label for="Sex" style="border:0px; color:black;padding-left:10px"> Sex:</label>
                     <div class="form-wrap form-group">
                         <select class="form-input form-control-has-validation" name="Sex" id="Sex" style="border: 1px solid grey;">
@@ -123,6 +136,12 @@
                     <input class="form-input form-control-has-validation" id="PostalCode" type="number" name="PostalCode">
                 </div>
             </div>
+            <div class="col-md-12 row" style="margin-top:10px;">
+                <div class="col-md-6 form-group">
+                    <label for="Entrydatetime" style="border:0px; color:black;padding-left:10px">Date Of Entry in Canada(if filing first time)</label>
+                    <input class="form-input form-control-has-validation" id="Entrydatetime" type="datetime" name="Entrydatetime">
+                </div>
+            </div>
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
                 Family INFORMATION
             </div>
@@ -150,12 +169,18 @@
                     <input class="form-input form-control-has-validation" id="datepicker4" type="datetime" name="SpouseDateOfBirth">
                 </div>
             </div>
+            <div class="col-md-12 row" style="margin-top:10px;">
+                <div class="col-md-6 form-group">
+                    <label for="Entrydatetime1" style="border:0px; color:black;padding-left:10px">Date Of Entry in Canada(if filing tax first time in CANADA)</label>
+                    <input class="form-input form-control-has-validation" id="Entrydatetime1" type="datetime" name="Entrydatetime1">
+                </div>
+            </div>
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
                 Children INFORMATION(if the kids are in Canada)
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
-                    <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
+                    <label for="Name" style="border:0px; color:black;padding-left:10px">First Child Name</label>
                     <input class="form-input form-control-has-validation" id="Name" type="text" name="Children1Name">
                 </div>
                 <div class="col-md-6 form-group">
@@ -166,7 +191,7 @@
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
-                    <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
+                    <label for="Name" style="border:0px; color:black;padding-left:10px">Second Child Name</label>
                     <input class="form-input form-control-has-validation" id="Name" type="text" name="Children2Name">
                 </div>
                 <div class="col-md-6 form-group">
@@ -176,7 +201,7 @@
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
-                    <label for="Name" style="border:0px; color:black;padding-left:10px">Name</label>
+                    <label for="Name" style="border:0px; color:black;padding-left:10px">Third Child Name</label>
                     <input class="form-input form-control-has-validation" id="Name" type="text" name="Children3Name">
                 </div>
                 <div class="col-md-6 form-group ">
@@ -199,19 +224,50 @@
 
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-      rel="stylesheet">
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link href="~/ClientContent/js/datepicker.css" rel="stylesheet" />
+
 <script type="text/javascript">
     $(document).ready(function () {
         bsCustomFileInput.init();
     });
-    $('#datepicker').datepicker();
-    $('#datepicker1').datepicker();
-    $('#datepicker2').datepicker();
-    $('#datepicker3').datepicker();
-    $('#datepicker4').datepicker();
+    $(function () {
+        $('#datepicker').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
+        });
+        $('#datepicker1').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
+        });
+        $('#datepicker2').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
+        });
+        $('#datepicker3').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
+        });
+        $('#datepicker4').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
+        });
+        $('#Entrydatetime1').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
+        });
+        $('#Entrydatetime').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
+        });
+    });
+
+
+    //$(function () { $('#datepicker').datepicker({ autoHide: true, zIndex: 2048, }); });
+    //$('#datepicker').datepicker();
+    //$('#datepicker1').datepicker();
+    //$('#datepicker2').datepicker();
+    //$('#datepicker3').datepicker();
+    //$('#datepicker4').datepicker();
 </script>
 
 <script>
@@ -241,6 +297,91 @@
         return false;
 
     }
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    $('#FilePersonalTax').validate({
+        rules: {
+            FirstName: {
+                required: true,
+
+            },
+            MiddleName: {
+                required: true,
+
+
+            },
+            LastName: {
+                required: true,
+
+
+            },
+            SIN: {
+                required: true,
+
+
+            },
+            Phone: {
+                required: true,
+                minlength: 10,
+
+            },
+            Email: {
+                required: true,
+                email: true,
+
+            },
+
+
+
+        },
+        messages: {
+            FirstName: {
+                required: "Please enter a First Name. ",
+
+            },
+            MiddleName: {
+                required: "Please enter a Middle Name. ",
+
+            },
+            LastName: {
+                required: "Please enter a Last Name. ",
+
+            },
+            SIN: {
+                required: "Please enter a SIN. ",
+
+            },
+            Phone: {
+                required: "Please enter a Mobile Number.",
+                minlength: "Your Mobile Number must be at least 10 characters long."
+
+            },
+            Email: {
+                required: "Please enter a Email.",
+                email: "Please enter a vaild email address.",
+            },
+
+
+
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
 </script>
 
 
