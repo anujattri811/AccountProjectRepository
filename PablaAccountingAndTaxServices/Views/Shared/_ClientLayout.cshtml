@@ -55,7 +55,7 @@
                     <div class="rd-navbar-aside-outer rd-navbar-collapse toggle-original-elements">
                         <div class="rd-navbar-aside">
                             <div class="rd-navbar-info">
-                                <div class="icon novi-icon mdi mdi-phone"></div><a href="tel:#">+1 (587) 568 0175</a>
+                                <div class="icon novi-icon mdi mdi-phone"></div><a href="tel:+1 780-466-4243">+1 780-466-4243</a>
                             </div>
                             <ul class="list-lined">
                                 @*@if (Session["UserId"] != null)
@@ -88,7 +88,7 @@
                                     <div class="rd-navbar-brand">
                                         <!--Brand--><a class="brand" href="@Url.Action("Index","Client")">
                                             <img class="brand-logo-dark" src="../ClientContent/images/Resizeimage3.png" alt="" width="120" height="22">
-                                            <img class="brand-logo-light" src="../ClientContent/images/Resizeimage2.png" alt="" width="120" height="22">
+                                            <img class="brand-logo-light" src="../ClientContent/images/newlogo2.png" alt="" width="120" height="22">
                                         </a>
                                     </div>
                                 </div>
@@ -236,7 +236,15 @@
                                         <div class="unit-left">
                                             <div class="icon icon-sm icon-primary novi-icon mdi mdi-map-marker"></div>
                                         </div>
-                                        <div class="unit-body"><a href="#">#203<br /> 9613 41 AVE NW<br>Edmonton, Alberta<br /> T6E 5X7</a></div>
+                                        <div class="unit-body"><a href="#">#203-9613 41 AVE NW<br>Edmonton, Alberta<br /> T6E 5X7</a></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="unit unit-spacing-xs">
+                                        <div class="unit-left">
+                                            <div class="fa fa-1x-before fa-fax icons-blue" style="color: #516ca9;"></div>
+                                        </div>
+                                        <div class="unit-body"><a href="tel:+1 780-466-7898">+1 780-466-7898</a></div>
                                     </div>
                                 </li>
                                 <li>
@@ -267,33 +275,28 @@
                             <div class="row row-5 justify-content-between">
                                 <div class="col-sm-6">
                                     <ul class="footer-list big">
-                                        <li><a href="#">IRS Publications</a></li>
-                                        <li><a href="#">Record Retention Guide</a></li>
-                                        <li><a href="#">Tax Due Dates</a></li>
-                                        <li><a href="#">Tax Forms</a></li>
-                                        <li><a href="#">Tax Rates</a></li>
-                                        <li><a href="#">Where is my refund?</a></li>
-                                        <li><a href="#">Retirement</a></li>
+                                        <li><a href="https://www.canada.ca/en/revenue-agency.html" target="_blank">Canada Revenue Agency</a></li>
+                                        <li><a href="https://www.canada.ca/en/services/taxes/income-tax.html" target="_blank">INCOME TAX</a></li>
+                                        <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses.html" target="_blank">GST/HST</a></li>
+                                        <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll.html" target="_blank">Payroll</a></li>
+
                                     </ul>
                                 </div>
                                 <div class="col-sm-4 col-lg-6 col-xxl-5">
                                     <ul class="footer-list big">
-                                        <li><a href="#">Retirement</a></li>
-                                        <li><a href="#">Investment</a></li>
-                                        <li><a href="#">Real Estate</a></li>
-                                        <li><a href="#">Insurance</a></li>
-                                        <li><a href="#">Tax</a></li>
-                                        <li><a href="#">Money</a></li>
-                                        <li><a href="#">All Articles</a></li>
+                                        <li><a href="https://www.canada.ca/en/employment-social-development/corporate/portfolio/service-canada.html" target="_blank">Service Canada</a></li>
+                                        <li><a href="https://www.canada.ca/en/services/taxes/child-and-family-benefits.html" target="_blank">Child and family benefits</a></li>
+                                        <li><a href="https://apps.cra-arc.gc.ca/ebci/fppp/mypymnt/pub/ntr.action?request_locale=en_CA" target="_blank">CRA Make a Payment</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-4">
                             <h5>Partners</h5>
+
                             <div class="row row-30 align-items-center text-center">
-                                <div class="col-6 col-md-4 col-lg-6"><a class="link-image" href="#"><img src="~/ClientContent/images/Partner Group of companies.jpg" alt="" width="144" height="35" /></a></div>
-                                <div class="col-6 col-md-4 col-lg-6"><a class="link-image" href="#"><img src="~/ClientContent/images/Partner Immi.jpg" alt="" width="121" height="34" /></a></div>
+                                <div class="col-6 col-md-4 col-lg-6"><a class="link-image" href="#"><img src="~/ClientContent/images/newpartner1.png" alt="" width="144" height="35" /></a></div>
+                                <div class="col-6 col-md-4 col-lg-6"><a class="link-image" href="#"><img src="~/ClientContent/images/newpartner2.png" alt="" width="121" height="34" /></a></div>
                             </div>
                         </div>
                     </div>
@@ -315,5 +318,9 @@
 
     <link href="~/Content/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <script src="~/Content/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+
+
+    <script src="~/ClientContent/js/bootstrap-datepicker.js"></script>
 </body>
 </html>

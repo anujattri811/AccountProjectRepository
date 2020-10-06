@@ -401,10 +401,16 @@
     <Content Include="ClientContent\images\loading.gif" />
     <Content Include="ClientContent\images\logo-default-240x44.png" />
     <Content Include="ClientContent\images\logo-inverse-240x44.png" />
+    <Content Include="ClientContent\images\newlogo.png" />
+    <Content Include="ClientContent\images\newlogo2.png" />
+    <Content Include="ClientContent\images\newpartner1.png" />
+    <Content Include="ClientContent\images\newpartner2.png" />
     <Content Include="ClientContent\images\our-story-1-572x335.jpg" />
     <Content Include="ClientContent\images\onlinepngtools.png" />
     <Content Include="ClientContent\images\Partner Group of companies.jpg" />
     <Content Include="ClientContent\images\Partner Immi.jpg" />
+    <Content Include="ClientContent\images\partner1.png" />
+    <Content Include="ClientContent\images\partner2.png" />
     <Content Include="ClientContent\images\Resizeimage2.png" />
     <Content Include="ClientContent\images\Resizeimage3.png" />
     <Content Include="ClientContent\images\Website-Logo-Transparent.png" />
@@ -443,7 +449,9 @@
     <Content Include="ClientContent\images\widget-gallery-6-87x83.jpg" />
     <Content Include="ClientContent\images\youtube-play.png" />
     <Content Include="ClientContent\images\_blank.png" />
+    <Content Include="ClientContent\js\bootstrap-datepicker.js" />
     <Content Include="ClientContent\js\core.min.js" />
+    <Content Include="ClientContent\js\datepicker.css" />
     <Content Include="ClientContent\js\script.js" />
     <Content Include="Content\css\adminlte.css" />
     <Content Include="Content\css\adminlte.min.css" />
@@ -1232,6 +1240,7 @@
     <Content Include="ClientContent\fonts\mercury-regular.woff" />
     <Content Include="Documents\dummy.pdf" />
     <Content Include="Content\plugins\toastr\toastr.js.map" />
+    <Content Include="ClientContent\js\datepicker.less" />
     <None Include="packages.config" />
     <Content Include="Scripts\js\adminlte.js.map" />
     <Content Include="Scripts\js\adminlte.min.js.map" />

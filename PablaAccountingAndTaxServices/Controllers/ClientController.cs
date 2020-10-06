@@ -157,9 +157,46 @@ namespace PablaAccountingAndTaxServices.Controllers
                 PersonName = OtherPersonName;
             }
             clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments);
+            SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments);
             return RedirectToAction("client_dashboard", "Client");
         }
-
+        public bool SendRequestDocumentEmail( string DocumentType, string Year, string PersonName, string Description,string OtherDocuments)
+        {
+            try
+            {
+                string htmlBody = "";
+                string headerText = "Hi,<b></b>";
+                string startTable = "<table>";
+                string emailText = "<tr><td><br/>Someone has Requested a document here is the information given below:-</br></br></td></tr>";
+                emailText += "<tr><td>DocumentType:<b> " + DocumentType + "</b></td></tr>";
+                emailText += "<tr><td>Year:<b> " + Year + "</b></td></tr>";
+                emailText += "<tr><td>Name:<b> " + PersonName + "</b></td></tr>";
+                emailText += "<tr><td>Description:<b> " + Description + "</b></td></tr>";
+                emailText += "<tr><td>OtherDocuments:<b> " + OtherDocuments + "</b></td></tr>";
+                string endTable = "<br/></table> </br> </br> Thanks";
+                htmlBody = headerText + startTable + emailText + endTable;
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.To.Add("sahilattri740@gmail.com");
+                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+                mailMessage.Subject = "Request Document";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Body = htmlBody;
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new System.Net.NetworkCredential()
+                {
+                    UserName = "Websiteindia2020@gmail.com",
+                    Password = "Sandeepanuj2020"
+                };
+                smtpClient.EnableSsl = false;
+                smtpClient.Send(mailMessage);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         #endregion
         [HttpGet]
@@ -291,7 +328,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
         {
             clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
-            bool status = SendFilePersonalTax(filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth);
+            bool status = SendFilePersonalTax(filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth,filePersonalTaxEntity.Entrydatetime,filePersonalTaxEntity.Entrydatetime1);
             if (status == true)
             {
                 TempData["Success"] = "Your Data is Submitted Successfully. We will get back to you soon.";
@@ -303,7 +340,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             
             return RedirectToAction("FilePersonalTax");
         }
-        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone, string SIN, string DateOfBirth, string MaritalStatus, string Sex, string CurrentAddress, string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name, string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth)
+        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone, string SIN, string DateOfBirth, string MaritalStatus, string Sex, string CurrentAddress, string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name, string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth, string Entrydatetime, string Entrydatetime1)
         {
             try
             {
@@ -333,6 +370,8 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Children2 DateOfBirth:<b> " + Children2DateOfBirth + "</b></td></tr>";
                 emailText += "<tr><td>Children3 Name:<b> " + Children3Name + "</b></td></tr>";
                 emailText += "<tr><td>Children3 DateOfBirth:<b> " + Children3DateOfBirth + "</b></td></tr>";
+                emailText += "<tr><td>Children3 DateOfBirth:<b> " + Entrydatetime + "</b></td></tr>";
+                emailText += "<tr><td>Children3 DateOfBirth:<b> " + Entrydatetime1 + "</b></td></tr>";
                 emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;

@@ -30,6 +30,8 @@ namespace PablaAccountingAndTaxServicesEntity
         public string SpouseDateOfBirth { get; set; }
         public string Children1Name { get; set; }
         public string Children1DateOfBirth { get; set; }
+        public string Entrydatetime1 { get; set; }
+        public string Entrydatetime { get; set; }
         public string Children2Name { get; set; }
         public string Children2DateOfBirth { get; set; }
         public string Children3Name { get; set; }

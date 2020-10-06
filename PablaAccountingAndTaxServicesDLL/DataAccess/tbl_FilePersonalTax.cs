@@ -42,5 +42,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public string Children3DateOfBirth { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string Entrydatetime { get; set; }
+        public string Entrydatetime1 { get; set; }
     }
 }
