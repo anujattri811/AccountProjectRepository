@@ -533,8 +533,8 @@
                                                 {
                                                     <tr>
                                                         <td class="text-gray-800">
-                                                            <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
-                                                            <a href="/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
+                                                            <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank" style="margin:12px;"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
+                                                            <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
                                                         </td>
                                                         <td class="text-gray-800">@item.PersonName</td>
                                                         <td class="text-gray-800">@item.DocumentName</td>
@@ -566,6 +566,12 @@
 <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
+    var myVar;
+    function CloseLoader() {
+        $(".preloader").fadeOut();
+        $(".page").removeClass('fadeOut')
+        myVar = setTimeout(CloseLoader, 500);
+    }
     //$(function () {
     //    $("#example1").DataTable();
     //});
