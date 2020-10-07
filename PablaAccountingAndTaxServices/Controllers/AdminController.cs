@@ -237,7 +237,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 ViewBag.ClientId = ClientId;
                 ViewBag.TotalDocument = result;
             }
-            return View(model);
+            return View("client_view",model);
         }
 
 
@@ -481,6 +481,8 @@ namespace PablaAccountingAndTaxServices.Controllers
                 fileuploadentity.year = result.Year;
                 fileuploadentity.DocumentType = result.DocumentType;
                 fileuploadentity.Other = result.Other;
+                fileuploadentity.Monthly = result.Monthly;
+                fileuploadentity.Periodending = result.Periodending;
                 fileuploadentity.RequestedDocumentId = requestedDocumentId;
             }
             ViewBag.ClientName = clientName;

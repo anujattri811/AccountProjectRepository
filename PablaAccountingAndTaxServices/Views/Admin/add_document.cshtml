@@ -67,10 +67,14 @@
                         <input class="form-control" id="txtMonth" type="text" name="Monthly" value="@Model.Monthly" readonly />
                     </div>
                 }
-                <div class="col-md-3">
-                    <label>Year: </label>
-                    <input class="form-control" id="txtYear" type="text" name="Year" value="@Model.year" readonly />
-                </div>
+                @if (!string.IsNullOrEmpty(Model.year))
+                {
+                    <div class="col-md-3">
+                        <label>Year: </label>
+                        <input class="form-control" id="txtYear" type="text" name="Year" value="@Model.year" readonly />
+                    </div>
+                }
+
 
                 <div class="col-md-3">
                     <label>File: </label>
