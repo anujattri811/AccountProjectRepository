@@ -197,7 +197,13 @@
                                             @if (Session["UserId"] != null)
                                             {
                                                 <li class="rd-nav-item">
-                                                    <label class="rd-nav-link">@Session["FirstName"] @Session["LastName"]</label>
+                                                    <a class="rd-nav-link" href="@Url.Action("client_changepassword","Client",new { UserId = Convert.ToInt32(Session["UserId"])})">Change Password</a>
+                                                </li>
+                                            }
+                                            @if (Session["UserId"] != null)
+                                            {
+                                                <li class="rd-nav-item">
+                                                    <label class="rd-nav-link">Hi @Session["FirstName"] @Session["LastName"]</label>
                                                 </li>
                                             }
                                             @if (Session["UserId"] == null)
@@ -285,12 +291,12 @@
                                     </ul>
                                 </div>
                                 @*<div class="col-sm-4 col-lg-6 col-xxl-5">
-                                    <ul class="footer-list big">
-                                        <li><a href="https://www.canada.ca/en/employment-social-development/corporate/portfolio/service-canada.html" target="_blank">Service Canada</a></li>
-                                        <li><a href="https://www.canada.ca/en/services/taxes/child-and-family-benefits.html" target="_blank">Child and family benefits</a></li>
-                                        <li><a href="https://apps.cra-arc.gc.ca/ebci/fppp/mypymnt/pub/ntr.action?request_locale=en_CA" target="_blank">CRA Make a Payment</a></li>
-                                    </ul>
-                                </div>*@
+                                        <ul class="footer-list big">
+                                            <li><a href="https://www.canada.ca/en/employment-social-development/corporate/portfolio/service-canada.html" target="_blank">Service Canada</a></li>
+                                            <li><a href="https://www.canada.ca/en/services/taxes/child-and-family-benefits.html" target="_blank">Child and family benefits</a></li>
+                                            <li><a href="https://apps.cra-arc.gc.ca/ebci/fppp/mypymnt/pub/ntr.action?request_locale=en_CA" target="_blank">CRA Make a Payment</a></li>
+                                        </ul>
+                                    </div>*@
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-4">

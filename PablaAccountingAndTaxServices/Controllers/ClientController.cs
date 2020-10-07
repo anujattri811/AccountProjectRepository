@@ -398,6 +398,8 @@ namespace PablaAccountingAndTaxServices.Controllers
             var EncryPassword = encryDecry.EncryptPassword(Password);
             var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);
             clientBLL.UpdateClientPassword(UserId, EncryPassword, EncryConfirmPassword);
+            Session.Abandon();
+            Session.Clear();
             return RedirectToAction("client_login");
         }
 
