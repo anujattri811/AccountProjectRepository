@@ -24,5 +24,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string PersonName { get; set; }
         public string Other { get; set; }
+        public string Periodending { get; set; }
+        public string Monthly { get; set; }
     }
 }

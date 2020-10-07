@@ -78,9 +78,9 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year).ToList();
         }
-        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments)
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months, string PeriodTime)
         {
-            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments);
+            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months, PeriodTime);
         }
         public List<tbl_RequestedDocument> GetRequest(int clientId)
         {

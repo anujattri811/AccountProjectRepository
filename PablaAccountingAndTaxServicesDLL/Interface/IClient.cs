@@ -24,7 +24,7 @@ namespace PablaAccountingAndTaxServicesDLL.Interface
 
         //List<tblClientDocument> GetPersonName(int ClientId);
         List<tblClientDocument> SearchDocumentByQuery(int ClientId, string PersonName, string DocumentType, string Year);
-        void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments);
+        void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months,string PeriodTime);
         //List<tblClientDocument> selectClientname(int ClientId);
         void SaveFilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity);
     }

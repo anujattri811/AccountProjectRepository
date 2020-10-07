@@ -50,6 +50,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             {
                 Session["FirstName"] = result.FirstName;
                 Session["LastName"] = result.LastName;
+                Session["AdminUserId"] = result.UserId;
                 return RedirectToAction("admin_dashboard");
             }
 
@@ -65,10 +66,10 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             var result = loginBLL.ForgetPassword(Email, 1);
             var Password = encryDecry.DecryptPassword(result.Password);
-            SendForgetPasswordEmail(Convert.ToInt32(result.UserId),Email, result.FirstName, result.LastName, Password);
+            SendForgetPasswordEmail(Convert.ToInt32(result.UserId), Email, result.FirstName, result.LastName, Password);
             return View();
         }
-        public bool SendForgetPasswordEmail(int UserId,string Email, string FirstName, string LastName, string Password)
+        public bool SendForgetPasswordEmail(int UserId, string Email, string FirstName, string LastName, string Password)
         {
             try
             {
@@ -84,21 +85,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add(Email);
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
-                mailMessage.Subject = "Credential Information";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
-                };
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail(Email, "Credential Information", htmlBody, "");
                 return true;
             }
             catch
@@ -149,12 +136,17 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                //Random r = new Random();
-                //int rInt = r.Next(0, 10);
-                //var Password = clientEntity.FirstName.Substring(0, 4) + clientEntity.MobileNo.Substring(clientEntity.MobileNo.Length - 4) + "@"+ rInt;
-                //var EncryPassword = encryDecry.EncryptPassword(Password);
-                //clientEntity.Password = EncryPassword;
-                clientBLL.AddNewClient(clientEntity);
+                var ExistClient= pablaAccountsEntities.tblUsers.Where(x => x.Email==clientEntity.Email || x.MobileNo==clientEntity.MobileNo && x.IsDeleted == false).SingleOrDefault();
+                if (ExistClient == null)
+                {
+                    clientBLL.AddNewClient(clientEntity);
+                }
+                else
+                {
+                    TempData["ExistClient"] = "1";
+                    return RedirectToAction("new_client");
+                }
+                
             }
             return RedirectToAction("client");
         }
@@ -283,21 +275,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add(UserName);
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
-                mailMessage.Subject = "Credential Information";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
-                };
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail(UserName, "Account Information", htmlBody, "");
                 return true;
             }
             catch
@@ -540,12 +518,14 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpGet]
         public ActionResult admin_changepassword(int UserId = 0)
         {
+            var model = clientBLL.GetAllClient(UserId);
+            ViewBag.Email = model.UserName;
             ViewBag.UserId = UserId;
             return View();
         }
 
         [HttpPost]
-        public ActionResult admin_changepassword(int UserId,string Password, string ConfirmPassword)
+        public ActionResult admin_changepassword(int UserId, string Password, string ConfirmPassword)
         {
             var EncryPassword = encryDecry.EncryptPassword(Password);
             var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);

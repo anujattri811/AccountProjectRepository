@@ -92,21 +92,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add(Email);
-                mailMessage.From = new MailAddress("grootmanagement@globalroot.net");
-                mailMessage.Subject = "Credential Information";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtpout.secureserver.net");
-                smtpClient.Port = 25;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "grootmanagement@globalroot.net",
-                    Password = "gr00tw@gl03@l99"
-                };
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail(Email, "Credential Information", htmlBody, "");
                 return true;
             }
             catch
@@ -150,24 +136,24 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "")
+        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime="", string Months="")
         {
             if (PersonName == "Other")
             {
                 PersonName = OtherPersonName;
             }
-            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments);
-            SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments);
+            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months,PeriodTime);
+            SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months);
             return RedirectToAction("client_dashboard", "Client");
         }
-        public bool SendRequestDocumentEmail( string DocumentType, string Year, string PersonName, string Description,string OtherDocuments)
+        public bool SendRequestDocumentEmail( string DocumentType, string Year, string PersonName, string Description,string OtherDocuments, string PeriodTime, string Months)
         {
             try
             {
                 string htmlBody = "";
                 string headerText = "Hi,<b></b>";
                 string startTable = "<table>";
-                string emailText = "<tr><td><br/>Someone has Requested a document here is the information given below:-</br></br></td></tr>";
+                string emailText = "<tr><td><br/>Someone has Requested a document. Here is the information given below:-</br></br></td></tr>";
                 emailText += "<tr><td>DocumentType:<b> " + DocumentType + "</b></td></tr>";
                 emailText += "<tr><td>Year:<b> " + Year + "</b></td></tr>";
                 emailText += "<tr><td>Name:<b> " + PersonName + "</b></td></tr>";
@@ -175,21 +161,22 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>OtherDocuments:<b> " + OtherDocuments + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add("sahilattri740@gmail.com");
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
-                mailMessage.Subject = "Request Document";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
-                };
-                smtpClient.EnableSsl = false;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail("anujattri233@gmail.com", "Request Document", htmlBody, "");
+                //MailMessage mailMessage = new MailMessage();
+                //mailMessage.To.Add("sahilattri740@gmail.com");
+                //mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+                //mailMessage.Subject = "Request Document";
+                //mailMessage.IsBodyHtml = true;
+                //mailMessage.Body = htmlBody;
+                //SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                //smtpClient.Port = 587;
+                //smtpClient.Credentials = new System.Net.NetworkCredential()
+                //{
+                //    UserName = "Websiteindia2020@gmail.com",
+                //    Password = "Sandeepanuj2020"
+                //};
+                //smtpClient.EnableSsl = false;
+                //smtpClient.Send(mailMessage);
                 return true;
             }
             catch (Exception ex)
@@ -226,21 +213,22 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Message:<b> " + Message + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add("rs3551370@gmail.com");
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
-                mailMessage.Subject = "Contact Us";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
-                };
-                smtpClient.EnableSsl = false;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail("anujattri233@gmail.com", "Contact Us", htmlBody, "");
+                //MailMessage mailMessage = new MailMessage();
+                //mailMessage.To.Add("rs3551370@gmail.com");
+                //mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
+                //mailMessage.Subject = "Contact Us";
+                //mailMessage.IsBodyHtml = true;
+                //mailMessage.Body = htmlBody;
+                //SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                //smtpClient.Port = 587;
+                //smtpClient.Credentials = new System.Net.NetworkCredential()
+                //{
+                //    UserName = "Websiteindia2020@gmail.com",
+                //    Password = "Sandeepanuj2020"
+                //};
+                //smtpClient.EnableSsl = false;
+                //smtpClient.Send(mailMessage);
                 return true;
             }
             catch(Exception ex)
@@ -375,21 +363,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add(Email);
-                mailMessage.From = new MailAddress("grootmanagement@globalroot.net");
-                mailMessage.Subject = "File Personal Tax";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("relay-hosting.secureserver.net");
-                smtpClient.Port = 25;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "grootmanagement@globalroot.net",
-                    Password = "gr00tw@gl03@l99"
-                };
-                smtpClient.EnableSsl = false;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail("anujattri233@gmail.com", "File Personal Tax", htmlBody, "");
                 return true;
             }
             catch (Exception ex)

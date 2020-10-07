@@ -69,9 +69,9 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             return client.SearchDocumentByQuery(UserId, PersonName, DocumentType, Year);
         }
-        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description,string OtherDocuments)
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description,string OtherDocuments, string Months,string PeriodTime )
         {
-            client.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description, OtherDocuments);
+            client.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description, OtherDocuments, Months, PeriodTime);
          
         }
         //public List<tblClientDocument> selectClientname(int ClientId)

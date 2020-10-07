@@ -125,20 +125,33 @@
     <link rel="stylesheet" href="/resources/demos/style.css">*@
 @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+@*<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>*@
+
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Content/plugins/toastr/toastr.min.js"></script>
+<link href="~/ClientContent/js/datepicker.css" rel="stylesheet" />
+<script src="~/ClientContent/js/bootstrap-datepicker.js"></script>
 <script>
-    $(function () {
-        //$("#Dateofbirth").datepicker();
-        //dateFormat: 'dd-mm-yy'
-        $('input[id$=Dateofbirth]').datepicker({
-            dateFormat: 'dd/mm/yy'
+
+     if ('@TempData["ExistClient"]' == "1") {
+        toastr.error('Client already exist with this email or mobile number.');
+    }
+
+    $("#Dashboard").removeClass('active');
+    $("#Clients").addClass('active');
+
+
+        $('#Dateofbirth').datepicker({
+            dateFormat: "dd/mm/yyyy",
+            autoclose: true
         });
 
-    });
+
+
 </script>
 <script>
     function cancel() {
@@ -244,7 +257,7 @@
                 email: "Please enter a vaild email address."
 
             },
-             Dateofbirth: {
+            Dateofbirth: {
                 required: "Please Select your Birth date.",
 
             },
@@ -288,7 +301,7 @@
                 required: "Please enter a WCB.",
                 //minlength: "Your password must be at least 8 characters long"
             },
-             CorporateAccessNumber: {
+            CorporateAccessNumber: {
                 required: "Please enter a Corporate Access Number.",
                 //minlength: "Your password must be at least 8 characters long"
             },

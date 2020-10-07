@@ -19,6 +19,8 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="PersonName" Type="nvarchar" MaxLength="100" />
           <Property Name="Other" Type="nvarchar" MaxLength="200" />
+          <Property Name="Periodending" Type="nvarchar" MaxLength="50" />
+          <Property Name="Monthly" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -101,6 +103,8 @@
           <Property Name="IsApprooved" Type="bit" />
           <Property Name="IsDeclined" Type="bit" />
           <Property Name="IsUploaded" Type="bit" />
+          <Property Name="Monthly" Type="nvarchar" MaxLength="50" />
+          <Property Name="Periodending" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Function Name="usp_insertclient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
@@ -200,6 +204,8 @@
           <Parameter Name="PersonName" Type="nvarchar" Mode="In" />
           <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Other" Type="nvarchar" Mode="In" />
+          <Parameter Name="Periodending" Type="nvarchar" Mode="In" />
+          <Parameter Name="Monthly" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="PablaAccountsModelStoreContainer">
           <EntitySet Name="tblClientDocument" EntityType="Self.tblClientDocument" Schema="dbo" store:Type="Tables" />
@@ -276,6 +282,8 @@
             <Parameter Name="PersonName" Mode="In" Type="String" />
             <Parameter Name="Description" Mode="In" Type="String" />
             <Parameter Name="Other" Mode="In" Type="String" />
+            <Parameter Name="Periodending" Mode="In" Type="String" />
+            <Parameter Name="Monthly" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
           <Parameter Name="UserId" Mode="In" Type="Int64" />
@@ -330,6 +338,8 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="PersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Other" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Periodending" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Monthly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -377,6 +387,8 @@
           <Property Name="IsApprooved" Type="Boolean" />
           <Property Name="IsDeclined" Type="Boolean" />
           <Property Name="IsUploaded" Type="Boolean" />
+          <Property Name="Monthly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Periodending" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_FilePersonalTax">
           <Key>
@@ -424,6 +436,8 @@
           <EntitySetMapping Name="tblClientDocuments">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblClientDocument">
               <MappingFragment StoreEntitySet="tblClientDocument">
+                <ScalarProperty Name="Monthly" ColumnName="Monthly" />
+                <ScalarProperty Name="Periodending" ColumnName="Periodending" />
                 <ScalarProperty Name="Other" ColumnName="Other" />
                 <ScalarProperty Name="PersonName" ColumnName="PersonName" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -473,6 +487,8 @@
           <EntitySetMapping Name="tbl_RequestedDocument">
             <EntityTypeMapping TypeName="PablaAccountsModel.tbl_RequestedDocument">
               <MappingFragment StoreEntitySet="tbl_RequestedDocument">
+                <ScalarProperty Name="Periodending" ColumnName="Periodending" />
+                <ScalarProperty Name="Monthly" ColumnName="Monthly" />
                 <ScalarProperty Name="IsUploaded" ColumnName="IsUploaded" />
                 <ScalarProperty Name="IsDeclined" ColumnName="IsDeclined" />
                 <ScalarProperty Name="IsApprooved" ColumnName="IsApprooved" />
