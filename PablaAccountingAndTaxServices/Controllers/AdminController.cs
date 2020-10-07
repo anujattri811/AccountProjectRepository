@@ -218,7 +218,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 }
                 else
                 {
-                    result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, DocumentType, Year);
+                    result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, DocumentType, Year, Monthly);
                 }
 
                 model = clientBLL.GetAllClient(ClientId);

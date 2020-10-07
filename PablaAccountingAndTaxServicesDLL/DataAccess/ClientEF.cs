@@ -80,7 +80,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months, string PeriodTime)
         {
-            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months, PeriodTime);
+            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months);
         }
         public List<tbl_RequestedDocument> GetRequest(int clientId)
         {
