@@ -15,7 +15,7 @@ namespace PablaAccountingAndTaxServices.CommanClass
         {
             try
             {
-                string a = "Hii";
+                //string a = "Hii";
                 string Senderemail = ConfigurationManager.AppSettings["Senderemail"].ToString();
                 string SenderPassword = ConfigurationManager.AppSettings["SenderPassword"].ToString();
                 string emailserver = ConfigurationManager.AppSettings["emailserver"].ToString();
@@ -24,7 +24,7 @@ namespace PablaAccountingAndTaxServices.CommanClass
                 Msg.From = new MailAddress(Senderemail);
                 Msg.To.Add(new MailAddress(To));
                 Msg.Subject = Subject;
-                Msg.Body = a;
+                Msg.Body = Body;
                 Msg.IsBodyHtml = true;
                 if (attachedfile != "")
                 {
