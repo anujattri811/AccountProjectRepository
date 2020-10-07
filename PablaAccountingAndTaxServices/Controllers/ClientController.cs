@@ -73,7 +73,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult client_forgotpassword(string Email = "")
         {
             var Clientdata = pablaAccountsEntities.tblUsers.Where(x => x.Email == Email && x.IsDeleted == false).FirstOrDefault();
-            if(Clientdata == null)
+            if (Clientdata == null)
             {
                 TempData["MSG"] = "This email does not exist. ";
                 return RedirectToAction("client_forgotpassword");
@@ -86,7 +86,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 TempData["MSG"] = " Your Username and Password has been sent successfully to your email.";
                 return View();
             }
-            
+
         }
         public bool SendForgetPasswordEmail(int UserId, string Email, string FirstName, string LastName, string Password)
         {
@@ -111,7 +111,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
         }
 
-        public ActionResult client_dashboard()
+        public ActionResult client_dashboard(string PersonName = "", string SearchDocumentType = "", string SearchYear = "", string SearchMonthly="", int UserId = 0)
         {
             var model = new ClientEntity();
             if (Session["UserId"] == null)
@@ -120,7 +120,17 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             int ClientId = Convert.ToInt32(Session["UserId"]);
             List<tblClientDocument> result = new List<tblClientDocument>();
-            result = clientBLL.selectAllDocumentForClient(ClientId);
+
+            if (PersonName != "" && SearchDocumentType != "")
+            {
+                result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, SearchDocumentType, SearchYear, SearchMonthly);
+                ViewBag.Search = "1";
+            }
+            else
+            {
+                result = clientBLL.selectAllDocumentForClient(ClientId);
+                ViewBag.Search = "0";
+            }
             model = clientBLL.GetAllClient(ClientId);
             var PersonList = pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == ClientId && x.IsDeleted == false).Select(x => x.PersonName).Distinct().ToList();
             PersonList.Add("Other");
@@ -146,17 +156,17 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime="", string Months="")
+        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime = "", string Months = "")
         {
             if (PersonName == "Other")
             {
                 PersonName = OtherPersonName;
             }
-            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months,PeriodTime);
+            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months, PeriodTime);
             SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months);
             return RedirectToAction("client_dashboard", "Client");
         }
-        public bool SendRequestDocumentEmail( string DocumentType, string Year, string PersonName, string Description,string OtherDocuments, string PeriodTime, string Months)
+        public bool SendRequestDocumentEmail(string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string PeriodTime, string Months)
         {
             try
             {
@@ -202,7 +212,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ContactUs(string Name = "", string Email = "", string Phone = "", string Subject = "",string Message="")
+        public ActionResult ContactUs(string Name = "", string Email = "", string Phone = "", string Subject = "", string Message = "")
         {
 
             SendContactUsEmail(Name, Email, Phone, Subject, Message);
@@ -241,12 +251,12 @@ namespace PablaAccountingAndTaxServices.Controllers
                 //smtpClient.Send(mailMessage);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
         }
-   
+
         //public ActionResult RequestPhoneCall()
         //{
         //    return View();
@@ -274,7 +284,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         //{
         //    try
         //    {
-                
+
         //        MailMessage mailMessage = new MailMessage();
         //        mailMessage.To.Add("Sahilattri740@gmail.com");
         //        mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
@@ -323,7 +333,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity,string NewClient,string ReturningClient)
+        public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity, string NewClient, string ReturningClient)
         {
             if (NewClient == "true")
             {
@@ -334,7 +344,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 filePersonalTaxEntity.IsExiting = true;
             }
             clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
-            bool status = SendFilePersonalTax(filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth,filePersonalTaxEntity.Entrydatetime,filePersonalTaxEntity.Entrydatetime1);
+            bool status = SendFilePersonalTax(filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth, filePersonalTaxEntity.Entrydatetime, filePersonalTaxEntity.Entrydatetime1);
             if (status == true)
             {
                 TempData["Success"] = "Your Data is Submitted Successfully. We will get back to you soon.";
@@ -343,7 +353,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             {
                 TempData["Error"] = "Something went wrong while submitting. Please try after some time.";
             }
-            
+
             return RedirectToAction("FilePersonalTax");
         }
         public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone, string SIN, string DateOfBirth, string MaritalStatus, string Sex, string CurrentAddress, string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name, string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth, string Entrydatetime, string Entrydatetime1)

@@ -23,7 +23,7 @@ namespace PablaAccountingAndTaxServicesDLL.Interface
         void Savedocuments(FileUploadEntity fileUploadEntity);
 
         //List<tblClientDocument> GetPersonName(int ClientId);
-        List<tblClientDocument> SearchDocumentByQuery(int ClientId, string PersonName, string DocumentType, string Year);
+        List<tblClientDocument> SearchDocumentByQuery(int ClientId, string PersonName, string DocumentType, string Year, string Monthly);
         void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months,string PeriodTime);
         //List<tblClientDocument> selectClientname(int ClientId);
         void SaveFilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity);

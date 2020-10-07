@@ -31,10 +31,10 @@
                     <div class="tabs-custom tabs-horizontal tabs-corporate" id="tabs-1">
                         <!--Nav tabs-->
                         <ul class="nav nav-tabs">
-                            <li class="nav-item" role="presentation"><a class="nav-link active show" href="#tabs-1-1" data-toggle="tab">Profile</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active show" id="LinkProfile" href="#tabs-1-1" data-toggle="tab">Profile</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link " href="#tabs-1-2" data-toggle="tab">Request Document</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">View Requested Document</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-4" data-toggle="tab">Documents</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" id="LinkDocument" href="#tabs-1-4" data-toggle="tab">Documents</a></li>
                         </ul>
                         <!--Tab panes-->
                         <div class="tab-content">
@@ -308,7 +308,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-wrap form-group" id="Year">
-                                                    <select class="form-input form-control-has-validation" name="Year" >
+                                                    <select class="form-input form-control-has-validation" name="Year">
                                                         <option selected="" disabled="">Select Year</option>
                                                         <option>2011</option>
                                                         <option>2012</option>
@@ -372,60 +372,60 @@
                                                 @foreach (var item in ViewBag.Request)
                                                 {
 
-                                                <tr>
+                                                    <tr>
 
-                                                    @if (ViewBag.CurrentDays <= item.CreatedOn)
-                                                    {
-                                                        <td>
-                                                            <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                            </a>
-                                                        </td>
+                                                        @if (ViewBag.CurrentDays <= item.CreatedOn)
+                                                        {
+                                                            <td>
+                                                                <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
+                                                                    <i class="fas fa-trash">
+                                                                    </i>
+                                                                </a>
+                                                            </td>
 
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>-NA-</td>
-                                                    }
-                                                    @if (item.IsApprooved == true)
-                                                    {
-                                                        <td>
-                                                            <div class="button button-xs button-primary" style="background:green;font-weight:bold;color:black;pointer-events:none;">Approved</div>
-                                                        </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>-NA-</td>
+                                                        }
+                                                        @if (item.IsApprooved == true)
+                                                        {
+                                                            <td>
+                                                                <div class="button button-xs button-primary" style="background:green;font-weight:bold;color:black;pointer-events:none;">Approved</div>
+                                                            </td>
 
-                                                        @*<td style="background:green;font-weight:bold;color:black;">Approved</td>*@
-                                                    }
-                                                    else if (item.IsDeclined == true)
-                                                    {
-                                                        <td>
-                                                            <div class="button button-xs button-primary" style="background:red;font-weight:bold;color:black;pointer-events:none;">Declined</div>
-                                                        </td>
-                                                        @*<td style="background:red;font-weight:bold;color:black;">Declined</td>*@
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>
-                                                            <div class="button button-xs button-primary" style="background:yellow;font-weight:bold;color:black;pointer-events:none;">Pending</div>
-                                                        </td>
-                                                        @*<td style="background:yellow;font-weight:bold;color:black;">Pending</td>*@
-                                                    }
-                                                    <td>@item.DocumentType</td>
-                                                    <td>@item.Other</td>
-                                                    <td>@item.Year</td>
-                                                    <td>@item.PersonName</td>
-                                                    @if (item.Description.Length < 10)
-                                                    {
-                                                        <td title="@item.Description">@item.Description</td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td title="@item.Description">@item.Description.Substring(0, 10)...</td>
-                                                    }
-                                                    <td>@item.Periodending</td>
-                                                    <td>@item.Monthly</td>
+                                                            @*<td style="background:green;font-weight:bold;color:black;">Approved</td>*@
+                                                        }
+                                                        else if (item.IsDeclined == true)
+                                                        {
+                                                            <td>
+                                                                <div class="button button-xs button-primary" style="background:red;font-weight:bold;color:black;pointer-events:none;">Declined</div>
+                                                            </td>
+                                                            @*<td style="background:red;font-weight:bold;color:black;">Declined</td>*@
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>
+                                                                <div class="button button-xs button-primary" style="background:yellow;font-weight:bold;color:black;pointer-events:none;">Pending</div>
+                                                            </td>
+                                                            @*<td style="background:yellow;font-weight:bold;color:black;">Pending</td>*@
+                                                        }
+                                                        <td>@item.DocumentType</td>
+                                                        <td>@item.Other</td>
+                                                        <td>@item.Year</td>
+                                                        <td>@item.PersonName</td>
+                                                        @if (item.Description.Length < 10)
+                                                        {
+                                                            <td title="@item.Description">@item.Description</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td title="@item.Description">@item.Description.Substring(0, 10)...</td>
+                                                        }
+                                                        <td>@item.Periodending</td>
+                                                        <td>@item.Monthly</td>
 
-                                                </tr>
+                                                    </tr>
 
 
                                                 }
@@ -434,9 +434,89 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="tab-pane fade" id="tabs-1-4">
                                 <div class="table-custom-wrap table-custom-striped big">
                                     <div class="table-custom-responsive number-counter-2">
+                                        @using (Html.BeginForm("client_dashboard", "Client", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                                        {
+                                            <input type="hidden" name="ClientId" value="@Model.UserId" />
+                                            <div class="col-md-12 row" style="margin-bottom:12px">
+                                                <div class="form-wrap col-md-4" style="padding-top:10px;">
+                                                    @Html.DropDownListFor(model => model.PersonName, PersonName, new { @class = "form-input form-control-has-validation" })
+                                                </div>
+                                                <div class="form-wrap col-md-4">
+                                                    <select class="form-input form-control-has-validation" name="SearchDocumentType">
+                                                        <option selected="" disabled="">Document Type</option>
+                                                        <option>Notice Of Assessment</option>
+                                                        <option>T1 General</option>
+                                                        <option>T4's</option>
+                                                        <option>T4 Summary</option>
+                                                        <option>T5</option>
+                                                        <option>Financials</option>
+                                                        <option>T2</option>
+                                                        <option>T2 Notice of Assessment</option>
+                                                        <option>Paystubs</option>
+                                                        <option>Schedule 100-125</option>
+                                                        <option>PD7 A</option>
+                                                        <option>Job letter</option>
+                                                        <option>GST</option>
+                                                        <option>Company Incorporation Papers</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-wrap  col-md-4" id="Year">
+                                                    <select class="form-input form-control-has-validation" name="SearchYear">
+                                                        <option selected="" disabled="">Select Year</option>
+                                                        <option>2011</option>
+                                                        <option>2012</option>
+                                                        <option>2013</option>
+                                                        <option>2014</option>
+                                                        <option>2015</option>
+                                                        <option>2016</option>
+                                                        <option>2017</option>
+                                                        <option>2018</option>
+                                                        <option>2019</option>
+                                                        <option>2020</option>
+                                                        <option>2021</option>
+                                                        <option>2022</option>
+                                                        <option>2023</option>
+                                                        <option>2024</option>
+                                                        <option>2025</option>
+                                                        <option>2026</option>
+                                                        <option>2027</option>
+                                                        <option>2028</option>
+                                                        <option>2029</option>
+                                                        <option>2030</option>
+                                                    </select>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-12 row" style="margin-top:0px;margin-bottom:10px;">
+                                                <div class="form-wrap col-md-4" style="margin-top:0px;margin-bottom:10px;">
+                                                    <select class="form-input form-control-has-validation" name="SearchMonthly">
+                                                        <option selected="" disabled="">Select Month</option>
+                                                        <option>January</option>
+                                                        <option>Febuary</option>
+                                                        <option>March</option>
+                                                        <option>April</option>
+                                                        <option>May</option>
+                                                        <option>June</option>
+                                                        <option>July</option>
+                                                        <option>August</option>
+                                                        <option>September</option>
+                                                        <option>October</option>
+                                                        <option>November</option>
+                                                        <option>December</option>
+                                                    </select>
+                                                </div>
+                                                
+
+                                                <div class="button-link-wrap text-right" style="margin-top:0px;margin-bottom:10px;">
+                                                    <button class="button button-primary" type="submit">Search</button>
+                                                </div>
+                                            </div>
+                                        }
                                         <table id="example1" class="table-custom">
                                             <thead>
                                                 <tr>
@@ -453,8 +533,8 @@
                                                 {
                                                     <tr>
                                                         <td class="text-gray-800">
-                                                            <a href="~/Documents/@item.DocumentName.@item.Discription"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
-                                                            <a href="/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank"><span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span></a>
+                                                            <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
+                                                            <a href="/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
                                                         </td>
                                                         <td class="text-gray-800">@item.PersonName</td>
                                                         <td class="text-gray-800">@item.DocumentName</td>
@@ -493,6 +573,19 @@
     $(document).ready(function () {
         bsCustomFileInput.init();
     });
+
+    $(document).ready(function () {
+        if ('@ViewBag.Search' == "1") {
+            $("#LinkProfile").removeClass('active');
+            $("#LinkProfile").removeClass('show');
+            $("#tabs-1-1").removeClass('active');
+            $("#tabs-1-1").removeClass('show');
+            $("#LinkDocument").addClass('active');
+            $("#LinkDocument").addClass('show');
+             $("#tabs-1-4").addClass('active');
+            $("#tabs-1-4").addClass('show');
+        }
+    })
 
     $( document ).ready(function() {
         if ('@TempData["Delete"]' == "1") {
@@ -565,12 +658,12 @@
             if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A" || $("#DocumentType").val() == "GST") {
                 $("#Show-years").fadeIn();
                 $("#Show-OtherDocuments").fadeOut();
-                 $("#Year").fadeOut();
+                $("#Year").fadeOut();
             }
             else {
                 $("#Show-OtherDocuments").fadeOut();
                 $("#Show-years").fadeOut();
-                 $("#Year").fadeIn();
+                $("#Year").fadeIn();
             }
 
         }
@@ -594,7 +687,7 @@
             $("#Show-OtherPersonName").fadeOut();
         }
     }
-    
+
     function Delete(UserId) {
         Swal.fire({
             title: 'Are you sure?',
