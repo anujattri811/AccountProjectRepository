@@ -40,7 +40,7 @@
                 <div class="col-md-12 row">
                     <div class="col-md-6 form-group">
                         <label for="Email">Email</label>
-                        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" placeholder="Email">
+                        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" placeholder="Email" readonly="readonly">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="Dateofbirth">Date Of Birth</label>
@@ -121,17 +121,20 @@
         </form>
     </div>
 </div>
-<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet" />
+@*<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet" />
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>*@
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<link href="~/ClientContent/js/datepicker.css" rel="stylesheet" />
+<script src="~/ClientContent/js/bootstrap-datepicker.js"></script>
 <script>
-    $(function () {
-        $('input[id$=Dateofbirth]').datepicker({
-            dateFormat: 'dd/mm/yy'
-        });
+    $("#Dashboard").removeClass('active');
+    $("#Clients").addClass('active');
 
+    $('#Dateofbirth').datepicker({
+        dateFormat: "dd/mm/yyyy",
+        autoclose: true
     });
 </script>
 

@@ -85,7 +85,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="/Admin/admin_dashboard" class="nav-link active">
+                            <a href="/Admin/admin_dashboard" class="nav-link active" id="Dashboard">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Dashboard
@@ -93,7 +93,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/Admin/client" class="nav-link">
+                            <a href="/Admin/client" class="nav-link" id="Clients">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Clients
@@ -101,10 +101,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/Admin/requested_document" class="nav-link">
+                            <a href="/Admin/requested_document" class="nav-link" id="RequestedDocuments">
                                 <i class="nav-icon ion ion-bag"></i>
                                 <p>
                                     Requested Documents
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("admin_changepassword","Admin",new { UserId=Convert.ToInt32(Session["AdminUserId"])})" class="nav-link" id="ChangePassword">
+                                <i class="nav-icon fas fa-key"></i>
+                                <p>
+                                    Change Password
                                 </p>
                             </a>
                         </li>
@@ -180,5 +188,7 @@
     <script src="~/dist/js/demo.js"></script>
     <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <link href="~/ClientContent/js/datepicker.css" rel="stylesheet" />
+    <script src="~/ClientContent/js/bootstrap-datepicker.js"></script>
 </body>
 </html>
