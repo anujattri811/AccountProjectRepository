@@ -307,8 +307,8 @@
                                                         <option>December</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-wrap form-group">
-                                                    <select class="form-input form-control-has-validation" name="Year">
+                                                <div class="form-wrap form-group" id="Year">
+                                                    <select class="form-input form-control-has-validation" name="Year" >
                                                         <option selected="" disabled="">Select Year</option>
                                                         <option>2011</option>
                                                         <option>2012</option>
@@ -557,17 +557,20 @@
     function ShowOther() {
         if ($("#DocumentType").val() == "Other") {
             $("#Show-OtherDocuments").fadeIn();
-            $("#Show-years").fadeOut();
+            $("#Show-years").fadeIn();
+            $("#Year").fadeOut();
 
         }
         else {
             if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A" || $("#DocumentType").val() == "GST") {
                 $("#Show-years").fadeIn();
                 $("#Show-OtherDocuments").fadeOut();
+                 $("#Year").fadeOut();
             }
             else {
                 $("#Show-OtherDocuments").fadeOut();
                 $("#Show-years").fadeOut();
+                 $("#Year").fadeIn();
             }
 
         }
@@ -575,9 +578,11 @@
     function Test() {
         if ($("#PeriodTime").val() == "Monthly") {
             $("#Show-months").fadeIn();
+            $("#Year").fadeOut();
         }
         else {
             $("#Show-months").fadeOut();
+            $("#Year").fadeIn();
         }
     }
 

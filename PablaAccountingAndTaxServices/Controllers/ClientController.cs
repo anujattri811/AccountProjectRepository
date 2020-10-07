@@ -87,8 +87,6 @@ namespace PablaAccountingAndTaxServices.Controllers
                 string emailText = "<tr><td><br/>You have requested to get your password this is your password below:-</br></br></td></tr>";
                 emailText += "<tr><td>UserName:<b> " + Email + "</b></td></tr>";
                 emailText += "<tr><td>Password:<b> " + Password + "</b></td></tr>";
-                emailText += "<tr><td> You can Change Password from below link:-</td></tr>";
-                emailText += "<tr><td><b>https://pablaaccounts.globalroot.net/Client/client_changepassword?UserId=" + UserId + "</b></td></tr>";
                 emailText += "<tr><td>Regards</td></tr>";
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
