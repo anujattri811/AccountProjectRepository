@@ -60,6 +60,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 Session["UserId"] = result.UserId;
                 Session["FirstName"] = result.FirstName;
                 Session["LastName"] = result.LastName;
+                Session["Email"] = result.Email;
                 return RedirectToAction("Client_Dashboard", "Client");
             }
         }
@@ -313,8 +314,16 @@ namespace PablaAccountingAndTaxServices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity)
+        public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity,string NewClient,string ReturningClient)
         {
+            if (NewClient == "true")
+            {
+                filePersonalTaxEntity.IsExiting = false;
+            }
+            else
+            {
+                filePersonalTaxEntity.IsExiting = true;
+            }
             clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
             bool status = SendFilePersonalTax(filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth,filePersonalTaxEntity.Entrydatetime,filePersonalTaxEntity.Entrydatetime1);
             if (status == true)
@@ -388,6 +397,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpGet]
         public ActionResult client_changepassword(int UserId = 0)
         {
+            ViewBag.Email = Session["Email"];
             ViewBag.UserId = UserId;
             return View();
         }

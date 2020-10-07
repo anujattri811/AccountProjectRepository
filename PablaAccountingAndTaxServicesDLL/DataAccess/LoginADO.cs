@@ -16,6 +16,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 loginEntity.FirstName = result.FirstName;
                 loginEntity.LastName = result.LastName;
                 loginEntity.UserId = result.UserId;
+                
             }
             return loginEntity;
         }
@@ -28,6 +29,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 loginEntity.FirstName = result.FirstName;
                 loginEntity.LastName = result.LastName;
                 loginEntity.UserId = result.UserId;
+                loginEntity.Email = result.Email;
             }
             return loginEntity;
         }
