@@ -65,9 +65,9 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult Admin_forgotpassword(string Email = "")
         {
             var Clientdata = pablaAccountsEntities.tblUsers.Where(x => x.Email == Email && x.IsDeleted == false).FirstOrDefault();
-            if(Clientdata == null)
+            if (Clientdata == null)
             {
-                TempData["Msg"]= "This email does not exist. ";
+                TempData["Msg"] = "This email does not exist. ";
                 return RedirectToAction("Admin_forgotpassword");
             }
             else
@@ -78,7 +78,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 TempData["MSG"] = " Your Username and Password has been sent successfully to your email.";
                 return View();
             }
-           
+
         }
         public bool SendForgetPasswordEmail(int UserId, string Email, string FirstName, string LastName, string Password)
         {
@@ -145,7 +145,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                var ExistClient= pablaAccountsEntities.tblUsers.Where(x => x.Email==clientEntity.Email || x.MobileNo==clientEntity.MobileNo && x.IsDeleted == false).SingleOrDefault();
+                var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.Email == clientEntity.Email || x.MobileNo == clientEntity.MobileNo && x.IsDeleted == false).SingleOrDefault();
                 if (ExistClient == null)
                 {
                     clientBLL.AddNewClient(clientEntity);
@@ -155,7 +155,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                     TempData["ExistClient"] = "1";
                     return RedirectToAction("new_client");
                 }
-                
+
             }
             return RedirectToAction("client");
         }
@@ -202,7 +202,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("client");
         }
         [HttpGet]
-        public ActionResult client_view(int ClientId = 0, string PersonName = "", string DocumentType = "", string Year = "", int UserId = 0)
+        public ActionResult client_view(int ClientId = 0, string PersonName = "", string DocumentType = "", string Year = "", int UserId = 0, string Monthly = "")
         {
             var model = new ClientEntity();
             if (Session["FirstName"] == null && Session["LastName"] == null)
@@ -212,7 +212,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             else
             {
                 List<tblClientDocument> result = new List<tblClientDocument>();
-                if (PersonName == "" && DocumentType == "" && Year == "")
+                if (PersonName == "" && DocumentType == "" && Year == "" && Monthly == "")
                 {
                     result = clientBLL.selectAllDocumentForClient(ClientId);
                 }

@@ -44,17 +44,29 @@
 
                 @if (Model.DocumentType == "Other")
                 {
-
                     <div class="col-md-3">
                         <label>Other: </label>
                         <input class="form-control" id="txtOther" type="text" name="Other" value="@Model.Other" readonly />
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.Periodending))
+                {
+                    <div class="col-md-3">
+                        <label>Period Ending: </label>
+                        <input class="form-control" id="txtPEnding" type="text" name="Periodending" value="@Model.Periodending" readonly />
                     </div>
                 }
 
 
             </div>
             <div class="col-md-12 row" style="padding-top:10px;">
-
+                @if (!string.IsNullOrEmpty(Model.Monthly))
+                {
+                    <div class="col-md-3">
+                        <label>Month: </label>
+                        <input class="form-control" id="txtMonth" type="text" name="Monthly" value="@Model.Monthly" readonly />
+                    </div>
+                }
                 <div class="col-md-3">
                     <label>Year: </label>
                     <input class="form-control" id="txtYear" type="text" name="Year" value="@Model.year" readonly />
