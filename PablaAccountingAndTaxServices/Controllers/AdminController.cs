@@ -64,10 +64,21 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpPost]
         public ActionResult Admin_forgotpassword(string Email = "")
         {
-            var result = loginBLL.ForgetPassword(Email, 1);
-            var Password = encryDecry.DecryptPassword(result.Password);
-            SendForgetPasswordEmail(Convert.ToInt32(result.UserId), Email, result.FirstName, result.LastName, Password);
-            return View();
+            var Clientdata = pablaAccountsEntities.tblUsers.Where(x => x.Email == Email && x.IsDeleted == false).FirstOrDefault();
+            if(Clientdata == null)
+            {
+                TempData["Msg"]= "This email does not exist. ";
+                return RedirectToAction("Admin_forgotpassword");
+            }
+            else
+            {
+                var result = loginBLL.ForgetPassword(Email, 1);
+                var Password = encryDecry.DecryptPassword(result.Password);
+                SendForgetPasswordEmail(Convert.ToInt32(result.UserId), Email, result.FirstName, result.LastName, Password);
+                TempData["MSG"] = " Your Username and Password has been sent successfully to your email.";
+                return View();
+            }
+           
         }
         public bool SendForgetPasswordEmail(int UserId, string Email, string FirstName, string LastName, string Password)
         {
