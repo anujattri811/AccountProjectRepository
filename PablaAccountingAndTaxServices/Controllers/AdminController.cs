@@ -84,21 +84,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add(Email);
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
-                mailMessage.Subject = "Credential Information";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
-                };
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail(Email, "Credential Information", htmlBody, "");
                 return true;
             }
             catch
@@ -283,21 +269,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add(UserName);
-                mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
-                mailMessage.Subject = "Credential Information";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = htmlBody;
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "Websiteindia2020@gmail.com",
-                    Password = "Sandeepanuj2020"
-                };
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                customMethod.SendEmail(UserName, "Account Information", htmlBody, "");
                 return true;
             }
             catch
