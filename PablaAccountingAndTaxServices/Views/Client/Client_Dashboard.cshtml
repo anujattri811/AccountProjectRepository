@@ -442,10 +442,10 @@
                                         {
                                             <input type="hidden" name="ClientId" value="@Model.UserId" />
                                             <div class="col-md-12 row" style="margin-bottom:12px">
-                                                <div class="form-wrap col-md-4" style="padding-top:10px;">
+                                                <div class="form-wrap col-md-3" style="padding-top:10px;">
                                                     @Html.DropDownListFor(model => model.PersonName, PersonName, new { @class = "form-input form-control-has-validation" })
                                                 </div>
-                                                <div class="form-wrap col-md-4">
+                                                <div class="form-wrap col-md-3">
                                                     <select class="form-input form-control-has-validation" name="SearchDocumentType">
                                                         <option selected="" disabled="">Document Type</option>
                                                         <option>Notice Of Assessment</option>
@@ -465,7 +465,7 @@
                                                         <option>Other</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-wrap  col-md-4" id="Year">
+                                                <div class="form-wrap  col-md-3" id="Year">
                                                     <select class="form-input form-control-has-validation" name="SearchYear">
                                                         <option selected="" disabled="">Select Year</option>
                                                         <option>2011</option>
@@ -490,10 +490,7 @@
                                                         <option>2030</option>
                                                     </select>
                                                 </div>
-                                                
-                                            </div>
-                                            <div class="col-md-12 row" style="margin-top:0px;margin-bottom:10px;">
-                                                <div class="form-wrap col-md-4" style="margin-top:0px;margin-bottom:10px;">
+                                                <div class="form-wrap col-md-3">
                                                     <select class="form-input form-control-has-validation" name="SearchMonthly">
                                                         <option selected="" disabled="">Select Month</option>
                                                         <option>January</option>
@@ -510,8 +507,12 @@
                                                         <option>December</option>
                                                     </select>
                                                 </div>
-                                                
 
+                                            </div>
+                                            <div class="col-md-12 row" style="margin-top:0px;margin-bottom:10px;">
+                                                
+                                                <div class="col-md-5">
+                                                </div>
                                                 <div class="button-link-wrap text-right" style="margin-top:0px;margin-bottom:10px;">
                                                     <button class="button button-primary" type="submit">Search</button>
                                                 </div>

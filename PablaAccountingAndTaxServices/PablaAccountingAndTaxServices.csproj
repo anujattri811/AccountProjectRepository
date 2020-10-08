@@ -401,6 +401,8 @@
     <Content Include="ClientContent\images\loading.gif" />
     <Content Include="ClientContent\images\logo-default-240x44.png" />
     <Content Include="ClientContent\images\logo-inverse-240x44.png" />
+    <Content Include="ClientContent\images\new1.png" />
+    <Content Include="ClientContent\images\new2.png" />
     <Content Include="ClientContent\images\newlogo.png" />
     <Content Include="ClientContent\images\newlogo2.png" />
     <Content Include="ClientContent\images\newpartner1.png" />

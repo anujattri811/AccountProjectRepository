@@ -160,15 +160,16 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("client");
         }
 
-        public ActionResult GeneratePassword(int ClientId = 0, string Email = "", string FirstName = "", string LastName = "", string MobileNo = "")
+        public ActionResult GeneratePassword(int ClientId = 0, string Email = "", string FirstName = "", string LastName = "", string MobileNo = "",string DateOfBirth="")
         {
             Random r = new Random();
             int rInt = r.Next(0, 10);
             var Pass = FirstName.Substring(0, 4) + MobileNo.Substring(MobileNo.Length - 4) + "@" + rInt;
             var EncryPassword = encryDecry.EncryptPassword(Pass);
             var Decrypt = encryDecry.DecryptPassword(EncryPassword);
-            clientBLL.UpdateCredential(ClientId, Email, EncryPassword);
-            SendCredential(ClientId, Email, FirstName, LastName, Decrypt);
+            var UserName = FirstName.ToLower() + "" + DateOfBirth.Split('/')[2];
+            clientBLL.UpdateCredential(ClientId, UserName, EncryPassword);
+            SendCredential(ClientId, UserName, FirstName, LastName, Decrypt);
             return RedirectToAction("client_view", new { ClientId = ClientId });
         }
         [HttpGet]

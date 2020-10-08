@@ -216,6 +216,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
 
             SendContactUsEmail(Name, Email, Phone, Subject, Message);
+            TempData["Message"] = "Your Request has been Sumitted";
             return View();
         }
         public bool SendContactUsEmail(string Name, string Email, string Phone, string Subject, string Message)
@@ -233,7 +234,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Message:<b> " + Message + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                customMethod.SendEmail("anujattri233@gmail.com", "Contact Us", htmlBody, "");
+                customMethod.SendEmail("Tax@pablastax.com", "Contact Us", htmlBody, "");
                 //MailMessage mailMessage = new MailMessage();
                 //mailMessage.To.Add("rs3551370@gmail.com");
                 //mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
@@ -391,7 +392,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                customMethod.SendEmail("anujattri233@gmail.com", "File Personal Tax", htmlBody, "");
+                customMethod.SendEmail("Tax@pablastax.com", "File Personal Tax", htmlBody, "");
                 return true;
             }
             catch (Exception ex)

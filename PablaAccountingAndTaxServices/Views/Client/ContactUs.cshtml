@@ -145,6 +145,7 @@
                 </div>
             </div>
             <div class="col-md-10 col-lg-6">
+                <h5 style="color:green;">@TempData["message"]</h5>
                 <h5>Request a Phone Call</h5>
                 <!--RD Mailform-->
                 <form class="rd-form rd-mailform" data-form-output="form-output-global" id="ContactUs" data-form-type="contact" method="post" action="/Client/ContactUs">
@@ -163,7 +164,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <div class="form-wrap">
-                                <input class="form-input form-control-has-validation" id="Phone" type="text" placeholder="Phone" name="Phone" data-constraints="Required">
+                                <input class="form-input form-control-has-validation" id="Phone" type="text" placeholder="Phone" name="Phone" onkeypress="phoneno()" data-constraints="Required">
                                 @*<label class="form-label rd-input-label" for="Phone">Phone</label>*@
                             </div>
                         </div>
@@ -178,7 +179,10 @@
                                 @*<label class="form-label rd-input-label" for="Message">Message</label>*@
                                 <textarea class="form-input form-control-has-validation form-control-last-child" placeholder="Message" id="Message" name="Message" data-constraints="Required"></textarea>
                             </div>
-                            <div class="col-md-5 col-xl-4">
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12 col-xl-7">
                                 <button class="button button-size-1 button-block button-primary" type="submit">Send</button>
                             </div>
                         </div>
@@ -190,6 +194,20 @@
 </section>
 <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaJGWw0IfXHRmSFagZSOaiMa6VqiTwidM&callback=initMap">
+</script>
+<script type="text/javascript">
+    function phoneno() {
+        $("#Phone").keypress(function (e) {
+            var length = jQuery(this).val().length;
+            if (length >= 10) {
+                return false;
+            } else if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            } else if ((length == 0) && (e.which == 48)) {
+                return false;
+            }
+        });
+    }
 </script>
 <script>
     // Initialize and add the map

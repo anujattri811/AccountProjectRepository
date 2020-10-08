@@ -241,6 +241,7 @@
                         <input type="hidden" name="FirstName" value="@Model.FirstName" />
                         <input type="hidden" name="LastName" value="@Model.LastName" />
                         <input type="hidden" name="MobileNo" value="@Model.MobileNo" />
+                        <input type="hidden" name="DateOfBirth" value="@Model.DateOfBirth" />
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-block btn-outline-primary" style="padding-left: 0px;">Generate Credential</button>
                         </div>
@@ -259,13 +260,12 @@
 
     </div>
 </section>
-
 <section class="content header">
     <div class="card">
         <div class="card-header card_color" style="padding-top: 1px;padding-bottom: 1px;">
             <div class="col-md-12">
                 <div class="col-md-6">
-                    <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Document Information</h3>
+                    <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Save Documents</h3>
 
                 </div>
 
@@ -276,10 +276,10 @@
 
             <input type="hidden" value="@Model.UserId" name="UserId" />
             <div class="col-md-12 row" style="padding-top:10px;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <input type="text" id="name" name="PersonName" placeholder="Person Name" class="form-control">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <select class="form-control custom-select" name="DocumentType" id="DocumentType" onchange="ShowOther()">
                         <option>Document Type</option>
                         <option>Notice Of Assessment</option>
@@ -301,7 +301,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
 
                     <select class="form-control custom-select" name="year">
                         <option selected="" disabled="">Select Year</option>
@@ -328,9 +328,9 @@
                     </select>
 
                 </div>
-            </div>
-            <div class="col-md-12 row">
-                <div class="col-md-4 ">
+
+
+                <div class="col-md-3 ">
                     <div class="form-group">
                         <div class="input-group">
                             <div class="custom-file">
@@ -341,28 +341,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 " id="Show-OtherDocuments" style="display:none;">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="text" id="OtherDocuments" name="OtherDocuments" placeholder="Other Documents" class="form-control">
+            </div>
 
-                            </div>
+            <div class="col-md-3 " id="Show-OtherDocuments" style="display:none;">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="text" id="OtherDocuments" name="OtherDocuments" placeholder="Other Documents" class="form-control">
 
                         </div>
+
                     </div>
                 </div>
-                <div class="custom-file col-md-1">
+            </div>
+            <div class="col-md-12 row" style="padding-bottom: 10px;">
+                <div class="col-md-4">
+                </div>
+                <div class="custom-file col-md-4">
                     <button type="submit" class="btn btn-block btn-outline-primary">Save</button>
                 </div>
             </div>
 
-        }
 
+    }
+        </div>
+    </section>
+<section class="content header">
+    <div class="card">
+        <div class="card-header card_color" style="padding-top: 1px;padding-bottom: 1px;">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Search Client</h3>
 
+                </div>
+
+            </div>
+        </div>
         @using (Html.BeginForm("client_view", "Admin", FormMethod.Get, new { enctype = "multipart/form-data" }))
         {
-            <div class="col-md-12 row" style="margin-bottom:12px">
+            <div class="col-md-12 row" style="margin-bottom:12px;padding-top:10px;">
                 <div class="col-md-3">
                     @Html.DropDownListFor(model => model.PersonName, PersonName, new { @class = "form-control" })
                 </div>
@@ -386,7 +403,7 @@
                         <option>Company Incorporation Papers</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <select name="Monthly" id="ddlMonth" class="form-control custom-control">
                         <option selected="" disabled="">Select Month</option>
                         <option>January</option>
@@ -403,7 +420,7 @@
                         <option>December</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <select name="Year" id="year" class="form-control custom-control">
                         <option>Select Year</option>
                         <option>2011</option>
@@ -428,164 +445,184 @@
                         <option>2030</option>
                     </select>
                 </div>
-                <div class="col-md-2 custom-file">
+
+            </div>
+            <div class="col-md-12 row" style="padding-bottom:10px;">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4 custom-file">
                     <button type="submit" class="btn btn-block btn-outline-primary">Search</button>
                 </div>
             </div>
+           
         }
-
-        <div class="card-body" style="padding:0px;">
-            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                <div class="col-sm-12" style="overflow-x:auto;">
-                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                        <thead>
-                            <tr role="row" class="table-color">
-                                <th>Operation</th>
-                                <th>Person Name</th>
-                                <th>Document Name</th>
-                                <th>Document Type</th>
-                                <th>Other</th>
-                                @*<th>Month</th>*@
-                                <th>Year</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach (var item in ViewBag.TotalDocument)
-                            {
-                                <tr>
-                                    <td>
-                                        <a href="~/Documents/@item.DocumentName.@item.Discription"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
-                                        <a href="/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank"><span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span></a>
-                                    </td>
-                                    <td>@item.PersonName</td>
-                                    <td>@item.DocumentName</td>
-                                    <td>@item.DocumentType</td>
-                                    <td>@item.Other</td>
-                                    @*<td>@item.Month</td>*@
-                                    <td>@item.Year</td>
-                                </tr>
-                            }
-
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
-
-
 </section>
-@*<-----Model------>*@
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Credential Info</h4>
+    <section class="content header">
+        <div class="card">
+            <div class="card-header card_color" style="padding-top: 1px;padding-bottom: 1px;">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <h3 class="card-title" style="color: white;padding-top:10px;padding-bottom: 10px;">Document Information</h3>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="">
-                    <label>UserName :</label>
-                    <label style="font-weight:400;">@Model.UserName</label>
-                </div>
-                <div class="">
-                    <label>Password:</label>
-                    <label style="font-weight:400;">@Model.Password</label>
+                    </div>
+
                 </div>
             </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="card-body" style="padding:0px;">
+                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4" style="padding-top:10px;">
+                    <div class="col-sm-12" style="overflow-x:auto;">
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr role="row" class="table-color">
+                                    <th>Operation</th>
+                                    <th>Person Name</th>
+                                    <th>Document Name</th>
+                                    <th>Document Type</th>
+                                    <th>Other</th>
+                                    @*<th>Month</th>*@
+                                    <th>Year</th>
+                                </tr>
+                            </thead>
 
+                            <tbody>
+                                @foreach (var item in ViewBag.TotalDocument)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="~/Documents/@item.DocumentName.@item.Discription"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
+                                            <a href="/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank"><span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span></a>
+                                        </td>
+                                        <td>@item.PersonName</td>
+                                        <td>@item.DocumentName</td>
+                                        <td>@item.DocumentType</td>
+                                        <td>@item.Other</td>
+                                        @*<td>@item.Month</td>*@
+                                        <td>@item.Year</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- /.modal-content -->
+
+
+    </section>
+    @*<-----Model------>*@
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Credential Info</h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="">
+                        <label>UserName :</label>
+                        <label style="font-weight:400;">@Model.UserName</label>
+                    </div>
+                    <div class="">
+                        <label>Password:</label>
+                        <label style="font-weight:400;">@Model.Password</label>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
-<script src="~/Content/plugins/jquery/jquery.min.js"></script>
-<link href="~/Content/css/AdminStyle.css" rel="stylesheet" />
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <link href="~/Content/css/AdminStyle.css" rel="stylesheet" />
 
-<script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script type="text/javascript">
-    $("#Dashboard").removeClass('active');
-    $("#Clients").addClass('active');
+    <script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $("#Dashboard").removeClass('active');
+        $("#Clients").addClass('active');
 
-    $(function () {
-        $("#example1").DataTable();
-    });
-
-    $(document).ready(function () {
-        bsCustomFileInput.init();
-    });
-</script>
-<script>
-    function GeneratePassword(UserId, Email, FirstName, MobileNo) {
-        $.ajax({
-            type: "POST",
-            url: '/Admin/GeneratePassword',
-            data: {
-                UserId: UserId,
-                Email: Email,
-                FirstName: FirstName,
-                MobileNo: MobileNo,
-            },
-            success: function () {
-
-            }
-
+        $(function () {
+            $("#example1").DataTable();
         });
-        return false;
-    }
-</script>
 
-<script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
+    <script>
+        function GeneratePassword(UserId, Email, FirstName, MobileNo,DateOfBirth) {
+            $.ajax({
+                type: "POST",
+                url: '/Admin/GeneratePassword',
+                data: {
+                    UserId: UserId,
+                    Email: Email,
+                    FirstName: FirstName,
+                    MobileNo: MobileNo,
+                    DateOfBirth: DateOfBirth
+                },
+                success: function () {
 
-    $('#Savedocument').validate({
-        rules: {
-            PersonName: {
-                required: true,
+                }
+
+            });
+            return false;
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        $('#Savedocument').validate({
+            rules: {
+                PersonName: {
+                    required: true,
+                },
+                UploadFile: {
+                    required: true,
+                }
+
             },
-            UploadFile: {
-                required: true,
+            messages: {
+                PersonName: {
+                    required: "Please enter a Person  Name. ",
+                },
+                UploadFile: {
+                    required: "Please Select a File.",
+                },
+
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
             }
-
-        },
-        messages: {
-            PersonName: {
-                required: "Please enter a Person  Name. ",
-            },
-            UploadFile: {
-                required: "Please Select a File.",
-            },
-
-
-        },
-        errorElement: 'span',
-        errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
+        });
+    </script>
+    <script>
+        function ShowOther() {
+            if ($("#DocumentType").val() == "Other") {
+                $("#Show-OtherDocuments").fadeIn();
+            }
+            else {
+                $("#Show-OtherDocuments").fadeOut();
+            }
         }
-    });
-</script>
-<script>
-    function ShowOther() {
-        if ($("#DocumentType").val() == "Other") {
-            $("#Show-OtherDocuments").fadeIn();
-        }
-        else {
-            $("#Show-OtherDocuments").fadeOut();
-        }
-    }
-</script>
+    </script>
