@@ -156,7 +156,7 @@
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="LastName" style="border:0px; color:black;padding-left:10px">Last Name</label>
-                    <input class="form-input form-control-has-validation" id="LastName" type="text" name="SpouseLastName">
+                    <input class="form-input form-control-has-validation" id="SpouseLastName" type="text" name="SpouseLastName">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
@@ -181,7 +181,7 @@
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">First Child Name</label>
-                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Children1Name">
+                    <input class="form-input form-control-has-validation" id="FirstChildName" type="text" name="Children1Name">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
@@ -192,7 +192,7 @@
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">Second Child Name</label>
-                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Children2Name">
+                    <input class="form-input form-control-has-validation" id="SecondChildName" type="text" name="Children2Name">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
@@ -202,7 +202,7 @@
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">Third Child Name</label>
-                    <input class="form-input form-control-has-validation" id="Name" type="text" name="Children3Name">
+                    <input class="form-input form-control-has-validation" id="ThirdChildName" type="text" name="Children3Name">
                 </div>
                 <div class="col-md-6 form-group ">
                     <label for="Name" style="border:0px; color:black;padding-left:10px">Date Of Birth</label>
@@ -210,12 +210,13 @@
 
                 </div>
             </div>
-            <div class="col-md-12 row">
-                <div class="col-md-2">
-                    <button type="submit" class="button button-primary">Submit</button>
+
+            <div class="col-md-12 row" style="margin-top:10px">
+                <div class="">
+                    <button type="submit" class="button button-primary" style="float:left;min-height:0px;">Submit</button>
                 </div>
-                <div class="col-md-2" style="margin-left:-70px;">
-                    <button type="button" class="button button-primary" onclick="return cancel();">Cancel</button>
+                <div class="" style="margin-left:20px;">
+                    <button type="button" class="button button-primary" style="min-height:0px;" onclick="return cancel();">Cancel</button>
                 </div>
             </div>
         </form>
@@ -294,6 +295,7 @@
 <script>
     function cancel() {
         $("#FirstName").val('');
+        $("#FirstName").focus();
         $("#MiddleName").val('');
         $("#LastName").val('');
         $("#SIN").val('');
@@ -306,15 +308,15 @@
         $("#PostalCode").val('');
         $("#SpouseName").val('');
         $("#MiddleName").val('');
-        $("#LastName").focus();
-        $("#SIN").focus();
-        $("#datepicker3").focus();
-        $("#Name").focus();
-        $("#datepicker2").focus();
-        $("#Name").focus();
-        $("#datepicker").focus();
-        $("#Name").focus();
-        $("#datepicker1").focus();
+        $("#SpouseLastName").val('');
+        $("#SIN").val('');
+        $("#datepicker3").val('');
+        $("#FirstChildName").val('');
+        $("#datepicker2").val('');
+        $("#SecondChildName").val('');
+        $("#datepicker").val('');
+        $("#ThirdChildName").val('');
+        $("#datepicker1").val('');
         return false;
 
     }
