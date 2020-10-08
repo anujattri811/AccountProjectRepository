@@ -73,6 +73,9 @@
     <Compile Include="DataAccess\tblClientDocument.cs">
       <DependentUpon>PablaAccountingModal.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\tblDocumentType.cs">
+      <DependentUpon>PablaAccountingModal.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\tblUser.cs">
       <DependentUpon>PablaAccountingModal.tt</DependentUpon>
     </Compile>

@@ -24,17 +24,29 @@
             </div>
         </div>
         @*@if (!string.IsNullOrEmpty(ViewBag.ApproveSuccess))
-        {
-            <h3>@ViewBag.ApproveSuccess</h3>
-        }
-        @if (!string.IsNullOrEmpty(ViewBag.ApproveError))
-        {
-            <h3>@ViewBag.ApproveError</h3>
-        }*@
+            {
+                <h3>@ViewBag.ApproveSuccess</h3>
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.ApproveError))
+            {
+                <h3>@ViewBag.ApproveError</h3>
+            }*@
 
         <div class="card-body" style="">
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="col-sm-12" style="overflow-x:auto;">
+                    @if (ViewBag.Messsage == "1")
+                    {
+                        <h5 style="color:green;">A Document has been successfully approved for client.</h5>
+                    }
+                    else if (ViewBag.Messsage == "2")
+                    {
+                        <h5 style="color:green;">A Document has been successfully denied for client.</h5>
+                    }
+                    else if (ViewBag.Messsage == "3")
+                    {
+                        <h5 style="color:green;">A new document has been successfully uploaded for client and an attachment has been sent to client's email.</h5>
+                    }
                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                         <thead>
                             <tr role="row" class="table-color">
@@ -42,8 +54,10 @@
                                 <th>Document Type</th>
                                 <th>Other</th>
                                 <th>Person Name</th>
+                                <th>Month</th>
                                 <th>Year</th>
                                 <th>Requested By</th>
+                                <th>Description</th>
                             </tr>
                         </thead>
 
@@ -62,7 +76,7 @@
                                                 Deny
                                             </button>
                                             @*<a href="@Url.Action("approve_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Approve</span></a>
-                                            <a href="@Url.Action("deny_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Deny</span></a>*@
+                                                <a href="@Url.Action("deny_document","admin",new { requestedDocumentId = item.RequestDocumentId})"><span class="btn btn-outline-primary">Deny</span></a>*@
 
                                         }
                                         @if (item.IsApprooved == true)
@@ -74,8 +88,23 @@
                                     <td>@item.DocumentType</td>
                                     <td>@item.Other</td>
                                     <td>@item.PersonName</td>
+                                    <td>@item.Monthly</td>
                                     <td>@item.Year</td>
                                     <td>@item.RequestedBy</td>
+                                    @if (item.Description.Length < 10)
+                                    {
+                                        <td data-toggle="tooltip" data-placement="left" title="@item.Description">
+                                            @item.Description
+                                            @*<span class="tooltiptext">@item.Description</span>*@
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td data-toggle="tooltip" data-placement="left" title="@item.Description">
+                                            @item.Description.Substring(0, 10)...
+                                            @*<span class="tooltiptext">@item.Description</span>*@
+                                        </td>
+                                    }
                                 </tr>
                                 <div class="modal fade" id="modal-Approval">
                                     <div class="modal-dialog">
@@ -164,7 +193,11 @@
 
 <script src="~/Content/plugins/jquery/jquery.min.js"></script>
 <link href="~/Content/css/AdminStyle.css" rel="stylesheet" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
     $("#Dashboard").removeClass('active');
     $("#RequestedDocuments").addClass('active');
 

@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fd5af519d3f047ef9bb385af02ba2d0a" Name="Diagram1" ZoomLevel="62">
+      <Diagram DiagramId="fd5af519d3f047ef9bb385af02ba2d0a" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="PablaAccountsModel.tblClientDocument" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="PablaAccountsModel.tblUser" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="PablaAccountsModel.tbl_RequestedDocument" Width="1.5" PointX="3.375" PointY="4.75" />
         <EntityTypeShape EntityType="PablaAccountsModel.tbl_FilePersonalTax" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PablaAccountsModel.tblDocumentType" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

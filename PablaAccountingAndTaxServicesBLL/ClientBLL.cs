@@ -82,6 +82,10 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             client.SaveFilePersonalTax(filePersonalTaxEntity);
         }
-        
+        public void InsertDocumentType(string DocumentType)
+        {
+            client.InsertDocumentType(DocumentType);
         }
+
+    }
 }

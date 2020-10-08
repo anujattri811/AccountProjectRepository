@@ -24,6 +24,18 @@ namespace PablaAccountingAndTaxServices.Controllers
         CustomMethod customMethod = new CustomMethod();
 
         PablaAccountsEntities pablaAccountsEntities = new PablaAccountsEntities();
+        public AdminController()
+        {
+            var DocumentList = pablaAccountsEntities.tblDocumentTypes.Where(x => x.IsDeleted == false).Select(x => x.DocumentType).ToList();
+            DocumentList.Add("Other");
+            IEnumerable<SelectListItem> selectDocumentList = from Document in DocumentList
+                                                             select new SelectListItem
+                                                             {
+                                                                 Text = Convert.ToString(Document),
+                                                                 Value = Convert.ToString(Document)
+                                                             };
+            ViewBag.DocumentList = new SelectList(selectDocumentList, "Text", "Value");
+        }
 
         #region Admin Login
 
@@ -122,7 +134,11 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                var result = clientBLL.selectClientList();
+                if (TempData["Success"] != null)
+                {
+                    ViewBag.Success = Convert.ToString(TempData["Success"]);
+                }
+                var result = clientBLL.selectClientList().OrderByDescending(x => x.UserId).ToList();
                 ViewBag.ClientList = result;
             }
             return View();
@@ -148,19 +164,20 @@ namespace PablaAccountingAndTaxServices.Controllers
                 var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.Email == clientEntity.Email || x.MobileNo == clientEntity.MobileNo && x.IsDeleted == false).SingleOrDefault();
                 if (ExistClient == null)
                 {
+                    TempData["Success"] = "2";
                     clientBLL.AddNewClient(clientEntity);
                 }
                 else
                 {
-                    TempData["ExistClient"] = "1";
-                    return RedirectToAction("new_client");
+                    ViewBag.ExistClient = "1";
+                    return View();
                 }
 
             }
             return RedirectToAction("client");
         }
 
-        public ActionResult GeneratePassword(int ClientId = 0, string Email = "", string FirstName = "", string LastName = "", string MobileNo = "",string DateOfBirth="")
+        public ActionResult GeneratePassword(int ClientId = 0, string Email = "", string FirstName = "", string LastName = "", string MobileNo = "", string DateOfBirth = "")
         {
             Random r = new Random();
             int rInt = r.Next(0, 10);
@@ -170,7 +187,28 @@ namespace PablaAccountingAndTaxServices.Controllers
             var UserName = FirstName.ToLower() + "" + DateOfBirth.Split('/')[2];
             clientBLL.UpdateCredential(ClientId, UserName, EncryPassword);
             SendCredential(ClientId, UserName, FirstName, LastName, Decrypt);
+            TempData["Message"] = "1";
             return RedirectToAction("client_view", new { ClientId = ClientId });
+        }
+
+        public ActionResult SendCredentialToClient(int clientId = 0, string email = "", string firstName = "", string lastName = "", string UserName = "", string Password = "")
+        {
+            string htmlBody = "";
+            string headerText = "Hi <b> " + firstName + " " + lastName + " ,</b>";
+            string startTable = "<table>";
+            string emailText = "<tr><td><br/>As per your request for credential, Your credentials are given as below:-</br></br></td></tr>";
+            //emailText += "<tr><td>Name:<b> "  "</b></td></tr>";
+            emailText += "<tr><td>UserName:<b> " + UserName + "</b></td></tr>";
+            emailText += "<tr><td>Password:<b> " + Password + "</b></td></tr>";
+            emailText += "<tr><td> You can login with above credentials from below link:-</td></tr>";
+            emailText += "<tr><td><b>http://pablaaccounts.globalroot.net/Client/client_login </b></td></tr>";
+            emailText += "<tr><td>Regards</td></tr>";
+            emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
+            string endTable = "<br/></table> </br> </br> Thanks";
+            htmlBody = headerText + startTable + emailText + endTable;
+            customMethod.SendEmail(email, "Credential Information", htmlBody, "");
+            TempData["Message"] = "2";
+            return RedirectToAction("client_view", new { ClientId = clientId });
         }
         [HttpGet]
         public ActionResult modify_client(int ClientId = 0)
@@ -205,6 +243,10 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpGet]
         public ActionResult client_view(int ClientId = 0, string PersonName = "", string DocumentType = "", string Year = "", int UserId = 0, string Monthly = "")
         {
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = Convert.ToString(TempData["Message"]);
+            }
             var model = new ClientEntity();
             if (Session["FirstName"] == null && Session["LastName"] == null)
             {
@@ -238,7 +280,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 ViewBag.ClientId = ClientId;
                 ViewBag.TotalDocument = result;
             }
-            return View("client_view",model);
+            return View("client_view", model);
         }
 
 
@@ -266,6 +308,20 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.Extension = Extention;
             clientBLL.Savedocuments(fileUploadEntity);
 
+            //clientBLL.InsertDocumentType(fileUploadEntity.DocumentType);
+            tblUser tbluser = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == fileUploadEntity.UserId);
+            
+            string htmlBody = "";
+            string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
+            string startTable = "<table>";
+            string emailText = "<tr><td><br/>As per Your request for addition of document for <b> " + fileUploadEntity.PersonName + " </b> , We have uploaded a document Please find an attachment below:-</br></br></td></tr>";
+            emailText += "<tr><td>Regards</td></tr>";
+            emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
+            string endTable = "<br/></table> </br> </br> Thanks";
+            htmlBody = headerText + startTable + emailText + endTable;
+            string fullfilepath = path + fileName;
+            customMethod.SendEmail(tbluser.Email, "Document Uploaded", htmlBody, fullfilepath);
+            TempData["Message"] = "3";
             return RedirectToAction("client_view", new { ClientId = fileUploadEntity.UserId });
         }
         public bool SendCredential(int UserId, string UserName, string FirstName, string LastName, string Password)
@@ -331,6 +387,14 @@ namespace PablaAccountingAndTaxServices.Controllers
 
         public ActionResult requested_document()
         {
+            if (TempData["Messsage"] != null)
+            {
+                ViewBag.Messsage = Convert.ToString(TempData["Messsage"]);
+            }
+            if (Session["FirstName"] == null && Session["LastName"] == null)
+            {
+                return RedirectToAction("admin_login");
+            }
             //if (TempData["ApproveSuccess"] != null)
             //{
             //    ViewBag.ApproveSuccess = Convert.ToString(TempData["ApproveSuccess"]);
@@ -357,7 +421,8 @@ namespace PablaAccountingAndTaxServices.Controllers
                                       IsDeleted = d.IsDeleted,
                                       IsApprooved = d.IsApprooved,
                                       IsDeclined = d.IsDeclined,
-                                      IsUploaded = d.IsUploaded
+                                      IsUploaded = d.IsUploaded,
+                                      Monthly = d.Monthly
                                   }).Where(x => x.IsDeleted == false && x.IsDeclined == false && x.IsUploaded == false).OrderByDescending(x => x.RequestDocumentId)
                                   .AsEnumerable()    //important to convert to Enumerable
                         .Select(c => c.ToExpando()); //convert to ExpandoObject;
@@ -443,6 +508,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             //{
             //    TempData["ApproveError"] = status;
             //}
+            TempData["Messsage"] = "1";
             return RedirectToAction("requested_document", "admin");
         }
         [HttpPost]
@@ -467,6 +533,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string endTable = "<br/></table> </br> </br> Thanks";
             htmlBody = headerText + startTable + emailText + endTable;
             customMethod.SendEmail(tbluser.Email, "Document Declined", htmlBody, "");
+            TempData["Messsage"] = "2";
             return RedirectToAction("requested_document", "admin");
         }
 
@@ -506,7 +573,12 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.UploadFile.SaveAs(path + fileName);
             fileUploadEntity.DocumentName = DocumentName;
             fileUploadEntity.Extension = Extention;
+            if (fileUploadEntity.DocumentType == "Other")
+            {
+                fileUploadEntity.DocumentType = fileUploadEntity.Other;
+            }
             clientBLL.Savedocuments(fileUploadEntity);
+            clientBLL.InsertDocumentType(fileUploadEntity.DocumentType);
             var result = pablaAccountsEntities.tbl_RequestedDocument.SingleOrDefault(b => b.RequestDocumentId == fileUploadEntity.RequestedDocumentId);
             tblUser tbluser = new tblUser();
             if (result != null)
@@ -525,6 +597,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             htmlBody = headerText + startTable + emailText + endTable;
             string fullfilepath = path + fileName;
             customMethod.SendEmail(tbluser.Email, "Document Uploaded", htmlBody, fullfilepath);
+            TempData["Messsage"] = "3";
             return RedirectToAction("requested_document", "admin");
         }
         [HttpGet]

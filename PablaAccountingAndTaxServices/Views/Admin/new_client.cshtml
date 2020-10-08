@@ -25,6 +25,11 @@
         <!-- form start -->
         <form action="/Admin/new_client" method="post" id="CreateClient">
             <div class="card-body">
+                @if (ViewBag.ExistClient == "1")
+                {
+                    <h5 style="color:red;">Client already exist with this email or mobile number.</h5>
+                }
+
                 <div class="col-md-12 row">
                     <div class="col-md-6 form-group">
                         <label for="First Name">First Name</label>
@@ -136,10 +141,13 @@
 <link href="~/ClientContent/js/datepicker.css" rel="stylesheet" />
 <script src="~/ClientContent/js/bootstrap-datepicker.js"></script>
 <script>
-
-     if ('@TempData["ExistClient"]' == "1") {
+    @*$(document).ready(function () {
+            if ('@TempData["ExistClient"]' == "1") {
         toastr.error('Client already exist with this email or mobile number.');
     }
+
+        });*@
+
 
     $("#Dashboard").removeClass('active');
     $("#Clients").addClass('active');

@@ -5,11 +5,13 @@
 }
 @{
     var PersonName = new SelectList(ViewBag.PersonName, "Text", "Value");
+    var DocumentList = new SelectList(ViewBag.DocumentList, "Text", "Value");
 }
 <style>
     .table-custom th {
         padding: 5px 40px 4px !important;
     }
+
 </style>
 <section class="breadcrumbs-custom bg-image novi-background bg-primary">
     <div class="container">
@@ -41,7 +43,8 @@
                             <div class="tab-pane fade active show" id="tabs-1-1">
                                 <div class="card-body">
                                     <div class="col-md-6" style="float:left;">
-                                        <div class="form-row" style="margin-bottom: -10px;">
+                                        <div class="form-row" style="        margin-bottom: -10px;
+">
                                             <div class="col-md-4 mb-3" style="padding-left:5px;">
 
                                                 <label for="showEasing"><strong>First Name</strong></label>
@@ -260,24 +263,25 @@
                                             <form class="rd-form" action="\Client\RequestDocumentByClient" method="post" id="RequestedDocumentForm">
                                                 <input type="hidden" id="UserId" value="@Model.UserId" name="UserId" />
                                                 <div class="form-wrap form-group">
-                                                    <select class="form-input form-control-has-validation" id="DocumentType" name="DocumentType" onchange="ShowOther()">
-                                                        <option selected="" disabled="">Document Type</option>
-                                                        <option>Notice Of Assessment</option>
-                                                        <option>T1 General</option>
-                                                        <option>T4's</option>
-                                                        <option>T4 Summary</option>
-                                                        <option>T5</option>
-                                                        <option>Financials</option>
-                                                        <option>T2</option>
-                                                        <option>T2 Notice of Assessment</option>
-                                                        <option>Paystubs</option>
-                                                        <option>Schedule 100-125</option>
-                                                        <option>PD7 A</option>
-                                                        <option>Job letter</option>
-                                                        <option>GST</option>
-                                                        <option>Company Incorporation Papers</option>
-                                                        <option>Other</option>
-                                                    </select>
+                                                    @Html.DropDownList("DocumentType", DocumentList, "Document Type", new { @class = "form-input form-control-has-validation", @onchange = "ShowOther()" })
+                                                    @*<select class="form-input form-control-has-validation" id="DocumentType" name="DocumentType" onchange="ShowOther()">
+                                                            <option selected="" disabled="">Document Type</option>
+                                                            <option>Notice Of Assessment</option>
+                                                            <option>T1 General</option>
+                                                            <option>T4's</option>
+                                                            <option>T4 Summary</option>
+                                                            <option>T5</option>
+                                                            <option>Financials</option>
+                                                            <option>T2</option>
+                                                            <option>T2 Notice of Assessment</option>
+                                                            <option>Paystubs</option>
+                                                            <option>Schedule 100-125</option>
+                                                            <option>PD7 A</option>
+                                                            <option>Job letter</option>
+                                                            <option>GST</option>
+                                                            <option>Company Incorporation Papers</option>
+                                                            <option>Other</option>
+                                                        </select>*@
                                                 </div>
                                                 <div class="form-wrap" id="Show-OtherDocuments" style="display:none;">
                                                     <input type="text" name="OtherDocuments" id="OtherDocuments" class="form-input form-control-has-validation" />
@@ -353,7 +357,7 @@
                             </div>
                             <div class="tab-pane fade" id="tabs-1-3">
                                 <div class="table-custom-wrap table-custom-striped big">
-                                    <div class="table-custom-responsive number-counter-2" style="overflow-x:scroll">
+                                    <div class="table-custom-responsive number-counter-2" style="overflow-x:scroll;margin-right: 30px;margin-left: 30px;">
                                         <table id="Requestedexample1" class="table-custom">
                                             <thead>
                                                 <tr>
@@ -434,7 +438,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="tab-pane fade" id="tabs-1-4">
                                 <div class="table-custom-wrap table-custom-striped big">
                                     <div class="table-custom-responsive number-counter-2">
@@ -446,24 +450,25 @@
                                                     @Html.DropDownListFor(model => model.PersonName, PersonName, new { @class = "form-input form-control-has-validation" })
                                                 </div>
                                                 <div class="form-wrap col-md-3">
-                                                    <select class="form-input form-control-has-validation" name="SearchDocumentType">
-                                                        <option selected="" disabled="">Document Type</option>
-                                                        <option>Notice Of Assessment</option>
-                                                        <option>T1 General</option>
-                                                        <option>T4's</option>
-                                                        <option>T4 Summary</option>
-                                                        <option>T5</option>
-                                                        <option>Financials</option>
-                                                        <option>T2</option>
-                                                        <option>T2 Notice of Assessment</option>
-                                                        <option>Paystubs</option>
-                                                        <option>Schedule 100-125</option>
-                                                        <option>PD7 A</option>
-                                                        <option>Job letter</option>
-                                                        <option>GST</option>
-                                                        <option>Company Incorporation Papers</option>
-                                                        <option>Other</option>
-                                                    </select>
+                                                    @Html.DropDownList("SearchDocumentType", DocumentList, "Document Type", new { @class = "form-input form-control-has-validation" })
+                                                    @*<select class="form-input form-control-has-validation" name="SearchDocumentType">
+                                                            <option selected="" disabled="">Document Type</option>
+                                                            <option>Notice Of Assessment</option>
+                                                            <option>T1 General</option>
+                                                            <option>T4's</option>
+                                                            <option>T4 Summary</option>
+                                                            <option>T5</option>
+                                                            <option>Financials</option>
+                                                            <option>T2</option>
+                                                            <option>T2 Notice of Assessment</option>
+                                                            <option>Paystubs</option>
+                                                            <option>Schedule 100-125</option>
+                                                            <option>PD7 A</option>
+                                                            <option>Job letter</option>
+                                                            <option>GST</option>
+                                                            <option>Company Incorporation Papers</option>
+                                                            <option>Other</option>
+                                                        </select>*@
                                                 </div>
                                                 <div class="form-wrap  col-md-3" id="Year">
                                                     <select class="form-input form-control-has-validation" name="SearchYear">
@@ -510,7 +515,7 @@
 
                                             </div>
                                             <div class="col-md-12 row" style="margin-top:0px;margin-bottom:10px;">
-                                                
+
                                                 <div class="col-md-5">
                                                 </div>
                                                 <div class="button-link-wrap text-right" style="margin-top:0px;margin-bottom:10px;">
@@ -518,34 +523,40 @@
                                                 </div>
                                             </div>
                                         }
-                                        <table id="example1" class="table-custom">
-                                            <thead>
-                                                <tr>
-                                                    <th>Operation</th>
-                                                    <th>Person Name</th>
-                                                    <th>Document Name</th>
-                                                    <th>Document Type</th>
-                                                    <th>Other</th>
-                                                    <th>Year</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in ViewBag.TotalDocument)
-                                                {
+                                        <div style="overflow-x:scroll;margin-right: 30px;margin-left: 30px;">
+                                            <table id="example1" class="table-custom">
+                                                <thead>
                                                     <tr>
-                                                        <td class="text-gray-800">
-                                                            <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank" style="margin:12px;"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
-                                                            <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
-                                                        </td>
-                                                        <td class="text-gray-800">@item.PersonName</td>
-                                                        <td class="text-gray-800">@item.DocumentName</td>
-                                                        <td class="text-gray-800">@item.DocumentType</td>
-                                                        <td class="text-gray-800">@item.Other</td>
-                                                        <td class="text-gray-800">@item.Year</td>
+                                                        <th>Operation</th>
+                                                        <th>Person Name</th>
+                                                        <th>Document Name</th>
+                                                        <th>Document Type</th>
+                                                        <th>Other</th>
+                                                        <th>Period Ending</th>
+                                                        <th>Month</th>
+                                                        <th>Year</th>
                                                     </tr>
-                                                }
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.TotalDocument)
+                                                    {
+                                                        <tr>
+                                                            <td class="text-gray-800">
+                                                                <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank" style="margin:12px;"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
+                                                                <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
+                                                            </td>
+                                                            <td class="text-gray-800">@item.PersonName</td>
+                                                            <td class="text-gray-800">@item.DocumentName</td>
+                                                            <td class="text-gray-800">@item.DocumentType</td>
+                                                            <td class="text-gray-800">@item.Other</td>
+                                                            <td class="text-gray-800">@item.Periodending</td>
+                                                            <td class="text-gray-800">@item.Monthly</td>
+                                                            <td class="text-gray-800">@item.Year</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

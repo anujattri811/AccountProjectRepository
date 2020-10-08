@@ -96,5 +96,9 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             pablaAccountsEntities.ChangePassword(UserId, Password, ConfirmPassword);
         }
+        public void InsertDocumentType(string DocumentType)
+        {
+            pablaAccountsEntities.usp_InsertDocumentType(DocumentType);
+        }
     }
 }

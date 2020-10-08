@@ -31,6 +31,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tbl_RequestedDocument> tbl_RequestedDocument { get; set; }
         public virtual DbSet<tbl_FilePersonalTax> tbl_FilePersonalTax { get; set; }
+        public virtual DbSet<tblDocumentType> tblDocumentTypes { get; set; }
     
         public virtual int usp_insertclient(string firstName, string lastName, string email, string dateOfBirth, string mobileNo, string companryName, string address, string city, string postalCode, string province, string country, string sIN, string gSTNumber, string wCB, string password, Nullable<int> roleId, string corporateAccessNumber)
         {
@@ -407,6 +408,15 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("ConfirmPassword", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ChangePassword", userIdParameter, passwordParameter, confirmPasswordParameter);
+        }
+    
+        public virtual int usp_InsertDocumentType(string documentType)
+        {
+            var documentTypeParameter = documentType != null ?
+                new ObjectParameter("DocumentType", documentType) :
+                new ObjectParameter("DocumentType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertDocumentType", documentTypeParameter);
         }
     }
 }

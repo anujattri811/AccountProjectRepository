@@ -21,9 +21,9 @@
                     <div class="unit-body">
                         <h5 class="rd-megamenu-title">Personal</h5>
                         <ul class="list-marked-2">
-                            <li><a class="rd-megamenu-list-link" href="#PersonalTaxReturn">Personal Tax Return</a></li>
-                            <li><a class="rd-megamenu-list-link" href="#SelfEmployed">Self Employed</a></li>
-                            <li><a class="rd-megamenu-list-link" href="#TaxBenefits">Tax Benefits</a></li>
+                            <li><a class="rd-megamenu-list-link service" href="#PersonalTaxReturn">Personal Tax Return</a></li>
+                            <li><a class="rd-megamenu-list-link service" href="#SelfEmployed">Self Employed</a></li>
+                            <li><a class="rd-megamenu-list-link service" href="#TaxBenefits">Tax Benefits</a></li>
                         </ul>
                     </div>
                     @*<h5 class="rd-megamenu-title">Personal</h5>*@
@@ -36,12 +36,12 @@
                         <h5 class="rd-megamenu-title">Corporate</h5>
                         @*<h5 class="rd-megamenu-title">Corporate</h5>*@
                         <ul class="list-marked-2">
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#BusinessTaxReturn">Business Tax Return</a></li>
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#Payroll">Payroll</a></li>
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#BookKeeping">Book Keeping</a></li>
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#GSTFiling">GST Filing</a></li>
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#FinancialStatement">Financial Statement</a></li>
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#AuditReviews">Audit Reviews</a></li>
+                            <li class="rd-megamenu-list-item "><a class="rd-megamenu-list-link service" href="#BusinessTaxReturn">Business Tax Return</a></li>
+                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link service" href="#Payroll">Payroll</a></li>
+                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link service" href="#BookKeeping">Book Keeping</a></li>
+                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link service" href="#GSTFiling">GST Filing</a></li>
+                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link service" href="#FinancialStatement">Financial Statement</a></li>
+                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link service" href="#AuditReviews">Audit Reviews</a></li>
                         </ul>
                     </div>
                     
@@ -53,8 +53,8 @@
                         <h5 class="rd-megamenu-title">Advisory</h5>
                         @*<h5 class="rd-megamenu-title">Advisory</h5>*@
                         <ul class="list-marked-2">
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#FinancialAdvise">Financial Advise</a></li>
-                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="#TaxPlanning">Tax Planning</a></li>
+                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link service" href="#FinancialAdvise">Financial Advise</a></li>
+                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link service" href="#TaxPlanning">Tax Planning</a></li>
                         </ul>
                     </div>
                     
@@ -297,4 +297,20 @@
         <div class="button-wrap-1 text-center"><a class="button button-primary" href="@Url.Action("ContactUs","Client")">Have a question?</a></div>
     </div>
 </section>
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script>
+    $('.service').click(function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+            || location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top - 75
+                }, 500);
+                return false;
+            }
+        }
+    });
 
+</script>

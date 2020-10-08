@@ -18,6 +18,18 @@ namespace PablaAccountingAndTaxServices.Controllers
         ClientBLL clientBLL = new ClientBLL();
         PablaAccountsEntities pablaAccountsEntities = new PablaAccountsEntities();
         CustomMethod customMethod = new CustomMethod();
+        public ClientController()
+        {
+            var DocumentList = pablaAccountsEntities.tblDocumentTypes.Where(x => x.IsDeleted == false).Select(x => x.DocumentType).ToList();
+            DocumentList.Add("Other");
+            IEnumerable<SelectListItem> selectDocumentList = from Document in DocumentList
+                                                             select new SelectListItem
+                                                             {
+                                                                 Text = Convert.ToString(Document),
+                                                                 Value = Convert.ToString(Document)
+                                                             };
+            ViewBag.DocumentList = new SelectList(selectDocumentList, "Text", "Value");
+        }
 
         #region client_login
         [HttpGet]
@@ -181,7 +193,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>OtherDocuments:<b> " + OtherDocuments + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                customMethod.SendEmail("anujattri233@gmail.com", "Request Document", htmlBody, "");
+                customMethod.SendEmail("Tax@pablastax.com", "Request Document", htmlBody, "");
                 //MailMessage mailMessage = new MailMessage();
                 //mailMessage.To.Add("sahilattri740@gmail.com");
                 //mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");

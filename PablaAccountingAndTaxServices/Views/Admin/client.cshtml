@@ -3,7 +3,7 @@
     ViewBag.Title = "client";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-   
+
 <section class="content header">
     <div class="row">
         <div class="col-12">
@@ -28,6 +28,10 @@
                 <div class="card-body">
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="col-sm-12" style="overflow-x:auto;">
+                            @if (ViewBag.Success == "2")
+                            {
+                                <h5 style="color:green;">A New Client has been successfully created.</h5>
+                            }
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
                                     <tr role="row" class="table-color">
