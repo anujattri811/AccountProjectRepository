@@ -161,7 +161,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.Email == clientEntity.Email || x.MobileNo == clientEntity.MobileNo && x.IsDeleted == false).SingleOrDefault();
+                var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.Email == clientEntity.Email || x.MobileNo == clientEntity.MobileNo && x.IsDeleted == false).FirstOrDefault();
                 if (ExistClient == null)
                 {
                     TempData["Success"] = "2";
@@ -181,12 +181,12 @@ namespace PablaAccountingAndTaxServices.Controllers
         {
             Random r = new Random();
             int rInt = r.Next(0, 10);
-            var Pass = FirstName.Substring(0, 4) + MobileNo.Substring(MobileNo.Length - 4) + "@" + rInt;
+            var Pass = FirstName + MobileNo.Substring(MobileNo.Length - 4) + "@" + rInt;
             var EncryPassword = encryDecry.EncryptPassword(Pass);
             var Decrypt = encryDecry.DecryptPassword(EncryPassword);
             var UserName = FirstName.ToLower() + "" + DateOfBirth.Split('/')[2];
             clientBLL.UpdateCredential(ClientId, UserName, EncryPassword);
-            SendCredential(ClientId, UserName, FirstName, LastName, Decrypt);
+            SendCredential(ClientId, UserName, FirstName, LastName, Decrypt,Email);
             TempData["Message"] = "1";
             return RedirectToAction("client_view", new { ClientId = ClientId });
         }
@@ -241,7 +241,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("client");
         }
         [HttpGet]
-        public ActionResult client_view(int ClientId = 0, string PersonName = "", string DocumentType = "", string Year = "", int UserId = 0, string Monthly = "")
+        public ActionResult client_view(int ClientId = 0, string PersonName = "", string DocumentType = "", string SearchYear = "", int UserId = 0, string SearchMonthly = "",string SearchQuaterly="")
         {
             if (TempData["Message"] != null)
             {
@@ -255,13 +255,13 @@ namespace PablaAccountingAndTaxServices.Controllers
             else
             {
                 List<tblClientDocument> result = new List<tblClientDocument>();
-                if (PersonName == "" && DocumentType == "" && Year == "" && Monthly == "")
+                if (PersonName == "" && DocumentType == "" && SearchYear == "")
                 {
                     result = clientBLL.selectAllDocumentForClient(ClientId);
                 }
                 else
                 {
-                    result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, DocumentType, Year, Monthly);
+                    result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, DocumentType, SearchYear, SearchMonthly, SearchQuaterly);
                 }
 
                 model = clientBLL.GetAllClient(ClientId);
@@ -290,8 +290,15 @@ namespace PablaAccountingAndTaxServices.Controllers
             TempData["Delete"] = "1";
             return RedirectToAction("client");
         }
+        public ActionResult DeleteDocument(int DocumentId = 0, int ClientId = 0)
+        {
+            clientBLL.DeleteDocument(DocumentId);
+            TempData["Delete"] = "1";
+            return RedirectToAction("client_view", new { ClientId = ClientId });
+        }
+
         [HttpPost]
-        public ActionResult savedocuments(FileUploadEntity fileUploadEntity)
+        public ActionResult savedocuments(FileUploadEntity fileUploadEntity, string SendCompanyName)
         {
             ClientBLL clientBLL = new ClientBLL();
             string path = Server.MapPath("~/Documents/");
@@ -310,11 +317,11 @@ namespace PablaAccountingAndTaxServices.Controllers
 
             //clientBLL.InsertDocumentType(fileUploadEntity.DocumentType);
             tblUser tbluser = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == fileUploadEntity.UserId);
-            
+
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>As per Your request for addition of document for <b> " + fileUploadEntity.PersonName + " </b> , We have uploaded a document Please find an attachment below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>One additional document has been uploaded for the person name  <b> " + fileUploadEntity.PersonName + " </b> , of the company " + SendCompanyName + "with document type " + DocumentName + ". Please find an attachment below:-</br></br></td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
@@ -324,7 +331,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             TempData["Message"] = "3";
             return RedirectToAction("client_view", new { ClientId = fileUploadEntity.UserId });
         }
-        public bool SendCredential(int UserId, string UserName, string FirstName, string LastName, string Password)
+        public bool SendCredential(int UserId, string UserName, string FirstName, string LastName, string Password,string Email)
         {
             try
             {
@@ -341,7 +348,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                customMethod.SendEmail(UserName, "Account Information", htmlBody, "");
+                customMethod.SendEmail(Email, "Account Information", htmlBody, "");
                 return true;
             }
             catch

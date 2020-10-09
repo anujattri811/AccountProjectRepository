@@ -58,7 +58,14 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             result.IsDeleted = true;
             pablaAccountsEntities.SaveChanges();
         }
+        public void DeleteDocument(int DocumentId)
+        {
+            var result = pablaAccountsEntities.tblClientDocuments.Where(x => x.DocumentId == DocumentId).SingleOrDefault();
+            result.IsDeleted = true;
+            pablaAccountsEntities.SaveChanges();
+        }
 
+     
         public void DeleteRequest(int UserId)
         {
             var result = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId == UserId).SingleOrDefault();
@@ -71,16 +78,16 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void Savedocuments(FileUploadEntity fileUploadEntity)
         {
-            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName, fileUploadEntity.Extension, fileUploadEntity.OtherDocuments);
+            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName, fileUploadEntity.Extension, fileUploadEntity.OtherDocuments,fileUploadEntity.Periodending,fileUploadEntity.Monthly,fileUploadEntity.Quaterly);
 
         }
-        public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year,string Monthly)
+        public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year,string Monthly,string Quaterly)
         {
-            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year || x.Monthly==Monthly).ToList();
+            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year || x.Monthly==Monthly || x.Quaterly== Quaterly).ToList();
         }
-        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months, string PeriodTime)
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months, string PeriodTime,string Quaterly)
         {
-            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months);
+            pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months, Quaterly);
         }
         public List<tbl_RequestedDocument> GetRequest(int clientId)
         {

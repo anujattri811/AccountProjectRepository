@@ -21,6 +21,7 @@
           <Property Name="Other" Type="nvarchar" MaxLength="200" />
           <Property Name="Periodending" Type="nvarchar" MaxLength="50" />
           <Property Name="Monthly" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quaterly" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -105,6 +106,7 @@
           <Property Name="IsUploaded" Type="bit" />
           <Property Name="Monthly" Type="nvarchar" MaxLength="50" />
           <Property Name="Periodending" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quaterly" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblDocumentType">
           <Key>
@@ -142,6 +144,9 @@
           <Parameter Name="DocumentName" Type="nvarchar" Mode="In" />
           <Parameter Name="Discription" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Other" Type="nvarchar" Mode="In" />
+          <Parameter Name="PeriodEnding" Type="nvarchar" Mode="In" />
+          <Parameter Name="Monthly" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quaterly" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="usp_updateclient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="bigint" Mode="In" />
@@ -218,6 +223,7 @@
           <Parameter Name="Other" Type="nvarchar" Mode="In" />
           <Parameter Name="Periodending" Type="nvarchar" Mode="In" />
           <Parameter Name="Monthly" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quaterly" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="PablaAccountsModelStoreContainer">
           <EntitySet Name="tblClientDocument" EntityType="Self.tblClientDocument" Schema="dbo" store:Type="Tables" />
@@ -277,6 +283,9 @@
             <Parameter Name="DocumentName" Mode="In" Type="String" />
             <Parameter Name="Discription" Mode="In" Type="String" />
             <Parameter Name="Other" Mode="In" Type="String" />
+            <Parameter Name="PeriodEnding" Mode="In" Type="String" />
+            <Parameter Name="Monthly" Mode="In" Type="String" />
+            <Parameter Name="Quaterly" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="tblUsers" EntityType="PablaAccountsModel.tblUser" />
           <FunctionImport Name="GetPersonName" ReturnType="Collection(String)" >
@@ -297,6 +306,7 @@
             <Parameter Name="Other" Mode="In" Type="String" />
             <Parameter Name="Periodending" Mode="In" Type="String" />
             <Parameter Name="Monthly" Mode="In" Type="String" />
+            <Parameter Name="Quaterly" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
           <Parameter Name="UserId" Mode="In" Type="Int64" />
@@ -338,7 +348,7 @@
           </FunctionImport>
           <EntitySet Name="tblDocumentTypes" EntityType="PablaAccountsModel.tblDocumentType" />
           <FunctionImport Name="usp_InsertDocumentType">
-            <Parameter Name="DocumentType" Mode="In" Type="String" />
+          <Parameter Name="DocumentType" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblClientDocument">
@@ -357,6 +367,7 @@
           <Property Name="Other" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Periodending" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Monthly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quaterly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -406,6 +417,7 @@
           <Property Name="IsUploaded" Type="Boolean" />
           <Property Name="Monthly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Periodending" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quaterly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_FilePersonalTax">
           <Key>
@@ -462,6 +474,7 @@
           <EntitySetMapping Name="tblClientDocuments">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblClientDocument">
               <MappingFragment StoreEntitySet="tblClientDocument">
+                <ScalarProperty Name="Quaterly" ColumnName="Quaterly" />
                 <ScalarProperty Name="Monthly" ColumnName="Monthly" />
                 <ScalarProperty Name="Periodending" ColumnName="Periodending" />
                 <ScalarProperty Name="Other" ColumnName="Other" />
@@ -513,6 +526,7 @@
           <EntitySetMapping Name="tbl_RequestedDocument">
             <EntityTypeMapping TypeName="PablaAccountsModel.tbl_RequestedDocument">
               <MappingFragment StoreEntitySet="tbl_RequestedDocument">
+                <ScalarProperty Name="Quaterly" ColumnName="Quaterly" />
                 <ScalarProperty Name="Periodending" ColumnName="Periodending" />
                 <ScalarProperty Name="Monthly" ColumnName="Monthly" />
                 <ScalarProperty Name="IsUploaded" ColumnName="IsUploaded" />

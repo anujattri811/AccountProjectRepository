@@ -11,7 +11,6 @@
     .table-custom th {
         padding: 5px 40px 4px !important;
     }
-
 </style>
 <section class="breadcrumbs-custom bg-image novi-background bg-primary">
     <div class="container">
@@ -262,6 +261,9 @@
 
                                             <form class="rd-form" action="\Client\RequestDocumentByClient" method="post" id="RequestedDocumentForm">
                                                 <input type="hidden" id="UserId" value="@Model.UserId" name="UserId" />
+                                                <input type="hidden" id="UserId" value="@Model.FirstName" name="SendFirstName" />
+                                                <input type="hidden" id="UserId" value="@Model.LastName" name="SendLastName" />
+                                                <input type="hidden" id="UserId" value="@Model.CompanyName" name="SendCompanyName" />
                                                 <div class="form-wrap form-group">
                                                     @Html.DropDownList("DocumentType", DocumentList, "Document Type", new { @class = "form-input form-control-has-validation", @onchange = "ShowOther()" })
                                                     @*<select class="form-input form-control-has-validation" id="DocumentType" name="DocumentType" onchange="ShowOther()">
@@ -291,6 +293,7 @@
                                                     <select class="form-input form-control-has-validation" id="PeriodTime" name="PeriodTime" onchange="Test()">
                                                         <option selected="" disabled="">Period Time</option>
                                                         <option>Monthly</option>
+                                                        <option>Quaterly</option>
                                                         <option>Annualy</option>
                                                     </select>
                                                 </div>
@@ -336,6 +339,15 @@
                                                         <option>2030</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-wrap form-group" id="Quaterly" style="display:none;">
+                                                    <select class="form-input form-control-has-validation" name="Quaterly">
+                                                        <option selected="" disabled="">Select Quaterly</option>
+                                                        <option>Quaterly 1</option>
+                                                        <option>Quaterly 2</option>
+                                                        <option>Quaterly 3</option>
+                                                        <option>Quaterly 4</option>
+                                                    </select>
+                                                </div>
                                                 <div class="form-wrap form-group">
                                                     @Html.DropDownList("PersonName", PersonName, "Select Person", new { @onchange = "ShowOtherPerson()", @class = "form-input form-control-has-validation" })
                                                 </div>
@@ -370,6 +382,7 @@
                                                     <th>Description</th>
                                                     <th>PeriodEnding</th>
                                                     <th>Monthly</th>
+                                                    <th>Quaterly</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -428,6 +441,7 @@
                                                         }
                                                         <td>@item.Periodending</td>
                                                         <td>@item.Monthly</td>
+                                                        <td>@item.Quaterly</td>
 
                                                     </tr>
 
@@ -452,25 +466,25 @@
                                                 <div class="form-wrap col-md-3">
                                                     @Html.DropDownList("SearchDocumentType", DocumentList, "Document Type", new { @class = "form-input form-control-has-validation" })
                                                     @*<select class="form-input form-control-has-validation" name="SearchDocumentType">
-                                                            <option selected="" disabled="">Document Type</option>
-                                                            <option>Notice Of Assessment</option>
-                                                            <option>T1 General</option>
-                                                            <option>T4's</option>
-                                                            <option>T4 Summary</option>
-                                                            <option>T5</option>
-                                                            <option>Financials</option>
-                                                            <option>T2</option>
-                                                            <option>T2 Notice of Assessment</option>
-                                                            <option>Paystubs</option>
-                                                            <option>Schedule 100-125</option>
-                                                            <option>PD7 A</option>
-                                                            <option>Job letter</option>
-                                                            <option>GST</option>
-                                                            <option>Company Incorporation Papers</option>
-                                                            <option>Other</option>
-                                                        </select>*@
+                <option selected="" disabled="">Document Type</option>
+                <option>Notice Of Assessment</option>
+                <option>T1 General</option>
+                <option>T4's</option>
+                <option>T4 Summary</option>
+                <option>T5</option>
+                <option>Financials</option>
+                <option>T2</option>
+                <option>T2 Notice of Assessment</option>
+                <option>Paystubs</option>
+                <option>Schedule 100-125</option>
+                <option>PD7 A</option>
+                <option>Job letter</option>
+                <option>GST</option>
+                <option>Company Incorporation Papers</option>
+                <option>Other</option>
+            </select>*@
                                                 </div>
-                                                <div class="form-wrap  col-md-3" id="Year">
+                                                <div class="form-wrap  col-md-2" id="Year">
                                                     <select class="form-input form-control-has-validation" name="SearchYear">
                                                         <option selected="" disabled="">Select Year</option>
                                                         <option>2011</option>
@@ -495,7 +509,7 @@
                                                         <option>2030</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-wrap col-md-3">
+                                                <div class="form-wrap col-md-2">
                                                     <select class="form-input form-control-has-validation" name="SearchMonthly">
                                                         <option selected="" disabled="">Select Month</option>
                                                         <option>January</option>
@@ -510,6 +524,15 @@
                                                         <option>October</option>
                                                         <option>November</option>
                                                         <option>December</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-wrap col-md-2" id="SearchQuaterly">
+                                                    <select class="form-input form-control-has-validation" name="SearchQuaterly">
+                                                        <option selected="" disabled="">Select</option>
+                                                        <option>Quaterly 1</option>
+                                                        <option>Quaterly 2</option>
+                                                        <option>Quaterly 3</option>
+                                                        <option>Quaterly 4</option>
                                                     </select>
                                                 </div>
 
@@ -535,15 +558,18 @@
                                                         <th>Period Ending</th>
                                                         <th>Month</th>
                                                         <th>Year</th>
+                                                        <th>Quaterly</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach (var item in ViewBag.TotalDocument)
                                                     {
                                                         <tr>
-                                                            <td class="text-gray-800">
-                                                                <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank" style="margin:12px;"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
-                                                                <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
+                                                            <td class="text-gray-800" style="padding:26px;">
+                                                                <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank" style="margin:8px;"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
+                                                                <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription"  style="margin:8px;" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
+                                                                <a href="#"  onclick="Delete('@item.DocumentId')"><span class="info-box-icon"><i class="fa fa-trash"></i></span></a>
+                                                                
                                                             </td>
                                                             <td class="text-gray-800">@item.PersonName</td>
                                                             <td class="text-gray-800">@item.DocumentName</td>
@@ -552,6 +578,7 @@
                                                             <td class="text-gray-800">@item.Periodending</td>
                                                             <td class="text-gray-800">@item.Monthly</td>
                                                             <td class="text-gray-800">@item.Year</td>
+                                                            <td class="text-gray-800">@item.Quaterly</td>
                                                         </tr>
                                                     }
                                                 </tbody>
@@ -668,20 +695,55 @@
     function ShowOther() {
         if ($("#DocumentType").val() == "Other") {
             $("#Show-OtherDocuments").fadeIn();
+            $("#Show-years").fadeOut();
             $("#Show-years").fadeIn();
             $("#Year").fadeOut();
+            $("#Quaterly").fadeOut();
+            //$("#PeriodTime option").each(function () {
+            //    if (this.value == "Quaterly") {
+            //        $(this).attr("disabled",true)
+            //    }
+
+
+            //});
 
         }
+        else if ($("#DocumentType").val() == "GST") {
+            $("#Quaterly").fadeOut();
+            $("#Show-years").fadeOut();
+            $("#Show-years").fadeIn();
+            $("#Show-OtherDocuments").fadeOut();
+            $("#Year").fadeOut();
+            //$("#PeriodTime option").each(function () {
+            //    if (this.value == "Quaterly") {
+            //        $(this).attr("disabled", false)
+            //    }
+
+
+            //});
+         
+        }
         else {
-            if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A" || $("#DocumentType").val() == "GST") {
+            if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
+                $("#Show-years").fadeOut();
                 $("#Show-years").fadeIn();
+                
                 $("#Show-OtherDocuments").fadeOut();
                 $("#Year").fadeOut();
+                $("#Quaterly").fadeOut();
+                //$("#PeriodTime option").each(function () {
+                //    if (this.value == "Quaterly") {
+                //        $(this).attr("disabled",true)
+                //    }
+
+
+                //});
             }
             else {
                 $("#Show-OtherDocuments").fadeOut();
                 $("#Show-years").fadeOut();
                 $("#Year").fadeIn();
+                $("#Quaterly").fadeOut();
             }
 
         }
@@ -690,10 +752,18 @@
         if ($("#PeriodTime").val() == "Monthly") {
             $("#Show-months").fadeIn();
             $("#Year").fadeOut();
+            $("#Quaterly").fadeOut();
+        }
+        else if ($("#PeriodTime").val() == "Quaterly" && $("#DocumentType").val() == "GST") {
+            $("#Quaterly").fadeIn();
+            $("#Show-OtherDocuments").fadeOut();
+            $("#Year").fadeOut();
+            $("#Show-months").fadeOut();
         }
         else {
             $("#Show-months").fadeOut();
             $("#Year").fadeIn();
+            $("#Quaterly").fadeOut();
         }
     }
 
@@ -729,4 +799,31 @@
             }
         })
     }
+</script>
+<script>
+        $(document).ready(function() {
+        if ('@TempData["Delete"]' == "1") {
+        Swal.fire(
+                    'Deleted!',
+                    'Document has been deleted successfully.',
+                    'success'
+                )
+        }
+});
+
+        function Delete(DocumentId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Client/DeleteClientDocument?DocumentId=" + DocumentId+"&ClientId="+$("#UserId").val()
+                }
+            })
+        }
 </script>

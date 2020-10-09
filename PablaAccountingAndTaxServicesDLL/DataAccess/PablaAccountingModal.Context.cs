@@ -175,7 +175,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_updateclient", userIdParameter, firstNameParameter, lastNameParameter, dateOfBirthParameter, emailParameter, mobileNoParameter, companyNameParameter, addressParameter, cityParameter, postalCodeParameter, provinceParameter, countryParameter, sINParameter, gSTNumberParameter, wCBParameter, corporateAccessNumberParameter);
         }
     
-        public virtual int usp_insertclientdocument(Nullable<long> userId, string personName, string documentType, string year, string documentName, string discription, string other)
+        public virtual int usp_insertclientdocument(Nullable<long> userId, string personName, string documentType, string year, string documentName, string discription, string other, string periodEnding, string monthly, string quaterly)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
@@ -205,7 +205,19 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("Other", other) :
                 new ObjectParameter("Other", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertclientdocument", userIdParameter, personNameParameter, documentTypeParameter, yearParameter, documentNameParameter, discriptionParameter, otherParameter);
+            var periodEndingParameter = periodEnding != null ?
+                new ObjectParameter("PeriodEnding", periodEnding) :
+                new ObjectParameter("PeriodEnding", typeof(string));
+    
+            var monthlyParameter = monthly != null ?
+                new ObjectParameter("Monthly", monthly) :
+                new ObjectParameter("Monthly", typeof(string));
+    
+            var quaterlyParameter = quaterly != null ?
+                new ObjectParameter("Quaterly", quaterly) :
+                new ObjectParameter("Quaterly", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertclientdocument", userIdParameter, personNameParameter, documentTypeParameter, yearParameter, documentNameParameter, discriptionParameter, otherParameter, periodEndingParameter, monthlyParameter, quaterlyParameter);
         }
     
         public virtual ObjectResult<string> GetPersonName(Nullable<long> userId)
@@ -234,7 +246,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GeneratePassword", userIdParameter, userNameParameter, passwordParameter);
         }
     
-        public virtual int usp_insertRequestdocument(Nullable<long> userId, string documentType, string year, string personName, string description, string other, string periodending, string monthly)
+        public virtual int usp_insertRequestdocument(Nullable<long> userId, string documentType, string year, string personName, string description, string other, string periodending, string monthly, string quaterly)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
@@ -268,7 +280,11 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 new ObjectParameter("Monthly", monthly) :
                 new ObjectParameter("Monthly", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertRequestdocument", userIdParameter, documentTypeParameter, yearParameter, personNameParameter, descriptionParameter, otherParameter, periodendingParameter, monthlyParameter);
+            var quaterlyParameter = quaterly != null ?
+                new ObjectParameter("Quaterly", quaterly) :
+                new ObjectParameter("Quaterly", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insertRequestdocument", userIdParameter, documentTypeParameter, yearParameter, personNameParameter, descriptionParameter, otherParameter, periodendingParameter, monthlyParameter, quaterlyParameter);
         }
     
         public virtual ObjectResult<string> Selectpersonname(Nullable<long> userId)

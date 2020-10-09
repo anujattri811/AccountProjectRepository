@@ -123,7 +123,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
         }
 
-        public ActionResult client_dashboard(string PersonName = "", string SearchDocumentType = "", string SearchYear = "", string SearchMonthly="", int UserId = 0)
+        public ActionResult client_dashboard(string PersonName = "", string SearchDocumentType = "", string SearchYear = "", string SearchMonthly = "",string SearchQuaterly="", int UserId = 0)
         {
             var model = new ClientEntity();
             if (Session["UserId"] == null)
@@ -135,7 +135,7 @@ namespace PablaAccountingAndTaxServices.Controllers
 
             if (PersonName != "" && SearchDocumentType != "")
             {
-                result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, SearchDocumentType, SearchYear, SearchMonthly);
+                result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, SearchDocumentType, SearchYear, SearchMonthly, SearchQuaterly);
                 ViewBag.Search = "1";
             }
             else
@@ -167,30 +167,36 @@ namespace PablaAccountingAndTaxServices.Controllers
 
             return View(model);
         }
+        public ActionResult DeleteClientDocument(int DocumentId = 0, int ClientId = 0)
+        {
+            clientBLL.DeleteDocument(DocumentId);
+            TempData["Delete"] = "1";
+            return RedirectToAction("client_dashboard", new { UserId = ClientId });
+        }
         [HttpPost]
-        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime = "", string Months = "")
+        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime = "", string Months = "", string SendFirstName = "", string SendLastName = "", string SendCompanyName = "",string Quaterly="")
         {
             if (PersonName == "Other")
             {
                 PersonName = OtherPersonName;
             }
-            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months, PeriodTime);
-            SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months);
+            clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months, PeriodTime, Quaterly);
+            SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months, SendFirstName, SendLastName, SendCompanyName, Quaterly);
             return RedirectToAction("client_dashboard", "Client");
         }
-        public bool SendRequestDocumentEmail(string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string PeriodTime, string Months)
+        public bool SendRequestDocumentEmail(string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string PeriodTime, string Months, string SendFirstName, string SendLastName, string SendCompanyName,string Quaterly)
         {
             try
             {
                 string htmlBody = "";
-                string headerText = "Hi,<b></b>";
+                string headerText = "Hi,<b>" + SendFirstName + " " + SendLastName + "</b>";
                 string startTable = "<table>";
-                string emailText = "<tr><td><br/>Someone has Requested a document. Here is the information given below:-</br></br></td></tr>";
+                string emailText = "<tr><td><br/> has requested a document from the Company " + SendCompanyName + ". Here is the information given below:-</br></br></td></tr>";
                 emailText += "<tr><td>DocumentType:<b> " + DocumentType + "</b></td></tr>";
                 emailText += "<tr><td>Year:<b> " + Year + "</b></td></tr>";
-                emailText += "<tr><td>Name:<b> " + PersonName + "</b></td></tr>";
+                emailText += "<tr><td>Person Name:<b> " + PersonName + "</b></td></tr>";
                 emailText += "<tr><td>Description:<b> " + Description + "</b></td></tr>";
-                emailText += "<tr><td>OtherDocuments:<b> " + OtherDocuments + "</b></td></tr>";
+                emailText += "<tr><td>Other Document Name:<b> " + OtherDocuments + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
                 customMethod.SendEmail("Tax@pablastax.com", "Request Document", htmlBody, "");

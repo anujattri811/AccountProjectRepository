@@ -29,5 +29,6 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public Nullable<bool> IsUploaded { get; set; }
         public string Monthly { get; set; }
         public string Periodending { get; set; }
+        public string Quaterly { get; set; }
     }
 }

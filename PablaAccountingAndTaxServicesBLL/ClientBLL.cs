@@ -52,7 +52,10 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             client.DeleteClient(UserId);
         }
-
+        public void DeleteDocument(int DocumentId)
+        {
+            client.DeleteDocument(DocumentId);
+        }
         public void DeleteRequest(int UserId)
         {
             client.DeleteRequest(UserId);
@@ -65,13 +68,13 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             client.Savedocuments(fileUploadEntity);
         }
-        public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year,string Monthly)
+        public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year,string Monthly, string Quaterly)
         {
-            return client.SearchDocumentByQuery(UserId, PersonName, DocumentType, Year, Monthly);
+            return client.SearchDocumentByQuery(UserId, PersonName, DocumentType, Year, Monthly,Quaterly);
         }
-        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description,string OtherDocuments, string Months,string PeriodTime )
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description,string OtherDocuments, string Months,string PeriodTime,string Quaterly)
         {
-            client.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description, OtherDocuments, Months, PeriodTime);
+            client.RequestDocumentByClient(UserId, DocumentType,Year,PersonName,Description, OtherDocuments, Months, PeriodTime, Quaterly);
          
         }
         //public List<tblClientDocument> selectClientname(int ClientId)

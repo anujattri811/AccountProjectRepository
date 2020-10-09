@@ -26,5 +26,6 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public string Other { get; set; }
         public string Periodending { get; set; }
         public string Monthly { get; set; }
+        public string Quaterly { get; set; }
     }
 }

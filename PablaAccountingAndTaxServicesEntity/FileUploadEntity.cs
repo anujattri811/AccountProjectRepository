@@ -16,6 +16,7 @@ namespace PablaAccountingAndTaxServicesEntity
         public HttpPostedFileBase UploadFile { get; set; }
         public string year { get; set; }
         public string Monthly { get; set; }
+        public string Quaterly { get; set; }
         public string Periodending { get; set; }
         public string Extension { get; set; }
         public string DocumentName { get; set; }
