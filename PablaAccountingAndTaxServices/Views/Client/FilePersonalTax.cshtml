@@ -15,7 +15,7 @@
 <section class="section section-lg bg-default" style="padding:50px;">
 
     <div class="container">
-
+        <h2 class="text-center">Please fill out this form. One of our agent will contact you soon.</h2>
         @if (TempData["Success"] != null)
         {
 
@@ -133,7 +133,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="Email" style="border:0px; color:black;padding-left:10px">PostalCode</label>
-                    <input class="form-input form-control-has-validation" id="PostalCode" type="number" name="PostalCode">
+                    <input class="form-input form-control-has-validation" id="PostalCode" type="text" name="PostalCode">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px;">
@@ -334,11 +334,11 @@
                 required: true,
 
             },
-            MiddleName: {
-                required: true,
+            //MiddleName: {
+            //    required: true,
 
 
-            },
+            //},
             LastName: {
                 required: true,
 
@@ -367,10 +367,10 @@
                 required: "Please enter a First Name. ",
 
             },
-            MiddleName: {
-                required: "Please enter a Middle Name. ",
+            //MiddleName: {
+            //    required: "Please enter a Middle Name. ",
 
-            },
+            //},
             LastName: {
                 required: "Please enter a Last Name. ",
 

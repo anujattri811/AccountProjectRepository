@@ -354,16 +354,20 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpPost]
         public ActionResult FilePersonalTax(FilePersonalTaxEntity filePersonalTaxEntity, string NewClient, string ReturningClient)
         {
+            string newClient = "";
+            string returningClient = "";
             if (NewClient == "true")
             {
                 filePersonalTaxEntity.IsExiting = false;
+                newClient = "Yes";
             }
             else
             {
                 filePersonalTaxEntity.IsExiting = true;
+                returningClient = "Yes";
             }
             clientBLL.SaveFilePersonalTax(filePersonalTaxEntity);
-            bool status = SendFilePersonalTax(filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth, filePersonalTaxEntity.Entrydatetime, filePersonalTaxEntity.Entrydatetime1);
+            bool status = SendFilePersonalTax(newClient, returningClient, filePersonalTaxEntity.FirstName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.Email, filePersonalTaxEntity.Phone, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex, filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName, filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2DateOfBirth, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth, filePersonalTaxEntity.Entrydatetime, filePersonalTaxEntity.Entrydatetime1);
             if (status == true)
             {
                 TempData["Success"] = "Your Data is Submitted Successfully. We will get back to you soon.";
@@ -375,14 +379,16 @@ namespace PablaAccountingAndTaxServices.Controllers
 
             return RedirectToAction("FilePersonalTax");
         }
-        public bool SendFilePersonalTax(string FirstName, string LastName, string Email, string Phone, string SIN, string DateOfBirth, string MaritalStatus, string Sex, string CurrentAddress, string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name, string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth, string Entrydatetime, string Entrydatetime1)
+        public bool SendFilePersonalTax(string NewClient, string ReturningClient, string FirstName, string LastName, string Email, string Phone, string SIN, string DateOfBirth, string MaritalStatus, string Sex, string CurrentAddress, string City, string Province, string PostalCode, string SpouseFirstName, string SpouseMiddleName, string SpouseLastName, string SpouseDateOfBirth, string SpouseSIN, string Children1Name, string Children1DateOfBirth, string Children2Name, string Children2DateOfBirth, string Children3Name, string Children3DateOfBirth, string Entrydatetime, string Entrydatetime1)
         {
             try
             {
                 string htmlBody = "";
                 string headerText = "Hi,<b></b>";
                 string startTable = "<table>";
-                string emailText = "<tr><td><br/>Someone has filed a Tax Online. Here is the information below:-</br></br></td></tr>";
+                string emailText = "<tr><td><br/>Someone has requested to file a tax Online. Here is the information below:-</br></br></td></tr>";
+                emailText += "<tr><td>New Client:<b> " + NewClient + "</b></td></tr>";
+                emailText += "<tr><td>Reurning Client:<b> " + ReturningClient + "</b></td></tr>";
                 emailText += "<tr><td>First Name:<b> " + FirstName + "</b></td></tr>";
                 emailText += "<tr><td>Last Name:<b> " + LastName + "</b></td></tr>";
                 emailText += "<tr><td>Email:<b> " + Email + "</b></td></tr>";

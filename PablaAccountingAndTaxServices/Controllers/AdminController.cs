@@ -313,8 +313,12 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.UploadFile.SaveAs(path + fileName);
             fileUploadEntity.DocumentName = DocumentName;
             fileUploadEntity.Extension = Extention;
+            if (fileUploadEntity.DocumentType == "Other")
+            {
+                fileUploadEntity.DocumentType = fileUploadEntity.OtherDocuments;
+            }
             clientBLL.Savedocuments(fileUploadEntity);
-
+            clientBLL.InsertDocumentType(fileUploadEntity.DocumentType);
             //clientBLL.InsertDocumentType(fileUploadEntity.DocumentType);
             tblUser tbluser = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == fileUploadEntity.UserId);
 
