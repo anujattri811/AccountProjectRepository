@@ -161,17 +161,17 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.Email == clientEntity.Email || x.MobileNo == clientEntity.MobileNo && x.IsDeleted == false).FirstOrDefault();
-                if (ExistClient == null)
-                {
-                    TempData["Success"] = "2";
-                    clientBLL.AddNewClient(clientEntity);
-                }
-                else
-                {
-                    ViewBag.ExistClient = "1";
-                    return View();
-                }
+                //var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.Email == clientEntity.Email || x.MobileNo == clientEntity.MobileNo && x.IsDeleted == false).FirstOrDefault();
+                //if (ExistClient == null)
+                //{
+                TempData["Success"] = "2";
+                clientBLL.AddNewClient(clientEntity);
+                //}
+                //else
+                //{
+                //    ViewBag.ExistClient = "1";
+                //    return View();
+                //}
 
             }
             return RedirectToAction("client");
@@ -313,6 +313,21 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.UploadFile.SaveAs(path + fileName);
             fileUploadEntity.DocumentName = DocumentName;
             fileUploadEntity.Extension = Extention;
+            if (fileUploadEntity.year != "")
+            {
+                fileUploadEntity.Monthly = "";
+                fileUploadEntity.Quaterly = "";
+            }
+            if (fileUploadEntity.Monthly != "")
+            {
+                fileUploadEntity.year = "";
+                fileUploadEntity.Quaterly = "";
+            }
+            if (fileUploadEntity.Quaterly != "")
+            {
+                fileUploadEntity.Monthly = "";
+                fileUploadEntity.year = "";
+            }
             if (fileUploadEntity.DocumentType == "Other")
             {
                 fileUploadEntity.DocumentType = fileUploadEntity.OtherDocuments;

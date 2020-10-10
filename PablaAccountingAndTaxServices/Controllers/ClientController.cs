@@ -123,7 +123,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
         }
 
-        public ActionResult client_dashboard(string PersonName = "", string SearchDocumentType = "", string SearchYear = "", string SearchMonthly = "",string SearchQuaterly="", int UserId = 0)
+        public ActionResult client_dashboard(string PersonName = "", string SearchDocumentType = "", string SearchYear = "", string SearchMonthly = "", string SearchQuaterly = "", int UserId = 0)
         {
             var model = new ClientEntity();
             if (Session["UserId"] == null)
@@ -174,17 +174,32 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("client_dashboard", new { UserId = ClientId });
         }
         [HttpPost]
-        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime = "", string Months = "", string SendFirstName = "", string SendLastName = "", string SendCompanyName = "",string Quaterly="")
+        public ActionResult RequestDocumentByClient(int UserId = 0, string DocumentType = "", string Year = "", string PersonName = "", string Description = "", string OtherDocuments = "", string OtherPersonName = "", string PeriodTime = "", string Months = "", string SendFirstName = "", string SendLastName = "", string SendCompanyName = "", string Quaterly = "")
         {
             if (PersonName == "Other")
             {
                 PersonName = OtherPersonName;
             }
+            if (Year != "")
+            {
+                Months = "";
+                Quaterly = "";
+            }
+            if (Months != "")
+            {
+                Year = "";
+                Quaterly = "";
+            }
+            if (Quaterly != "")
+            {
+                Months = "";
+                Year = "";
+            }
             clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months, PeriodTime, Quaterly);
             SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months, SendFirstName, SendLastName, SendCompanyName, Quaterly);
             return RedirectToAction("client_dashboard", "Client");
         }
-        public bool SendRequestDocumentEmail(string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string PeriodTime, string Months, string SendFirstName, string SendLastName, string SendCompanyName,string Quaterly)
+        public bool SendRequestDocumentEmail(string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string PeriodTime, string Months, string SendFirstName, string SendLastName, string SendCompanyName, string Quaterly)
         {
             try
             {
@@ -386,7 +401,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 string htmlBody = "";
                 string headerText = "Hi,<b></b>";
                 string startTable = "<table>";
-                string emailText = "<tr><td><br/>Someone has requested to file a tax Online. Here is the information below:-</br></br></td></tr>";
+                string emailText = "<tr><td><br/>Someone has requested to file tax Online. Here is the information below:-</br></br></td></tr>";
                 emailText += "<tr><td>New Client:<b> " + NewClient + "</b></td></tr>";
                 emailText += "<tr><td>Reurning Client:<b> " + ReturningClient + "</b></td></tr>";
                 emailText += "<tr><td>First Name:<b> " + FirstName + "</b></td></tr>";
