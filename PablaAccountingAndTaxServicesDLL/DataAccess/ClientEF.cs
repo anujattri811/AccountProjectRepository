@@ -83,7 +83,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year,string Monthly,string Quaterly)
         {
-            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year || x.Monthly==Monthly || x.Quaterly== Quaterly).ToList();
+            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year || x.Monthly==Monthly || x.Quaterly== Quaterly && x.IsDeleted==false).ToList();
         }
         public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months, string PeriodTime,string Quaterly)
         {
