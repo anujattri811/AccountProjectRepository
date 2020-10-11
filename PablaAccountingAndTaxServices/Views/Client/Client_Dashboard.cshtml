@@ -6,6 +6,7 @@
 @{
     var PersonName = new SelectList(ViewBag.PersonName, "Text", "Value");
     var DocumentList = new SelectList(ViewBag.DocumentList, "Text", "Value");
+    var SearchDocumentList = new SelectList(ViewBag.SearchDocumentList, "Text", "Value");
 }
 <style>
     .table-custom th {
@@ -298,7 +299,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-wrap form-group" id="Show-months" style="display:none;">
-                                                    <select class="form-input form-control-has-validation" name="Months">
+                                                    <select class="form-input form-control-has-validation" name="Months" id="RequestMonthly">
                                                         <option selected="" disabled="">Select Month</option>
                                                         <option>January</option>
                                                         <option>Febuary</option>
@@ -314,8 +315,17 @@
                                                         <option>December</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-wrap form-group" id="Quaterly" style="display:none;">
+                                                    <select class="form-input form-control-has-validation" name="Quaterly" id="RequestQuaterly">
+                                                        <option selected="" disabled="">Select Quaterly</option>
+                                                        <option>QTR 1</option>
+                                                        <option>QTR 2</option>
+                                                        <option>QTR 3</option>
+                                                        <option>QTR 4</option>
+                                                    </select>
+                                                </div>
                                                 <div class="form-wrap form-group" id="Year">
-                                                    <select class="form-input form-control-has-validation" name="Year">
+                                                    <select class="form-input form-control-has-validation" name="Year" id="RequestYear">
                                                         <option selected="" disabled="">Select Year</option>
                                                         <option>2011</option>
                                                         <option>2012</option>
@@ -339,15 +349,7 @@
                                                         <option>2030</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-wrap form-group" id="Quaterly" style="display:none;">
-                                                    <select class="form-input form-control-has-validation" name="Quaterly">
-                                                        <option selected="" disabled="">Select Quaterly</option>
-                                                        <option>Quaterly 1</option>
-                                                        <option>Quaterly 2</option>
-                                                        <option>Quaterly 3</option>
-                                                        <option>Quaterly 4</option>
-                                                    </select>
-                                                </div>
+
                                                 <div class="form-wrap form-group">
                                                     @Html.DropDownList("PersonName", PersonName, "Select Person", new { @onchange = "ShowOtherPerson()", @class = "form-input form-control-has-validation" })
                                                 </div>
@@ -455,97 +457,94 @@
 
                             <div class="tab-pane fade" id="tabs-1-4">
                                 <div class="table-custom-wrap table-custom-striped big">
+                                    @using (Html.BeginForm("client_dashboard", "Client", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <input type="hidden" name="ClientId" value="@Model.UserId" />
+                                        <h4 style="text-align:center;">Search for documents</h4>
+                                        <div class="col-md-12 row" style="margin-bottom:12px">
+                                            <div class="form-wrap col-md-3">
+                                                @Html.DropDownList("SearchDocumentType", SearchDocumentList, "Document Type", new { @class = "form-input form-control-has-validation", @onchange = "SearchByMainField()" })
+
+                                            </div>
+                                            <div class="form-wrap col-md-3" id="SearchPeriodEnding" style="display:none;margin-top:0px;">
+                                                <select class="form-input form-control-has-validation" id="SearchPeriodEndingTime" name="SearchPeriodTime" onchange="SearchByPeriodEnding()">
+                                                    <option selected="" disabled="">Period Time</option>
+                                                    <option>Monthly</option>
+                                                    <option>Quaterly</option>
+                                                    <option>Annualy</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-wrap col-md-3" id="SearchMonthly" style="display:none;margin-top:0px;">
+                                                <select class="form-input form-control-has-validation" name="SearchMonthly" id="SearchSelectMonthTime">
+                                                    <option selected="" disabled="">Select Month</option>
+                                                    <option>January</option>
+                                                    <option>Febuary</option>
+                                                    <option>March</option>
+                                                    <option>April</option>
+                                                    <option>May</option>
+                                                    <option>June</option>
+                                                    <option>July</option>
+                                                    <option>August</option>
+                                                    <option>September</option>
+                                                    <option>October</option>
+                                                    <option>November</option>
+                                                    <option>December</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-wrap col-md-3" id="SearchQuaterly" style="display:none;margin-top:0px;">
+                                                <select class="form-input form-control-has-validation" name="SearchQuaterly" id="SearchSelectQuaterTime">
+                                                    <option selected="" disabled="">Select Quaterly</option>
+                                                    <option>QTR 1</option>
+                                                    <option>QTR 2</option>
+                                                    <option>QTR 3</option>
+                                                    <option>QTR 4</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-wrap  col-md-3" id="SearchYear" style="margin-top:0px;">
+                                                <select class="form-input form-control-has-validation" name="SearchYear" id="SearchSelectYearTime">
+                                                    <option selected="" disabled="">Select Year</option>
+                                                    <option>2011</option>
+                                                    <option>2012</option>
+                                                    <option>2013</option>
+                                                    <option>2014</option>
+                                                    <option>2015</option>
+                                                    <option>2016</option>
+                                                    <option>2017</option>
+                                                    <option>2018</option>
+                                                    <option>2019</option>
+                                                    <option>2020</option>
+                                                    <option>2021</option>
+                                                    <option>2022</option>
+                                                    <option>2023</option>
+                                                    <option>2024</option>
+                                                    <option>2025</option>
+                                                    <option>2026</option>
+                                                    <option>2027</option>
+                                                    <option>2028</option>
+                                                    <option>2029</option>
+                                                    <option>2030</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-wrap col-md-3" style="margin-top:0px;">
+                                                @Html.DropDownListFor(model => model.PersonName, PersonName, "Select Person", new { @class = "form-input form-control-has-validation" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12 row" style="margin-top:0px;margin-bottom:10px;">
+
+                                            <div class="col-md-5">
+                                            </div>
+                                            <div class="button-link-wrap text-right" style="margin-top:0px;margin-bottom:10px;">
+                                                <button class="button button-primary" type="submit">Search</button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="table-custom-wrap table-custom-striped big" style="margin-top: 30px;">
                                     <div class="table-custom-responsive number-counter-2">
-                                        @using (Html.BeginForm("client_dashboard", "Client", FormMethod.Get, new { enctype = "multipart/form-data" }))
-                                        {
-                                            <input type="hidden" name="ClientId" value="@Model.UserId" />
-                                            <div class="col-md-12 row" style="margin-bottom:12px">
-                                                <div class="form-wrap col-md-3" style="padding-top:10px;">
-                                                    @Html.DropDownListFor(model => model.PersonName, PersonName, new { @class = "form-input form-control-has-validation" })
-                                                </div>
-                                                <div class="form-wrap col-md-3">
-                                                    @Html.DropDownList("SearchDocumentType", DocumentList, "Document Type", new { @class = "form-input form-control-has-validation" })
-                                                    @*<select class="form-input form-control-has-validation" name="SearchDocumentType">
-                <option selected="" disabled="">Document Type</option>
-                <option>Notice Of Assessment</option>
-                <option>T1 General</option>
-                <option>T4's</option>
-                <option>T4 Summary</option>
-                <option>T5</option>
-                <option>Financials</option>
-                <option>T2</option>
-                <option>T2 Notice of Assessment</option>
-                <option>Paystubs</option>
-                <option>Schedule 100-125</option>
-                <option>PD7 A</option>
-                <option>Job letter</option>
-                <option>GST</option>
-                <option>Company Incorporation Papers</option>
-                <option>Other</option>
-            </select>*@
-                                                </div>
-                                                <div class="form-wrap  col-md-2" id="Year">
-                                                    <select class="form-input form-control-has-validation" name="SearchYear">
-                                                        <option selected="" disabled="">Select Year</option>
-                                                        <option>2011</option>
-                                                        <option>2012</option>
-                                                        <option>2013</option>
-                                                        <option>2014</option>
-                                                        <option>2015</option>
-                                                        <option>2016</option>
-                                                        <option>2017</option>
-                                                        <option>2018</option>
-                                                        <option>2019</option>
-                                                        <option>2020</option>
-                                                        <option>2021</option>
-                                                        <option>2022</option>
-                                                        <option>2023</option>
-                                                        <option>2024</option>
-                                                        <option>2025</option>
-                                                        <option>2026</option>
-                                                        <option>2027</option>
-                                                        <option>2028</option>
-                                                        <option>2029</option>
-                                                        <option>2030</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-wrap col-md-2">
-                                                    <select class="form-input form-control-has-validation" name="SearchMonthly">
-                                                        <option selected="" disabled="">Select Month</option>
-                                                        <option>January</option>
-                                                        <option>Febuary</option>
-                                                        <option>March</option>
-                                                        <option>April</option>
-                                                        <option>May</option>
-                                                        <option>June</option>
-                                                        <option>July</option>
-                                                        <option>August</option>
-                                                        <option>September</option>
-                                                        <option>October</option>
-                                                        <option>November</option>
-                                                        <option>December</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-wrap col-md-2" id="SearchQuaterly">
-                                                    <select class="form-input form-control-has-validation" name="SearchQuaterly">
-                                                        <option selected="" disabled="">Select</option>
-                                                        <option>Quaterly 1</option>
-                                                        <option>Quaterly 2</option>
-                                                        <option>Quaterly 3</option>
-                                                        <option>Quaterly 4</option>
-                                                    </select>
-                                                </div>
 
-                                            </div>
-                                            <div class="col-md-12 row" style="margin-top:0px;margin-bottom:10px;">
-
-                                                <div class="col-md-5">
-                                                </div>
-                                                <div class="button-link-wrap text-right" style="margin-top:0px;margin-bottom:10px;">
-                                                    <button class="button button-primary" type="submit">Search</button>
-                                                </div>
-                                            </div>
-                                        }
                                         <div style="overflow-x:scroll;margin-right: 30px;margin-left: 30px;">
                                             <table id="example1" class="table-custom">
                                                 <thead>
@@ -567,9 +566,9 @@
                                                         <tr>
                                                             <td class="text-gray-800" style="padding:26px;">
                                                                 <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank" style="margin:8px;"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
-                                                                <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription"  style="margin:8px;" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
-                                                                <a href="#"  onclick="Delete('@item.DocumentId')"><span class="info-box-icon"><i class="fa fa-trash"></i></span></a>
-                                                                
+                                                                <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" style="margin:8px;" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
+                                                                <a href="#" onclick="Delete('@item.DocumentId')"><span class="info-box-icon"><i class="fa fa-trash"></i></span></a>
+
                                                             </td>
                                                             <td class="text-gray-800">@item.PersonName</td>
                                                             <td class="text-gray-800">@item.DocumentName</td>
@@ -697,15 +696,8 @@
             $("#Show-OtherDocuments").fadeIn();
             $("#Show-years").fadeOut();
             $("#Show-years").fadeIn();
-            $("#Year").fadeOut();
             $("#Quaterly").fadeOut();
-            //$("#PeriodTime option").each(function () {
-            //    if (this.value == "Quaterly") {
-            //        $(this).attr("disabled",true)
-            //    }
 
-
-            //});
 
         }
         else if ($("#DocumentType").val() == "GST") {
@@ -713,56 +705,41 @@
             $("#Show-years").fadeOut();
             $("#Show-years").fadeIn();
             $("#Show-OtherDocuments").fadeOut();
-            $("#Year").fadeOut();
-            //$("#PeriodTime option").each(function () {
-            //    if (this.value == "Quaterly") {
-            //        $(this).attr("disabled", false)
-            //    }
-
-
-            //});
-         
         }
         else {
             if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
                 $("#Show-years").fadeOut();
                 $("#Show-years").fadeIn();
-                
                 $("#Show-OtherDocuments").fadeOut();
-                $("#Year").fadeOut();
                 $("#Quaterly").fadeOut();
-                //$("#PeriodTime option").each(function () {
-                //    if (this.value == "Quaterly") {
-                //        $(this).attr("disabled",true)
-                //    }
-
-
-                //});
             }
             else {
                 $("#Show-OtherDocuments").fadeOut();
                 $("#Show-years").fadeOut();
                 $("#Year").fadeIn();
                 $("#Quaterly").fadeOut();
+                $("#Show-months").fadeOut();
+                $("#PeriodTime").val($("#PeriodTime option:first").val());
+                $("#RequestMonthly").val($("#RequestMonthly option:first").val());
+                $("#RequestQuaterly").val($("#RequestQuaterly option:first").val());
+                $("#RequestYear").val($("#RequestYear option:first").val());
             }
 
         }
     }
+
     function Test() {
         if ($("#PeriodTime").val() == "Monthly") {
             $("#Show-months").fadeIn();
-            $("#Year").fadeOut();
             $("#Quaterly").fadeOut();
         }
         else if ($("#PeriodTime").val() == "Quaterly" && $("#DocumentType").val() == "GST") {
             $("#Quaterly").fadeIn();
             $("#Show-OtherDocuments").fadeOut();
-            $("#Year").fadeOut();
             $("#Show-months").fadeOut();
         }
         else {
             $("#Show-months").fadeOut();
-            $("#Year").fadeIn();
             $("#Quaterly").fadeOut();
         }
     }
@@ -775,6 +752,40 @@
             $("#Show-OtherPersonName").fadeOut();
         }
     }
+
+    function SearchByMainField() {
+        if ($("#SearchDocumentType").val() == "GST" || $("#SearchDocumentType").val() == "Paystubs" || $("#SearchDocumentType").val() == "PD7 A") {
+            $("#SearchQuaterly").fadeOut();
+            $("#SearchMonthly").fadeOut();
+            $("#SearchPeriodEnding").fadeIn();
+
+        }
+        else {
+            $("#SearchPeriodEnding").fadeOut();
+            $("#SearchMonthly").fadeOut();
+            $("#SearchQuaterly").fadeOut();
+            $("#SearchPeriodEndingTime").val($("#SearchPeriodEndingTime option:first").val());
+            $("#SearchSelectQuaterTime").val($("#SearchSelectQuaterTime option:first").val());
+            $("#SearchSelectMonthTime").val($("#SearchSelectMonthTime option:first").val());
+            $("#SearchSelectYearTime").val($("#SearchSelectYearTime option:first").val());
+        }
+    }
+
+    function SearchByPeriodEnding() {
+        if ($("#SearchPeriodEndingTime").val() == "Monthly") {
+            $("#SearchMonthly").fadeIn();
+            $("#SearchQuaterly").fadeOut();
+        }
+        else if ($("#SearchPeriodEndingTime").val() == "Quaterly" && $("#SearchDocumentType").val() == "GST") {
+            $("#SearchQuaterly").fadeIn();
+            $("#SearchMonthly").fadeOut();
+        }
+        else {
+            $("#SearchMonthly").fadeOut();
+            $("#SearchQuaterly").fadeOut();
+        }
+    }
+
 
     function Delete(UserId) {
         Swal.fire({

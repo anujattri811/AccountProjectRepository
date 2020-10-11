@@ -21,6 +21,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ClientController()
         {
             var DocumentList = pablaAccountsEntities.tblDocumentTypes.Where(x => x.IsDeleted == false).Select(x => x.DocumentType).ToList();
+            var SearchDocumentList = pablaAccountsEntities.tblDocumentTypes.Where(x => x.IsDeleted == false).Select(x => x.DocumentType).ToList();
             DocumentList.Add("Other");
             IEnumerable<SelectListItem> selectDocumentList = from Document in DocumentList
                                                              select new SelectListItem
@@ -28,7 +29,14 @@ namespace PablaAccountingAndTaxServices.Controllers
                                                                  Text = Convert.ToString(Document),
                                                                  Value = Convert.ToString(Document)
                                                              };
+            IEnumerable<SelectListItem> selectSearchDocumentList = from Documents in SearchDocumentList
+                                                                   select new SelectListItem
+                                                             {
+                                                                 Text = Convert.ToString(Documents),
+                                                                 Value = Convert.ToString(Documents)
+                                                             };
             ViewBag.DocumentList = new SelectList(selectDocumentList, "Text", "Value");
+            ViewBag.SearchDocumentList = new SelectList(selectSearchDocumentList, "Text", "Value");
         }
 
         #region client_login
@@ -132,7 +140,14 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             int ClientId = Convert.ToInt32(Session["UserId"]);
             List<tblClientDocument> result = new List<tblClientDocument>();
-
+            if (SearchMonthly != "")
+            {
+                SearchQuaterly = "";
+            }
+            if (SearchQuaterly != "")
+            {
+                SearchMonthly = "";
+            }
             if (PersonName != "" && SearchDocumentType != "")
             {
                 result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, SearchDocumentType, SearchYear, SearchMonthly, SearchQuaterly);
@@ -180,20 +195,14 @@ namespace PablaAccountingAndTaxServices.Controllers
             {
                 PersonName = OtherPersonName;
             }
-            if (Year != "")
-            {
-                Months = "";
-                Quaterly = "";
-            }
+           
             if (Months != "")
             {
-                Year = "";
                 Quaterly = "";
             }
             if (Quaterly != "")
             {
                 Months = "";
-                Year = "";
             }
             clientBLL.RequestDocumentByClient(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, Months, PeriodTime, Quaterly);
             SendRequestDocumentEmail(DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months, SendFirstName, SendLastName, SendCompanyName, Quaterly);

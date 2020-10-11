@@ -27,6 +27,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         public AdminController()
         {
             var DocumentList = pablaAccountsEntities.tblDocumentTypes.Where(x => x.IsDeleted == false).Select(x => x.DocumentType).ToList();
+            var SearchDocumentList = pablaAccountsEntities.tblDocumentTypes.Where(x => x.IsDeleted == false).Select(x => x.DocumentType).ToList();
             DocumentList.Add("Other");
             IEnumerable<SelectListItem> selectDocumentList = from Document in DocumentList
                                                              select new SelectListItem
@@ -34,7 +35,14 @@ namespace PablaAccountingAndTaxServices.Controllers
                                                                  Text = Convert.ToString(Document),
                                                                  Value = Convert.ToString(Document)
                                                              };
+            IEnumerable<SelectListItem> selectSearchDocumentList = from Documents in SearchDocumentList
+                                                                   select new SelectListItem
+                                                             {
+                                                                 Text = Convert.ToString(Documents),
+                                                                 Value = Convert.ToString(Documents)
+                                                             };
             ViewBag.DocumentList = new SelectList(selectDocumentList, "Text", "Value");
+            ViewBag.SearchDocumentList = new SelectList(selectSearchDocumentList, "Text", "Value");
         }
 
         #region Admin Login
@@ -177,11 +185,19 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("client");
         }
 
-        public ActionResult GeneratePassword(int ClientId = 0, string Email = "", string FirstName = "", string LastName = "", string MobileNo = "", string DateOfBirth = "")
+        public ActionResult GeneratePassword(int ClientId = 0, string Email = "", string FirstName = "", string LastName = "", string CorporateAccessNumber = "", string DateOfBirth = "")
         {
             Random r = new Random();
-            int rInt = r.Next(0, 10);
-            var Pass = FirstName + MobileNo.Substring(MobileNo.Length - 4) + "@" + rInt;
+            int rInt = r.Next(100, 1000);
+            var Pass = "";
+            if (FirstName.Length >= 3)
+            {
+                Pass = FirstName.Substring(0, 3) + CorporateAccessNumber + "@" + rInt;
+            }
+            else
+            {
+                Pass = FirstName + CorporateAccessNumber + "@" + rInt;
+            }
             var EncryPassword = encryDecry.EncryptPassword(Pass);
             var Decrypt = encryDecry.DecryptPassword(EncryPassword);
             var UserName = FirstName.ToLower() + "" + DateOfBirth.Split('/')[2];
@@ -241,7 +257,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("client");
         }
         [HttpGet]
-        public ActionResult client_view(int ClientId = 0, string PersonName = "", string DocumentType = "", string SearchYear = "", int UserId = 0, string SearchMonthly = "",string SearchQuaterly="")
+        public ActionResult client_view(int ClientId = 0, string PersonNames = "", string DocumentTypes = "", string SearchYear = "", int UserId = 0, string SearchMonthly = "",string SearchQuaterly="")
         {
             if (TempData["Message"] != null)
             {
@@ -255,13 +271,13 @@ namespace PablaAccountingAndTaxServices.Controllers
             else
             {
                 List<tblClientDocument> result = new List<tblClientDocument>();
-                if (PersonName == "" && DocumentType == "" && SearchYear == "")
+                if (PersonNames == "" && DocumentTypes == "" && SearchYear == "")
                 {
                     result = clientBLL.selectAllDocumentForClient(ClientId);
                 }
                 else
                 {
-                    result = clientBLL.SearchDocumentByQuery(ClientId, PersonName, DocumentType, SearchYear, SearchMonthly, SearchQuaterly);
+                    result = clientBLL.SearchDocumentByQuery(ClientId, PersonNames, DocumentTypes, SearchYear, SearchMonthly, SearchQuaterly);
                 }
 
                 model = clientBLL.GetAllClient(ClientId);
@@ -313,20 +329,14 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.UploadFile.SaveAs(path + fileName);
             fileUploadEntity.DocumentName = DocumentName;
             fileUploadEntity.Extension = Extention;
-            if (fileUploadEntity.year != "")
-            {
-                fileUploadEntity.Monthly = "";
-                fileUploadEntity.Quaterly = "";
-            }
+           
             if (fileUploadEntity.Monthly != "")
             {
-                fileUploadEntity.year = "";
                 fileUploadEntity.Quaterly = "";
             }
             if (fileUploadEntity.Quaterly != "")
             {
                 fileUploadEntity.Monthly = "";
-                fileUploadEntity.year = "";
             }
             if (fileUploadEntity.DocumentType == "Other")
             {

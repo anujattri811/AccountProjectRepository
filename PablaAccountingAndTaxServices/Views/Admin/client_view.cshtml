@@ -6,6 +6,7 @@
 @{
     var PersonName = new SelectList(ViewBag.PersonName, "Text", "Value");
     var DocumentList = new SelectList(ViewBag.DocumentList, "Text", "Value");
+    var SearchDocumentList = new SelectList(ViewBag.SearchDocumentList, "Text", "Value");
 }
 
 <section class="content header">
@@ -253,7 +254,7 @@
                         <input type="hidden" name="Email" value="@Model.Email" />
                         <input type="hidden" name="FirstName" value="@Model.FirstName" />
                         <input type="hidden" name="LastName" value="@Model.LastName" />
-                        <input type="hidden" name="MobileNo" value="@Model.MobileNo" />
+                        <input type="hidden" name="CorporateAccessNumber" value="@Model.CorporateAccessNumber" />
                         <input type="hidden" name="DateOfBirth" value="@Model.DateOfBirth" />
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-block btn-outline-primary" style="padding-left: 0px;">Generate Credential</button>
@@ -314,6 +315,35 @@
                     </select>
                 </div>
 
+
+                <div class="col-md-3" id="SelectMonth" style="display:none;">
+                    <select class="form-control custom-select" name="Monthly" id="selectPeriodMonthly">
+                        <option selected="" disabled="">Select Month</option>
+                        <option>January</option>
+                        <option>Febuary</option>
+                        <option>March</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>September</option>
+                        <option>October</option>
+                        <option>November</option>
+                        <option>December</option>
+                    </select>
+
+                </div>
+                <div class="col-md-3" id="SelectQuaterly" style="display:none;">
+                    <select class="form-control custom-select" name="Quaterly" id="selectPeriodQuaterly">
+                        <option selected="" disabled="">Select Quaterly</option>
+                        <option>QTR 1</option>
+                        <option>QTR 2</option>
+                        <option>QTR 3</option>
+                        <option>QTR 4</option>
+                    </select>
+
+                </div>
                 <div class="col-md-3" id="selectYear">
                     <select class="form-control custom-select" name="year">
                         <option selected="" disabled="">Select Year</option>
@@ -340,34 +370,6 @@
                     </select>
 
                 </div>
-                <div class="col-md-3" id="SelectMonth" style="display:none;">
-                    <select class="form-control custom-select" name="Monthly">
-                        <option selected="" disabled="">Select Month</option>
-                        <option>January</option>
-                        <option>Febuary</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
-                    </select>
-
-                </div>
-                <div class="col-md-3" id="SelectQuaterly" style="display:none;">
-                    <select class="form-control custom-select" name="Quaterly">
-                        <option selected="" disabled="">Select Quaterly</option>
-                        <option>Quaterly 1</option>
-                        <option>Quaterly 2</option>
-                        <option>Quaterly 3</option>
-                        <option>Quaterly 4</option>
-                    </select>
-
-                </div>
                 <div class="form-group col-md-3">
                     <input type="text" id="name" name="PersonName" placeholder="Person Name" class="form-control">
                     <input type="hidden" name="SendCompanyName" value="@Model.CompanyName" />
@@ -388,7 +390,7 @@
                 </div>
             </div>
 
-            
+
             <div class="col-md-12 row" style="padding-bottom: 10px;">
                 <div class="col-md-4">
                 </div>
@@ -415,32 +417,22 @@
         @using (Html.BeginForm("client_view", "Admin", FormMethod.Get, new { enctype = "multipart/form-data" }))
         {
             <div class="col-md-12 row" style="margin-bottom:12px;padding-top:10px;">
-                <div class="col-md-3">
-                    @Html.DropDownListFor(model => model.PersonName, PersonName, "Select Person", new { @class = "form-control" })
-                </div>
+
                 <div class="col-md-3">
                     <input type="hidden" name="ClientId" value="@ViewBag.ClientId" />
-                    @Html.DropDownList("DocumentType", DocumentList, "Document Type", new { @class = "form-control custom-select", @onchange = "ShowOther()", @id = "Document" })
-                    @*<select name="DocumentType" id="Document" class="form-control custom-control">
-                            <option>Document Type</option>
-                            <option>Notice Of Assessment</option>
-                            <option>T1 General</option>
-                            <option>T4's</option>
-                            <option>T4 Summary</option>
-                            <option>T5</option>
-                            <option>Financials</option>
-                            <option>T2</option>
-                            <option>T2 Notice of Assessment</option>
-                            <option>Paystubs</option>
-                            <option>Schedule 100-125</option>
-                            <option>PD7 A</option>
-                            <option>Job letter</option>
-                            <option>GST</option>
-                            <option>Company Incorporation Papers</option>
-                        </select>*@
+                    @Html.DropDownList("DocumentTypes", SearchDocumentList, "Document Type", new { @class = "form-control custom-select", @onchange = "SearchByOtherField()" })
+
                 </div>
-                <div class="col-md-2">
-                    <select name="Monthly" id="ddlMonth" class="form-control custom-control">
+                <div class="col-md-3" style="display:none;" id="SearchPeriodEnding">
+                    <select class="form-control custom-select" id="SelectSearchPeriodEnding" name="SearchPeriodending" onchange="OpenBySearchPeriod()">
+                        <option selected="" disabled="">Select Period</option>
+                        <option>Monthly</option>
+                        <option>Quaterly</option>
+                        <option>Annualy</option>
+                    </select>
+                </div>
+                <div class="col-md-3" id="SearchPeriodMonthly" style="display:none;">
+                    <select name="SearchMonthly" id="SelectSearchMonth" class="form-control custom-control">
                         <option selected="" disabled="">Select Month</option>
                         <option>January</option>
                         <option>Febuary</option>
@@ -456,8 +448,19 @@
                         <option>December</option>
                     </select>
                 </div>
-                <div class="col-md-2">
-                    <select name="Year" id="year" class="form-control custom-control">
+
+                <div class="col-md-3" id="SearchPeriodQuaterly" style="display:none;">
+                    <select name="SearchQuaterly" id="SelectSearchQuaterly" class="form-control custom-control">
+                        <option>Select Quaterly</option>
+                        <option>QTR 1</option>
+                        <option>QTR 2</option>
+                        <option>QTR 3</option>
+                        <option>QTR 4</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3" id="SearchPeriodYear">
+                    <select name="SearchYear" id="SelectSearchyear" class="form-control custom-control">
                         <option>Select Year</option>
                         <option>2011</option>
                         <option>2012</option>
@@ -481,17 +484,11 @@
                         <option>2030</option>
                     </select>
                 </div>
-                <div class="col-md-2">
-                    <select name="SearchQuaterly" id="SearchQuaterly" class="form-control custom-control">
-                        <option>Select Quaterly</option>
-                        <option>Quaterly 1</option>
-                        <option>Quaterly 2</option>
-                        <option>Quaterly 3</option>
-                        <option>Quaterly 4</option>
-                    </select>
+                <div class="col-md-3">
+                    @Html.DropDownList("PersonNames", PersonName, "Select Person", new { @class = "form-control" })
                 </div>
-
             </div>
+
             <div class="col-md-12 row" style="padding-bottom:10px;">
                 <div class="col-md-4">
 
@@ -646,7 +643,7 @@
     }
 
 
-   
+
 </script>
 
 <script type="text/javascript">
@@ -689,23 +686,23 @@
         if ($("#DocumentType").val() == "Other") {
             $("#Show-OtherDocuments").fadeIn();
             $("#PeriodEnding").fadeIn();
-            $("#selectYear").fadeOut();
             $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
         }
         else if ($("#DocumentType").val() == "GST" || $("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
             $("#Show-OtherDocuments").fadeOut();
             $("#PeriodEnding").fadeIn();
-            $("#selectYear").fadeOut();
             $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
         }
         else {
             $("#Show-OtherDocuments").fadeOut();
             $("#PeriodEnding").fadeOut();
-             $("#SelectMonth").fadeOut();
+            $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
-            $("#selectYear").fadeIn();
+            $("#selectPeriodEnding").val($("#selectPeriodEnding option:first").val());
+            $("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
+            $("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
         }
     }
 
@@ -713,19 +710,53 @@
     function OpenByPeriod() {
         if ($("#selectPeriodEnding").val() == "Monthly") {
             $("#SelectMonth").fadeIn();
-            $("#selectYear").fadeOut();
             $("#SelectQuaterly").fadeOut();
         }
         else if ($("#selectPeriodEnding").val() == "Quaterly" && $("#DocumentType").val() == "GST") {
             $("#SelectQuaterly").fadeIn();
             $("#Show-OtherDocuments").fadeOut();
-            $("#selectYear").fadeOut();
             $("#SelectMonth").fadeOut();
         }
         else {
-            $("#selectYear").fadeIn();
             $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
+            $("#selectPeriodEnding").val($("#selectPeriodEnding option:first").val());
+            $("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
+            $("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
+        }
+    }
+
+
+    function SearchByOtherField() {
+        if ($("#DocumentTypes").val() == "GST" || $("#DocumentTypes").val() == "Paystubs" || $("#DocumentTypes").val() == "PD7 A") {
+            $("#SearchPeriodEnding").fadeIn();
+            $("#SearchPeriodMonthly").fadeOut();
+            $("#SearchPeriodQuaterly").fadeOut();
+        }
+        else {
+            $("#SearchPeriodEnding").fadeOut();
+            $("#SearchPeriodMonthly").fadeOut();
+            $("#SearchPeriodQuaterly").fadeOut();
+            $("#SelectSearchPeriodEnding").val($("#SelectSearchPeriodEnding option:first").val());
+            $("#SelectSearchMonth").val($("#SelectSearchMonth option:first").val());
+            $("#SelectSearchQuaterly").val($("#SelectSearchQuaterly option:first").val());
+        }
+    }
+    function OpenBySearchPeriod() {
+        if ($("#SelectSearchPeriodEnding").val() == "Monthly") {
+            $("#SearchPeriodMonthly").fadeIn();
+            $("#SearchPeriodQuaterly").fadeOut();
+        }
+        else if ($("#SelectSearchPeriodEnding").val() == "Quaterly" && $("#DocumentTypes").val() == "GST") {
+            $("#SearchPeriodQuaterly").fadeIn();
+            $("#SearchPeriodMonthly").fadeOut();
+        }
+        else {
+            $("#SearchPeriodQuaterly").fadeOut();
+            $("#SearchPeriodMonthly").fadeOut();
+            $("#SelectSearchPeriodEnding").val($("#SelectSearchPeriodEnding option:first").val());
+            $("#SelectSearchMonth").val($("#SelectSearchMonth option:first").val());
+            $("#SelectSearchQuaterly").val($("#SelectSearchQuaterly option:first").val());
         }
     }
 </script>
