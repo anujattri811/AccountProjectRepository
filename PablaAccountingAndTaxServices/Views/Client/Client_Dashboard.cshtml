@@ -277,7 +277,7 @@
                                                     @{
                                                         var list = new SelectList(new[]
                                                             {
-                                                            new {Text ="Period Ending", Value=""},
+                                                            new {Text ="", Value="Period Ending"},
                                                             new {Text ="Monthly", Value="Monthly"},
                                                               new {Text="Quarterly", Value="Quarterly"},
                                                                  new {Text="Annualy", Value="Annualy"},
@@ -286,7 +286,7 @@
 
                                                             "Text", "Value");
                                                     }
-                                                    @Html.DropDownList("list", list)
+                                                    @Html.DropDownList("PeriodTime", list,new { @onchange="Test()"})
                                                     @*<select class="form-input form-control-has-validation" id="PeriodTime" name="PeriodTime" onchange="Test()">
                                                             <option selected="" value="">Period Ending</option>
                                                             <option>Monthly</option>
@@ -696,7 +696,7 @@
 
     function ShowOther() {
         if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
-
+            $("#Show-OtherDocuments").fadeOut();
             $("#Quaterly").fadeOut();
             $("#Show-years").fadeOut();
             $("#Show-months").fadeIn();
