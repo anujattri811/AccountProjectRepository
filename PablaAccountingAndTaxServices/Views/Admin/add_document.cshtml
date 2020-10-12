@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile" placeholder="Choose file" name="UploadFile">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" placeholder="Choose file" name="UploadFile"  onchange="Filevalidation()">
                                 <label class="custom-file-label" for="exampleInputFile"></label>
                             </div>
 
@@ -106,8 +106,37 @@
 <link href="~/Content/css/AdminStyle.css" rel="stylesheet" />
 <script src="~/Content/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="~/Content/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="~/Content/plugins/sweetalert2/SweetAlert.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         bsCustomFileInput.init();
     });
+</script>
+<script>
+    Filevalidation = () => {
+        const fi = document.getElementById('exampleInputFile');
+        // Check if any file is selected.
+        if (fi.files.length > 0) {
+            for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                const fsize = fi.files.item(i).size;
+                const file = Math.round((fsize / 1024));
+                // The size of the file.
+                if (file >= 20480) {
+                    Swal.fire({
+                        title: 'File too Big, please select a file less than 20mb',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                    })
+
+                }
+                else {
+                    document.getElementById('size').innerHTML = '<b>'
+                        + file + '</b> KB';
+                }
+            }
+        }
+    }
 </script>

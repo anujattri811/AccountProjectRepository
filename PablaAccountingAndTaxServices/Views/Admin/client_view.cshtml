@@ -308,9 +308,9 @@
 
                 <div class="col-md-3" style="display:none;" id="PeriodEnding">
                     <select class="form-control custom-select" id="selectPeriodEnding" name="Periodending" onchange="OpenByPeriod()">
-                        <option selected="" disabled="">Select Period</option>
+                        <option selected="" value="">Period Ending</option>
                         <option>Monthly</option>
-                        <option>Quaterly</option>
+                        <option>Quarterly</option>
                         <option>Annualy</option>
                     </select>
                 </div>
@@ -318,7 +318,7 @@
 
                 <div class="col-md-3" id="SelectMonth" style="display:none;">
                     <select class="form-control custom-select" name="Monthly" id="selectPeriodMonthly">
-                        <option selected="" disabled="">Select Month</option>
+                        <option selected="" value="">Select Month</option>
                         <option>January</option>
                         <option>Febuary</option>
                         <option>March</option>
@@ -336,7 +336,7 @@
                 </div>
                 <div class="col-md-3" id="SelectQuaterly" style="display:none;">
                     <select class="form-control custom-select" name="Quaterly" id="selectPeriodQuaterly">
-                        <option selected="" disabled="">Select Quaterly</option>
+                        <option selected="" value="">Select Quarter</option>
                         <option>QTR 1</option>
                         <option>QTR 2</option>
                         <option>QTR 3</option>
@@ -345,8 +345,8 @@
 
                 </div>
                 <div class="col-md-3" id="selectYear">
-                    <select class="form-control custom-select" name="year">
-                        <option selected="" disabled="">Select Year</option>
+                    <select class="form-control custom-select" name="year" id="year">
+                        <option selected="" value="">Select Year</option>
                         <option>2011</option>
                         <option>2012</option>
                         <option>2013</option>
@@ -381,7 +381,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile" placeholder="Choose file" name="UploadFile">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" placeholder="Choose file" name="UploadFile" onchange="Filevalidation()">
                                 <label class="custom-file-label" for="exampleInputFile"></label>
                             </div>
 
@@ -425,9 +425,9 @@
                 </div>
                 <div class="col-md-3" style="display:none;" id="SearchPeriodEnding">
                     <select class="form-control custom-select" id="SelectSearchPeriodEnding" name="SearchPeriodending" onchange="OpenBySearchPeriod()">
-                        <option selected="" disabled="">Select Period</option>
+                        <option selected="" disabled="">Period Ending</option>
                         <option>Monthly</option>
-                        <option>Quaterly</option>
+                        <option>Quarterly</option>
                         <option>Annualy</option>
                     </select>
                 </div>
@@ -451,7 +451,7 @@
 
                 <div class="col-md-3" id="SearchPeriodQuaterly" style="display:none;">
                     <select name="SearchQuaterly" id="SelectSearchQuaterly" class="form-control custom-control">
-                        <option>Select Quaterly</option>
+                        <option>Select Quarter</option>
                         <option>QTR 1</option>
                         <option>QTR 2</option>
                         <option>QTR 3</option>
@@ -655,6 +655,9 @@
             },
             UploadFile: {
                 required: true,
+            },
+            OtherDocuments: {
+                required: true,
             }
 
         },
@@ -665,6 +668,10 @@
             UploadFile: {
                 required: "Please Select a File.",
             },
+            OtherDocuments: {
+                required: "Please enter other document type.",
+            }
+
 
 
         },
@@ -688,21 +695,46 @@
             $("#PeriodEnding").fadeIn();
             $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
+            //$("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
+            //$("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
+            $("#selectPeriodQuaterly").val("");
+            $("#selectPeriodMonthly").val("");
+            $("#year").val("");
         }
-        else if ($("#DocumentType").val() == "GST" || $("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
+        else if ($("#DocumentType").val() == "GST") {
             $("#Show-OtherDocuments").fadeOut();
             $("#PeriodEnding").fadeIn();
             $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
+             $("#selectPeriodQuaterly").val("");
+            $("#selectPeriodMonthly").val("");
+            $("#year").val("");
+            //$("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
+            //$("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
+        }
+        else if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
+            $("#Show-OtherDocuments").fadeOut();
+            $("#PeriodEnding").fadeOut();
+            $("#SelectMonth").fadeIn();
+            $("#SelectQuaterly").fadeOut();
+            //$("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
+            //$("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
+            $("#selectPeriodQuaterly").val("");
+            $("#selectPeriodMonthly").val("");
+            $("#year").val("");
         }
         else {
             $("#Show-OtherDocuments").fadeOut();
             $("#PeriodEnding").fadeOut();
             $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
-            $("#selectPeriodEnding").val($("#selectPeriodEnding option:first").val());
-            $("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
-            $("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
+            $("#selectPeriodQuaterly").val("");
+            $("#selectPeriodMonthly").val("");
+            $("#year").val("");
+            $("#selectPeriodEnding").val("");
+            //$("#selectPeriodEnding").val($("#selectPeriodEnding option:first").val());
+            //$("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
+            //$("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
         }
     }
 
@@ -711,27 +743,36 @@
         if ($("#selectPeriodEnding").val() == "Monthly") {
             $("#SelectMonth").fadeIn();
             $("#SelectQuaterly").fadeOut();
+            $("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
         }
-        else if ($("#selectPeriodEnding").val() == "Quaterly" && $("#DocumentType").val() == "GST") {
-            $("#SelectQuaterly").fadeIn();
-            $("#Show-OtherDocuments").fadeOut();
-            $("#SelectMonth").fadeOut();
-        }
-        else {
+        else if ($("#selectPeriodEnding").val() == "Annualy") {
             $("#SelectMonth").fadeOut();
             $("#SelectQuaterly").fadeOut();
-            $("#selectPeriodEnding").val($("#selectPeriodEnding option:first").val());
             $("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
             $("#selectPeriodQuaterly").val($("#selectPeriodQuaterly option:first").val());
         }
+        else if ($("#selectPeriodEnding").val() == "Quarterly" && $("#DocumentType").val() == "GST" || $("#DocumentType").val() == "Other") {
+            $("#SelectQuaterly").fadeIn();
+            $("#SelectMonth").fadeOut();
+            $("#selectPeriodMonthly").val($("#selectPeriodMonthly option:first").val());
+        }
+
     }
 
 
     function SearchByOtherField() {
-        if ($("#DocumentTypes").val() == "GST" || $("#DocumentTypes").val() == "Paystubs" || $("#DocumentTypes").val() == "PD7 A") {
+        if ($("#DocumentTypes").val() == "GST") {
             $("#SearchPeriodEnding").fadeIn();
             $("#SearchPeriodMonthly").fadeOut();
             $("#SearchPeriodQuaterly").fadeOut();
+            $("#SelectSearchMonth").val($("#SelectSearchMonth option:first").val());
+            $("#SelectSearchQuaterly").val($("#SelectSearchQuaterly option:first").val());
+        }
+        else if ($("#DocumentTypes").val() == "Paystubs" || $("#DocumentTypes").val() == "PD7 A") {
+            $("#SearchPeriodEnding").fadeOut();
+            $("#SearchPeriodMonthly").fadeIn();
+            $("#SearchPeriodQuaterly").fadeOut();
+            $("#SelectSearchQuaterly").val($("#SelectSearchQuaterly option:first").val());
         }
         else {
             $("#SearchPeriodEnding").fadeOut();
@@ -746,10 +787,12 @@
         if ($("#SelectSearchPeriodEnding").val() == "Monthly") {
             $("#SearchPeriodMonthly").fadeIn();
             $("#SearchPeriodQuaterly").fadeOut();
+            $("#SelectSearchQuaterly").val($("#SelectSearchQuaterly option:first").val());
         }
-        else if ($("#SelectSearchPeriodEnding").val() == "Quaterly" && $("#DocumentTypes").val() == "GST") {
+        else if ($("#SelectSearchPeriodEnding").val() == "Quarterly" && $("#DocumentTypes").val() == "GST") {
             $("#SearchPeriodQuaterly").fadeIn();
             $("#SearchPeriodMonthly").fadeOut();
+            $("#SelectSearchMonth").val($("#SelectSearchMonth option:first").val());
         }
         else {
             $("#SearchPeriodQuaterly").fadeOut();
@@ -789,3 +832,32 @@
             })
         }
 </script>
+<script>
+    Filevalidation = () => {
+        const fi = document.getElementById('exampleInputFile');
+        // Check if any file is selected.
+        if (fi.files.length > 0) {
+            for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                const fsize = fi.files.item(i).size;
+                const file = Math.round((fsize / 1024));
+                // The size of the file.
+                if (file >= 20480) {
+                    Swal.fire({
+                        title: 'File too Big, please select a file less than 20mb',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                    })
+
+                }
+                else {
+                    document.getElementById('size').innerHTML = '<b>'
+                        + file + '</b> KB';
+                }
+            }
+        }
+    }
+</script>
+

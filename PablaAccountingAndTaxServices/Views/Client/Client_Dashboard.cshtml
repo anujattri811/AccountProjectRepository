@@ -267,40 +267,36 @@
                                                 <input type="hidden" id="UserId" value="@Model.CompanyName" name="SendCompanyName" />
                                                 <div class="form-wrap form-group">
                                                     @Html.DropDownList("DocumentType", DocumentList, "Document Type", new { @class = "form-input form-control-has-validation", @onchange = "ShowOther()" })
-                                                    @*<select class="form-input form-control-has-validation" id="DocumentType" name="DocumentType" onchange="ShowOther()">
-                                                            <option selected="" disabled="">Document Type</option>
-                                                            <option>Notice Of Assessment</option>
-                                                            <option>T1 General</option>
-                                                            <option>T4's</option>
-                                                            <option>T4 Summary</option>
-                                                            <option>T5</option>
-                                                            <option>Financials</option>
-                                                            <option>T2</option>
-                                                            <option>T2 Notice of Assessment</option>
-                                                            <option>Paystubs</option>
-                                                            <option>Schedule 100-125</option>
-                                                            <option>PD7 A</option>
-                                                            <option>Job letter</option>
-                                                            <option>GST</option>
-                                                            <option>Company Incorporation Papers</option>
-                                                            <option>Other</option>
-                                                        </select>*@
+
                                                 </div>
-                                                <div class="form-wrap" id="Show-OtherDocuments" style="display:none;">
+                                                <div class="form-wrap form-group" id="Show-OtherDocuments" style="display:none;">
                                                     <input type="text" name="OtherDocuments" id="OtherDocuments" class="form-input form-control-has-validation" />
                                                     <label class="form-label rd-input-label" for="OtherDocuments">Other Document</label>
                                                 </div>
                                                 <div class="form-wrap form-group" id="Show-years" style="display:none;">
-                                                    <select class="form-input form-control-has-validation" id="PeriodTime" name="PeriodTime" onchange="Test()">
-                                                        <option selected="" disabled="">Period Time</option>
-                                                        <option>Monthly</option>
-                                                        <option>Quaterly</option>
-                                                        <option>Annualy</option>
-                                                    </select>
+                                                    @{
+                                                        var list = new SelectList(new[]
+                                                            {
+                                                            new {Text ="Period Ending", Value=""},
+                                                            new {Text ="Monthly", Value="Monthly"},
+                                                              new {Text="Quarterly", Value="Quarterly"},
+                                                                 new {Text="Annualy", Value="Annualy"},
+                                                                   },
+
+
+                                                            "Text", "Value");
+                                                    }
+                                                    @Html.DropDownList("list", list)
+                                                    @*<select class="form-input form-control-has-validation" id="PeriodTime" name="PeriodTime" onchange="Test()">
+                                                            <option selected="" value="">Period Ending</option>
+                                                            <option>Monthly</option>
+                                                            <option>Quarterly</option>
+                                                            <option>Annualy</option>
+                                                        </select>*@
                                                 </div>
                                                 <div class="form-wrap form-group" id="Show-months" style="display:none;">
                                                     <select class="form-input form-control-has-validation" name="Months" id="RequestMonthly">
-                                                        <option selected="" disabled="">Select Month</option>
+                                                        <option selected="" value="">Select Month</option>
                                                         <option>January</option>
                                                         <option>Febuary</option>
                                                         <option>March</option>
@@ -317,7 +313,7 @@
                                                 </div>
                                                 <div class="form-wrap form-group" id="Quaterly" style="display:none;">
                                                     <select class="form-input form-control-has-validation" name="Quaterly" id="RequestQuaterly">
-                                                        <option selected="" disabled="">Select Quaterly</option>
+                                                        <option selected="" value="">Select Quarter</option>
                                                         <option>QTR 1</option>
                                                         <option>QTR 2</option>
                                                         <option>QTR 3</option>
@@ -326,7 +322,7 @@
                                                 </div>
                                                 <div class="form-wrap form-group" id="Year">
                                                     <select class="form-input form-control-has-validation" name="Year" id="RequestYear">
-                                                        <option selected="" disabled="">Select Year</option>
+                                                        <option selected="" value="">Select Year</option>
                                                         <option>2011</option>
                                                         <option>2012</option>
                                                         <option>2013</option>
@@ -468,9 +464,9 @@
                                             </div>
                                             <div class="form-wrap col-md-3" id="SearchPeriodEnding" style="display:none;margin-top:0px;">
                                                 <select class="form-input form-control-has-validation" id="SearchPeriodEndingTime" name="SearchPeriodTime" onchange="SearchByPeriodEnding()">
-                                                    <option selected="" disabled="">Period Time</option>
+                                                    <option selected="" disabled="">Period Ending</option>
                                                     <option>Monthly</option>
-                                                    <option>Quaterly</option>
+                                                    <option>Quarterly</option>
                                                     <option>Annualy</option>
                                                 </select>
                                             </div>
@@ -494,7 +490,7 @@
                                             </div>
                                             <div class="form-wrap col-md-3" id="SearchQuaterly" style="display:none;margin-top:0px;">
                                                 <select class="form-input form-control-has-validation" name="SearchQuaterly" id="SearchSelectQuaterTime">
-                                                    <option selected="" disabled="">Select Quaterly</option>
+                                                    <option selected="" disabled="">Select Quarter</option>
                                                     <option>QTR 1</option>
                                                     <option>QTR 2</option>
                                                     <option>QTR 3</option>
@@ -663,6 +659,10 @@
             Description: {
                 required: true,
             },
+
+            OtherDocuments: {
+                required: true,
+            },
         },
         messages: {
             DocumentType: {
@@ -676,6 +676,9 @@
             },
             Description: {
                 required: "Please select description.",
+            },
+            OtherDocuments: {
+                required: "Please enter other document type.",
             },
         },
         errorElement: 'span',
@@ -692,38 +695,41 @@
     });
 
     function ShowOther() {
-        if ($("#DocumentType").val() == "Other") {
-            $("#Show-OtherDocuments").fadeIn();
-            $("#Show-years").fadeOut();
-            $("#Show-years").fadeIn();
+        if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
+
             $("#Quaterly").fadeOut();
+            $("#Show-years").fadeOut();
+            $("#Show-months").fadeIn();
+            $("#RequestMonthly").val("");
+            $("#RequestYear").val("");
 
 
         }
-        else if ($("#DocumentType").val() == "GST") {
+        else if ($("#DocumentType").val() == "Other") {
+            $("#Show-OtherDocuments").fadeIn();
+            $("#PeriodTime").fadeIn();
+            $("#Show-months").fadeOut();
             $("#Quaterly").fadeOut();
-            $("#Show-years").fadeOut();
+            $("#Show-years").fadeIn();
+        }
+        else if ($("#DocumentType").val() == "GST") {
+            $("#PeriodTime").fadeIn();
+            $("#Show-months").fadeOut();
+            $("#Quaterly").fadeOut();
             $("#Show-years").fadeIn();
             $("#Show-OtherDocuments").fadeOut();
         }
         else {
-            if ($("#DocumentType").val() == "Paystubs" || $("#DocumentType").val() == "PD7 A") {
-                $("#Show-years").fadeOut();
-                $("#Show-years").fadeIn();
-                $("#Show-OtherDocuments").fadeOut();
-                $("#Quaterly").fadeOut();
-            }
-            else {
-                $("#Show-OtherDocuments").fadeOut();
-                $("#Show-years").fadeOut();
-                $("#Year").fadeIn();
-                $("#Quaterly").fadeOut();
-                $("#Show-months").fadeOut();
-                $("#PeriodTime").val($("#PeriodTime option:first").val());
-                $("#RequestMonthly").val($("#RequestMonthly option:first").val());
-                $("#RequestQuaterly").val($("#RequestQuaterly option:first").val());
-                $("#RequestYear").val($("#RequestYear option:first").val());
-            }
+
+            $("#Show-OtherDocuments").fadeOut();
+            $("#Show-years").fadeOut();
+            $("#Year").fadeIn();
+            $("#Quaterly").fadeOut();
+            $("#Show-months").fadeOut();
+            $("#PeriodTime").val($("#PeriodTime option:first").val());
+            $("#RequestMonthly").val($("#RequestMonthly option:first").val());
+            $("#RequestQuaterly").val($("#RequestQuaterly option:first").val());
+            $("#RequestYear").val($("#RequestYear option:first").val());
 
         }
     }
@@ -733,15 +739,16 @@
             $("#Show-months").fadeIn();
             $("#Quaterly").fadeOut();
         }
-        else if ($("#PeriodTime").val() == "Quaterly" && $("#DocumentType").val() == "GST") {
-            $("#Quaterly").fadeIn();
-            $("#Show-OtherDocuments").fadeOut();
-            $("#Show-months").fadeOut();
-        }
-        else {
+
+        else if ($("#PeriodTime").val() == "Annualy") {
             $("#Show-months").fadeOut();
             $("#Quaterly").fadeOut();
         }
+        else if ($("#PeriodTime").val() == "Quarterly" && $("#DocumentType").val() == "GST" || $("#DocumentType").val() == "Other") {
+            $("#Quaterly").fadeIn();
+            $("#Show-months").fadeOut();
+        }
+
     }
 
     function ShowOtherPerson() {
@@ -754,11 +761,19 @@
     }
 
     function SearchByMainField() {
-        if ($("#SearchDocumentType").val() == "GST" || $("#SearchDocumentType").val() == "Paystubs" || $("#SearchDocumentType").val() == "PD7 A") {
+        if ($("#SearchDocumentType").val() == "Paystubs" || $("#SearchDocumentType").val() == "PD7 A") {
+            $("#SearchMonthly").fadeIn();
+            $("#SearchQuaterly").fadeOut();
+            $("#SearchPeriodEnding").fadeOut();
+            $("#SearchSelectQuaterTime").val($("#SearchSelectQuaterTime option:first").val());
+            $("#SearchPeriodEndingTime").val($("#SearchPeriodEndingTime option:first").val());
+        }
+        else if ($("#SearchDocumentType").val() == "GST") {
             $("#SearchQuaterly").fadeOut();
             $("#SearchMonthly").fadeOut();
             $("#SearchPeriodEnding").fadeIn();
-
+            $("#SearchSelectQuaterTime").val($("#SearchSelectQuaterTime option:first").val());
+            $("#SearchSelectMonthTime").val($("#SearchSelectMonthTime option:first").val());
         }
         else {
             $("#SearchPeriodEnding").fadeOut();
@@ -776,7 +791,7 @@
             $("#SearchMonthly").fadeIn();
             $("#SearchQuaterly").fadeOut();
         }
-        else if ($("#SearchPeriodEndingTime").val() == "Quaterly" && $("#SearchDocumentType").val() == "GST") {
+        else if ($("#SearchPeriodEndingTime").val() == "Quarterly" && $("#SearchDocumentType").val() == "GST") {
             $("#SearchQuaterly").fadeIn();
             $("#SearchMonthly").fadeOut();
         }

@@ -31,10 +31,10 @@ namespace PablaAccountingAndTaxServices.Controllers
                                                              };
             IEnumerable<SelectListItem> selectSearchDocumentList = from Documents in SearchDocumentList
                                                                    select new SelectListItem
-                                                             {
-                                                                 Text = Convert.ToString(Documents),
-                                                                 Value = Convert.ToString(Documents)
-                                                             };
+                                                                   {
+                                                                       Text = Convert.ToString(Documents),
+                                                                       Value = Convert.ToString(Documents)
+                                                                   };
             ViewBag.DocumentList = new SelectList(selectDocumentList, "Text", "Value");
             ViewBag.SearchDocumentList = new SelectList(selectSearchDocumentList, "Text", "Value");
         }
@@ -168,6 +168,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                                                                Text = Convert.ToString(Person),
                                                                Value = Convert.ToString(Person)
                                                            };
+            
             ViewBag.PersonName = new SelectList(selectPersonList, "Text", "Value");
             var resultList = clientBLL.GetRequest(ClientId);
             foreach (var item in resultList)
@@ -195,7 +196,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             {
                 PersonName = OtherPersonName;
             }
-           
+
             if (Months != "")
             {
                 Quaterly = "";
