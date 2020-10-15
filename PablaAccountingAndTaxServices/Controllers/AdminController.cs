@@ -107,7 +107,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 string htmlBody = "";
                 string headerText = "Hi <b> " + FirstName + " " + LastName + " ,</b>";
                 string startTable = "<table>";
-                string emailText = "<tr><td><br/>You have requested to get your password this is your password below:-</br></br></td></tr>";
+                string emailText = "<tr><td><br/>You have requested to get your password. This is your password below:-</br></br></td></tr>";
                 emailText += "<tr><td>UserName:<b> " + Email + "</b></td></tr>";
                 emailText += "<tr><td>Password:<b> " + Password + "</b></td></tr>";
                 emailText += "<tr><td>Regards</td></tr>";
