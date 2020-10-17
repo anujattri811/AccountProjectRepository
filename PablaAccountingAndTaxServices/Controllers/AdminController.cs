@@ -37,10 +37,10 @@ namespace PablaAccountingAndTaxServices.Controllers
                                                              };
             IEnumerable<SelectListItem> selectSearchDocumentList = from Documents in SearchDocumentList
                                                                    select new SelectListItem
-                                                             {
-                                                                 Text = Convert.ToString(Documents),
-                                                                 Value = Convert.ToString(Documents)
-                                                             };
+                                                                   {
+                                                                       Text = Convert.ToString(Documents),
+                                                                       Value = Convert.ToString(Documents)
+                                                                   };
             ViewBag.DocumentList = new SelectList(selectDocumentList, "Text", "Value");
             ViewBag.SearchDocumentList = new SelectList(selectSearchDocumentList, "Text", "Value");
         }
@@ -169,17 +169,17 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                //var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.Email == clientEntity.Email || x.MobileNo == clientEntity.MobileNo && x.IsDeleted == false).FirstOrDefault();
-                //if (ExistClient == null)
-                //{
-                TempData["Success"] = "2";
-                clientBLL.AddNewClient(clientEntity);
-                //}
-                //else
-                //{
-                //    ViewBag.ExistClient = "1";
-                //    return View();
-                //}
+                var ExistClient = pablaAccountsEntities.tblUsers.Where(x => x.CorporateAccessNumber == clientEntity.CorporateAccessNumber && x.IsDeleted == false).FirstOrDefault();
+                if (ExistClient == null)
+                {
+                    TempData["Success"] = "2";
+                    clientBLL.AddNewClient(clientEntity);
+                }
+                else
+                {
+                    ViewBag.ExistClient = "1";
+                    return View();
+                }
 
             }
             return RedirectToAction("client");
@@ -190,19 +190,20 @@ namespace PablaAccountingAndTaxServices.Controllers
             Random r = new Random();
             int rInt = r.Next(100, 1000);
             var Pass = "";
+            var UserName = "";
             if (FirstName.Length >= 3)
             {
-                Pass = FirstName.Substring(0, 3) + CorporateAccessNumber + "@" + rInt;
+                UserName = FirstName.Substring(0, 3) + CorporateAccessNumber;
             }
             else
             {
-                Pass = FirstName + CorporateAccessNumber + "@" + rInt;
+                UserName = FirstName + CorporateAccessNumber;
             }
+            Pass = FirstName.ToLower() + DateOfBirth.Split('/')[2] + "@" + rInt;
             var EncryPassword = encryDecry.EncryptPassword(Pass);
             var Decrypt = encryDecry.DecryptPassword(EncryPassword);
-            var UserName = FirstName.ToLower() + "" + DateOfBirth.Split('/')[2];
             clientBLL.UpdateCredential(ClientId, UserName, EncryPassword);
-            SendCredential(ClientId, UserName, FirstName, LastName, Decrypt,Email);
+            SendCredential(ClientId, UserName, FirstName, LastName, Decrypt, Email);
             TempData["Message"] = "1";
             return RedirectToAction("client_view", new { ClientId = ClientId });
         }
@@ -257,7 +258,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("client");
         }
         [HttpGet]
-        public ActionResult client_view(int ClientId = 0, string PersonNames = "", string DocumentTypes = "", string SearchYear = "", int UserId = 0, string SearchMonthly = "",string SearchQuaterly="")
+        public ActionResult client_view(int ClientId = 0, string PersonNames = "", string DocumentTypes = "", string SearchYear = "", int UserId = 0, string SearchMonthly = "", string SearchQuaterly = "")
         {
             if (TempData["Message"] != null)
             {
@@ -329,7 +330,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             fileUploadEntity.UploadFile.SaveAs(path + fileName);
             fileUploadEntity.DocumentName = DocumentName;
             fileUploadEntity.Extension = Extention;
-           
+
             if (fileUploadEntity.Monthly != "")
             {
                 fileUploadEntity.Quaterly = "";
@@ -350,7 +351,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>One additional document has been uploaded for the person name  <b> " + fileUploadEntity.PersonName + " </b> , of the company " + SendCompanyName + "with document type " + DocumentName + ". Please find an attachment below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>One additional document has been uploaded for the person name  <b> " + fileUploadEntity.PersonName + " </b> of the company " + SendCompanyName + " with document type  <b> " + DocumentName + " </b>. Please find an attachment below:-</br></br></td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
@@ -360,7 +361,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             TempData["Message"] = "3";
             return RedirectToAction("client_view", new { ClientId = fileUploadEntity.UserId });
         }
-        public bool SendCredential(int UserId, string UserName, string FirstName, string LastName, string Password,string Email)
+        public bool SendCredential(int UserId, string UserName, string FirstName, string LastName, string Password, string Email)
         {
             try
             {
