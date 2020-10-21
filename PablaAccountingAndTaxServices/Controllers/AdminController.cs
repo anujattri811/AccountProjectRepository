@@ -218,7 +218,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             emailText += "<tr><td>UserName:<b> " + UserName + "</b></td></tr>";
             emailText += "<tr><td>Password:<b> " + Password + "</b></td></tr>";
             emailText += "<tr><td> You can login with above credentials from below link:-</td></tr>";
-            emailText += "<tr><td><b>http://pablaaccounts.globalroot.net/Client/client_login </b></td></tr>";
+            emailText += "<tr><td><b>http://pablastax.com/Client/client_login </b></td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
@@ -351,7 +351,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>One additional document has been uploaded for the person name  <b> " + fileUploadEntity.PersonName + " </b> of the company " + SendCompanyName + " with document type  <b> " + DocumentName + " </b>. Please find an attachment below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>One additional document has been uploaded for the person name  <b> " + fileUploadEntity.PersonName + " </b> of the company " + SendCompanyName + " with document type  <b> " + fileUploadEntity.DocumentType + " </b>. Please find an attachment below:-</br></br></td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
@@ -373,7 +373,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>UserName:<b> " + UserName + "</b></td></tr>";
                 emailText += "<tr><td>Password:<b> " + Password + "</b></td></tr>";
                 emailText += "<tr><td> You can login with above credentials from below link:-</td></tr>";
-                emailText += "<tr><td><b>http://pablaaccounts.globalroot.net/Client/client_login </b></td></tr>";
+                emailText += "<tr><td><b>http://pablastax.com/Client/client_login </b></td></tr>";
                 emailText += "<tr><td>Regards</td></tr>";
                 emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
@@ -627,7 +627,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>As per Your request for addition of document for <b> " + fileUploadEntity.PersonName + " </b> , We have uploaded a document Please find an attachment below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>As per Your request for addition of document for <b> " + fileUploadEntity.PersonName + " </b> , We have uploaded a document, Please find an attachment below:-</br></br></td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
