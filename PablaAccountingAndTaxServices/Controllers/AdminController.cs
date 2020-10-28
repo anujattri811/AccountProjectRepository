@@ -194,12 +194,15 @@ namespace PablaAccountingAndTaxServices.Controllers
             if (FirstName.Length >= 3)
             {
                 UserName = FirstName.Substring(0, 3) + CorporateAccessNumber;
+                Pass = FirstName.Substring(0, 3) + DateOfBirth.Split('/')[2] + "@" + rInt;
             }
             else
             {
                 UserName = FirstName + CorporateAccessNumber;
+                Pass = FirstName + DateOfBirth.Split('/')[2] + "@" + rInt;
             }
-            Pass = FirstName.ToLower() + DateOfBirth.Split('/')[2] + "@" + rInt;
+            
+            //Pass = FirstName.ToLower() + DateOfBirth.Split('/')[2] + "@" + rInt;
             var EncryPassword = encryDecry.EncryptPassword(Pass);
             var Decrypt = encryDecry.DecryptPassword(EncryPassword);
             clientBLL.UpdateCredential(ClientId, UserName, EncryPassword);
@@ -351,7 +354,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>One additional document has been uploaded for the person name  <b> " + fileUploadEntity.PersonName + " </b> of the company " + SendCompanyName + " with document type  <b> " + fileUploadEntity.DocumentType + " </b>. Please find an attachment below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>A document has been uploaded for the person name  <b> " + fileUploadEntity.PersonName + " </b> of the company " + SendCompanyName + " with document type  <b> " + fileUploadEntity.DocumentType + " </b>. Please find an attachment below:-</br></br></td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
@@ -530,7 +533,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>You request for addition of document has been successfully approved by our company. You will get a document attached with your email shortly. The message for approval of your document from company is as below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>You request for addition of document named as <b> " + result.DocumentName + " </b> of Document Type <b> " + result.DocumentType + " </b> has been successfully approved by our company. You will get a document attached with your email shortly. The message for approval of your document from company is as below:-</br></br></td></tr>";
             emailText += "<tr><td>" + Message + "</td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
@@ -563,7 +566,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>You request for addition of document has been declined by our company. The reason for decline is as below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>You request for addition of document named as <b> " + result.DocumentName + " </b> of Document Type <b> " + result.DocumentType + " </b> has been declined by our company. The reason for decline is as below:-</br></br></td></tr>";
             emailText += "<tr><td>" + Reason + "</td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
@@ -627,7 +630,7 @@ namespace PablaAccountingAndTaxServices.Controllers
             string htmlBody = "";
             string headerText = "Hi <b> " + tbluser.FirstName + " " + tbluser.LastName + " ,</b>";
             string startTable = "<table>";
-            string emailText = "<tr><td><br/>As per Your request for addition of document for <b> " + fileUploadEntity.PersonName + " </b> , We have uploaded a document, Please find an attachment below:-</br></br></td></tr>";
+            string emailText = "<tr><td><br/>As per Your request for addition of document named as <b> " + result.DocumentName + " </b> of Document Type <b> " + result.DocumentType + " </b> for <b> " + fileUploadEntity.PersonName + " </b> , We have uploaded a document, Please find an attachment below:-</br></br></td></tr>";
             emailText += "<tr><td>Regards</td></tr>";
             emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
             string endTable = "<br/></table> </br> </br> Thanks";
@@ -647,12 +650,24 @@ namespace PablaAccountingAndTaxServices.Controllers
         }
 
         [HttpPost]
-        public ActionResult admin_changepassword(int UserId, string Password, string ConfirmPassword)
+        public ActionResult admin_changepassword(int UserId,string OldPassword, string Password, string ConfirmPassword)
         {
-            var EncryPassword = encryDecry.EncryptPassword(Password);
-            var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);
-            clientBLL.UpdateClientPassword(UserId, EncryPassword, EncryConfirmPassword);
-            return RedirectToAction("admin_login");
+            var result = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == UserId && b.IsDeleted == false);
+            var Pass = result.Password;
+            var DecryptPass = encryDecry.DecryptPassword(Pass);
+            if(DecryptPass == OldPassword)
+            {
+                var EncryPassword = encryDecry.EncryptPassword(Password);
+                var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);
+                clientBLL.UpdateClientPassword(UserId, EncryPassword, EncryConfirmPassword);
+                return RedirectToAction("admin_login");
+            }
+            else
+            {
+                ViewBag.Msg = "Please enter correct old passsword";
+            }
+            return RedirectToAction("admin_changepassword");
+
         }
     }
 }

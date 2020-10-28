@@ -434,5 +434,23 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_updateclient", userIdParameter, firstNameParameter, lastNameParameter, dateOfBirthParameter, emailParameter, mobileNoParameter, companyNameParameter, addressParameter, cityParameter, postalCodeParameter, provinceParameter, countryParameter, sINParameter, gSTNumberParameter, wCBParameter, corporateAccessNumberParameter);
         }
+    
+        public virtual int Blocked(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Blocked", userIdParameter);
+        }
+    
+        public virtual int Unblock(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Unblock", userIdParameter);
+        }
     }
 }

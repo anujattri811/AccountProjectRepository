@@ -168,7 +168,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                                                                Text = Convert.ToString(Person),
                                                                Value = Convert.ToString(Person)
                                                            };
-            
+
             ViewBag.PersonName = new SelectList(selectPersonList, "Text", "Value");
             var resultList = clientBLL.GetRequest(ClientId);
             foreach (var item in resultList)
@@ -472,14 +472,28 @@ namespace PablaAccountingAndTaxServices.Controllers
         }
 
         [HttpPost]
-        public ActionResult client_changepassword(int UserId = 0, string Password = "", string ConfirmPassword = "")
+        public ActionResult client_changepassword(int UserId = 0, string Password = "", string ConfirmPassword = "", string OldPassword = "")
         {
-            var EncryPassword = encryDecry.EncryptPassword(Password);
-            var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);
-            clientBLL.UpdateClientPassword(UserId, EncryPassword, EncryConfirmPassword);
-            Session.Abandon();
-            Session.Clear();
-            return RedirectToAction("client_login");
+            var result= pablaAccountsEntities.tblUsers.Where(x => x.UserId == UserId && x.IsDeleted == false).FirstOrDefault();
+            var Pass = result.Password;
+            var DecryptPass = encryDecry.DecryptPassword(Pass);
+            if (OldPassword == DecryptPass)
+            {
+                var EncryPassword = encryDecry.EncryptPassword(Password);
+                var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);
+                clientBLL.UpdateClientPassword(UserId, EncryPassword, EncryConfirmPassword);
+                Session.Abandon();
+                Session.Clear();
+                return RedirectToAction("client_login");
+            }
+            else
+            {
+                ViewBag.msg = "Please enter correct old password";
+
+            }
+
+            return View();
+            
         }
 
 

@@ -286,7 +286,7 @@
 
                                                             "Text", "Value");
                                                     }
-                                                    @Html.DropDownList("PeriodTime", list,new { @onchange="Test()"})
+                                                    @Html.DropDownList("PeriodTime", list, new { @onchange = "Test()" })
                                                     @*<select class="form-input form-control-has-validation" id="PeriodTime" name="PeriodTime" onchange="Test()">
                                                             <option selected="" value="">Period Ending</option>
                                                             <option>Monthly</option>
@@ -563,7 +563,6 @@
                                                             <td class="text-gray-800" style="padding:26px;">
                                                                 <a href="~/Documents/@item.DocumentName.@item.Discription" target="_blank" style="margin:8px;"><span class="info-box-icon"><i class="fa fa-eye"></i></span></a>
                                                                 <a href="~/Admin/DownloadFile?FileName=@item.DocumentName.@item.Discription" style="margin:8px;" target="_blank" onclick="CloseLoader()"><span class="info-box-icon"><i class="fa fa-download"></i></span></a>
-                                                                <a href="#" onclick="Delete('@item.DocumentId')"><span class="info-box-icon"><i class="fa fa-trash"></i></span></a>
 
                                                             </td>
                                                             <td class="text-gray-800">@item.PersonName</td>

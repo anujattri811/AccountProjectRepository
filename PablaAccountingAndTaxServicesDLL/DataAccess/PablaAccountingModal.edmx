@@ -116,6 +116,7 @@
           <Property Name="IsPassword" Type="bit" />
           <Property Name="CorporateAccessNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="Isactive" Type="bit" />
         </EntityType>
         <Function Name="ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
@@ -225,6 +226,12 @@
           <Parameter Name="WCB" Type="nvarchar" Mode="In" />
           <Parameter Name="CorporateAccessNumber" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Blocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablataxaccount">
+          <Parameter Name="UserId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Unblock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pablataxaccount">
+          <Parameter Name="UserId" Type="bigint" Mode="In" />
+        </Function>
         <EntityContainer Name="PablaAccountsModelStoreContainer">
           <EntitySet Name="tbl_FilePersonalTax" EntityType="Self.tbl_FilePersonalTax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_RequestedDocument" EntityType="Self.tbl_RequestedDocument" Schema="dbo" store:Type="Tables" />
@@ -253,10 +260,10 @@
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPersonName" ReturnType="Collection(String)">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="Selectpersonname" ReturnType="Collection(String)">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="usp_insertclient">
             <Parameter Name="FirstName" Mode="In" Type="String" />
@@ -290,7 +297,7 @@
             <Parameter Name="Quaterly" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_InsertDocumentType">
-            <Parameter Name="DocumentType" Mode="In" Type="String" />
+          <Parameter Name="DocumentType" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_insertFilePersonalTax">
             <Parameter Name="IsExisting" Mode="In" Type="Boolean" />
@@ -349,6 +356,12 @@
             <Parameter Name="GSTNumber" Mode="In" Type="String" />
             <Parameter Name="WCB" Mode="In" Type="String" />
             <Parameter Name="CorporateAccessNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Blocked">
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Unblock">
+            <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tbl_FilePersonalTax">
@@ -462,6 +475,7 @@
           <Property Name="IsPassword" Type="Boolean" />
           <Property Name="CorporateAccessNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ConfirmPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Isactive" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -559,6 +573,7 @@
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="Isactive" ColumnName="Isactive" />
                 <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
                 <ScalarProperty Name="CorporateAccessNumber" ColumnName="CorporateAccessNumber" />
                 <ScalarProperty Name="IsPassword" ColumnName="IsPassword" />
@@ -596,6 +611,8 @@
           <FunctionImportMapping FunctionImportName="usp_insertFilePersonalTax" FunctionName="PablaAccountsModel.Store.usp_insertFilePersonalTax" />
           <FunctionImportMapping FunctionImportName="usp_insertRequestdocument" FunctionName="PablaAccountsModel.Store.usp_insertRequestdocument" />
           <FunctionImportMapping FunctionImportName="usp_updateclient" FunctionName="PablaAccountsModel.Store.usp_updateclient" />
+          <FunctionImportMapping FunctionImportName="Blocked" FunctionName="PablaAccountsModel.Store.Blocked" />
+          <FunctionImportMapping FunctionImportName="Unblock" FunctionName="PablaAccountsModel.Store.Unblock" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
