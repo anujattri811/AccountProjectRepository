@@ -1273,6 +1273,7 @@
     <Content Include="Views\Client\update_clientinfo.cshtml" />
     <Content Include="Views\Client\client_changepassword.cshtml" />
     <Content Include="Views\Admin\admin_changepassword.cshtml" />
+    <Content Include="Views\Admin\BulkEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PablaAccountingAndTaxServicesBLL\PablaAccountingAndTaxServicesBLL.csproj">

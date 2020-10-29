@@ -188,20 +188,20 @@ namespace PablaAccountingAndTaxServices.Controllers
         public ActionResult GeneratePassword(int ClientId = 0, string Email = "", string FirstName = "", string LastName = "", string CorporateAccessNumber = "", string DateOfBirth = "")
         {
             Random r = new Random();
-            int rInt = r.Next(100, 1000);
+            int rInt = r.Next(1, 10);
             var Pass = "";
             var UserName = "";
             if (FirstName.Length >= 3)
             {
-                UserName = FirstName.Substring(0, 3) + CorporateAccessNumber;
-                Pass = FirstName.Substring(0, 3) + DateOfBirth.Split('/')[2] + "@" + rInt;
+                UserName = FirstName.Substring(0, 3) + CorporateAccessNumber.Substring(CorporateAccessNumber.Length - 5, CorporateAccessNumber.Length); ;
+                Pass = FirstName.Substring(0, 3) + rInt + DateOfBirth.Split('/')[2] + "@";
             }
             else
             {
-                UserName = FirstName + CorporateAccessNumber;
-                Pass = FirstName + DateOfBirth.Split('/')[2] + "@" + rInt;
+                UserName = FirstName + CorporateAccessNumber.Substring(CorporateAccessNumber.Length - 5, CorporateAccessNumber.Length);
+                Pass = FirstName + rInt + DateOfBirth.Split('/')[2] + "@";
             }
-            
+
             //Pass = FirstName.ToLower() + DateOfBirth.Split('/')[2] + "@" + rInt;
             var EncryPassword = encryDecry.EncryptPassword(Pass);
             var Decrypt = encryDecry.DecryptPassword(EncryPassword);
@@ -266,6 +266,10 @@ namespace PablaAccountingAndTaxServices.Controllers
             if (TempData["Message"] != null)
             {
                 ViewBag.Message = Convert.ToString(TempData["Message"]);
+            }
+            if (TempData["Status"] != null)
+            {
+                ViewBag.Status = Convert.ToString(TempData["Status"]);
             }
             var model = new ClientEntity();
             if (Session["FirstName"] == null && Session["LastName"] == null)
@@ -650,12 +654,12 @@ namespace PablaAccountingAndTaxServices.Controllers
         }
 
         [HttpPost]
-        public ActionResult admin_changepassword(int UserId,string OldPassword, string Password, string ConfirmPassword)
+        public ActionResult admin_changepassword(int UserId, string OldPassword, string Password, string ConfirmPassword)
         {
             var result = pablaAccountsEntities.tblUsers.SingleOrDefault(b => b.UserId == UserId && b.IsDeleted == false);
             var Pass = result.Password;
             var DecryptPass = encryDecry.DecryptPassword(Pass);
-            if(DecryptPass == OldPassword)
+            if (DecryptPass == OldPassword)
             {
                 var EncryPassword = encryDecry.EncryptPassword(Password);
                 var EncryConfirmPassword = encryDecry.EncryptPassword(ConfirmPassword);
@@ -669,5 +673,44 @@ namespace PablaAccountingAndTaxServices.Controllers
             return RedirectToAction("admin_changepassword");
 
         }
+
+        public ActionResult BulkEmail()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult BulkEmail(string message)
+        {
+            var tbluser = pablaAccountsEntities.tblUsers.Where(x => x.IsDeleted == false).ToList();
+            foreach (var item in tbluser)
+            {
+                string htmlBody = "";
+                string headerText = "Hi <b> " + item.FirstName + " " + item.LastName + " ,</b>";
+                string startTable = "<table>";
+                string emailText = "<tr><td><br/>" + message + "</br></br></td></tr>";
+                emailText += "<tr><td>Regards</td></tr>";
+                emailText += "<tr><td><b>Pabla Accounting And Tax Services</b></td></tr>";
+                string endTable = "<br/></table> </br> </br> Thanks";
+                htmlBody = headerText + startTable + emailText + endTable;
+                bool status = customMethod.SendEmail(item.Email, "Message From Admin", htmlBody, "");
+            }
+            ViewBag.Status = "Your message has been emailed to all your clients.";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveNotes(int clientId, string Notes)
+        {
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == clientId && x.IsDeleted == false).SingleOrDefault();
+            if (result != null)
+            {
+                result.Notes = Notes;
+                pablaAccountsEntities.SaveChanges();
+            }
+            TempData["Status"] = "A note has been added successfully for this client.";
+            return RedirectToAction("client_view", "Admin", new { ClientId = clientId, PersonNames = "", DocumentTypes = "", SearchYear = "", UserId = 0, SearchMonthly = "", SearchQuaterly = "" });
+        }
+
+
     }
 }

@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "BulkEmail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="container">
+        <div class="card card-primary">
+            <div class="card-header card_color" style="padding-top: 1px;
+    padding-bottom: 1px;background:#605CA8;">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <h3 class="card-title" style="color: white;padding-top:16px;">Send message to all clients</h3>
+                    </div>
+                    <div class="col-md-6" style="float:right;margin-top: 7px;">
+                        @*<a href="/Admin/client" class="btn btn_a" style="float: right;font-size:15px;color: black;">
+                            Back to client
+                        </a>*@
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="/Admin/BulkEmail" method="post" id="ModifyClient">
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(ViewBag.Status))
+                    {
+                        <h5 style="color:green;font-weight:bold;">@ViewBag.Status</h5>
+                    }
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 form-group">
+                            @*<input type="hidden" value=" @Model.UserId" name="UserId" />*@
+                            <label for="Message">Message</label>
+                            <textarea class="form-control" id="txtMessage" name="Message" rows="5" placeholder="Message"></textarea>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-12 row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-block1 btn-outline-primary">Send To All Client</button>
+                        </div>
+                        @*<div class="col-md-6">
+                            <button type="button" class="btn btn-block1 btn-outline-primary" onclick="return cancel();">Cancel</button>
+                        </div>*@
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $("#Dashboard").removeClass('active');
+    $("#BulkEmail").addClass('active');
+</script>

@@ -117,6 +117,7 @@
           <Property Name="CorporateAccessNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="100" />
           <Property Name="Isactive" Type="bit" />
+          <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
         <Function Name="ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
@@ -358,10 +359,10 @@
             <Parameter Name="CorporateAccessNumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Blocked">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="Unblock">
-            <Parameter Name="UserId" Mode="In" Type="Int64" />
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tbl_FilePersonalTax">
@@ -476,6 +477,7 @@
           <Property Name="CorporateAccessNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ConfirmPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Isactive" Type="Boolean" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -573,6 +575,7 @@
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="PablaAccountsModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="Isactive" ColumnName="Isactive" />
                 <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
                 <ScalarProperty Name="CorporateAccessNumber" ColumnName="CorporateAccessNumber" />

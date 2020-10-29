@@ -38,7 +38,7 @@
         }
         <form class="rd-form" action="\Client\FilePersonalTax" method="post" id="FilePersonalTax">
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
-                PERSONAL INFORMATION
+                Personal Information
             </div>
             <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-2 ">
@@ -57,37 +57,37 @@
             <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-4 form-group">
                     <label class="" for="FirstName" style="border:0px; padding-left:10px;color:black;font-size:17px;">First Name</label>
-                    <input class="form-input form-control-has-validation" id="FirstName" type="text" name="FirstName">
+                    <input class="form-input form-control-has-validation" id="FirstName" type="text" name="FirstName" placeholder="First Name">
                 </div>
 
                 <div class="col-md-4 form-group">
                     <label for="MiddleName" style="border:0px;color:black;padding-left:10px;font-size:17px;">Middle Name</label>
-                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="MiddleName">
+                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="MiddleName" placeholder="Middle Name">
                 </div>
 
                 <div class="col-md-4 form-group">
                     <label for="LastName" style="border:0px; color:black;padding-left:10px;font-size:17px;">Last Name</label>
-                    <input class="form-input form-control-has-validation" id="LastName" type="text" name="LastName">
+                    <input class="form-input form-control-has-validation" id="LastName" type="text" name="LastName" placeholder="Last Name">
                 </div>
             </div>
             <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="SIN" style="border:0px; color:black;padding-left:10px;font-size:17px;">SIN</label>
-                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SIN">
+                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SIN" placeholder="SIN">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker" type="datetime" autocomplete="off" name="DateOfBirth">
+                    <input class="form-input form-control-has-validation" id="datepicker" type="datetime" autocomplete="off" name="DateOfBirth" placeholder="Date Of Birth">
                 </div>
             </div>
             <div class="col-md-12 row form-group" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Phone" style="border:0px; color:black;padding-left:10px;font-size:17px;">Phone</label>
-                    <input class="form-input form-control-has-validation" id="Phone" type="text" name="Phone" onkeypress="phoneno()">
+                    <input class="form-input form-control-has-validation" id="Phone" type="text" name="Phone" onkeypress="phoneno()" placeholder="Phone">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="Email" style="border:0px; color:black;padding-left:10px;font-size:17px;">Email</label>
-                    <input class="form-input form-control-has-validation" id="Email" type="email" name="Email">
+                    <input class="form-input form-control-has-validation" id="Email" type="email" name="Email" placeholder="Email">
                 </div>
             </div>
             <div class="col-md-12 row form-group" style="margin-top:10px">
@@ -119,99 +119,98 @@
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Phone" style="border:0px; color:black;padding-left:10px;font-size:17px;">Current Address</label>
-                    <input class="form-input form-control-has-validation" id="Address" type="text" name="CurrentAddress">
+                    <input class="form-input form-control-has-validation" id="Address" type="text" name="CurrentAddress" placeholder="Current Address">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="Email" style="border:0px; color:black;padding-left:10px;font-size:17px;">City</label>
-                    <input class="form-input form-control-has-validation" id="City" type="text" name="City">
+                    <input class="form-input form-control-has-validation" id="City" type="text" name="City" placeholder="City">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Phone" style="border:0px; color:black;padding-left:10px;font-size:17px;">Province</label>
-                    <input class="form-input form-control-has-validation" id="Province" type="text" name="Province">
+                    <input class="form-input form-control-has-validation" id="Province" type="text" name="Province" placeholder="Province">
                 </div>
                 <div class="col-md-6 form-group">
-                    <label for="Email" style="border:0px; color:black;padding-left:10px;font-size:17px;">PostalCode</label>
-                    <input class="form-input form-control-has-validation" id="PostalCode" type="text" name="PostalCode">
+                    <label for="Email" style="border:0px; color:black;padding-left:10px;font-size:17px;">Postal Code</label>
+                    <input class="form-input form-control-has-validation" id="PostalCode" type="text" name="PostalCode" placeholder="Postal Code">
                 </div>
             </div>
-            <div class="col-md-12 row" style="        margin-top: 10px;
-">
+            <div class="col-md-12 row" style="margin-top: 10px;">
                 <div class="col-md-6 form-group">
-                    <label for="Entrydatetime" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Entry in Canada(if filing first time)</label>
-                    <input class="form-input form-control-has-validation" id="Entrydatetime" type="datetime" name="Entrydatetime">
+                    <label for="Entrydatetime" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Entry In Canada (if filing first time)</label>
+                    <input class="form-input form-control-has-validation" id="Entrydatetime" type="datetime" name="Entrydatetime" placeholder="Date Of Entry In Canada">
                 </div>
             </div>
             <div class="col-md-12" style="text-align:center;background-color:black;color:white;padding-bottom:10px;padding-top:10px">
-                Family INFORMATION
+                Family Information
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-4 form-group">
-                    <label class="" for="SpouseName" style="border:0px; padding-left:10px;color:black;font-size:17px;">NameOfSpouse(FirstName)</label>
-                    <input class="form-input form-control-has-validation" id="SpouseName" type="text" name="SpouseFirstName">
+                    <label class="" for="SpouseName" style="border:0px; padding-left:10px;color:black;font-size:17px;">Name Of Spouse (First Name)</label>
+                    <input class="form-input form-control-has-validation" id="SpouseName" type="text" name="SpouseFirstName" placeholder="Name Of Spouse (First Name)">
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="MiddleName" style="border:0px;color:black;padding-left:10px;font-size:17px;">Middle Name</label>
-                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="SpouseMiddleName">
+                    <input class="form-input form-control-has-validation" id="MiddleName" type="text" name="SpouseMiddleName" placeholder="Name Of Spouse (Middle Name)">
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="LastName" style="border:0px; color:black;padding-left:10px;font-size:17px;">Last Name</label>
-                    <input class="form-input form-control-has-validation" id="SpouseLastName" type="text" name="SpouseLastName">
+                    <label for="LastName" style="border:0px; color:black;padding-left:10px;font-size:17px;">Last Name</label> 
+                    <input class="form-input form-control-has-validation" id="SpouseLastName" type="text" name="SpouseLastName"placeholder="Name Of Spouse (Last Name)">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
-                    <label for="SIN" style="border:0px; color:black;padding-left:10px;font-size:17px;">SIN(if applicable)</label>
-                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SpouseSIN">
+                    <label for="SIN" style="border:0px; color:black;padding-left:10px;font-size:17px;">SIN (if applicable)</label>
+                    <input class="form-input form-control-has-validation" id="SIN" type="text" name="SpouseSIN" placeholder="SIN">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker4" type="datetime" name="SpouseDateOfBirth">
+                    <input class="form-input form-control-has-validation" id="datepicker4" type="datetime" name="SpouseDateOfBirth" placeholder="Date Of Birth">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px;">
                 <div class="col-md-6 form-group">
-                    <label for="Entrydatetime1" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Entry in Canada(if filing tax first time in CANADA)</label>
-                    <input class="form-input form-control-has-validation" id="Entrydatetime1" type="datetime" name="Entrydatetime1">
+                    <label for="Entrydatetime1" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Entry In Canada (if filing tax first time in canada)</label>
+                    <input class="form-input form-control-has-validation" id="Entrydatetime1" type="datetime" name="Entrydatetime1" placeholder="Date Of Entry In Canada">
                 </div>
             </div>
-            <div class="col-md-12" style="        text-align: center;
+            <div class="col-md-12" style="text-align: center;
         background-color: black;
-        color: white;
+        color: white;'kjh3'
         padding-bottom: 10px;
         padding-top: 10px">
-                Children INFORMATION(if the kids are in Canada)
+                Children Information (if the kids are in canada)
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px;font-size:17px;">First Child Name</label>
-                    <input class="form-input form-control-has-validation" id="FirstChildName" type="text" name="Children1Name">
+                    <input class="form-input form-control-has-validation" id="FirstChildName" type="text" name="Children1Name" placeholder="First Child Name">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker3" type="datetime" name="Children1DateOfBirth" autocomplete="off">
+                    <input class="form-input form-control-has-validation" id="datepicker3" type="datetime" name="Children1DateOfBirth" autocomplete="off" placeholder="Date Of Birth">
                     @*<input class="form-input form-control-has-validation" id="DateOfBirth" type="text" name="DateOfBirth" data-constraints="Required">*@
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px;font-size:17px;">Second Child Name</label>
-                    <input class="form-input form-control-has-validation" id="SecondChildName" type="text" name="Children2Name">
+                    <input class="form-input form-control-has-validation" id="SecondChildName" type="text" name="Children2Name" placeholder="Second Child Name"> 
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="DateOfBirth" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker2" type="datetime" name="Children2DateOfBirth" autocomplete="off">
+                    <input class="form-input form-control-has-validation" id="datepicker2" type="datetime" name="Children2DateOfBirth" autocomplete="off" placeholder="Date Of Birth">
                 </div>
             </div>
             <div class="col-md-12 row" style="margin-top:10px">
                 <div class="col-md-6 form-group">
                     <label for="Name" style="border:0px; color:black;padding-left:10px;font-size:17px;">Third Child Name</label>
-                    <input class="form-input form-control-has-validation" id="ThirdChildName" type="text" name="Children3Name">
+                    <input class="form-input form-control-has-validation" id="ThirdChildName" type="text" name="Children3Name" placeholder="Third Child Name">
                 </div>
                 <div class="col-md-6 form-group ">
                     <label for="Name" style="border:0px; color:black;padding-left:10px;font-size:17px;">Date Of Birth</label>
-                    <input class="form-input form-control-has-validation" id="datepicker1" type="datetime" name="Children3DateOfBirth" autocomplete="off">
+                    <input class="form-input form-control-has-validation" id="datepicker1" type="datetime" name="Children3DateOfBirth" autocomplete="off" placeholder="Date Of Birth">
 
                 </div>
             </div>

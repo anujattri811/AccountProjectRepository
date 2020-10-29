@@ -39,5 +39,6 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         public string CorporateAccessNumber { get; set; }
         public string ConfirmPassword { get; set; }
         public Nullable<bool> Isactive { get; set; }
+        public string Notes { get; set; }
     }
 }

@@ -42,6 +42,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             clientEntity.IsPassword = result.IsPassword;
             clientEntity.UserName = result.UserName;
             clientEntity.Password = result.Password;
+            clientEntity.Notes = result.Notes;
             return clientEntity;
         }
         public void UpdateClient(ClientEntity clientEntity)

@@ -31,6 +31,7 @@ namespace PablaAccountingAndTaxServicesEntity
         public DateTime UpdatedOn { get; set; }
         public bool IsDeleted { get; set; }
         public string PersonName { get; set; }
+        public string Notes { get; set; }
 
         public bool? IsPassword { get; set; }
 
