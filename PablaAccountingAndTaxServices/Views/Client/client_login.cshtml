@@ -19,6 +19,10 @@
         {
             <h6 style="color:red;text-align:center;">@ViewBag.Message</h6>
         }
+        @*@if (!string.IsNullOrEmpty(ViewBag.Msg))
+        {
+            <h6 style="color:red;text-align:center;">@ViewBag.Msg</h6>
+        }*@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-9 col-lg-7 col-xl-6">
@@ -36,7 +40,7 @@
                             <input class="form-input form-control-has-validation" id="login-password" type="password" name="Password" placeholder="Password"><span class="form-validation"></span>
                             @*<label class="form-label rd-input-label" for="login-password">Password</label>*@
                         </div>
-                        
+
                         <a style="float:left" href="~/Client/client_forgotpassword">Forgot Password</a>
                         <button class="button button-primary" value="Login" type="submit" style="float:right;">Login</button>
 

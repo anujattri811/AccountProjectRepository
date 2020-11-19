@@ -12,5 +12,6 @@ namespace PablaAccountingAndTaxServicesDLL.Interface
         LoginEntity CheckLogin(string UserName, string Password);
         LoginEntity ForgetPassword(string Email,int RoleId);
         LoginEntity CheckClientLogin(string Username, string Password);
+        LoginEntity CheckClientactive(string Username, string Password);
     }
 }

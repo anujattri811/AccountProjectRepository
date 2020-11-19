@@ -69,8 +69,15 @@
                                                     </i>
 
                                                 </a>
-                                                <a href="" class="btn btn-primary">Block</a>
-                                                <a href="" class="btn btn-primary">Unblock</a>
+                                                @if (item.Isactive == false || item.Isactive == null)
+                                                {
+                                                    <a href="/Admin/BlockeUser?UserId=@item.UserId" class="btn btn-primary">Block</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Admin/UnBlockUser?UserId=@item.UserId" class="btn btn-primary">Unblock</a>
+                                                }
+
                                             </td>
                                             <td>@item.FirstName</td>
                                             <td>@item.LastName</td>

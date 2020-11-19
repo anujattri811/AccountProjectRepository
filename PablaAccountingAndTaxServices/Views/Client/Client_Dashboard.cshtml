@@ -392,7 +392,7 @@
                                                         @if (ViewBag.CurrentDays <= item.CreatedOn)
                                                         {
                                                             <td>
-                                                                <a class="btn btn-danger btn-sm" href="#" onclick="Delete(@item.RequestDocumentId);">
+                                                                <a class="btn btn-danger btn-sm" href="#" onclick="Deleterequest(@item.RequestDocumentId);">
                                                                     <i class="fas fa-trash">
                                                                     </i>
                                                                 </a>
@@ -801,7 +801,8 @@
     }
 
 
-    function Delete(UserId) {
+    function Deleterequest(UserId) {
+        debugger;
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -812,6 +813,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
+                debugger;
                 window.location.href = "/Client/DeleteRequest?UserId=" + UserId
 
             }
@@ -836,7 +838,8 @@
         }
 });
 
-        function Delete(DocumentId) {
+    function Delete(DocumentId) {
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

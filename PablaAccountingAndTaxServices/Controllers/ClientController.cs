@@ -75,13 +75,23 @@ namespace PablaAccountingAndTaxServices.Controllers
                 ViewBag.Message = "You have entered incorrect Username and Password.";
                 return View();
             }
+
             else
             {
-                Session["UserId"] = result.UserId;
-                Session["FirstName"] = result.FirstName;
-                Session["LastName"] = result.LastName;
-                Session["Email"] = result.Email;
-                return RedirectToAction("Client_Dashboard", "Client");
+                var result1 = loginBLL.CheckClientactive(tbluser.UserName, EncryPassword);
+                if (result1.Isactive == null)
+                {
+                    ViewBag.Message = "You are blocked by administrator.Please contact to administrator for unblock.";
+                    return View();
+                }
+                else
+                {
+                    Session["UserId"] = result.UserId;
+                    Session["FirstName"] = result.FirstName;
+                    Session["LastName"] = result.LastName;
+                    Session["Email"] = result.Email;
+                    return RedirectToAction("Client_Dashboard", "Client");
+                }
             }
         }
         [HttpGet]
@@ -100,13 +110,21 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                var result = loginBLL.ForgetPassword(Email, 0);
-                var Password = encryDecry.DecryptPassword(result.Password);
-                SendForgetPasswordEmail(Convert.ToInt32(result.UserId), Email, result.FirstName, result.LastName, Password);
-                TempData["MSG"] = " Your Username and Password has been sent successfully to your email.";
-                return View();
+                var Clientdata1 = pablaAccountsEntities.tblUsers.Where(x => x.Email == Email && x.IsDeleted == false &&x.Isactive == false).FirstOrDefault();
+                if (Clientdata1 == null)
+                {
+                    TempData["MSG"] = "You are blocked by administrator.Please contact to administrator for unblock. ";
+                    return RedirectToAction("client_forgotpassword");
+                }
+                else
+                {
+                    var result = loginBLL.ForgetPassword(Email, 0);
+                    var Password = encryDecry.DecryptPassword(result.Password);
+                    SendForgetPasswordEmail(Convert.ToInt32(result.UserId), Email, result.FirstName, result.LastName, Password);
+                    TempData["MSG"] = " Your Username and Password has been sent successfully to your email.";
+                    return View();
+                }
             }
-
         }
         public bool SendForgetPasswordEmail(int UserId, string Email, string FirstName, string LastName, string Password)
         {
@@ -224,7 +242,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Other Document Name:<b> " + OtherDocuments + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                customMethod.SendEmail("Tax@pablastax.com", "Request Document", htmlBody, "");
+                customMethod.SendEmail("Taxcanada.org@gmail.com", "Request Document", htmlBody, "");
                 //MailMessage mailMessage = new MailMessage();
                 //mailMessage.To.Add("sahilattri740@gmail.com");
                 //mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
@@ -277,7 +295,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Message:<b> " + Message + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                customMethod.SendEmail("Tax@pablastax.com", "Contact Us", htmlBody, "");
+                customMethod.SendEmail("Taxcanada.org@gmail.com", "Contact Us", htmlBody, "");
                 //MailMessage mailMessage = new MailMessage();
                 //mailMessage.To.Add("rs3551370@gmail.com");
                 //mailMessage.From = new MailAddress("Websiteindia2020@gmail.com");
@@ -441,7 +459,7 @@ namespace PablaAccountingAndTaxServices.Controllers
                 emailText += "<tr><td>Phone:<b> " + Phone + "</b></td></tr>";
                 string endTable = "<br/></table> </br> </br> Thanks";
                 htmlBody = headerText + startTable + emailText + endTable;
-                customMethod.SendEmail("Tax@pablastax.com", "File Personal Tax", htmlBody, "");
+                customMethod.SendEmail("Taxcanada.org@gmail.com", "File Personal Tax", htmlBody, "");
                 return true;
             }
             catch (Exception ex)
@@ -474,7 +492,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpPost]
         public ActionResult client_changepassword(int UserId = 0, string Password = "", string ConfirmPassword = "", string OldPassword = "")
         {
-            var result= pablaAccountsEntities.tblUsers.Where(x => x.UserId == UserId && x.IsDeleted == false).FirstOrDefault();
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == UserId && x.IsDeleted == false).FirstOrDefault();
             var Pass = result.Password;
             var DecryptPass = encryDecry.DecryptPassword(Pass);
             if (OldPassword == DecryptPass)
@@ -488,12 +506,10 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                ViewBag.msg = "Please enter correct old password";
-
+                TempData["Msg"] = "Please enter correct old password";
+                return RedirectToAction("client_changepassword", new { UserId = UserId });
             }
 
-            return View();
-            
         }
 
 

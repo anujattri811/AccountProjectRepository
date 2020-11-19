@@ -23,6 +23,10 @@ namespace PablaAccountingAndTaxServicesBLL
         {
             return ilogin.CheckClientLogin(Username, Password);
         }
+        public LoginEntity CheckClientactive(string Username, string Password)
+        {
+            return ilogin.CheckClientactive(Username, Password);
+        }
         public LoginEntity ForgetPassword(string Email,int RoleId)
         {
             return ilogin.ForgetPassword(Email,RoleId);

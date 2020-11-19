@@ -30,12 +30,29 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 loginEntity.LastName = result.LastName;
                 loginEntity.UserId = result.UserId;
                 loginEntity.Email = result.Email;
+                loginEntity.Isactive = result.Isactive;
+                
+            }
+            return loginEntity;
+        }
+        public LoginEntity CheckClientactive(string Username, string Password)
+        {
+            LoginEntity loginEntity = new LoginEntity();
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserName == Username && x.Password == Password && x.RoleId != 1 && x.IsDeleted == false && x.Isactive ==false).FirstOrDefault();
+            if (result != null)
+            {
+                loginEntity.FirstName = result.FirstName;
+                loginEntity.LastName = result.LastName;
+                loginEntity.UserId = result.UserId;
+                loginEntity.Email = result.Email;
+                loginEntity.Isactive = result.Isactive;
+
             }
             return loginEntity;
         }
         public LoginEntity ForgetPassword(string Email,int RoleId)
         {
-            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserName == Email && x.RoleId == RoleId && x.IsDeleted == false).FirstOrDefault();
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserName == Email && x.RoleId == RoleId && x.IsDeleted == false && x.Isactive == false).FirstOrDefault();
             LoginEntity loginEntity = new LoginEntity();
             if (result != null)
             {
@@ -43,6 +60,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
                 loginEntity.FirstName = result.FirstName;
                 loginEntity.LastName = result.LastName;
                 loginEntity.Password = result.Password;
+                loginEntity.Isactive = result.Isactive;
             }
             return loginEntity;
         }

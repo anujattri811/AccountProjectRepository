@@ -193,15 +193,37 @@ namespace PablaAccountingAndTaxServices.Controllers
             var UserName = "";
             if (FirstName.Length >= 3)
             {
-                UserName = FirstName.Substring(0, 3) + CorporateAccessNumber.Substring(CorporateAccessNumber.Length - 5, CorporateAccessNumber.Length); ;
-                Pass = FirstName.Substring(0, 3) + rInt + DateOfBirth.Split('/')[2] + "@";
+                if(CorporateAccessNumber.Length >= 7)
+                {
+                    var corpno = CorporateAccessNumber.Substring(0, 5);
+                    UserName = FirstName.Substring(0, 3) + corpno;
+                    Pass = FirstName.Substring(0, 3) + rInt + DateOfBirth.Split('/')[2] + "@";
+                }
+                else
+                {
+                    
+                    UserName = FirstName.Substring(0, 3) + CorporateAccessNumber;
+                    Pass = FirstName.Substring(0, 3) + rInt + DateOfBirth.Split('/')[2] + "@";
+                }
             }
             else
             {
-                UserName = FirstName + CorporateAccessNumber.Substring(CorporateAccessNumber.Length - 5, CorporateAccessNumber.Length);
-                Pass = FirstName + rInt + DateOfBirth.Split('/')[2] + "@";
-            }
+                if (CorporateAccessNumber.Length >= 7)
+                {
+                    var corpno = CorporateAccessNumber.Substring(0, 5);
+                    UserName = FirstName + corpno;
+                    Pass = FirstName + rInt + DateOfBirth.Split('/')[2] + "@";
+                }
+                else
+                {
 
+                    UserName = FirstName + CorporateAccessNumber;
+                    Pass = FirstName + rInt + DateOfBirth.Split('/')[2] + "@";
+                }
+                //UserName = FirstName + CorporateAccessNumber.Substring(0, 5);
+                //Pass = FirstName + rInt + DateOfBirth.Split('/')[2] + "@";
+            }
+            
             //Pass = FirstName.ToLower() + DateOfBirth.Split('/')[2] + "@" + rInt;
             var EncryPassword = encryDecry.EncryptPassword(Pass);
             var Decrypt = encryDecry.DecryptPassword(EncryPassword);
@@ -668,9 +690,10 @@ namespace PablaAccountingAndTaxServices.Controllers
             }
             else
             {
-                ViewBag.Msg = "Please enter correct old passsword";
+                TempData["Message"] = "Please enter correct old passsword";
+                return RedirectToAction("admin_changepassword", new { UserId = UserId });
             }
-            return RedirectToAction("admin_changepassword");
+           
 
         }
 
@@ -701,7 +724,7 @@ namespace PablaAccountingAndTaxServices.Controllers
         [HttpPost]
         public ActionResult SaveNotes(int clientId, string Notes)
         {
-            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == clientId && x.IsDeleted == false).SingleOrDefault();
+            var result = pablaAccountsEntities.tblUsers.Where(x => x.UserId == clientId && x.IsDeleted == false && x.Isactive == false ).SingleOrDefault();
             if (result != null)
             {
                 result.Notes = Notes;
@@ -710,7 +733,22 @@ namespace PablaAccountingAndTaxServices.Controllers
             TempData["Status"] = "A note has been added successfully for this client.";
             return RedirectToAction("client_view", "Admin", new { ClientId = clientId, PersonNames = "", DocumentTypes = "", SearchYear = "", UserId = 0, SearchMonthly = "", SearchQuaterly = "" });
         }
+        
+        public ActionResult BlockeUser(int UserId= 0)
+        {
+            var client_data= pablaAccountsEntities.tblUsers.Where(x => x.UserId == UserId && x.IsDeleted == false).SingleOrDefault();
+            client_data.Isactive = true;
+            pablaAccountsEntities.SaveChanges();
+            return RedirectToAction("client");
+        }
 
-
+      
+        public ActionResult UnBlockUser(int UserId = 0)
+        {
+            var client_data = pablaAccountsEntities.tblUsers.Where(x => x.UserId == UserId && x.IsDeleted == false).SingleOrDefault();
+            client_data.Isactive = false;
+            pablaAccountsEntities.SaveChanges();
+            return RedirectToAction("client");
+        }
     }
 }
