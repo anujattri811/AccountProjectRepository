@@ -66,7 +66,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
             pablaAccountsEntities.SaveChanges();
         }
 
-     
+
         public void DeleteRequest(int UserId)
         {
             var result = pablaAccountsEntities.tbl_RequestedDocument.Where(x => x.RequestDocumentId == UserId).SingleOrDefault();
@@ -79,14 +79,14 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         }
         public void Savedocuments(FileUploadEntity fileUploadEntity)
         {
-            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName, fileUploadEntity.Extension, fileUploadEntity.OtherDocuments,fileUploadEntity.Periodending,fileUploadEntity.Monthly,fileUploadEntity.Quaterly);
+            pablaAccountsEntities.usp_insertclientdocument(fileUploadEntity.UserId, fileUploadEntity.PersonName, fileUploadEntity.DocumentType, fileUploadEntity.year, fileUploadEntity.DocumentName, fileUploadEntity.Extension, fileUploadEntity.OtherDocuments, fileUploadEntity.Periodending, fileUploadEntity.Monthly, fileUploadEntity.Quaterly);
 
         }
-        public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year,string Monthly,string Quaterly)
+        public List<tblClientDocument> SearchDocumentByQuery(int UserId, string PersonName, string DocumentType, string Year, string Monthly, string Quaterly)
         {
-            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && x.Year == Year || x.Monthly==Monthly || x.Quaterly== Quaterly && x.IsDeleted==false).ToList();
+            return pablaAccountsEntities.tblClientDocuments.Where(x => x.UserId == UserId && x.PersonName == PersonName && x.DocumentType == DocumentType && (x.Year == Year || x.Monthly == Monthly || x.Quaterly == Quaterly) && x.IsDeleted == false).ToList();
         }
-        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months, string PeriodTime,string Quaterly)
+        public void RequestDocumentByClient(int UserId, string DocumentType, string Year, string PersonName, string Description, string OtherDocuments, string Months, string PeriodTime, string Quaterly)
         {
             pablaAccountsEntities.usp_insertRequestdocument(UserId, DocumentType, Year, PersonName, Description, OtherDocuments, PeriodTime, Months, Quaterly);
         }
@@ -98,7 +98,7 @@ namespace PablaAccountingAndTaxServicesDLL.DataAccess
         {
             pablaAccountsEntities.usp_insertFilePersonalTax(filePersonalTaxEntity.IsExiting, filePersonalTaxEntity.FirstName, filePersonalTaxEntity.MiddleName, filePersonalTaxEntity.LastName, filePersonalTaxEntity.SIN, filePersonalTaxEntity.DateOfBirth, filePersonalTaxEntity.Phone, filePersonalTaxEntity.Email, filePersonalTaxEntity.MaritalStatus, filePersonalTaxEntity.Sex,
                filePersonalTaxEntity.CurrentAddress, filePersonalTaxEntity.City, filePersonalTaxEntity.Province, filePersonalTaxEntity.PostalCode, filePersonalTaxEntity.SpouseFirstName,
-                filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth,filePersonalTaxEntity.Entrydatetime,filePersonalTaxEntity.Entrydatetime1);
+                filePersonalTaxEntity.SpouseMiddleName, filePersonalTaxEntity.SpouseLastName, filePersonalTaxEntity.SpouseSIN, filePersonalTaxEntity.SpouseDateOfBirth, filePersonalTaxEntity.Children1Name, filePersonalTaxEntity.Children1DateOfBirth, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children2Name, filePersonalTaxEntity.Children3Name, filePersonalTaxEntity.Children3DateOfBirth, filePersonalTaxEntity.Entrydatetime, filePersonalTaxEntity.Entrydatetime1);
         }
         public void UpdateClientPassword(int UserId, string Password, string ConfirmPassword)
         {
